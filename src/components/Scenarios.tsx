@@ -72,7 +72,7 @@ export default function Scenarios() {
               </p>
 
               <div className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--brand)] shadow-[0_8px_18px_rgba(30,43,57,0.18)]">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--brand)] shadow-[0_8px_18px_rgba(49,39,32,0.18)]">
                   <svg width="10" height="8" fill="none" viewBox="0 0 10 8" aria-hidden="true">
                     <path
                       d="M1 4l2.5 2.5L9 1"

@@ -1,6 +1,6 @@
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line-soft)] bg-[rgba(243,238,230,0.8)] shadow-[0_10px_30px_rgba(25,32,40,0.05)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[var(--line-soft)] bg-[rgba(244,238,230,0.82)] shadow-[0_10px_30px_rgba(43,35,29,0.06)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="/" className="text-[15px] font-semibold tracking-tight text-[var(--text-strong)] transition-opacity hover:opacity-80">
           Decdock

@@ -59,7 +59,7 @@ export default function HowItWorks() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {recordFields.map((field) => (
-              <div key={field.label} className="rounded-[18px] bg-[rgba(255,255,255,0.44)] p-4">
+              <div key={field.label} className="rounded-[18px] bg-[rgba(248,243,236,0.72)] p-4">
                 <div className="mb-1.5 text-[14px] font-semibold text-[var(--text-strong)]">{field.label}</div>
                 <div className="text-[13.5px] leading-[1.65] text-[var(--text-body)]">{field.sub}</div>
               </div>

@@ -55,7 +55,7 @@ export default function Problem() {
               {scatterSources.map((source) => (
                 <div
                   key={source.label}
-                  className="rounded-[20px] border border-[var(--line-soft)] bg-[rgba(255,255,255,0.56)] p-4 shadow-[0_10px_28px_rgba(25,32,40,0.05)]"
+                  className="rounded-[20px] border border-[var(--line-soft)] bg-[rgba(248,243,236,0.76)] p-4 shadow-[0_10px_28px_rgba(43,35,29,0.06)]"
                 >
                   <div className="mb-2 flex items-center gap-3">
                     <span className="h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" />

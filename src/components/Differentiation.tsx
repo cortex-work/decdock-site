@@ -40,14 +40,14 @@ export default function Differentiation() {
           </div>
 
           <div className="page-panel-dark relative overflow-hidden rounded-[26px] p-6">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_70%)]" />
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[rgba(214,224,237,0.74)]">
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,248,239,0.12),transparent_70%)]" />
+            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
               Decdock Core
             </div>
             <h3 className="mb-3 text-[18px] font-semibold text-white">
               Tracks decisions as living memory
             </h3>
-            <p className="text-[14px] leading-[1.75] text-[rgba(221,231,239,0.84)]">
+            <p className="text-[14px] leading-[1.75] text-[rgba(239,230,220,0.84)]">
               Decdock Core treats decisions as first-class records, not text to be
               retrieved. Each record carries source, owner, confidence, and review state.
               It surfaces them when relevant. It flags when they are at risk.

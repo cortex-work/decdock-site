@@ -24,19 +24,19 @@ function MetaRow({ label, value, dot }: MetaRowProps) {
 function DecisionCard() {
   return (
     <div className="relative mx-auto max-w-[420px] select-none">
-      <div className="pointer-events-none absolute inset-0 -z-10 translate-y-5 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(255,255,255,0.26)] shadow-[0_16px_40px_rgba(24,30,37,0.06)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 translate-y-5 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(245,238,230,0.4)] shadow-[0_16px_40px_rgba(43,35,29,0.07)]" />
       <div
-        className="pointer-events-none absolute inset-0 -z-10 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(255,255,255,0.34)]"
+        className="pointer-events-none absolute inset-0 -z-10 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(247,241,234,0.52)]"
         style={{ transform: 'rotate(2.4deg) translateY(12px) translateX(10px)' }}
       />
       <div
-        className="pointer-events-none absolute inset-0 -z-10 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(255,255,255,0.45)]"
+        className="pointer-events-none absolute inset-0 -z-10 rounded-[30px] border border-[var(--line-soft)] bg-[rgba(249,244,238,0.7)]"
         style={{ transform: 'rotate(1.1deg) translateY(6px) translateX(4px)' }}
       />
-      <div className="pointer-events-none absolute -inset-10 -z-20 rounded-full bg-[radial-gradient(circle,rgba(217,204,184,0.55),rgba(179,195,211,0.22),transparent_72%)] blur-3xl" />
+      <div className="pointer-events-none absolute -inset-10 -z-20 rounded-full bg-[radial-gradient(circle,rgba(216,203,190,0.5),rgba(188,170,151,0.2),transparent_72%)] blur-3xl" />
 
-      <div className="relative overflow-hidden rounded-[28px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,241,232,0.96))] shadow-card-lg">
-        <div className="absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,255,255,0))]" />
+      <div className="relative overflow-hidden rounded-[28px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(250,245,239,0.98),rgba(241,234,224,0.97))] shadow-card-lg">
+        <div className="absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(255,250,246,0.65),rgba(255,255,255,0))]" />
 
         <div className="relative flex items-center justify-between border-b border-[var(--line-soft)] px-5 py-4">
           <div>
@@ -85,9 +85,10 @@ function DecisionCard() {
 export default function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24 pt-16 lg:pb-32 lg:pt-24">
-      <div className="page-panel relative overflow-hidden rounded-[32px] px-8 py-10 lg:px-10 lg:py-12 xl:px-14 xl:py-14">
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.3),transparent_72%)] lg:block" />
-        <div className="pointer-events-none absolute left-10 top-0 h-32 w-32 rounded-full bg-[rgba(255,255,255,0.34)] blur-3xl" />
+      <div className="page-panel-strong relative overflow-hidden rounded-[32px] px-8 py-10 lg:px-10 lg:py-12 xl:px-14 xl:py-14">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] bg-[radial-gradient(circle_at_center,rgba(248,243,236,0.32),transparent_72%)] lg:block" />
+        <div className="pointer-events-none absolute left-10 top-0 h-32 w-32 rounded-full bg-[rgba(248,241,233,0.42)] blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,transparent,rgba(231,220,208,0.24))]" />
 
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_420px] xl:gap-20">
           <div className="relative">
@@ -95,7 +96,7 @@ export default function Hero() {
 
             <h1 className="mb-6 max-w-[11ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
               Your company makes hundreds of decisions.{' '}
-              <span className="text-[rgba(34,49,66,0.58)]">Most of them disappear.</span>
+              <span className="text-[rgba(58,52,47,0.56)]">Most of them disappear.</span>
             </h1>
 
             <p className="mb-10 max-w-[540px] text-[17px] leading-[1.8] text-[var(--text-body)]">

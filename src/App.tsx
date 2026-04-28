@@ -12,7 +12,10 @@ export default function App() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--page)] text-[var(--text-strong)]">
       <div className="site-drape" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-x-0 top-[30rem] h-64 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22),transparent_72%)]" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-[30rem] h-64 bg-[radial-gradient(circle_at_center,rgba(248,243,236,0.28),transparent_72%)]"
+        aria-hidden="true"
+      />
 
       <div className="relative">
         <Nav />
