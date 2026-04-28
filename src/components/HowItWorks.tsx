@@ -3,7 +3,7 @@ const steps = [
     number: '01',
     title: 'Capture',
     description:
-      'Decdock Core connects to where your team works — meetings, messages, email, and documents. It identifies decisions as they happen, without requiring manual entry or process change.',
+      'Decdock Core connects to where your team works: meetings, messages, email, and documents. It identifies decisions as they happen, without requiring manual entry or process change.',
   },
   {
     number: '02',
@@ -15,7 +15,7 @@ const steps = [
     number: '03',
     title: 'Surface',
     description:
-      'When a decision becomes relevant — a deadline approaches, ownership changes, or a related decision conflicts — Decdock Core brings it forward for human review.',
+      'When a decision becomes relevant, a deadline approaches, ownership changes, or a related decision conflicts, Decdock Core brings it forward for human review.',
   },
 ]
 
@@ -28,45 +28,40 @@ const recordFields = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="border-t border-[#E4E2DB] py-24">
+    <section id="how-it-works" className="section-band py-24 lg:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        {/* Header */}
-        <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.09em] text-[#B87A3A]">
-          How it works
-        </div>
-        <div className="mb-16 grid gap-4 lg:grid-cols-2 lg:items-end">
-          <h2 className="font-display text-[34px] font-[800] leading-[1.12] tracking-[-0.02em] text-[#1A1916]">
+        <div className="eyebrow-plain">How it works</div>
+        <div className="mb-16 grid gap-5 lg:grid-cols-2 lg:items-end">
+          <h2 className="max-w-[14ch] font-display text-[38px] font-[600] leading-[1.08] tracking-[-0.03em] text-[var(--text-strong)]">
             From scattered signals to structured memory.
           </h2>
-          <p className="text-[16px] leading-[1.7] text-[#57554F]">
+          <p className="max-w-[54ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
             Three layers. No manual entry. No disruption to how your team works.
             Decdock Core operates in the background and surfaces only what matters.
           </p>
         </div>
 
-        {/* Steps */}
-        <div className="mb-12 grid gap-8 md:grid-cols-3">
+        <div className="mb-12 grid gap-5 md:grid-cols-3">
           {steps.map((step) => (
-            <div key={step.number} className="relative">
-              <div className="mb-4 font-display text-[42px] font-[800] leading-none tracking-tight text-[#E4E2DB]">
+            <div key={step.number} className="page-panel rounded-[26px] p-6">
+              <div className="mb-5 font-display text-[44px] font-[600] leading-none tracking-[-0.04em] text-[rgba(36,56,75,0.18)]">
                 {step.number}
               </div>
-              <h3 className="mb-3 text-[19px] font-semibold text-[#1A1916]">{step.title}</h3>
-              <p className="text-[14.5px] leading-[1.7] text-[#57554F]">{step.description}</p>
+              <h3 className="mb-3 text-[19px] font-semibold text-[var(--text-strong)]">{step.title}</h3>
+              <p className="text-[14.5px] leading-[1.75] text-[var(--text-body)]">{step.description}</p>
             </div>
           ))}
         </div>
 
-        {/* What every record contains */}
-        <div className="rounded-xl border border-[#E4E2DB] bg-white p-7">
-          <div className="mb-6 text-[11px] font-semibold uppercase tracking-[0.09em] text-[#9B978F]">
+        <div className="page-panel-strong rounded-[28px] p-7">
+          <div className="mb-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
             What every decision record contains
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {recordFields.map((f) => (
-              <div key={f.label}>
-                <div className="mb-1 text-[14px] font-semibold text-[#1A1916]">{f.label}</div>
-                <div className="text-[13px] leading-[1.55] text-[#57554F]">{f.sub}</div>
+            {recordFields.map((field) => (
+              <div key={field.label} className="rounded-[18px] bg-[rgba(255,255,255,0.44)] p-4">
+                <div className="mb-1.5 text-[14px] font-semibold text-[var(--text-strong)]">{field.label}</div>
+                <div className="text-[13.5px] leading-[1.65] text-[var(--text-body)]">{field.sub}</div>
               </div>
             ))}
           </div>
