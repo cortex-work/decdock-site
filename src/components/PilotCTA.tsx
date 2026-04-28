@@ -21,10 +21,10 @@ export default function PilotCTA() {
 
           {/* CTA */}
           <a
-            href="mailto:pilot@decdeck.com"
+            href="mailto:pilot@decdock.com"
             className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-[14px] font-semibold text-[#1C3450] transition-colors hover:bg-[#F0EDE8]"
           >
-            Contact us &mdash; pilot@decdeck.com
+            Contact us &mdash; pilot@decdock.com
           </a>
 
           {/* Audience note */}

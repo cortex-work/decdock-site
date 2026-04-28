@@ -89,7 +89,7 @@ export default function Hero() {
         {/* Copy */}
         <div>
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#E4E2DB] bg-white px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.09em] text-[#B87A3A]">
-            Decdeck Core&nbsp;·&nbsp;Early access
+            Decdock Core&nbsp;·&nbsp;Early access
           </div>
 
           <h1 className="mb-6 font-display text-[46px] font-[800] leading-[1.05] tracking-[-0.03em] text-[#1A1916] xl:text-[56px]">
@@ -98,13 +98,13 @@ export default function Hero() {
           </h1>
 
           <p className="mb-10 max-w-[500px] text-[17px] leading-[1.7] text-[#57554F]">
-            Decdeck Core captures organizational decisions — with source context,
+            Decdock Core captures organizational decisions — with source context,
             ownership, and review state — and surfaces them when they matter most.
           </p>
 
           <div className="mb-12 flex flex-col gap-3 sm:flex-row">
             <a
-              href="mailto:pilot@decdeck.com"
+              href="mailto:pilot@decdock.com"
               className="inline-flex items-center justify-center rounded-md bg-[#1C3450] px-6 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-[#152840]"
             >
               Request pilot access

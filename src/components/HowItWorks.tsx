@@ -3,7 +3,7 @@ const steps = [
     number: '01',
     title: 'Capture',
     description:
-      'Decdeck Core connects to where your team works — meetings, messages, email, and documents. It identifies decisions as they happen, without requiring manual entry or process change.',
+      'Decdock Core connects to where your team works — meetings, messages, email, and documents. It identifies decisions as they happen, without requiring manual entry or process change.',
   },
   {
     number: '02',
@@ -15,7 +15,7 @@ const steps = [
     number: '03',
     title: 'Surface',
     description:
-      'When a decision becomes relevant — a deadline approaches, ownership changes, or a related decision conflicts — Decdeck Core brings it forward for human review.',
+      'When a decision becomes relevant — a deadline approaches, ownership changes, or a related decision conflicts — Decdock Core brings it forward for human review.',
   },
 ]
 
@@ -40,7 +40,7 @@ export default function HowItWorks() {
           </h2>
           <p className="text-[16px] leading-[1.7] text-[#57554F]">
             Three layers. No manual entry. No disruption to how your team works.
-            Decdeck Core operates in the background and surfaces only what matters.
+            Decdock Core operates in the background and surfaces only what matters.
           </p>
         </div>
 

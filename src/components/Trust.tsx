@@ -27,7 +27,7 @@ const principles = [
   {
     title: 'Designed for governance',
     description:
-      'Accountability and traceability are in the architecture, not bolted on. Decdeck Core is built for organizations where decisions have consequences.',
+      'Accountability and traceability are in the architecture, not bolted on. Decdock Core is built for organizations where decisions have consequences.',
   },
 ]
 
@@ -44,7 +44,7 @@ export default function Trust() {
             Built for organizations where decisions have consequences.
           </h2>
           <p className="text-[16px] leading-[1.7] text-[#57554F]">
-            Governance and human review are not add-ons in Decdeck Core — they are
+            Governance and human review are not add-ons in Decdock Core — they are
             the architecture. No blind automation. No false confidence.
           </p>
         </div>

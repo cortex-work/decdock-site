@@ -45,16 +45,16 @@ export default function Differentiation() {
             </p>
           </div>
 
-          {/* Decdeck Core — highlighted */}
+          {/* Decdock Core — highlighted */}
           <div className="rounded-xl border border-[#1C3450] bg-[#1C3450] p-6">
             <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#7A98B8]">
-              Decdeck Core
+              Decdock Core
             </div>
             <h3 className="mb-3 text-[18px] font-semibold text-white">
               Tracks decisions as living memory
             </h3>
             <p className="text-[14px] leading-[1.7] text-[#A8C0D8]">
-              Decdeck Core treats decisions as first-class records — not text to be
+              Decdock Core treats decisions as first-class records — not text to be
               retrieved. Each record carries source, owner, confidence, and review state.
               It surfaces them when relevant. It flags when they're at risk.
             </p>

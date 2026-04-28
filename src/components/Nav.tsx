@@ -4,7 +4,7 @@ export default function Nav() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Wordmark */}
         <a href="/" className="text-[15px] font-semibold tracking-tight text-[#1A1916] hover:opacity-80 transition-opacity">
-          Decdeck
+          Decdock
         </a>
 
         {/* Right side */}
@@ -16,7 +16,7 @@ export default function Nav() {
             How it works
           </a>
           <a
-            href="mailto:pilot@decdeck.com"
+            href="mailto:pilot@decdock.com"
             className="rounded-md bg-[#1C3450] px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#152840]"
           >
             Request pilot access

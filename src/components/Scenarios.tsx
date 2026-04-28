@@ -2,7 +2,7 @@ interface Scenario {
   type: string
   situation: string
   problem: string
-  withDecdeck: string
+  withDecdock: string
 }
 
 const scenarios: Scenario[] = [
@@ -12,8 +12,8 @@ const scenarios: Scenario[] = [
       'Leadership agrees in a meeting that pricing will change next quarter.',
     problem:
       'Two months later, the decision is buried in meeting notes and Slack threads. No one remembers who owns it, what was exactly agreed, or whether it was ever acted on.',
-    withDecdeck:
-      'Decdeck Core captures the decision at source — with owner, context, and review state. It resurfaces automatically as the deadline approaches.',
+    withDecdock:
+      'Decdock Core captures the decision at source — with owner, context, and review state. It resurfaces automatically as the deadline approaches.',
   },
   {
     type: 'Conflicting decisions',
@@ -21,8 +21,8 @@ const scenarios: Scenario[] = [
       'A product team agrees to pause a feature due to customer risk.',
     problem:
       'Three months later, a different team restarts similar work without visibility into the earlier decision. Two workstreams now conflict — silently, until late in the cycle.',
-    withDecdeck:
-      'Decdeck Core surfaces the existing decision when related work begins and flags the potential conflict — before duplicate effort compounds.',
+    withDecdock:
+      'Decdock Core surfaces the existing decision when related work begins and flags the potential conflict — before duplicate effort compounds.',
   },
   {
     type: 'Owner drift',
@@ -30,8 +30,8 @@ const scenarios: Scenario[] = [
       'Operations assigns clear ownership for a process change after a reorg.',
     problem:
       'After further team restructuring, nobody knows who owns the decision anymore. It drifts without anyone noticing — until something goes wrong.',
-    withDecdeck:
-      'Decdeck Core tracks owner changes over time. When a decision becomes effectively ownerless, it is flagged for reassignment — not silently abandoned.',
+    withDecdock:
+      'Decdock Core tracks owner changes over time. When a decision becomes effectively ownerless, it is flagged for reassignment — not silently abandoned.',
   },
   {
     type: 'Decision validity',
@@ -39,8 +39,8 @@ const scenarios: Scenario[] = [
       'A company has hundreds of meeting summaries, docs, and channel archives.',
     problem:
       'There is no living view of which decisions are still valid, which are superseded, and which are simply forgotten. All of it looks the same in search.',
-    withDecdeck:
-      'Decdeck Core distinguishes remembered information from accountable decisions — and tracks the current standing of each one, not just its existence.',
+    withDecdock:
+      'Decdock Core distinguishes remembered information from accountable decisions — and tracks the current standing of each one, not just its existence.',
   },
 ]
 
@@ -57,7 +57,7 @@ export default function Scenarios() {
             This isn't hypothetical. It happens every week.
           </h2>
           <p className="text-[16px] leading-[1.7] text-[#57554F]">
-            Four ways decisions get lost — and what Decdeck Core does about each one.
+            Four ways decisions get lost — and what Decdock Core does about each one.
           </p>
         </div>
 
@@ -97,8 +97,8 @@ export default function Scenarios() {
                   </svg>
                 </span>
                 <p className="text-[14px] leading-[1.65] text-[#1A1916]">
-                  <span className="font-semibold">With Decdeck Core: </span>
-                  {s.withDecdeck}
+                  <span className="font-semibold">With Decdock Core: </span>
+                  {s.withDecdock}
                 </p>
               </div>
             </div>

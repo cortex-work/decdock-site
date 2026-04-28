@@ -1,6 +1,6 @@
-# Decdeck — Public Website
+# Decdock — Public Website
 
-Static marketing site for [decdeck.com](https://decdeck.com).
+Static marketing site for [decdock.com](https://decdock.com).
 
 Built with **Vite + React + TypeScript + Tailwind CSS**.
 
@@ -28,12 +28,12 @@ The site deploys automatically to GitHub Pages on every push to `main`.
 
 **One-time setup (do once):**
 
-1. Create a GitHub repo (e.g. `decdeck-site` or `decdeck-work/decdeck-site`)
+1. Create a GitHub repo (e.g. `decdock-site` or `decdock-work/decdock-site`)
 2. Push this project to the repo's `main` branch
 3. In **Settings → Pages**, set Source to **"GitHub Actions"**
 4. On the next push to `main`, the workflow in `.github/workflows/deploy.yml` builds and deploys automatically
 
-## DNS setup for decdeck.com
+## DNS setup for decdock.com
 
 After the first deploy succeeds:
 
@@ -48,13 +48,13 @@ After the first deploy succeeds:
    - **Type:** `AAAA` records for IPv6 (optional but recommended — see GitHub docs)
    - **Type:** `CNAME` for `www` → `<your-github-username>.github.io`
 
-2. In **Settings → Pages**, add `decdeck.com` as the custom domain
+2. In **Settings → Pages**, add `decdock.com` as the custom domain
 
 3. Wait for DNS propagation (5 min – 48 hours)
 
 4. Enable **"Enforce HTTPS"** once GitHub verifies the domain
 
-The `CNAME` file in the repo root tells GitHub Pages to respond to `decdeck.com`.
+The `CNAME` file in the repo root tells GitHub Pages to respond to `decdock.com`.
 
 ## OG image
 
@@ -64,7 +64,7 @@ Generate a 1200×630 PNG with the brand name and tagline and place it in `public
 ## Project structure
 
 ```
-decdeck-site/
+decdock-site/
 ├── .github/workflows/deploy.yml   — GitHub Actions deploy pipeline
 ├── public/
 │   ├── favicon.svg                — SVG favicon (D lettermark)
