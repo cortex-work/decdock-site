@@ -20,8 +20,8 @@ export default function HowItWorks() {
             </h2>
           </div>
           <p className="max-w-[58ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
-            Decdock Core keeps the record, source, owner, and review state together,
-            so teams can quickly revisit what still matters later.
+            Decdock Core keeps what was decided attached to its source, owner,
+            and review state so teams can revisit it later without losing context.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function HowItWorks() {
             <article className="flow-card flow-card-center flow-step-two">
               <div className="mb-4 text-[12px] font-semibold text-[var(--accent)]">2. Decdock Core keeps the record</div>
               <h3 className="mb-4 text-[20px] font-semibold text-[var(--text-strong)]">
-                The decision does not become detached from proof.
+                Source, owner, and review state stay attached.
               </h3>
               <div className="mb-3 text-[11px] font-semibold uppercase text-[var(--text-faint)]">
                 Decision record
@@ -87,7 +87,7 @@ export default function HowItWorks() {
             <article className="flow-card flow-step-three">
               <div className="mb-4 text-[12px] font-semibold text-[var(--accent)]">3. Teams revisit what matters</div>
               <h3 className="mb-3 text-[20px] font-semibold text-[var(--text-strong)]">
-                The record comes back when it needs attention.
+                Teams can see what still needs attention.
               </h3>
               <p className="mb-5 text-[14.5px] leading-[1.7] text-[var(--text-body)]">
                 Teams can see decisions that are still active, becoming stale,
