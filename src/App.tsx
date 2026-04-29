@@ -21,8 +21,8 @@ export default function App() {
         <Nav />
         <main>
           <Hero />
-          <Problem />
           <HowItWorks />
+          <Problem />
           <Scenarios />
           <Differentiation />
           <Trust />

@@ -94,14 +94,13 @@ export default function Hero() {
           <div className="relative">
             <div className="eyebrow mb-7">Decdock Core &middot; Early access</div>
 
-            <h1 className="mb-6 max-w-[11ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
-              Your company makes hundreds of decisions.{' '}
-              <span className="text-[rgba(58,52,47,0.56)]">Most of them disappear.</span>
+            <h1 className="mb-6 max-w-[12ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
+              Decdock Core keeps important decisions from disappearing.
             </h1>
 
             <p className="mb-10 max-w-[540px] text-[17px] leading-[1.8] text-[var(--text-body)]">
-              Decdock Core captures organizational decisions with source context,
-              ownership, and review state, then surfaces them when they matter most.
+              It turns decisions from meetings, messages, and documents into accountable
+              records with source context, owner, and review state.
             </p>
 
             <div className="mb-12 flex flex-col gap-3 sm:flex-row">

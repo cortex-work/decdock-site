@@ -207,4 +207,158 @@
     box-shadow: inset 0 1px 0 rgba(255, 250, 246, 0.62);
     backdrop-filter: blur(8px);
   }
+
+  .flow-card {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    border: 1px solid var(--line-soft);
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(250, 245, 239, 0.95), rgba(241, 234, 224, 0.91));
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    padding: 1.5rem;
+    transform: translateY(0.65rem);
+    animation: flow-card-enter 760ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    backdrop-filter: blur(14px);
+  }
+
+  .flow-step-one {
+    animation-delay: 90ms;
+  }
+
+  .flow-step-two {
+    animation-delay: 260ms;
+  }
+
+  .flow-step-three {
+    animation-delay: 430ms;
+  }
+
+  .flow-card-center {
+    background: linear-gradient(180deg, rgba(252, 248, 242, 0.98), rgba(244, 237, 228, 0.96));
+    box-shadow: var(--shadow-card);
+  }
+
+  .flow-line-base,
+  .flow-line-emphasis {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .flow-line-base {
+    stroke: rgba(161, 118, 78, 0.22);
+    stroke-width: 2;
+  }
+
+  .flow-line-emphasis {
+    opacity: 0;
+    stroke: rgba(161, 118, 78, 0.46);
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    stroke-width: 2.4;
+    animation: flow-line-enter 1120ms cubic-bezier(0.22, 0.7, 0.25, 1) forwards;
+  }
+
+  .flow-line-emphasis-first {
+    animation-delay: 520ms;
+  }
+
+  .flow-line-emphasis-second {
+    animation-delay: 860ms;
+  }
+
+  .flow-node {
+    fill: var(--accent);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: flow-node-enter 620ms ease-out forwards;
+  }
+
+  .flow-node-first {
+    animation-delay: 980ms;
+  }
+
+  .flow-node-second {
+    animation-delay: 1320ms;
+  }
+
+  .flow-mobile-arrow {
+    width: 1px;
+    height: 2rem;
+    margin: 0.25rem auto;
+    background: linear-gradient(180deg, rgba(161, 118, 78, 0.2), rgba(161, 118, 78, 0.64));
+    position: relative;
+  }
+
+  .flow-mobile-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-bottom: 1px solid rgba(161, 118, 78, 0.72);
+    border-right: 1px solid rgba(161, 118, 78, 0.72);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  @keyframes flow-card-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes flow-line-enter {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: 1;
+    }
+
+    20% {
+      opacity: 0.6;
+    }
+
+    to {
+      opacity: 0.6;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes flow-node-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.82);
+    }
+
+    to {
+      opacity: 0.72;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow-card,
+    .flow-line-emphasis,
+    .flow-node {
+      animation: none;
+    }
+
+    .flow-card {
+      opacity: 1;
+      transform: none;
+    }
+
+    .flow-line-emphasis {
+      opacity: 0.46;
+      stroke-dashoffset: 0;
+    }
+
+    .flow-node {
+      opacity: 0.72;
+      transform: none;
+    }
+  }
 }
