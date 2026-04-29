@@ -85,10 +85,11 @@ export default function HowItWorks() {
             <article className="flow-card flow-step-three">
               <div className="mb-4 text-[12px] font-semibold text-[var(--accent)]">3. Teams revisit what matters</div>
               <h3 className="mb-3 text-[20px] font-semibold text-[var(--text-strong)]">
-                Teams can see what still needs attention.
+                Teams revisit what needs attention.
               </h3>
               <p className="mb-5 text-[14px] leading-[1.65] text-[var(--text-body)]">
-                They can revisit decisions that are stale, conflicting, or ownerless.
+                Decdock Core surfaces records that may be stale, conflicting, ownerless,
+                or waiting for review so teams know what to confirm next.
               </p>
               <div className="grid grid-cols-3 gap-2">
                 {outcomeSignals.map((signal) => (

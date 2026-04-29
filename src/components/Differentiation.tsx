@@ -41,7 +41,7 @@ export default function Differentiation() {
               Keeps the decision in context
             </h3>
             <p className="text-[14px] leading-[1.65] text-[rgba(239,230,220,0.84)]">
-              Decdock Core keeps the decision, its source, its owner, and its review state together so teams can revisit it later.
+              Decdock Core keeps the decision, source, owner, and review state together - then highlights what may need review later.
             </p>
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function PilotCTA() {
           </a>
 
           <p className="mt-7 text-[13px] text-[rgba(210,195,180,0.74)]">
-            Source-linked records. Human review. No blind automation.
+            Source-linked records. Designed for review. No blind automation.
           </p>
         </div>
       </div>
