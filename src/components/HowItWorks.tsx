@@ -16,12 +16,11 @@ export default function HowItWorks() {
           <div>
             <div className="eyebrow-plain">How Decdock Core works</div>
             <h2 className="max-w-[16ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
-              The decision stays connected to its context.
+              From scattered discussion to a clear decision record.
             </h2>
           </div>
           <p className="max-w-[58ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
-            Decdock Core keeps what was decided attached to its source, owner,
-            and review state so teams can revisit it later without losing context.
+            Decdock Core keeps what was decided attached to its source, owner, and review state.
           </p>
         </div>
 
@@ -44,11 +43,10 @@ export default function HowItWorks() {
             <article className="flow-card flow-step-one">
               <div className="mb-4 text-[12px] font-semibold text-[var(--accent)]">1. Decisions happen</div>
               <h3 className="mb-3 text-[20px] font-semibold text-[var(--text-strong)]">
-                Across the places teams already work.
+                Across the tools teams already use.
               </h3>
-              <p className="mb-5 text-[14.5px] leading-[1.7] text-[var(--text-body)]">
-                Important decisions show up in meetings, message threads, and documents,
-                often before anyone has made a formal record.
+              <p className="mb-5 text-[14px] leading-[1.65] text-[var(--text-body)]">
+                Important decisions show up in meetings, messages, and documents.
               </p>
               <div className="flex flex-wrap gap-2">
                 {sourceSignals.map((signal) => (
@@ -70,7 +68,7 @@ export default function HowItWorks() {
                 Decision record
               </div>
               <p className="mb-4 text-[14px] font-semibold leading-[1.55] text-[var(--text-strong)]">
-                Pricing model change approved for Q2 planning.
+                Packaging speed stays reduced until seal failures stabilize.
               </p>
               <div className="space-y-2">
                 {contextFields.map((field) => (
@@ -89,9 +87,8 @@ export default function HowItWorks() {
               <h3 className="mb-3 text-[20px] font-semibold text-[var(--text-strong)]">
                 Teams can see what still needs attention.
               </h3>
-              <p className="mb-5 text-[14.5px] leading-[1.7] text-[var(--text-body)]">
-                Teams can see decisions that are still active, becoming stale,
-                conflicting with new work, or losing a clear owner.
+              <p className="mb-5 text-[14px] leading-[1.65] text-[var(--text-body)]">
+                They can revisit decisions that are stale, conflicting, or ownerless.
               </p>
               <div className="grid grid-cols-3 gap-2">
                 {outcomeSignals.map((signal) => (

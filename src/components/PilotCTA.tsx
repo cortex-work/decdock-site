@@ -15,8 +15,8 @@ export default function PilotCTA() {
           </h2>
 
           <p className="mx-auto mb-10 max-w-[38rem] text-[17px] leading-[1.8] text-[rgba(239,230,220,0.84)]">
-            If you lead operations, product, or a fast-growing team where decisions
-            scatter across tools and teams, we would like to talk.
+            If your team makes important decisions across meetings, messages, and
+            documents, we would like to talk.
           </p>
 
           <a
@@ -27,8 +27,7 @@ export default function PilotCTA() {
           </a>
 
           <p className="mt-7 text-[13px] text-[rgba(210,195,180,0.74)]">
-            Designed for COOs, Chiefs of Staff, product leaders, and engineering managers
-            at fast-growing companies.
+            Source-linked records. Human review. No blind automation.
           </p>
         </div>
       </div>

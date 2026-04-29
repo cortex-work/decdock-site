@@ -1,13 +1,12 @@
 interface MetaRowProps {
   label: string
   value: string
-  dot?: 'amber' | 'green'
+  dot?: 'amber'
 }
 
 function MetaRow({ label, value, dot }: MetaRowProps) {
   const dotColors = {
     amber: 'bg-[var(--warning)]',
-    green: 'bg-[var(--success)]',
   }
 
   return (
@@ -43,24 +42,26 @@ function DecisionCard() {
             <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
               Decision record
             </span>
-            <div className="mt-0.5 text-[11px] text-[var(--text-faint)]">Executive sync &middot; March 14, 2026</div>
+            <div className="mt-0.5 text-[11px] text-[var(--text-faint)]">
+              Operations review &middot; April 17, 2026
+            </div>
           </div>
-          <span className="rounded-full border border-[rgba(92,131,104,0.16)] bg-[rgba(233,243,236,0.95)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--success)]">
-            Active
+          <span className="rounded-full border border-[rgba(182,142,102,0.18)] bg-[rgba(247,239,228,0.95)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--accent)]">
+            Needs review
           </span>
         </div>
 
         <div className="px-5 py-5">
           <p className="text-[15px] font-[600] leading-snug text-[var(--text-strong)]">
-            Pricing structure to be revised for Q2 2026. Final approval required before January 31.
+            Keep the supplier handoff with the Manchester team until the missed-pick
+            rate stays below target for two straight weeks.
           </p>
         </div>
 
         <div className="space-y-2.5 border-t border-[var(--line-soft)] px-5 py-4">
-          <MetaRow label="Owner" value="CFO - Finance" />
-          <MetaRow label="Source" value="Executive sync - Zoom" />
+          <MetaRow label="Owner" value="Nina Patel - Operations Director" />
+          <MetaRow label="Source" value="Operations review - Teams" />
           <MetaRow label="Review state" value="Pending confirmation" dot="amber" />
-          <MetaRow label="Confidence" value="High" dot="green" />
         </div>
 
         <div className="border-t border-[var(--line-soft)] px-5 py-4">
@@ -69,11 +70,11 @@ function DecisionCard() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="surface-tag px-2.5 py-1 text-[11px] font-medium text-[var(--text-body)]">
-              Executive sync
+              Operations review
             </span>
             <span className="text-[12px] text-[var(--text-faint)]">&rarr;</span>
             <span className="surface-tag px-2.5 py-1 text-[11px] font-medium text-[var(--text-body)]">
-              Follow-up email
+              Warehouse handoff note
             </span>
           </div>
         </div>
@@ -119,7 +120,8 @@ export default function Hero() {
             </div>
 
             <p className="text-[13px] text-[var(--text-muted)]">
-              Designed for COOs, Chiefs of Staff, and operations leaders.
+              For fast-moving teams where decisions spread across meetings, messages,
+              and documents.
             </p>
           </div>
 
