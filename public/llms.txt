@@ -20,7 +20,7 @@ https://decdock.com/
 
 pilot@decdock.com
 
-## Core workflow
+## Workflow
 
 1. Connect or upload selected sources.
 2. Extract decision and ownership signals.
