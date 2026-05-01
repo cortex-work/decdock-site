@@ -2,16 +2,26 @@
 
 Decdock is decision memory and accountability software for modern teams.
 
+## What Decdock does
+
 Decdock helps teams capture, review, and maintain decisions, ownership signals, and source-linked context from selected workplace conversations and documents such as email, Slack, Microsoft Teams, and shared project documents.
 
 Decdock is not a task manager and not general enterprise search. It focuses on turning selected workplace context into reviewable decision records so teams can understand what was decided, who appears responsible, what source context supports it, and what may need review later.
 
-Current stage: early-stage / pilot-ready.
+## Current stage
 
-Website: https://decdock.com/
-Contact: pilot@decdock.com
+Early-stage / pilot-ready.
 
-Core workflow:
+## Website
+
+https://decdock.com/
+
+## Contact
+
+pilot@decdock.com
+
+## Core workflow
+
 1. Connect or upload selected sources.
 2. Extract decision and ownership signals.
 3. Review and confirm extracted candidates.
