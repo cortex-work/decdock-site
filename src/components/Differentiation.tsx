@@ -1,49 +1,89 @@
+interface AudienceCard {
+  title: string
+  description: string
+  emphasized?: boolean
+}
+
+const audiences: AudienceCard[] = [
+  {
+    title: 'Founders',
+    description:
+      'Keep important operating decisions from disappearing into follow-up threads and document edits.',
+  },
+  {
+    title: 'COOs and chiefs of staff',
+    description:
+      'Maintain accountability and context when operational decisions cross meetings, email, and docs.',
+  },
+  {
+    title: 'Product and operations teams',
+    description:
+      'Revisit the decisions behind project changes, pauses, and ownership handoffs.',
+  },
+  {
+    title: 'Project-heavy teams',
+    description:
+      'Keep source-linked records for work that spans channels, stakeholders, and repeated follow-up.',
+  },
+  {
+    title: 'Teams spread across email, chat, and documents',
+    description:
+      'Decdock is useful when the real decision trail lives across multiple conversations and shared files.',
+    emphasized: true,
+  },
+]
+
 export default function Differentiation() {
   return (
-    <section className="section-band py-20 lg:py-24">
+    <section id="who-it-is-for" className="section-band py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="eyebrow-plain">Why this is not search or summaries</div>
-        <h2 className="mb-12 max-w-[13ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
-          Decdock Core tracks the decision itself.
-        </h2>
-
-        <div className="grid gap-5 md:grid-cols-3">
-          <div className="page-panel rounded-[24px] p-6">
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
-              Search
-            </div>
-            <h3 className="mb-3 text-[18px] font-semibold text-[var(--text-strong)]">
-              Finds documents
-            </h3>
-            <p className="text-[14px] leading-[1.65] text-[var(--text-body)]">
-              Search can find the note or thread. It does not keep the decision, owner, or review state together.
-            </p>
+        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <div className="eyebrow-plain">Who it is for</div>
+            <h2 className="max-w-[14ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
+              Built for teams where decisions spread across tools.
+            </h2>
           </div>
+          <p className="max-w-[58ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
+            Decdock is for founders, COOs, chiefs of staff, product and operations
+            teams, project-heavy groups, and other teams where decisions are split
+            across email, chat, and documents.
+          </p>
+        </div>
 
-          <div className="page-panel rounded-[24px] p-6">
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
-              Summaries
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+          {audiences.map((audience) => (
+            <div
+              key={audience.title}
+              className={
+                audience.emphasized
+                  ? 'page-panel-dark relative overflow-hidden rounded-[24px] p-6'
+                  : 'page-panel rounded-[24px] p-6'
+              }
+            >
+              {audience.emphasized && (
+                <div className="pointer-events-none absolute inset-x-8 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,248,239,0.12),transparent_70%)]" />
+              )}
+              <h3
+                className={
+                  audience.emphasized
+                    ? 'mb-3 text-[18px] font-semibold text-white'
+                    : 'mb-3 text-[18px] font-semibold text-[var(--text-strong)]'
+                }
+              >
+                {audience.title}
+              </h3>
+              <p
+                className={
+                  audience.emphasized
+                    ? 'text-[14px] leading-[1.7] text-[rgba(239,230,220,0.84)]'
+                    : 'text-[14px] leading-[1.7] text-[var(--text-body)]'
+                }
+              >
+                {audience.description}
+              </p>
             </div>
-            <h3 className="mb-3 text-[18px] font-semibold text-[var(--text-strong)]">
-              Compress conversations
-            </h3>
-            <p className="text-[14px] leading-[1.65] text-[var(--text-body)]">
-              Summaries shorten the reading. Teams still have to work out whether a decision was real, current, and assigned.
-            </p>
-          </div>
-
-          <div className="page-panel-dark relative overflow-hidden rounded-[24px] p-6">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,248,239,0.12),transparent_70%)]" />
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
-              Decdock Core
-            </div>
-            <h3 className="mb-3 text-[18px] font-semibold text-white">
-              Keeps the decision in context
-            </h3>
-            <p className="text-[14px] leading-[1.65] text-[rgba(239,230,220,0.84)]">
-              Decdock Core keeps the decision, source, owner, and review state together - then highlights what may need review later.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -60,7 +60,7 @@ function DecisionCard() {
 
         <div className="space-y-2.5 border-t border-[var(--line-soft)] px-5 py-4">
           <MetaRow label="Owner" value="Nina Patel - Operations Director" />
-          <MetaRow label="Source" value="Operations review - Teams" />
+          <MetaRow label="Source" value="Operations review - Microsoft Teams" />
           <MetaRow label="Review state" value="Pending confirmation" dot="amber" />
         </div>
 
@@ -93,15 +93,21 @@ export default function Hero() {
 
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_420px] xl:gap-20">
           <div className="relative">
-            <div className="eyebrow mb-7">Decdock Core &middot; Early access</div>
+            <div className="eyebrow mb-7">Decdock &middot; Pilot-ready</div>
 
-            <h1 className="mb-6 max-w-[11ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
-              Keep important decisions from getting lost.
+            <h1 className="mb-6 max-w-[12ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
+              Decision memory for modern teams
             </h1>
 
-            <p className="mb-10 max-w-[540px] text-[17px] leading-[1.8] text-[var(--text-body)]">
-              Decdock Core helps teams track what was decided, who owns it, and whether
-              it still holds — across meetings, messages, and documents.
+            <p className="mb-5 max-w-[620px] text-[17px] leading-[1.8] text-[var(--text-body)]">
+              Decdock helps teams capture, review, and maintain decision memory from
+              workplace conversations and documents so teams can understand what was
+              decided, who owns it, and whether it still holds.
+            </p>
+
+            <p className="mb-10 max-w-[600px] text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)]">
+              Built for teams using tools like email, Slack, Microsoft Teams, and shared
+              project documents.
             </p>
 
             <div className="mb-12 flex flex-col gap-3 sm:flex-row">
@@ -109,19 +115,19 @@ export default function Hero() {
                 href="mailto:pilot@decdock.com"
                 className="button-primary px-6 py-3 text-[14px] font-semibold"
               >
-                Request pilot access
+                Request pilot
               </a>
               <a
-                href="#how-it-works"
+                href="mailto:pilot@decdock.com"
                 className="button-secondary px-6 py-3 text-[14px] font-medium"
               >
-                See how it works
+                Contact us
               </a>
             </div>
 
-            <p className="text-[13px] text-[var(--text-muted)]">
-              For fast-moving teams where decisions spread across meetings, messages,
-              and documents.
+            <p className="max-w-[560px] text-[14px] leading-[1.75] text-[var(--text-muted)]">
+              Decdock is designed for selected-source pilots, reviewable signals, and
+              source-linked decision records rather than another manual decision log.
             </p>
           </div>
 

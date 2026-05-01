@@ -17,7 +17,7 @@ export default function Nav() {
             href="mailto:pilot@decdock.com"
             className="button-primary px-4 py-2 text-[13px] font-semibold"
           >
-            Request pilot access
+            Request pilot
           </a>
         </div>
       </div>
