@@ -2,6 +2,7 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Scenarios from './components/Scenarios'
+import ExampleRecords from './components/ExampleRecords'
 import Differentiation from './components/Differentiation'
 import PilotCTA from './components/PilotCTA'
 import Footer from './components/Footer'
@@ -20,6 +21,7 @@ export default function App() {
         <main>
           <Hero />
           <Scenarios />
+          <ExampleRecords />
           <HowItWorks />
           <Differentiation />
           <PilotCTA />

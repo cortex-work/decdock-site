@@ -30,14 +30,14 @@ export default function Scenarios() {
   return (
     <section id="what-decdock-does" className="section-band-soft py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_0.98fr] lg:items-start">
           <div>
             <div className="eyebrow-plain">What Decdock does</div>
             <h2 className="max-w-[16ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
               Decision memory without becoming another work tool.
             </h2>
           </div>
-          <div className="max-w-[58ch] space-y-4 text-[16px] leading-[1.8] text-[var(--text-body)]">
+          <div className="max-w-[52ch] space-y-3 text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
             <p>
               Decdock turns scattered workplace conversations and documents into
               source-linked decision records. It helps teams track decisions, ownership

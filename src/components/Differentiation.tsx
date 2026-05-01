@@ -37,14 +37,14 @@ export default function Differentiation() {
   return (
     <section id="who-it-is-for" className="section-band py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_0.98fr] lg:items-start">
           <div>
             <div className="eyebrow-plain">Who it is for</div>
             <h2 className="max-w-[14ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
               Built for teams where decisions spread across tools.
             </h2>
           </div>
-          <p className="max-w-[58ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
+          <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
             Decdock is for founders, COOs, chiefs of staff, product and operations
             teams, project-heavy groups, and other teams where decisions are split
             across email, chat, and documents.

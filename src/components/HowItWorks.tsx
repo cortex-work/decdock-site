@@ -40,14 +40,14 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="section-band-muted py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div className="mb-12 grid gap-5 lg:grid-cols-[0.9fr_0.98fr] lg:items-start">
           <div>
             <div className="eyebrow-plain">How it works</div>
             <h2 className="max-w-[16ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
               A simple workflow for building decision memory.
             </h2>
           </div>
-          <p className="max-w-[58ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
+          <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
             Decdock is designed for focused pilots: selected sources, reviewable
             signals, and clear source-linked records instead of broad workspace indexing.
           </p>
