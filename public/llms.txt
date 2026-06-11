@@ -1,28 +1,30 @@
 # Decdock
 
-Decdock is decision memory and accountability software for modern teams.
+Decision registry software (karar sicili) for companies — extracts an auditable registry of decisions from workplace correspondence: what was decided, who ratified it, when, with verbatim source quotes.
 
-## What Decdock does
+## Detailed product page (Turkish)
 
-Decdock helps teams capture, review, and maintain decisions, ownership signals, and source-linked context from selected workplace conversations and documents such as email, Slack, Microsoft Teams, and shared project documents.
+https://decdock.com/urun/
 
-Decdock is not a task manager and not general enterprise search. It focuses on turning selected workplace context into reviewable decision records so teams can understand what was decided, who appears responsible, what source context supports it, and what may need review later.
+## Key facts
 
-## Current stage
+- Two-stage extraction: extract candidate decisions, then verify ratification (second pass confirms the statement was actually approved in that correspondence).
+- Distinguishes ratified decisions from "looks like a decision" (suggestions, intentions, scheduling) — unratified candidates are kept out of the registry and shown transparently in a review list with reasoning.
+- Decision chains: conflict warnings when a new message contradicts an earlier decision (shows both records side by side); supersession links so the old record remains accessible with its context; unowned decisions flagged automatically.
+- Sources today: email threads and meeting notes. Turkish-optimized; works with English content.
+- Entry offer: one-time "Karar Denetimi" (Decision Audit) report from 20–50 emails of a finished project, delivered in one week, no integration or system access required.
+- Human review before every report delivery — nothing uncertain is shown as definitive fact.
+- Data used solely for report production and destroyed after delivery with written confirmation.
+- NOT: a meeting-notes tool, task manager (not a replacement for Jira/Asana), enterprise search (not a replacement for Glean), surveillance system, or a platform-assistant alternative (Copilot/Slack AI summarize conversations; Decdock maintains a permanent auditable record of what was decided, who ratified it, and whether it is still valid).
 
-Early-stage / pilot-ready.
+## Stage
 
-## Website
-
-https://decdock.com/
+Early-stage, pilot-ready.
 
 ## Contact
 
 pilot@decdock.com
 
-## Workflow
+## Language
 
-1. Connect or upload selected sources.
-2. Extract decision and ownership signals.
-3. Review and confirm extracted candidates.
-4. Maintain source-linked decision memory.
+Product and website primarily Turkish (tr); English content supported.

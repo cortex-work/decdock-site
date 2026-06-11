@@ -6,29 +6,29 @@ interface AudienceCard {
 
 const audiences: AudienceCard[] = [
   {
-    title: 'Founders',
+    title: 'Genel Müdür / CEO',
     description:
-      'Keep important operating decisions from disappearing into follow-up threads and document edits.',
+      '"Bu kararı kim almıştı, neye dayanarak?" sorusuna e-posta arşivi kazmadan, saniyeler içinde kaynaklı cevap.',
   },
   {
-    title: 'COOs and chiefs of staff',
+    title: 'COO / Operasyon',
     description:
-      'Maintain accountability and context when operational decisions cross meetings, email, and docs.',
+      '"Karar alındı ama top kimde?" boşluğu kapanır: sahipsiz kararlar ve düşen toplar kendiliğinden görünür olur.',
   },
   {
-    title: 'Product and operations teams',
+    title: 'Holding iştirakleri',
     description:
-      'Revisit the decisions behind project changes, pauses, and ownership handoffs.',
+      'Denetim, raporlama ve kurumsal yönetim için kaynağa bağlı karar izi — kim onayladı, ne zaman, hangi gerekçeyle.',
   },
   {
-    title: 'Project-heavy teams',
+    title: 'Proje-yoğun ekipler',
     description:
-      'Keep source-linked records for work that spans channels, stakeholders, and repeated follow-up.',
+      'Aynı konunun ikinci kez toplantıya gelmesi azalır: eski karar, vereni ve gerekçesiyle bir arama uzağınızda.',
   },
   {
-    title: 'Teams spread across email, chat, and documents',
+    title: 'Kararları e-postada alınan her şirket',
     description:
-      'Decdock is useful when the real decision trail lives across multiple conversations and shared files.',
+      'Karar iziniz yazışmalarda yaşıyorsa Decdock onu sicile çevirir — kimseye yeni bir araç öğretmeden.',
     emphasized: true,
   },
 ]
@@ -39,15 +39,15 @@ export default function Differentiation() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_0.98fr] lg:items-start">
           <div>
-            <div className="eyebrow-plain">Who it is for</div>
+            <div className="eyebrow-plain">Kimin için</div>
             <h2 className="max-w-[14ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
-              Built for teams where decisions spread across tools.
+              Kararları araçlara dağılan şirketler için.
             </h2>
           </div>
           <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
-            Decdock is for founders, COOs, chiefs of staff, product and operations
-            teams, project-heavy groups, and other teams where decisions are split
-            across email, chat, and documents.
+            Decdock; 30–300 çalışanlı, karar yoğun ve formal yazışma kültürü olan
+            şirketler için tasarlandı: üretim, lojistik, finans hizmetleri, mühendislik,
+            danışmanlık ve holding iştirakleri.
           </p>
         </div>
 

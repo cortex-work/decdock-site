@@ -11,13 +11,31 @@ export default function Nav() {
             href="#how-it-works"
             className="hidden text-[13px] font-medium text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)] sm:block"
           >
-            How it works
+            Nasıl çalışır
           </a>
           <a
-            href="mailto:pilot@decdock.com"
+            href="#faq"
+            className="hidden text-[13px] font-medium text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)] sm:block"
+          >
+            Sık sorulanlar
+          </a>
+          <a
+            href="/demo/"
+            className="hidden text-[13px] font-medium text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)] sm:block"
+          >
+            60 sn tanıtım
+          </a>
+          <a
+            href="/urun/"
+            className="hidden text-[13px] font-medium text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)] sm:block"
+          >
+            Ürün detayı
+          </a>
+          <a
+            href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
             className="button-primary px-4 py-2 text-[13px] font-semibold"
           >
-            Request pilot
+            Karar Denetimi isteyin
           </a>
         </div>
       </div>

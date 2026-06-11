@@ -8,31 +8,31 @@ interface StepCard {
 const steps: StepCard[] = [
   {
     step: '1',
-    title: 'Connect or upload selected sources',
+    title: 'Bitmiş bir projenin yazışmalarını paylaşın',
     description:
-      'Teams start with a limited project, team, or workflow rather than the entire company workspace.',
-    tags: ['Selected scope', 'Email', 'Slack or Teams', 'Project docs'],
+      'Tüm şirket verisi değil: bitmiş bir projenin 20–50 e-postalık dilimi yeter. Kurulum yok, entegrasyon yok, sistem erişimi yok.',
+    tags: ['Seçili dilim', 'E-posta', 'Toplantı notları'],
   },
   {
     step: '2',
-    title: 'Extract decision signals',
+    title: 'Decdock karar sinyallerini çıkarır',
     description:
-      'Decdock analyzes selected conversations and documents to identify decision, ownership, and context signals.',
-    tags: ['Decision', 'Ownership', 'Context'],
+      'Yazışmalardan karar, onaylayan, tarih ve bağlam sinyalleri çıkarılır — her biri kaynaktaki cümleye bağlı kalır.',
+    tags: ['Karar', 'Onaylayan', 'Kaynak alıntısı'],
   },
   {
     step: '3',
-    title: 'Review and confirm',
+    title: 'İkinci geçiş: "karar mı, karar sanılan mı?"',
     description:
-      'Teams can confirm, edit, or reject extracted decision candidates before they become part of the decision memory.',
-    tags: ['Confirm', 'Edit', 'Reject'],
+      'Her aday ikinci bir doğrulamadan geçer: bu gerçekten onaylanmış bir karar mı? Emin olunmayan sicile yazılmaz, inceleme listesinde şeffafça durur.',
+    tags: ['Doğrulama', 'İnceleme listesi'],
   },
   {
     step: '4',
-    title: 'Maintain decision memory',
+    title: 'Karar sicili elinizde',
     description:
-      'Confirmed decisions remain searchable, source-linked, and ready for future review when conditions or ownership change.',
-    tags: ['Source-linked', 'Searchable', 'Review-ready'],
+      'İlk teslimat rapor olarak gelir. Sürekli versiyonda sicil aranabilir kalır, yeni kararlar kendiliğinden işlenir ve haftalık özet gelir.',
+    tags: ['Rapor', 'Aranabilir', 'Haftalık özet'],
   },
 ]
 
@@ -42,14 +42,15 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 grid gap-5 lg:grid-cols-[0.9fr_0.98fr] lg:items-start">
           <div>
-            <div className="eyebrow-plain">How it works</div>
+            <div className="eyebrow-plain">Nasıl çalışır</div>
             <h2 className="max-w-[16ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
-              A simple workflow for building decision memory.
+              Kurulum istemeyen basit bir akış.
             </h2>
           </div>
           <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
-            Decdock is designed for focused pilots: selected sources, reviewable
-            signals, and clear source-linked records instead of broad workspace indexing.
+            Decdock geniş bir kurumsal kurulumla değil, odaklı bir dilimle başlar:
+            seçtiğiniz kaynaklar, incelenebilir sinyaller ve kaynağa bağlı kayıtlar.
+            İlk değer bir haftada elinizde olur.
           </p>
         </div>
 

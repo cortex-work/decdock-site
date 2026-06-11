@@ -1,12 +1,12 @@
 interface MetaRowProps {
   label: string
   value: string
-  dot?: 'amber'
+  dot?: 'green'
 }
 
 function MetaRow({ label, value, dot }: MetaRowProps) {
   const dotColors = {
-    amber: 'bg-[var(--warning)]',
+    green: 'bg-[var(--success)]',
   }
 
   return (
@@ -37,46 +37,49 @@ function DecisionCard() {
       <div className="relative overflow-hidden rounded-[28px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(250,245,239,0.98),rgba(241,234,224,0.97))] shadow-card-lg">
         <div className="absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(255,250,246,0.65),rgba(255,255,255,0))]" />
 
+        {/* Sicil damgası */}
+        <div
+          className="pointer-events-none absolute right-4 top-16 z-10 rounded-[6px] border-2 border-[rgba(101,125,104,0.55)] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[rgba(101,125,104,0.8)]"
+          style={{ transform: 'rotate(-7deg)' }}
+        >
+          Sicile işlendi
+        </div>
+
         <div className="relative flex items-center justify-between border-b border-[var(--line-soft)] px-5 py-4">
           <div>
             <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
-              Decision record
+              Karar kaydı
             </span>
             <div className="mt-0.5 text-[11px] text-[var(--text-faint)]">
-              Operations review &middot; April 17, 2026
+              Tedarikçi seçimi &middot; 12 Mart 2026
             </div>
           </div>
-          <span className="rounded-full border border-[rgba(182,142,102,0.18)] bg-[rgba(247,239,228,0.95)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--accent)]">
-            Needs review
+          <span className="rounded-full border border-[rgba(101,125,104,0.24)] bg-[rgba(238,242,237,0.95)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--success)]">
+            Onaylı
           </span>
         </div>
 
         <div className="px-5 py-5">
           <p className="text-[15px] font-[600] leading-snug text-[var(--text-strong)]">
-            Keep the supplier handoff with the Manchester team until the missed-pick
-            rate stays below target for two straight weeks.
+            2026 lojistik sözleşmesi KargoPlus ile yapılacak; SLA taahhüdü ve Anadolu
+            kapsaması belirleyici oldu.
           </p>
         </div>
 
         <div className="space-y-2.5 border-t border-[var(--line-soft)] px-5 py-4">
-          <MetaRow label="Owner" value="Nina Patel - Operations Director" />
-          <MetaRow label="Source" value="Operations review - Microsoft Teams" />
-          <MetaRow label="Review state" value="Pending confirmation" dot="amber" />
+          <MetaRow label="Onaylayan" value="Murat Aksoy — Operasyon Direktörü" dot="green" />
+          <MetaRow label="Kaynak" value="E-posta zinciri — Tedarikçi seçimi" />
+          <MetaRow label="Tarih" value="12 Mart 2026" />
         </div>
 
         <div className="border-t border-[var(--line-soft)] px-5 py-4">
           <div className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-faint)]">
-            Source trail
+            Kaynak alıntısı
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="surface-tag px-2.5 py-1 text-[11px] font-medium text-[var(--text-body)]">
-              Operations review
-            </span>
-            <span className="text-[12px] text-[var(--text-faint)]">&rarr;</span>
-            <span className="surface-tag px-2.5 py-1 text-[11px] font-medium text-[var(--text-body)]">
-              Warehouse handoff note
-            </span>
-          </div>
+          <p className="border-l-2 border-[var(--accent-soft)] pl-3 text-[12px] italic leading-[1.65] text-[var(--text-body)]">
+            "Karar verildi: 2026 sözleşmesini KargoPlus ile yapıyoruz. SLA taahhüdü ve
+            Anadolu kapsaması belirleyici oldu. Onaylıyorum."
+          </p>
         </div>
       </div>
     </div>
@@ -93,41 +96,41 @@ export default function Hero() {
 
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_420px] xl:gap-20">
           <div className="relative">
-            <div className="eyebrow mb-7">Decdock &middot; Pilot-ready</div>
+            <div className="eyebrow mb-7">Decdock &middot; Karar sicili</div>
 
-            <h1 className="mb-6 max-w-[12ch] font-display text-[48px] font-[600] leading-[1.02] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[56px] xl:text-[66px]">
-              Decision memory for modern teams
+            <h1 className="mb-6 max-w-[13ch] font-display text-[46px] font-[600] leading-[1.04] tracking-[-0.035em] text-[var(--text-strong)] sm:text-[54px] xl:text-[62px]">
+              "Bu kararı kim almıştı?"
             </h1>
 
             <p className="mb-5 max-w-[620px] text-[17px] leading-[1.8] text-[var(--text-body)]">
-              Decdock helps teams capture, review, and maintain decision memory from
-              workplace conversations and documents so teams can understand what was
-              decided, who owns it, and whether it still holds.
+              Kararlar e-postalarda ve toplantılarda alınıp kayboluyor. Decdock,
+              yazışmalarınızdan şirketinizin karar sicilini çıkarır: ne kararlaştırıldı,
+              kim onayladı, ne zaman — kaynağından birebir alıntıyla.
             </p>
 
             <p className="mb-10 max-w-[600px] text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)]">
-              Built for teams using tools like email, Slack, Microsoft Teams, and shared
-              project documents.
+              E-posta ve toplantı notlarıyla başlar &middot; İzleme değil, seçtiğiniz kaynaklar
             </p>
 
             <div className="mb-12 flex flex-col gap-3 sm:flex-row">
               <a
-                href="mailto:pilot@decdock.com"
+                href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
                 className="button-primary px-6 py-3 text-[14px] font-semibold"
               >
-                Request pilot
+                Karar Denetimi isteyin
               </a>
               <a
-                href="mailto:pilot@decdock.com"
+                href="/demo/"
                 className="button-secondary px-6 py-3 text-[14px] font-medium"
               >
-                Contact us
+                60 saniyede izleyin
               </a>
             </div>
 
             <p className="max-w-[560px] text-[14px] leading-[1.75] text-[var(--text-muted)]">
-              Decdock is designed for selected-source pilots, reviewable signals, and
-              source-linked decision records rather than another manual decision log.
+              İlk adım kurulum değil: bitmiş bir projenizin 20–50 e-postasını paylaşın,
+              bir hafta içinde karar sicili raporunuzu teslim edelim. Entegrasyon yok,
+              sistem erişimi yok.
             </p>
           </div>
 

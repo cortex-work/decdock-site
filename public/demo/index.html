@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decdock — 60 saniyede tanıtım</title>
+  <meta name="description" content="Decdock'un karar sicili sistemini 60 saniyede keşfedin: yazışmalardan otomatik karar kaydı, onaylayan, tarih ve kaynak alıntısıyla." />
+  <link rel="canonical" href="https://decdock.com/demo/" />
+  <meta property="og:title" content="Decdock — 60 saniyede tanıtım" />
+  <meta property="og:description" content="Yazışmalardan karar sicili: ne kararlaştırıldı, kim onayladı, ne zaman." />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:url" content="https://decdock.com/demo/" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #f4eee6;
+      --text-strong: #2f2925;
+      --text-body:   #5e5650;
+      --text-muted:  #756b64;
+      --text-faint:  #93867b;
+      --accent:      #a1764e;
+      --success:     #657d68;
+      --warning:     #a97b52;
+      --line-soft:   rgba(94,86,80,0.16);
+      --card-bg:     linear-gradient(180deg,rgba(250,245,239,0.98),rgba(241,234,224,0.97));
+      --shadow-card: 0 28px 88px rgba(24,30,38,0.14);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 15% 0%, rgba(210,190,165,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 50% at 85% 100%, rgba(195,175,155,0.18) 0%, transparent 60%);
+    }
+
+    /* ── Top bar ──────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244,238,230,0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line-soft);
+      box-shadow: 0 10px 30px rgba(43,35,29,0.05);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-strong);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: opacity 0.15s;
+    }
+    .topbar-logo:hover { opacity: 0.75; }
+
+    .topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .topbar-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .topbar-link:hover { color: var(--text-strong); }
+
+    .btn-primary-nav {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: #3a342f;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 0.9rem;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary-nav:hover { opacity: 0.82; }
+
+    @media (max-width: 640px) {
+      .topbar-link { display: none; }
+    }
+
+    /* ── Page wrapper ─────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    .page-title {
+      text-align: center;
+      font-family: 'Newsreader', serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    /* ── Stage ────────────────────────────────────────── */
+    .stage-wrap {
+      position: relative;
+      border-radius: 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--line-soft);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .stage { height: auto; min-height: 520px; }
+    }
+
+    /* Each scene is absolute, full coverage */
+    .scene {
+      position: absolute;
+      inset: 0;
+      padding: 52px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 640px) {
+      .scene {
+        position: relative;
+        padding: 36px 28px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    /* ── Shared animation helpers ─────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(-22px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(22px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes stamp {
+      0%   { opacity: 0; transform: rotate(-8deg) scale(1.35); }
+      60%  { opacity: 1; transform: rotate(-8deg) scale(0.94); }
+      75%  { transform: rotate(-8deg) scale(1.04); }
+      85%  { transform: rotate(-8deg) scale(0.97); }
+      100% { opacity: 1; transform: rotate(-8deg) scale(1); }
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(169,123,82,0.45); }
+      50%      { box-shadow: 0 0 0 10px rgba(169,123,82,0); }
+    }
+    @keyframes rejectSlide {
+      from { opacity: 1; transform: translateX(0); filter: none; }
+      to   { opacity: 0.55; transform: translateX(18px); filter: saturate(0.2) brightness(1.1); }
+    }
+
+    .anim-paused * { animation-play-state: paused !important; }
+
+    /* ── Scene 1: Pain ────────────────────────────────── */
+    #scene1 { text-align: center; align-items: center; }
+
+    .s1-headline {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 600;
+      color: var(--text-strong);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 36px;
+      opacity: 0;
+    }
+    .scene.active .s1-headline {
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+    }
+
+    .s1-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .s1-chip {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-body);
+      background: rgba(244,238,230,0.9);
+      border: 1px solid var(--line-soft);
+      border-radius: 100px;
+      padding: 8px 16px;
+      opacity: 0;
+    }
+    .scene.active .s1-chip:nth-child(1) {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+    }
+    .scene.active .s1-chip:nth-child(2) {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.55s forwards;
+    }
+    .scene.active .s1-chip:nth-child(3) {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 2.0s forwards;
+    }
+
+    .s1-caption {
+      font-size: 13px;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+    .scene.active .s1-caption {
+      animation: fadeIn 0.5s ease 3.0s forwards;
+    }
+
+    /* ── Scene 2: From email to record ───────────────── */
+    #scene2 {
+      flex-direction: row;
+      align-items: center;
+      gap: 28px;
+      padding: 40px 48px;
+    }
+
+    @media (max-width: 640px) {
+      #scene2 { flex-direction: column; gap: 20px; }
+    }
+
+    .s2-thread {
+      flex: 0 0 auto;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .s2-thread { width: 100%; }
+    }
+
+    .s2-thread-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      opacity: 0;
+    }
+    .scene.active .s2-thread-label {
+      animation: fadeIn 0.4s ease 0.3s forwards;
+    }
+
+    .s2-msg {
+      border-radius: 12px;
+      padding: 10px 13px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      opacity: 0;
+    }
+    .s2-msg .s2-sender {
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--text-strong);
+      margin-bottom: 3px;
+    }
+    .s2-msg-1 {
+      background: rgba(240,233,224,0.9);
+      border: 1px solid var(--line-soft);
+      color: var(--text-body);
+    }
+    .s2-msg-2 {
+      background: rgba(101,125,104,0.12);
+      border: 1px solid rgba(101,125,104,0.2);
+      color: var(--text-body);
+    }
+    .scene.active .s2-msg-1 {
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+    }
+    .scene.active .s2-msg-2 {
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+    }
+
+    .s2-arrow {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      opacity: 0;
+    }
+    .s2-arrow svg { width: 36px; height: 36px; }
+    .scene.active .s2-arrow {
+      animation: fadeIn 0.5s ease 2.4s forwards;
+    }
+
+    @media (max-width: 640px) {
+      .s2-arrow { transform: rotate(90deg); }
+    }
+
+    .s2-card {
+      flex: 1;
+      min-width: 0;
+      border-radius: 16px;
+      border: 1px solid var(--line-soft);
+      background: var(--card-bg);
+      box-shadow: 0 12px 40px rgba(24,30,38,0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .s2-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line-soft);
+      opacity: 0;
+    }
+    .s2-card-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .s2-card-badge {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--success);
+      background: rgba(101,125,104,0.12);
+      border: 1px solid rgba(101,125,104,0.2);
+      border-radius: 100px;
+      padding: 3px 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .scene.active .s2-card-head {
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 2.7s forwards;
+    }
+
+    .s2-card-body { padding: 12px 14px; }
+
+    .s2-card-decision {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-strong);
+      line-height: 1.45;
+      margin-bottom: 10px;
+      opacity: 0;
+    }
+    .scene.active .s2-card-decision {
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 3.1s forwards;
+    }
+
+    .s2-meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .s2-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      opacity: 0;
+    }
+    .s2-meta-row span:first-child {
+      color: var(--text-faint);
+      width: 76px;
+      flex-shrink: 0;
+    }
+    .s2-meta-row span:last-child { color: var(--text-strong); font-weight: 500; }
+    .scene.active .s2-meta-row:nth-child(1) {
+      animation: fadeUp 0.4s ease 3.4s forwards;
+    }
+    .scene.active .s2-meta-row:nth-child(2) {
+      animation: fadeUp 0.4s ease 3.6s forwards;
+    }
+    .scene.active .s2-meta-row:nth-child(3) {
+      animation: fadeUp 0.4s ease 3.8s forwards;
+    }
+
+    .s2-quote {
+      border-left: 2px solid rgba(161,118,78,0.4);
+      padding-left: 10px;
+      font-size: 11px;
+      font-style: italic;
+      color: var(--text-body);
+      line-height: 1.6;
+      opacity: 0;
+    }
+    .scene.active .s2-quote {
+      animation: fadeUp 0.4s ease 4.0s forwards;
+    }
+
+    .s2-stamp {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 2px solid rgba(101,125,104,0.6);
+      border-radius: 5px;
+      padding: 4px 8px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(101,125,104,0.85);
+      transform: rotate(-8deg);
+      opacity: 0;
+    }
+    .scene.active .s2-stamp {
+      animation: stamp 0.7s cubic-bezier(0.22,1,0.36,1) 4.5s forwards;
+    }
+
+    .s2-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 14px 20px;
+      border-top: 1px solid var(--line-soft);
+      opacity: 0;
+    }
+    .scene.active .s2-caption {
+      animation: fadeIn 0.5s ease 5.2s forwards;
+    }
+
+    /* ── Scene 3: Decision vs. non-decision ──────────── */
+    #scene3 { align-items: flex-start; }
+
+    .s3-bubble {
+      background: rgba(240,233,224,0.9);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-body);
+      max-width: 480px;
+      margin-bottom: 24px;
+      opacity: 0;
+    }
+    .s3-bubble .sender {
+      font-weight: 700;
+      font-size: 11.5px;
+      color: var(--text-strong);
+      margin-bottom: 4px;
+    }
+    .scene.active .s3-bubble {
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+    }
+
+    .s3-candidate {
+      background: rgba(241,234,224,0.85);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 14px 18px;
+      max-width: 420px;
+      margin-bottom: 16px;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    .s3-candidate .cand-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 6px;
+    }
+    .s3-candidate .cand-text {
+      font-size: 13px;
+      color: var(--text-strong);
+      font-weight: 500;
+    }
+    .scene.active .s3-candidate {
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+    }
+    .s3-candidate.rejected {
+      border-style: dashed;
+      border-color: rgba(169,123,82,0.4);
+      animation: rejectSlide 0.6s cubic-bezier(0.22,1,0.36,1) forwards !important;
+      filter: saturate(0.2) brightness(1.1);
+    }
+
+    .s3-tray {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+    }
+    .s3-tray-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-faint);
+      background: rgba(240,233,224,0.8);
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+    .s3-tray-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--warning);
+      background: rgba(169,123,82,0.1);
+      border: 1px solid rgba(169,123,82,0.25);
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+    .scene.active .s3-tray {
+      animation: fadeIn 0.4s ease 2.5s forwards;
+    }
+
+    .s3-headline {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 600;
+      color: var(--text-strong);
+      line-height: 1.25;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      opacity: 0;
+    }
+    .s3-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      opacity: 0;
+    }
+    .scene.active .s3-headline {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 3.2s forwards;
+    }
+    .scene.active .s3-sub {
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 3.8s forwards;
+    }
+
+    /* ── Scene 4: Conflict warning ────────────────────── */
+    #scene4 { align-items: center; }
+
+    .s4-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto 28px;
+    }
+
+    @media (max-width: 640px) {
+      .s4-row { flex-direction: column; gap: 14px; }
+    }
+
+    .s4-existing {
+      flex: 1;
+      background: rgba(244,238,230,0.95);
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+      opacity: 0;
+    }
+    .s4-existing .s4-tag {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 5px;
+    }
+    .s4-existing .s4-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-strong);
+    }
+    .scene.active .s4-existing {
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
+    }
+
+    .s4-new-msg {
+      flex: 1;
+      background: rgba(244,238,230,0.9);
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      padding: 12px 14px;
+      opacity: 0;
+    }
+    .s4-new-msg .s4-sender {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-strong);
+      margin-bottom: 4px;
+    }
+    .s4-new-msg .s4-text {
+      font-size: 12px;
+      color: var(--text-body);
+    }
+    .scene.active .s4-new-msg {
+      animation: slideLeft 0.6s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
+    }
+
+    .s4-connector {
+      position: relative;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      opacity: 0;
+    }
+    .s4-line {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(169,123,82,0.4), transparent);
+    }
+    .s4-badge {
+      position: relative;
+      background: rgba(169,123,82,0.12);
+      border: 1.5px solid rgba(169,123,82,0.4);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--warning);
+      animation: pulse 2s ease infinite;
+    }
+    .scene.active .s4-connector {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 2.1s forwards;
+    }
+
+    .s4-caption {
+      font-family: 'Newsreader', serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 520px;
+      line-height: 1.6;
+      opacity: 0;
+    }
+    .scene.active .s4-caption {
+      animation: fadeUp 0.5s ease 3.0s forwards;
+    }
+
+    /* ── Scene 5: CTA ─────────────────────────────────── */
+    #scene5 {
+      background: linear-gradient(160deg, #2f2925 0%, #3d3430 100%);
+      border-radius: 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    .s5-headline {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 600;
+      color: #f9f4ee;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      max-width: 540px;
+      opacity: 0;
+    }
+    .scene.active .s5-headline {
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+    }
+
+    .s5-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+    .s5-step {
+      font-size: 13.5px;
+      color: rgba(249,244,238,0.72);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+    }
+    .s5-step::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(161,118,78,0.8);
+      flex-shrink: 0;
+    }
+    .scene.active .s5-step:nth-child(1) {
+      animation: fadeUp 0.5s ease 1.2s forwards;
+    }
+    .scene.active .s5-step:nth-child(2) {
+      animation: fadeUp 0.5s ease 1.7s forwards;
+    }
+    .scene.active .s5-step:nth-child(3) {
+      animation: fadeUp 0.5s ease 2.2s forwards;
+    }
+
+    .s5-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      opacity: 0;
+    }
+    .scene.active .s5-btns {
+      animation: fadeUp 0.6s ease 3.0s forwards;
+    }
+
+    .s5-btn-primary {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-strong);
+      background: rgba(249,244,238,0.96);
+      text-decoration: none;
+      padding: 11px 22px;
+      border-radius: 0.9rem;
+      transition: opacity 0.15s;
+    }
+    .s5-btn-primary:hover { opacity: 0.85; }
+
+    .s5-btn-secondary {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: rgba(249,244,238,0.7);
+      text-decoration: none;
+      padding: 11px 22px;
+      border: 1px solid rgba(249,244,238,0.18);
+      border-radius: 0.9rem;
+      transition: all 0.15s;
+    }
+    .s5-btn-secondary:hover {
+      color: rgba(249,244,238,0.95);
+      border-color: rgba(249,244,238,0.35);
+    }
+
+    /* ── Controls ─────────────────────────────────────── */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 18px 24px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--line-soft);
+      border: 1.5px solid rgba(94,86,80,0.3);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      width: 22px;
+      border-radius: 4px;
+    }
+    .dot:hover:not(.active) {
+      background: rgba(94,86,80,0.3);
+    }
+
+    .pause-btn {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.15s;
+    }
+    .pause-btn:hover { color: var(--text-strong); }
+
+    /* ── Reduced motion: stack all scenes ─────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .stage { height: auto; }
+      .scene {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        pointer-events: auto;
+        padding: 40px 36px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .scene:last-child { border-bottom: none; }
+      .s1-headline, .s1-chip, .s1-caption,
+      .s2-thread-label, .s2-msg, .s2-arrow, .s2-card-head,
+      .s2-card-decision, .s2-meta-row, .s2-quote, .s2-stamp, .s2-caption,
+      .s3-bubble, .s3-candidate, .s3-tray, .s3-headline, .s3-sub,
+      .s4-existing, .s4-new-msg, .s4-connector, .s4-caption,
+      .s5-headline, .s5-step, .s5-btns {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+      }
+      #scene5 { border-radius: 0 0 28px 28px; }
+      .controls { display: none; }
+      .s3-candidate.rejected { filter: saturate(0.2); transform: translateX(18px); }
+      .s4-badge { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="topbar-logo">Decdock</a>
+      <nav class="topbar-links">
+        <a href="/urun/" class="topbar-link">Ürün detayı</a>
+        <a href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi" class="btn-primary-nav">
+          Karar Denetimi isteyin
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <p class="page-title">Decdock · 60 saniyede tanıtım</p>
+
+    <div class="stage-wrap">
+      <div class="stage" id="stage" role="region" aria-label="Ürün tanıtımı animasyonu">
+
+        <!-- ─── Scene 1: Pain ─────────────────────────── -->
+        <section class="scene" id="scene1" aria-label="Sahne 1: Acı">
+          <h1 class="s1-headline">"Bu kararı kim almıştı?"</h1>
+          <div class="s1-chips">
+            <span class="s1-chip">Aynı konu yine toplantıda</span>
+            <span class="s1-chip">Karar alındı ama top kimde?</span>
+            <span class="s1-chip">Onaylayan belli değil</span>
+          </div>
+          <p class="s1-caption">Her şirkette, her hafta.</p>
+        </section>
+
+        <!-- ─── Scene 2: Email → record ───────────────── -->
+        <section class="scene" id="scene2" aria-label="Sahne 2: Yazışmadan sicile">
+
+          <div class="s2-thread">
+            <div class="s2-thread-label">E-posta zinciri</div>
+            <div class="s2-msg s2-msg-1">
+              <div class="s2-sender">Selin</div>
+              Bütçe revizyonu için iki senaryo hazırladık, ekte.
+            </div>
+            <div class="s2-msg s2-msg-2">
+              <div class="s2-sender">Esra · CFO</div>
+              İnceledim. Onaylıyorum — 2026 pazarlama bütçesi %5 artışla kesinleşti.
+            </div>
+          </div>
+
+          <div class="s2-arrow" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18h20M20 11l7 7-7 7" stroke="rgba(161,118,78,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="s2-card">
+            <div class="s2-stamp">SİCİLE İŞLENDİ</div>
+            <div class="s2-card-head">
+              <span class="s2-card-label">Karar kaydı</span>
+              <span class="s2-card-badge">Onaylı</span>
+            </div>
+            <div class="s2-card-body">
+              <div class="s2-card-decision">
+                2026 pazarlama bütçesi %5 artışla kesinleşti.
+              </div>
+              <div class="s2-meta">
+                <div class="s2-meta-row">
+                  <span>Onaylayan</span><span>Esra — CFO</span>
+                </div>
+                <div class="s2-meta-row">
+                  <span>Tarih</span><span>12 Mart</span>
+                </div>
+                <div class="s2-meta-row">
+                  <span>Kaynak</span><span>E-posta zinciri</span>
+                </div>
+              </div>
+              <div class="s2-quote">
+                "Onaylıyorum — %5 artışla kesinleşti."
+              </div>
+            </div>
+            <div class="s2-caption">
+              Karar, onaylayan, tarih — kaynağından birebir alıntıyla.
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ─── Scene 3: Decision vs. candidate ───────── -->
+        <section class="scene" id="scene3" aria-label="Sahne 3: Karar sanılan">
+          <div class="s3-bubble">
+            <div class="sender">Selin</div>
+            Pazarlama kalemini %10 kısabiliriz diye düşünüyorum…
+          </div>
+          <div class="s3-candidate" id="s3-candidate">
+            <div class="cand-label">Aday karar</div>
+            <div class="cand-text">Pazarlama bütçesi %10 kısılsın</div>
+          </div>
+          <div class="s3-tray">
+            <div class="s3-tray-label">İnceleme listesi</div>
+            <div class="s3-tray-tag">Öneri — onay yok</div>
+          </div>
+          <div class="s3-headline">Decdock "karar" ile "karar sanılan"ı ayırır.</div>
+          <div class="s3-sub">Onaylanmamış hiçbir şey sicile yazılmaz.</div>
+        </section>
+
+        <!-- ─── Scene 4: Conflict warning ─────────────── -->
+        <section class="scene" id="scene4" aria-label="Sahne 4: Çelişki uyarısı">
+          <div class="s4-row">
+            <div class="s4-existing">
+              <div class="s4-tag">Karar sicili · 12 Mart</div>
+              <div class="s4-text">Seçenek B onaylandı · Esra Tekin</div>
+            </div>
+            <div class="s4-new-msg">
+              <div class="s4-sender">Yeni mesaj</div>
+              <div class="s4-text">Filo yenilemeyi durduralım, kiralamayla gidelim.</div>
+            </div>
+          </div>
+          <div class="s4-connector">
+            <div class="s4-line" aria-hidden="true"></div>
+            <div class="s4-badge">⚠ Bu konu 12 Mart'ta karara bağlanmıştı</div>
+          </div>
+          <p class="s4-caption">Eski karar, vereni ve gerekçesiyle anında önünüzde.</p>
+        </section>
+
+        <!-- ─── Scene 5: CTA ───────────────────────────── -->
+        <section class="scene" id="scene5" aria-label="Sahne 5: İlk adım">
+          <h2 class="s5-headline">İlk adım kurulum değil: Karar Denetimi raporu.</h2>
+          <div class="s5-steps">
+            <div class="s5-step">Bitmiş bir projenizin 20–50 e-postası</div>
+            <div class="s5-step">1 hafta</div>
+            <div class="s5-step">Karar sicili: karar, onaylayan, tarih, alıntı</div>
+          </div>
+          <div class="s5-btns">
+            <a href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi" class="s5-btn-primary">
+              pilot@decdock.com
+            </a>
+            <a href="/urun/" class="s5-btn-secondary">Ürün detayı →</a>
+          </div>
+        </section>
+
+      </div><!-- /stage -->
+
+      <!-- Controls -->
+      <div class="controls" id="controls">
+        <div class="dots" role="tablist" aria-label="Sahne seçimi">
+          <button class="dot active" role="tab" aria-selected="true"  aria-label="Sahne 1" data-scene="0"></button>
+          <button class="dot"        role="tab" aria-selected="false" aria-label="Sahne 2" data-scene="1"></button>
+          <button class="dot"        role="tab" aria-selected="false" aria-label="Sahne 3" data-scene="2"></button>
+          <button class="dot"        role="tab" aria-selected="false" aria-label="Sahne 4" data-scene="3"></button>
+          <button class="dot"        role="tab" aria-selected="false" aria-label="Sahne 5" data-scene="4"></button>
+        </div>
+        <button class="pause-btn" id="pauseBtn" aria-pressed="false">Duraklat</button>
+      </div>
+    </div><!-- /stage-wrap -->
+  </main>
+
+  <script>
+    (function () {
+      // Respect reduced-motion: no JS sequencer
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        // Show all scenes statically
+        document.querySelectorAll('.scene').forEach(function(s) { s.classList.add('active'); });
+        document.getElementById('controls').style.display = 'none';
+        return;
+      }
+
+      // Scene durations in ms (must total ~55-70s)
+      // Scene 1: 9s, Scene 2: 16s, Scene 3: 13s, Scene 4: 12s, Scene 5: 14s => 64s total
+      var DURATIONS = [9000, 16000, 13000, 12000, 14000];
+      var scenes = Array.from(document.querySelectorAll('.scene'));
+      var dots = Array.from(document.querySelectorAll('.dot'));
+      var pauseBtn = document.getElementById('pauseBtn');
+
+      var currentScene = 0;
+      var isPaused = false;
+      var timerId = null;
+
+      function goToScene(idx) {
+        // Deactivate all
+        scenes.forEach(function(s) { s.classList.remove('active'); });
+        dots.forEach(function(d) {
+          d.classList.remove('active');
+          d.setAttribute('aria-selected', 'false');
+        });
+
+        currentScene = idx;
+
+        // Handle scene 3 rejected card reset
+        var cand = document.getElementById('s3-candidate');
+        if (cand) { cand.classList.remove('rejected'); }
+
+        // Activate current
+        scenes[currentScene].classList.add('active');
+        dots[currentScene].classList.add('active');
+        dots[currentScene].setAttribute('aria-selected', 'true');
+
+        // Scene 3: after 2s, trigger rejected animation
+        if (currentScene === 2 && !isPaused) {
+          setTimeout(function() {
+            if (currentScene === 2 && !isPaused && cand) {
+              cand.classList.add('rejected');
+            }
+          }, 2000);
+        }
+
+        scheduleNext();
+      }
+
+      function scheduleNext() {
+        clearTimeout(timerId);
+        if (isPaused) return;
+        timerId = setTimeout(function() {
+          goToScene((currentScene + 1) % scenes.length);
+        }, DURATIONS[currentScene]);
+      }
+
+      // Dot click handlers
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var idx = parseInt(dot.getAttribute('data-scene'), 10);
+          goToScene(idx);
+        });
+      });
+
+      // Pause / play
+      pauseBtn.addEventListener('click', function() {
+        isPaused = !isPaused;
+        pauseBtn.textContent = isPaused ? 'Oynat' : 'Duraklat';
+        pauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+
+        var stage = document.getElementById('stage');
+        if (isPaused) {
+          clearTimeout(timerId);
+          stage.classList.add('anim-paused');
+        } else {
+          stage.classList.remove('anim-paused');
+          // Re-trigger active scene animations by cycling class
+          var active = scenes[currentScene];
+          active.classList.remove('active');
+          // Force reflow
+          void active.offsetWidth;
+          active.classList.add('active');
+          // Re-arm scene 3 reject
+          if (currentScene === 2) {
+            var cand = document.getElementById('s3-candidate');
+            if (cand) { cand.classList.remove('rejected'); }
+            setTimeout(function() {
+              if (currentScene === 2 && !isPaused && cand) {
+                cand.classList.add('rejected');
+              }
+            }, 2000);
+          }
+          scheduleNext();
+        }
+      });
+
+      // Start
+      goToScene(0);
+    })();
+  </script>
+
+</body>
+</html>

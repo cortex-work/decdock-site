@@ -3,7 +3,9 @@ import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Scenarios from './components/Scenarios'
 import ExampleRecords from './components/ExampleRecords'
+import DecisionChain from './components/DecisionChain'
 import Differentiation from './components/Differentiation'
+import FAQ from './components/FAQ'
 import PilotCTA from './components/PilotCTA'
 import Footer from './components/Footer'
 
@@ -22,8 +24,10 @@ export default function App() {
           <Hero />
           <Scenarios />
           <ExampleRecords />
+          <DecisionChain />
           <HowItWorks />
           <Differentiation />
+          <FAQ />
           <PilotCTA />
         </main>
         <Footer />

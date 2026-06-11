@@ -10,74 +10,71 @@ interface WorkflowExample {
 
 const examples: WorkflowExample[] = [
   {
-    label: 'Email thread',
+    label: 'Onaylı karar',
     thread: [
       {
-        speaker: 'Olivia',
+        speaker: 'Selin',
         message:
-          'Keep packaging speed reduced until seal failures stabilize.',
+          'Bütçe revizyonu için iki senaryo hazırladık, ekte. Görüşünüzü bekliyoruz.',
       },
       {
-        speaker: 'Marcus',
-        message: 'Agreed. Maya can track quality checks and send the Friday update.',
+        speaker: 'Esra (CFO)',
+        message:
+          'İnceledim. Onaylıyorum — 2026 pazarlama bütçesi %5 artışla kesinleşti.',
       },
     ],
     extracts: [
-      'Decision: Packaging speed stays reduced until seal failures stabilize.',
-      'Owner signal: Maya -> quality check follow-up.',
-      'Source: Operations email thread.',
-      'Review state: Needs confirmation.',
+      'Karar: 2026 pazarlama bütçesi %5 artışla kesinleşti.',
+      'Onaylayan: Esra — CFO.',
+      'Kaynak: Bütçe revizyonu e-posta zinciri.',
+      'Alıntı: "Onaylıyorum — %5 artışla kesinleşti."',
     ],
     teamSees:
-      'Possible decision found: Packaging speed remains reduced. Confirm, edit, or reject?',
+      'Sicile işlendi: karar, onaylayan ve kaynak alıntısıyla birlikte aranabilir durumda.',
   },
   {
-    label: 'Team chat',
+    label: '"Karar sanılan"',
     thread: [
       {
-        speaker: 'Daniel',
+        speaker: 'Selin',
         message:
-          'Keep manual exports for enterprise customers until reporting is ready.',
+          'Pazarlama kalemini %10 kısabiliriz diye düşünüyorum, ama tabii karar sizin.',
       },
       {
-        speaker: 'Priya',
-        message: 'That is a rollout exception. Can Sarah own customer comms?',
-      },
-      {
-        speaker: 'Nina',
-        message: 'Yes, Sarah please take this and keep Support aligned.',
+        speaker: 'Murat',
+        message: 'Pazartesi 14:00 uygun, toplantı ayarlandı. Orada değerlendiririz.',
       },
     ],
     extracts: [
-      'Decision: Manual export support remains available for enterprise customers until the new reporting flow is ready.',
-      'Owner signal: Sarah -> customer communication.',
-      'Source: Product/team chat thread.',
-      'Review state: High-confidence candidate.',
+      'Sicile YAZILMADI: öneri, onaylanmamış.',
+      'Gerekçe: kişisel görüş olarak ifade edilmiş, onay yok.',
+      '"Toplantı ayarlandı" karar değil, takvim koordinasyonu.',
+      'Durum: inceleme listesinde, şeffafça.',
     ],
     teamSees:
-      'Added to decision memory with source link. Included in weekly digest under Customer commitments.',
+      'Ekibin yarısı bunu "karar" diye hatırlayacaktı. Decdock karar ile karar sanılanı ayırır.',
   },
   {
-    label: 'Later update',
+    label: 'Tekrar açılan konu',
     thread: [
       {
-        speaker: 'March meeting note',
+        speaker: 'Mart kararı',
         message:
-          'Manual exports stay available for enterprise customers until reporting parity.',
+          'Kurumsal müşteriler için manuel rapor desteği yeni sistem hazır olana kadar sürecek.',
       },
       {
-        speaker: 'April product thread',
-        message: 'Stop supporting manual exports after May to focus on new reporting.',
+        speaker: 'Nisan mesajı',
+        message: 'Manuel raporları mayıstan sonra tamamen kapatalım derim.',
       },
     ],
     extracts: [
-      'Possible conflict: A newer update may conflict with an earlier customer commitment.',
-      'Related decisions: March decision + April update.',
-      'Source: Meeting note and product chat.',
-      'Review state: Needs review.',
+      'Uyarı: bu konu Mart’ta karara bağlanmıştı.',
+      'Olası çelişki: müşteri taahhüdü ile yeni öneri.',
+      'İlgili kayıtlar: Mart kararı + Nisan mesajı yan yana.',
+      'Durum: incelenmeli.',
     ],
     teamSees:
-      'Possible conflict to review: manual export policy may have changed. Review related source records.',
+      'O toplantı ya hiç yapılmaz ya beş dakika sürer: eski karar, vereni ve gerekçesiyle önünüzde.',
   },
 ]
 
@@ -104,15 +101,15 @@ export default function ExampleRecords() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-9 grid gap-5 lg:grid-cols-[0.92fr_0.96fr] lg:items-start">
           <div>
-            <div className="eyebrow-plain">From thread to decision memory</div>
+            <div className="eyebrow-plain">Yazışmadan sicile</div>
             <h2 className="max-w-[16ch] font-display text-[34px] font-[600] leading-[1.08] text-[var(--text-strong)] sm:text-[38px]">
-              From messy threads to decision memory
+              Dağınık zincirden karar kaydına
             </h2>
           </div>
           <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
-            Decdock looks at selected workplace sources, extracts decision and
-            ownership signals, and turns them into reviewable records your team can
-            trust.
+            Decdock seçtiğiniz kaynaklara bakar, karar ve sahiplik sinyallerini çıkarır
+            ve bunları ekibinizin güvenebileceği, kaynağa bağlı kayıtlara çevirir.
+            Üç gerçekçi örnek:
           </p>
         </div>
 
@@ -122,7 +119,7 @@ export default function ExampleRecords() {
               <span className="chip-soft mb-4">{example.label}</span>
 
               <div className="space-y-2.5">
-                <StoryPart label="Thread">
+                <StoryPart label="Yazışma">
                   <div className="space-y-1.5">
                     {example.thread.map((line) => (
                       <div
@@ -138,7 +135,7 @@ export default function ExampleRecords() {
                   </div>
                 </StoryPart>
 
-                <StoryPart label="Decdock extracts">
+                <StoryPart label="Decdock'un çıkardığı">
                   <ul className="space-y-1.5">
                     {example.extracts.map((item) => (
                       <li key={item} className="text-[12.5px] leading-[1.5] text-[var(--text-strong)]">
@@ -148,7 +145,7 @@ export default function ExampleRecords() {
                   </ul>
                 </StoryPart>
 
-                <StoryPart label="Team sees">
+                <StoryPart label="Ekibin gördüğü">
                   <p className="rounded-[12px] border border-[rgba(161,118,78,0.2)] bg-[rgba(247,239,228,0.8)] px-3 py-2 text-[13px] font-medium leading-[1.5] text-[var(--text-strong)]">
                     &ldquo;{example.teamSees}&rdquo;
                   </p>
