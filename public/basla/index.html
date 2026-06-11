@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decdock — Başlayalım | Karar Denetimi süreci</title>
+  <meta name="description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Gizlilik sözleşmesi tam metni, veri aktarım yöntemleri ve teslim detayları bu sayfadadır." />
+  <link rel="canonical" href="https://decdock.com/basla/" />
+  <meta property="og:title" content="Decdock — Başlayalım | Karar Denetimi süreci" />
+  <meta property="og:description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Gizlilik sözleşmesi tam metni, veri aktarım yöntemleri ve teslim detayları bu sayfadadır." />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://decdock.com/basla/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f4eee6;
+      --text-strong: #2f2925;
+      --text-body: #5e5650;
+      --text-muted: #756b64;
+      --accent: #a1764e;
+      --green: #657d68;
+      --line-soft: rgba(94, 86, 80, 0.16);
+      --card-bg: rgba(250, 245, 239, 0.8);
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text-body);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(244, 238, 230, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .topbar-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0.875rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-strong);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.15s;
+    }
+
+    .topbar-logo:hover {
+      opacity: 0.75;
+    }
+
+    .topbar-link {
+      font-size: 13px;
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .topbar-link:hover {
+      color: var(--text-strong);
+    }
+
+    /* Main content */
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* Typography */
+    h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-strong);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.25rem, 3vw, 1.625rem);
+      font-weight: 600;
+      color: var(--text-strong);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-top: 3rem;
+      margin-bottom: 0.875rem;
+    }
+
+    h3 {
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-strong);
+      line-height: 1.4;
+      margin-bottom: 0.375rem;
+    }
+
+    p {
+      color: var(--text-body);
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lead {
+      font-size: 1.0625rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    ul li {
+      margin-bottom: 0.375rem;
+      color: var(--text-body);
+    }
+
+    /* Section divider */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--line-soft);
+      margin: 2.5rem 0;
+    }
+
+    /* Info block / card */
+    .info-block {
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: var(--card-bg);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* NDA card — slightly smaller text, bordered */
+    .nda-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: var(--card-bg);
+      padding: 1.75rem 2rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .nda-card h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-strong);
+    }
+
+    .nda-card ol {
+      padding-left: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    .nda-card ol li {
+      margin-bottom: 0.625rem;
+      color: var(--text-body);
+      font-size: 0.9rem;
+    }
+
+    .nda-note {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+
+    /* CTA block */
+    .cta-block {
+      border: 1px solid rgba(161, 118, 78, 0.35);
+      border-radius: 16px;
+      background: rgba(161, 118, 78, 0.06);
+      padding: 1.5rem 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .cta-block p {
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .cta-link:hover {
+      opacity: 0.75;
+    }
+
+    /* CTA button — dark pill */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.9rem;
+      background: var(--text-strong);
+      color: #faf4ed;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* Secondary links */
+    .secondary-links {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .secondary-link {
+      font-size: 13.5px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+
+    .secondary-link:hover {
+      opacity: 0.75;
+    }
+
+    /* Timeline / step cards */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1.25rem;
+      position: relative;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 1.25rem;
+      position: relative;
+    }
+
+    .step-card:not(:last-child) .step-left::after {
+      content: '';
+      position: absolute;
+      top: 2.1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: calc(100% - 0.25rem);
+      background: var(--line-soft);
+    }
+
+    .step-left {
+      flex-shrink: 0;
+      width: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 1.5px solid rgba(161, 118, 78, 0.45);
+      background: rgba(161, 118, 78, 0.07);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body {
+      flex: 1;
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      background: var(--card-bg);
+      padding: 1.125rem 1.375rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--text-strong);
+      margin-bottom: 0.375rem;
+      line-height: 1.4;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* What's in the report — inline list */
+    .report-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .report-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.9375rem;
+      color: var(--text-body);
+    }
+
+    .report-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--line-soft);
+      background: rgba(244, 238, 230, 0.6);
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-link {
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-link:hover {
+      color: var(--text-strong);
+    }
+
+    /* Stage badge */
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(101, 125, 104, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(101, 125, 104, 0.25);
+      border-radius: 999px;
+      padding: 0.2em 0.75em;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <nav class="topbar" aria-label="Ana navigasyon">
+    <div class="topbar-inner">
+      <a href="/" class="topbar-logo">Decdock</a>
+      <a href="/" class="topbar-link">Ana sayfa</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <div class="badge">Süreç</div>
+
+    <h1>Başlayalım — Karar Denetimi süreci</h1>
+
+    <p class="lead">İlk adım yazılım kurulumu değil, tek seferlik bir rapordur. Süreç beş adımdır, baştan sona şeffaftır ve verileriniz hiçbir aşamada bir web sitesine yüklenmez.</p>
+
+    <hr class="section-divider" />
+
+    <section aria-labelledby="surec">
+      <h2 id="surec">Süreç — beş adım</h2>
+
+      <div class="timeline">
+
+        <div class="step-card">
+          <div class="step-left">
+            <div class="step-num">1</div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Tanışma ve gizlilik sözleşmesi (aynı gün)</div>
+            <p class="step-desc">Tek sayfalık, karşılıklı gizlilik sözleşmesi imzalanır. Tam metni bu sayfanın altında okuyabilirsiniz; süreç sürprizsizdir.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-left">
+            <div class="step-num">2</div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Veri dilimini siz seçersiniz</div>
+            <p class="step-desc">Bitmiş bir projenin 20–50 e-postası (zincir halinde .eml/.msg, PDF veya metin) ve varsa toplantı notları. Çok değerli ama isteğe bağlı: sizce o projede alınmış en önemli 5–10 kararın kısa listesi — raporu buna karşı da test ederiz. Dahil etmeyin: İK/disiplin süreçleri, hukuki ihtilaflar, sağlık verisi içeren yazışmalar.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-left">
+            <div class="step-num">3</div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Güvenli aktarım — size uyan yöntemle</div>
+            <p class="step-desc">Parola korumalı ZIP (parola ayrı kanaldan: SMS/telefon) veya kendi SharePoint/Drive altyapınızdan kısıtlı erişimli link. Dosyalarınız bir web formuna yüklenmez; aktarım yöntemini siz belirlersiniz.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-left">
+            <div class="step-num">4</div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Üretim ve teslim: 3 iş günü</div>
+            <p class="step-desc">İki aşamalı otomatik çıkarım (karar tespiti + ratifikasyon doğrulaması) çalışır; ardından her satır insan kontrolünden geçer. Emin olunmayan hiçbir ifade sicile yazılmaz. Teslimat: karar sicili raporu + 30 dakikalık teslim görüşmesi.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-left">
+            <div class="step-num">5</div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">İmha ve yazılı teyit</div>
+            <p class="step-desc">Teslimi izleyen 7 gün içinde ham veri tüm kopyalarıyla birlikte kalıcı olarak silinir ve bu size yazılı olarak teyit edilir. Elimizde yalnızca size teslim edilen rapor kalır.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="raporda-ne">
+      <h2 id="raporda-ne">Raporda ne olur</h2>
+      <div class="info-block">
+        <ul class="report-list">
+          <li>Tüm kararlar — karar metni, onaylayan kişi, tarih, kaynaktan birebir alıntı</li>
+          <li>Sicile girmeyen "karar adayları" — öneri/niyet/takvim ifadeleri, gerekçeleriyle</li>
+          <li>Sahipsiz kararlar</li>
+          <li>Aynı konuda çelişen yönler</li>
+          <li>Gözlemler ve yöntem/sınırlar bölümü</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="nda">
+      <h2 id="nda">Gizlilik sözleşmesi — tam metin</h2>
+
+      <div class="nda-card">
+        <h3>Gizlilik Sözleşmesi</h3>
+
+        <p><strong>Taraflar:</strong> [Müşteri Şirket Unvanı] ("Veri Sahibi") ile Decdock ("Hizmet Sağlayıcı") arasında [tarih] tarihinde akdedilmiştir.</p>
+
+        <ol>
+          <li><strong>Konu:</strong> Veri Sahibi'nin, karar denetimi raporu üretimi amacıyla Hizmet Sağlayıcı'ya ileteceği yazışma ve doküman içerikleri ("Veri") ile Hizmet Sağlayıcı'nın ürün ve yöntemlerine ilişkin bilgiler bu sözleşme kapsamında gizli bilgidir.</li>
+          <li><strong>Amaç sınırı:</strong> Veri, yalnızca karar denetimi raporunun üretimi amacıyla işlenir. Başka hiçbir amaçla (model eğitimi dahil) kullanılmaz, üçüncü taraflarla paylaşılmaz.</li>
+          <li><strong>İşleme:</strong> Veri, Hizmet Sağlayıcı'nın kontrolündeki ortamda işlenir. İşleme sırasında yapay zekâ servis sağlayıcısı altyapısı kullanılır; bu altyapıya iletilen içerik, sağlayıcının kurumsal gizlilik koşullarına tabidir ve model eğitiminde kullanılmaz.</li>
+          <li><strong>Saklama ve imha:</strong> Ham Veri, raporun teslimini izleyen 7 gün içinde tüm kopyalarıyla birlikte imha edilir ve imha yazılı olarak teyit edilir. Teslim edilen rapor Veri Sahibi'nin mülkiyetindedir.</li>
+          <li><strong>Kapsam dışı içerik:</strong> İK disiplin süreçleri, hukuki ihtilaf ve sağlık verisi içeren içerikler kabul edilmez; tespit edilirse işlenmeden iade/imha edilir.</li>
+          <li><strong>Referans hakkı:</strong> Hizmet Sağlayıcı, Veri Sahibi'nin yazılı onayı olmadan bu çalışmayı referans olarak kullanamaz.</li>
+          <li><strong>Süre:</strong> Gizlilik yükümlülükleri imza tarihinden itibaren 3 yıl geçerlidir.</li>
+          <li><strong>Uyuşmazlık:</strong> [İl] mahkemeleri ve icra daireleri yetkilidir.</li>
+        </ol>
+      </div>
+
+      <p class="nda-note">Sözleşme karşılıklı imzayla yürürlüğe girer; PDF olarak e-posta üzerinden iletilir.</p>
+    </section>
+
+    <section aria-labelledby="baslayalim">
+      <h2 id="baslayalim">Başlayalım</h2>
+      <p>Hazırsanız tek e-posta yeter — şirketinizi, proje dilimini (tahmini belge sayısı) ve tercih ettiğiniz aktarım yöntemini yazın; aynı gün NDA ile dönüş yaparız.</p>
+
+      <a
+        href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20—%20Ba%C5%9Flang%C4%B1%C3%A7"
+        class="cta-btn"
+      >
+        Başlayalım — pilot@decdock.com
+      </a>
+
+      <div class="secondary-links">
+        <a href="/urun/" class="secondary-link">Örnek süreç ve ürün detayı →</a>
+        <a href="/demo/" class="secondary-link">60 saniyede tanıtım →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Decdock — Şirketinizin karar sicili
+        &nbsp;·&nbsp;
+        <a href="mailto:pilot@decdock.com" class="footer-link">pilot@decdock.com</a>
+        &nbsp;·&nbsp;
+        Ana sayfa: <a href="https://decdock.com/" class="footer-link">decdock.com</a>
+      </p>
+      <p class="footer-text">&copy; 2026 Decdock</p>
+    </div>
+  </footer>
+
+</body>
+</html>

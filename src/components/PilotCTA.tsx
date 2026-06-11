@@ -15,7 +15,7 @@ export default function PilotCTA() {
           </h2>
 
           <p className="mx-auto mb-10 max-w-[42rem] text-[17px] leading-[1.8] text-[rgba(239,230,220,0.84)]">
-            Bitmiş bir projenizin yazışma dilimini paylaşın; bir hafta içinde o projenin
+            Bitmiş bir projenizin yazışma dilimini paylaşın; 3 iş günü içinde o projenin
             karar sicilini rapor olarak teslim edelim. Rapor işinize yaramazsa orada
             biter — yararsa sürekli halini konuşuruz.
           </p>
@@ -44,7 +44,7 @@ export default function PilotCTA() {
                 Süre
               </div>
               <div className="text-[15px] font-semibold text-white">
-                1 hafta — kurulum ve entegrasyon yok
+                3 iş günü — kurulum ve entegrasyon yok
               </div>
             </div>
           </div>
@@ -55,6 +55,15 @@ export default function PilotCTA() {
           >
             Karar Denetimi isteyin — pilot@decdock.com
           </a>
+
+          <div className="mt-4">
+            <a
+              href="/basla/"
+              className="text-[13px] text-[rgba(226,210,193,0.8)] transition-colors hover:text-white"
+            >
+              Önce süreci inceleyin →
+            </a>
+          </div>
 
           <p className="mt-7 text-[13px] text-[rgba(210,195,180,0.74)]">
             Veriniz yalnız rapor üretimi için kullanılır, teslim sonrası imha edilir ve

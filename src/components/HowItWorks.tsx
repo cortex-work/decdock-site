@@ -50,7 +50,7 @@ export default function HowItWorks() {
           <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
             Decdock geniş bir kurumsal kurulumla değil, odaklı bir dilimle başlar:
             seçtiğiniz kaynaklar, incelenebilir sinyaller ve kaynağa bağlı kayıtlar.
-            İlk değer bir haftada elinizde olur.
+            İlk değer 3 iş gününde elinizde olur.
           </p>
         </div>
 

@@ -129,7 +129,7 @@ export default function Hero() {
 
             <p className="max-w-[560px] text-[14px] leading-[1.75] text-[var(--text-muted)]">
               İlk adım kurulum değil: bitmiş bir projenizin 20–50 e-postasını paylaşın,
-              bir hafta içinde karar sicili raporunuzu teslim edelim. Entegrasyon yok,
+              3 iş günü içinde karar sicili raporunuzu teslim edelim. Entegrasyon yok,
               sistem erişimi yok.
             </p>
           </div>

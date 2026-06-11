@@ -15,6 +15,12 @@ export default function Footer() {
             Ürün detayı
           </a>
           <a
+            href="/basla/"
+            className="text-[13px] text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)]"
+          >
+            Süreç
+          </a>
+          <a
             href="mailto:pilot@decdock.com"
             className="text-[13px] text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)]"
           >
