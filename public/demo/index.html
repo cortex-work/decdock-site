@@ -154,7 +154,7 @@
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1);
+      transition: opacity 0.18s cubic-bezier(0.22,1,0.36,1);
     }
     .scene.active {
       opacity: 1;
@@ -218,7 +218,7 @@
       opacity: 0;
     }
     .scene.active .s1-headline {
-      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.10s forwards;
     }
 
     .s1-chips {
@@ -239,13 +239,13 @@
       opacity: 0;
     }
     .scene.active .s1-chip:nth-child(1) {
-      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.65s forwards;
     }
     .scene.active .s1-chip:nth-child(2) {
-      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.55s forwards;
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.95s forwards;
     }
     .scene.active .s1-chip:nth-child(3) {
-      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 2.0s forwards;
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.20s forwards;
     }
 
     .s1-caption {
@@ -256,7 +256,7 @@
       opacity: 0;
     }
     .scene.active .s1-caption {
-      animation: fadeIn 0.5s ease 3.0s forwards;
+      animation: fadeIn 0.5s ease 1.80s forwards;
     }
 
     /* ── Scene 2: From email to record ───────────────── */
@@ -293,7 +293,7 @@
       opacity: 0;
     }
     .scene.active .s2-thread-label {
-      animation: fadeIn 0.4s ease 0.3s forwards;
+      animation: fadeIn 0.4s ease 0.20s forwards;
     }
 
     .s2-msg {
@@ -320,10 +320,10 @@
       color: var(--text-body);
     }
     .scene.active .s2-msg-1 {
-      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.40s forwards;
     }
     .scene.active .s2-msg-2 {
-      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 1.5s forwards;
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.90s forwards;
     }
 
     .s2-arrow {
@@ -334,7 +334,7 @@
     }
     .s2-arrow svg { width: 36px; height: 36px; }
     .scene.active .s2-arrow {
-      animation: fadeIn 0.5s ease 2.4s forwards;
+      animation: fadeIn 0.5s ease 1.45s forwards;
     }
 
     @media (max-width: 640px) {
@@ -379,7 +379,7 @@
       text-transform: uppercase;
     }
     .scene.active .s2-card-head {
-      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 2.7s forwards;
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 1.60s forwards;
     }
 
     .s2-card-body { padding: 12px 14px; }
@@ -393,7 +393,7 @@
       opacity: 0;
     }
     .scene.active .s2-card-decision {
-      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 3.1s forwards;
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 1.85s forwards;
     }
 
     .s2-meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
@@ -411,13 +411,13 @@
     }
     .s2-meta-row span:last-child { color: var(--text-strong); font-weight: 500; }
     .scene.active .s2-meta-row:nth-child(1) {
-      animation: fadeUp 0.4s ease 3.4s forwards;
+      animation: fadeUp 0.4s ease 2.05s forwards;
     }
     .scene.active .s2-meta-row:nth-child(2) {
-      animation: fadeUp 0.4s ease 3.6s forwards;
+      animation: fadeUp 0.4s ease 2.15s forwards;
     }
     .scene.active .s2-meta-row:nth-child(3) {
-      animation: fadeUp 0.4s ease 3.8s forwards;
+      animation: fadeUp 0.4s ease 2.30s forwards;
     }
 
     .s2-quote {
@@ -430,7 +430,7 @@
       opacity: 0;
     }
     .scene.active .s2-quote {
-      animation: fadeUp 0.4s ease 4.0s forwards;
+      animation: fadeUp 0.4s ease 2.40s forwards;
     }
 
     .s2-stamp {
@@ -449,7 +449,7 @@
       opacity: 0;
     }
     .scene.active .s2-stamp {
-      animation: stamp 0.7s cubic-bezier(0.22,1,0.36,1) 4.5s forwards;
+      animation: stamp 0.7s cubic-bezier(0.22,1,0.36,1) 2.70s forwards;
     }
 
     .s2-caption {
@@ -461,7 +461,7 @@
       opacity: 0;
     }
     .scene.active .s2-caption {
-      animation: fadeIn 0.5s ease 5.2s forwards;
+      animation: fadeIn 0.5s ease 3.10s forwards;
     }
 
     /* ── Scene 3: Decision vs. non-decision ──────────── */
@@ -486,7 +486,7 @@
       margin-bottom: 4px;
     }
     .scene.active .s3-bubble {
-      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.20s forwards;
     }
 
     .s3-candidate {
@@ -513,7 +513,7 @@
       font-weight: 500;
     }
     .scene.active .s3-candidate {
-      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 1.1s forwards;
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.65s forwards;
     }
     .s3-candidate.rejected {
       border-style: dashed;
@@ -547,7 +547,7 @@
       padding: 5px 10px;
     }
     .scene.active .s3-tray {
-      animation: fadeIn 0.4s ease 2.5s forwards;
+      animation: fadeIn 0.4s ease 1.50s forwards;
     }
 
     .s3-headline {
@@ -566,120 +566,250 @@
       opacity: 0;
     }
     .scene.active .s3-headline {
-      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 3.2s forwards;
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 1.90s forwards;
     }
     .scene.active .s3-sub {
-      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 3.8s forwards;
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 2.30s forwards;
     }
 
     /* ── Scene 4: Conflict warning ────────────────────── */
-    #scene4 { align-items: center; }
-
-    .s4-row {
-      display: flex;
+    #scene4 {
       align-items: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 660px;
-      margin: 0 auto 28px;
+      justify-content: center;
+      padding: 32px 44px;
     }
 
     @media (max-width: 640px) {
-      .s4-row { flex-direction: column; gap: 14px; }
+      #scene4 {
+        padding: 20px 16px;
+        justify-content: flex-start;
+        align-items: stretch;
+      }
     }
 
-    .s4-existing {
+    .s4-layout {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Top row: registry card + incoming message side by side */
+    .s4-top-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 640px) {
+      .s4-top-row { flex-direction: column; gap: 8px; }
+    }
+
+    /* Registry mini-card */
+    .s4-registry-card {
       flex: 1;
-      background: rgba(244,238,230,0.95);
+      background: rgba(244,238,230,0.97);
       border: 1px solid var(--line-soft);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 14px;
+      overflow: hidden;
       opacity: 0;
     }
-    .s4-existing .s4-tag {
-      font-size: 9.5px;
+    .scene.active .s4-registry-card {
+      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.20s forwards;
+    }
+    .s4-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(240,233,224,0.7);
+    }
+    .s4-card-head-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .s4-card-label {
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--text-faint);
-      margin-bottom: 5px;
     }
-    .s4-existing .s4-text {
-      font-size: 12px;
-      font-weight: 500;
+    .s4-date-chip {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(94,86,80,0.08);
+      border: 1px solid var(--line-soft);
+      border-radius: 100px;
+      padding: 2px 7px;
+    }
+    .s4-approved-pill {
+      font-size: 8.5px;
+      font-weight: 600;
+      color: var(--success);
+      background: rgba(101,125,104,0.12);
+      border: 1px solid rgba(101,125,104,0.22);
+      border-radius: 100px;
+      padding: 2px 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .s4-card-body {
+      padding: 10px 12px;
+    }
+    .s4-card-decision {
+      font-size: 11.5px;
+      font-weight: 600;
       color: var(--text-strong);
+      line-height: 1.4;
+      margin-bottom: 7px;
     }
-    .scene.active .s4-existing {
-      animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
+    .s4-card-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+    .s4-card-meta strong {
+      color: var(--text-body);
+      font-weight: 600;
+    }
+    .s4-card-quote {
+      border-left: 2px solid rgba(161,118,78,0.35);
+      padding-left: 8px;
+      font-size: 10px;
+      font-style: italic;
+      color: var(--text-body);
+      line-height: 1.55;
     }
 
-    .s4-new-msg {
+    @media (max-width: 640px) {
+      .s4-card-decision { font-size: 10.5px; }
+      .s4-card-meta, .s4-card-quote { font-size: 9.5px; }
+    }
+
+    /* Incoming chat message */
+    .s4-chat-wrap {
       flex: 1;
-      background: rgba(244,238,230,0.9);
-      border: 1px solid var(--line-soft);
-      border-radius: 12px;
-      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       opacity: 0;
     }
-    .s4-new-msg .s4-sender {
-      font-size: 10.5px;
+    .scene.active .s4-chat-wrap {
+      animation: slideLeft 0.6s cubic-bezier(0.22,1,0.36,1) 1.10s forwards;
+    }
+    .s4-chat-context {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding-left: 2px;
+    }
+    .s4-chat-bubble {
+      background: rgba(240,233,224,0.88);
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      border-top-right-radius: 4px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--text-body);
+      flex: 1;
+    }
+    .s4-chat-bubble .s4-chat-sender {
       font-weight: 700;
+      font-size: 10px;
       color: var(--text-strong);
       margin-bottom: 4px;
     }
-    .s4-new-msg .s4-text {
-      font-size: 12px;
-      color: var(--text-body);
-    }
-    .scene.active .s4-new-msg {
-      animation: slideLeft 0.6s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
+
+    @media (max-width: 640px) {
+      .s4-chat-bubble { font-size: 10.5px; }
     }
 
-    .s4-connector {
+    /* Warning badge with connector gradient line */
+    .s4-warning-wrap {
       position: relative;
-      width: 100%;
-      max-width: 660px;
-      margin: 0 auto;
       display: flex;
+      align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      padding: 4px 0;
       opacity: 0;
     }
-    .s4-line {
-      position: absolute;
-      top: 50%;
-      left: 10%;
-      right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(169,123,82,0.4), transparent);
+    .scene.active .s4-warning-wrap {
+      animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) 2.00s forwards;
     }
-    .s4-badge {
+    .s4-connector-line {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(169,123,82,0.3), rgba(169,123,82,0.5), rgba(169,123,82,0.3), transparent);
+    }
+    .s4-warning-badge {
       position: relative;
-      background: rgba(169,123,82,0.12);
-      border: 1.5px solid rgba(169,123,82,0.4);
+      background: rgba(169,123,82,0.11);
+      border: 1.5px solid rgba(169,123,82,0.45);
       border-radius: 100px;
-      padding: 8px 18px;
-      font-size: 12.5px;
+      padding: 7px 16px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--warning);
+      white-space: nowrap;
       animation: pulse 2s ease infinite;
     }
-    .scene.active .s4-connector {
-      animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 2.1s forwards;
+
+    @media (max-width: 640px) {
+      .s4-warning-badge {
+        font-size: 10px;
+        padding: 6px 12px;
+        white-space: normal;
+        text-align: center;
+      }
     }
 
+    /* Resolution strip */
+    .s4-resolution {
+      background: rgba(244,238,230,0.6);
+      border: 1px solid var(--line-soft);
+      border-radius: 11px;
+      padding: 9px 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      text-align: center;
+      opacity: 0;
+    }
+    .scene.active .s4-resolution {
+      animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 2.80s forwards;
+    }
+
+    @media (max-width: 640px) {
+      .s4-resolution { font-size: 10px; padding: 8px 12px; }
+    }
+
+    /* Caption */
     .s4-caption {
       font-family: 'Newsreader', serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--text-muted);
       text-align: center;
-      max-width: 520px;
-      line-height: 1.6;
+      line-height: 1.55;
       opacity: 0;
     }
     .scene.active .s4-caption {
-      animation: fadeUp 0.5s ease 3.0s forwards;
+      animation: fadeUp 0.5s ease 3.40s forwards;
+    }
+
+    @media (max-width: 640px) {
+      .s4-caption { font-size: 11.5px; }
     }
 
     /* ── Scene 5: CTA ─────────────────────────────────── */
@@ -702,7 +832,7 @@
       opacity: 0;
     }
     .scene.active .s5-headline {
-      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.20s forwards;
     }
 
     .s5-steps {
@@ -729,13 +859,13 @@
       flex-shrink: 0;
     }
     .scene.active .s5-step:nth-child(1) {
-      animation: fadeUp 0.5s ease 1.2s forwards;
+      animation: fadeUp 0.5s ease 0.70s forwards;
     }
     .scene.active .s5-step:nth-child(2) {
-      animation: fadeUp 0.5s ease 1.7s forwards;
+      animation: fadeUp 0.5s ease 1.00s forwards;
     }
     .scene.active .s5-step:nth-child(3) {
-      animation: fadeUp 0.5s ease 2.2s forwards;
+      animation: fadeUp 0.5s ease 1.30s forwards;
     }
 
     .s5-btns {
@@ -746,7 +876,7 @@
       opacity: 0;
     }
     .scene.active .s5-btns {
-      animation: fadeUp 0.6s ease 3.0s forwards;
+      animation: fadeUp 0.6s ease 1.80s forwards;
     }
 
     .s5-btn-primary {
@@ -838,7 +968,7 @@
       .s2-thread-label, .s2-msg, .s2-arrow, .s2-card-head,
       .s2-card-decision, .s2-meta-row, .s2-quote, .s2-stamp, .s2-caption,
       .s3-bubble, .s3-candidate, .s3-tray, .s3-headline, .s3-sub,
-      .s4-existing, .s4-new-msg, .s4-connector, .s4-caption,
+      .s4-registry-card, .s4-chat-wrap, .s4-warning-wrap, .s4-resolution, .s4-caption,
       .s5-headline, .s5-step, .s5-btns {
         opacity: 1 !important;
         animation: none !important;
@@ -956,21 +1086,53 @@
 
         <!-- ─── Scene 4: Conflict warning ─────────────── -->
         <section class="scene" id="scene4" aria-label="Sahne 4: Çelişki uyarısı">
-          <div class="s4-row">
-            <div class="s4-existing">
-              <div class="s4-tag">Karar sicili · 12 Mart</div>
-              <div class="s4-text">Seçenek B onaylandı · Esra Tekin</div>
+          <div class="s4-layout">
+
+            <!-- Top row: registry card left, incoming message right -->
+            <div class="s4-top-row">
+
+              <!-- Registry mini-card -->
+              <div class="s4-registry-card">
+                <div class="s4-card-head">
+                  <div class="s4-card-head-left">
+                    <span class="s4-card-label">SİCİL KAYDI</span>
+                    <span class="s4-date-chip">12 Mart</span>
+                  </div>
+                  <span class="s4-approved-pill">Onaylı</span>
+                </div>
+                <div class="s4-card-body">
+                  <div class="s4-card-decision">Soğuk zincir kapasitesi Seçenek B ile artırılacak: kısmi filo yenileme + depo genişletme</div>
+                  <div class="s4-card-meta">Onaylayan — <strong>Esra Tekin · CFO</strong></div>
+                  <div class="s4-card-quote">"Onaylıyorum — Q2 bütçesine işleyin."</div>
+                </div>
+              </div>
+
+              <!-- Incoming chat message -->
+              <div class="s4-chat-wrap">
+                <div class="s4-chat-context">Operasyon kanalı · 28 Nisan</div>
+                <div class="s4-chat-bubble">
+                  <div class="s4-chat-sender">Mert</div>
+                  Filo yenilemeyi durduralım bence, tamamen kiralamayla gidelim. Nakit akışı için daha mantıklı.
+                </div>
+              </div>
+
+            </div><!-- /s4-top-row -->
+
+            <!-- Amber warning badge with connector line -->
+            <div class="s4-warning-wrap">
+              <div class="s4-connector-line" aria-hidden="true"></div>
+              <div class="s4-warning-badge">⚠ Bu konu 12 Mart'ta karara bağlanmıştı — Seçenek B · Onaylayan: Esra Tekin</div>
             </div>
-            <div class="s4-new-msg">
-              <div class="s4-sender">Yeni mesaj</div>
-              <div class="s4-text">Filo yenilemeyi durduralım, kiralamayla gidelim.</div>
+
+            <!-- Resolution strip -->
+            <div class="s4-resolution">
+              İki kayıt yan yana açılır: önceki karar, vereni ve gerekçesi. Yeni bir karar çıkarsa sicile bağlanır — zincir kopmaz.
             </div>
+
+            <!-- Caption -->
+            <p class="s4-caption">Çelişki üç hafta sonra toplantıda değil, mesaj anında yakalanır.</p>
+
           </div>
-          <div class="s4-connector">
-            <div class="s4-line" aria-hidden="true"></div>
-            <div class="s4-badge">⚠ Bu konu 12 Mart'ta karara bağlanmıştı</div>
-          </div>
-          <p class="s4-caption">Eski karar, vereni ve gerekçesiyle anında önünüzde.</p>
         </section>
 
         <!-- ─── Scene 5: CTA ───────────────────────────── -->
@@ -1018,7 +1180,7 @@
 
       // Scene durations in ms (~49.5s total — last internal animation ends ~6s, all scenes hold comfortably)
       // Scene 1: 9s, Scene 2: 16s, Scene 3: 13s, Scene 4: 12s, Scene 5: 14s => 64s total
-      var DURATIONS = [6500, 12000, 10000, 9000, 12000];
+      var DURATIONS = [6500, 12000, 10000, 11000, 12000];
       var scenes = Array.from(document.querySelectorAll('.scene'));
       var dots = Array.from(document.querySelectorAll('.dot'));
       var pauseBtn = document.getElementById('pauseBtn');
@@ -1052,7 +1214,7 @@
             if (currentScene === 2 && !isPaused && cand) {
               cand.classList.add('rejected');
             }
-          }, 2000);
+          }, 1400);
         }
 
         scheduleNext();
