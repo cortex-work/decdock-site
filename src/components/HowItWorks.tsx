@@ -1,3 +1,5 @@
+import DecisionFlow from './DecisionFlow'
+
 interface StepCard {
   step: string
   title: string
@@ -53,6 +55,8 @@ export default function HowItWorks() {
             İlk değer 3 iş gününde elinizde olur.
           </p>
         </div>
+
+        <DecisionFlow />
 
         <div className="relative grid gap-4 md:grid-cols-2 xl:grid-cols-4 md:items-stretch">
           {steps.map((item, index) => {
