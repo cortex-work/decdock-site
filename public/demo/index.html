@@ -1017,9 +1017,9 @@
         return;
       }
 
-      // Scene durations in ms (must total ~55-70s)
+      // Scene durations in ms (~49.5s total — last internal animation ends ~6s, all scenes hold comfortably)
       // Scene 1: 9s, Scene 2: 16s, Scene 3: 13s, Scene 4: 12s, Scene 5: 14s => 64s total
-      var DURATIONS = [9000, 16000, 13000, 12000, 14000];
+      var DURATIONS = [6500, 12000, 10000, 9000, 12000];
       var scenes = Array.from(document.querySelectorAll('.scene'));
       var dots = Array.from(document.querySelectorAll('.dot'));
       var pauseBtn = document.getElementById('pauseBtn');
