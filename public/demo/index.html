@@ -589,7 +589,7 @@
 
     .s4-layout {
       width: 100%;
-      max-width: 640px;
+      max-width: 780px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -608,7 +608,7 @@
 
     /* Registry mini-card */
     .s4-registry-card {
-      flex: 1;
+      flex: 1.4;
       background: rgba(244,238,230,0.97);
       border: 1px solid var(--line-soft);
       border-radius: 14px;
@@ -622,7 +622,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--line-soft);
       background: rgba(240,233,224,0.7);
     }
@@ -632,14 +632,14 @@
       gap: 7px;
     }
     .s4-card-label {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--text-faint);
     }
     .s4-date-chip {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 600;
       color: var(--text-muted);
       background: rgba(94,86,80,0.08);
@@ -648,7 +648,7 @@
       padding: 2px 7px;
     }
     .s4-approved-pill {
-      font-size: 8.5px;
+      font-size: 9.5px;
       font-weight: 600;
       color: var(--success);
       background: rgba(101,125,104,0.12);
@@ -659,17 +659,17 @@
       text-transform: uppercase;
     }
     .s4-card-body {
-      padding: 10px 12px;
+      padding: 12px 14px;
     }
     .s4-card-decision {
-      font-size: 11.5px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--text-strong);
       line-height: 1.4;
       margin-bottom: 7px;
     }
     .s4-card-meta {
-      font-size: 10px;
+      font-size: 11.5px;
       color: var(--text-muted);
       margin-bottom: 7px;
     }
@@ -680,15 +680,16 @@
     .s4-card-quote {
       border-left: 2px solid rgba(161,118,78,0.35);
       padding-left: 8px;
-      font-size: 10px;
+      font-size: 11.5px;
       font-style: italic;
       color: var(--text-body);
       line-height: 1.55;
     }
 
     @media (max-width: 640px) {
-      .s4-card-decision { font-size: 10.5px; }
-      .s4-card-meta, .s4-card-quote { font-size: 9.5px; }
+      .s4-registry-card, .s4-chat-wrap { flex: none; }
+      .s4-card-decision { font-size: 12.5px; }
+      .s4-card-meta, .s4-card-quote { font-size: 11px; }
     }
 
     /* Incoming chat message */
