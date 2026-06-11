@@ -141,7 +141,7 @@
     }
 
     @media (max-width: 640px) {
-      .stage { height: auto; min-height: 520px; }
+      .stage { height: 620px; }
     }
 
     /* Each scene is absolute, full coverage */
@@ -154,7 +154,7 @@
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1);
+      transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1);
     }
     .scene.active {
       opacity: 1;
@@ -163,10 +163,9 @@
 
     @media (max-width: 640px) {
       .scene {
-        position: relative;
-        padding: 36px 28px;
-        opacity: 1;
-        pointer-events: auto;
+        padding: 28px 20px;
+        justify-content: flex-start;
+        overflow-y: auto;
       }
     }
 
@@ -269,7 +268,7 @@
     }
 
     @media (max-width: 640px) {
-      #scene2 { flex-direction: column; gap: 20px; }
+      #scene2 { flex-direction: column; gap: 14px; padding: 28px 20px; }
     }
 
     .s2-thread {
