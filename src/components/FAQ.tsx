@@ -22,7 +22,7 @@ const items: FAQItem[] = [
   {
     question: 'Ya yanlış bir şeyi karar diye yazarsa?',
     answer:
-      'Emin olmadığını sicile yazmaz: her aday ikinci bir doğrulamadan geçer, onaylanmamış ifadeler ayrı bir inceleme listesinde şeffafça durur. Rapor tesliminden önce de her satır insan kontrolünden geçer. İlke basit: ya güvenilir biçimde vardır, ya gösterilmez.',
+      'Emin olmadığını sicile yazmaz: her aday ikinci bir doğrulamadan geçer, onaylanmamış ifadeler sicil dışı kalır ve gerekçesi görünür olur. İlke basit: ya güvenilir biçimde vardır, ya gösterilmez.',
   },
 ]
 

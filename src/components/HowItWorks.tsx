@@ -26,8 +26,8 @@ const steps: StepCard[] = [
     step: '3',
     title: 'İkinci geçiş: "karar mı, karar sanılan mı?"',
     description:
-      'Her aday ikinci bir doğrulamadan geçer: bu gerçekten onaylanmış bir karar mı? Emin olunmayan sicile yazılmaz, inceleme listesinde şeffafça durur.',
-    tags: ['Doğrulama', 'İnceleme listesi'],
+      'Her aday ikinci bir doğrulamadan geçer: bu gerçekten onaylanmış bir karar mı? Emin olunmayan sicile yazılmaz; gerekçesi görünür kalır.',
+    tags: ['Doğrulama', 'Sicil dışı adaylar'],
   },
   {
     step: '4',

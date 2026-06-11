@@ -1,18 +1,11 @@
-/**
- * DecisionFlow — animasyonlu süreç şeması (feedback F3).
- * Masaüstü: SVG akış (SMIL ile akan kararlar; "karar sanılan" dalı inceleme listesine ayrılır).
- * Mobil: dikey stepper. prefers-reduced-motion: animasyonlar durur, şema statik okunur.
- */
-
 const steps = [
-  { n: '1', title: 'Yazışmalar', sub: 'e-posta · toplantı notu' },
-  { n: '2', title: 'Karar sinyalleri', sub: 'otomatik çıkarım' },
-  { n: '3', title: 'Doğrulama', sub: 'karar mı, karar sanılan mı?' },
-  { n: '4', title: 'İnsan incelemesi', sub: 'her satır kontrol' },
-  { n: '5', title: 'Karar Sicili', sub: 'karar · onaylayan · alıntı' },
+  { n: '1', title: 'Yazışma', sub: 'seçili kaynak' },
+  { n: '2', title: 'Decdock çıkarır', sub: 'karar sinyalleri' },
+  { n: '3', title: 'Doğrulama', sub: 'karar mı, aday mı?' },
+  { n: '4', title: 'Karar sicili', sub: 'kaynağa bağlı kayıt' },
 ]
 
-const NODE_X = [80, 290, 500, 710, 920]
+const NODE_X = [80, 330, 580, 830]
 
 export default function DecisionFlow() {
   return (
@@ -54,41 +47,36 @@ export default function DecisionFlow() {
         }
       `}</style>
 
-      {/* ── Masaüstü: SVG akış ─────────────────────────────── */}
       <div className="hidden sm:block">
         <svg
           viewBox="0 0 1040 330"
           className="h-auto w-full select-none"
           role="img"
-          aria-label="Decdock süreci: yazışmalardan karar sinyalleri çıkarılır, doğrulamadan geçer, karar sanılanlar inceleme listesine ayrılır, insan incelemesi sonrası karar sicili oluşur."
+          aria-label="Decdock süreci: yazışmalardan karar sinyalleri çıkarılır, doğrulamadan geçer, karar sanılanlar sicile alınmaz, güvenilir kayıtlar karar siciline eklenir."
         >
-          {/* Ana akış yolu */}
           <path
             id="dfMainPath"
             className="df-draw"
-            d="M 80 140 C 150 110, 220 110, 290 140 S 430 170, 500 140 S 640 110, 710 140 S 850 170, 920 140"
+            d="M 80 140 C 160 110, 250 110, 330 140 S 500 170, 580 140 S 750 110, 830 140"
             fill="none"
             stroke="var(--line-strong)"
             strokeWidth="1.5"
           />
-          {/* Dal: doğrulamadan inceleme listesine */}
           <path
             id="dfBranchPath"
-            d="M 500 140 C 525 195, 548 226, 594 246"
+            d="M 580 140 C 605 195, 628 226, 674 246"
             fill="none"
             stroke="#a39588"
             strokeWidth="1.3"
             strokeDasharray="4 4"
           />
-          {/* Gri dot için tam yol (başlangıç → doğrulama → dal) */}
           <path
             id="dfGrayPath"
-            d="M 80 140 C 150 110, 220 110, 290 140 S 430 170, 500 140 C 525 195, 548 226, 594 246"
+            d="M 80 140 C 160 110, 250 110, 330 140 S 500 170, 580 140 C 605 195, 628 226, 674 246"
             fill="none"
             stroke="none"
           />
 
-          {/* Akan kararlar (SMIL) */}
           <circle className="df-dot" r="5" fill="var(--success)" opacity="0.9">
             <animateMotion dur="7s" repeatCount="indefinite" rotate="0">
               <mpath href="#dfMainPath" />
@@ -99,17 +87,16 @@ export default function DecisionFlow() {
               <mpath href="#dfMainPath" />
             </animateMotion>
           </circle>
-          {/* "Karar sanılan" — dala ayrılan gri dot */}
           <circle className="df-dot" r="4.5" fill="#93867b" opacity="0.85">
             <animateMotion dur="7s" begin="1.8s" repeatCount="indefinite">
               <mpath href="#dfGrayPath" />
             </animateMotion>
           </circle>
 
-          {/* Duraklar */}
           {steps.map((s, i) => {
             const x = NODE_X[i] ?? 80
             const labelAbove = i === 2
+
             return (
               <g key={s.n}>
                 <circle
@@ -160,28 +147,53 @@ export default function DecisionFlow() {
             )
           })}
 
-          {/* Sicil damgası (durak 5) */}
           <g className="df-stamp">
-            <rect x={946} y={84} width={74} height={26} rx={6} fill="rgba(238,242,237,0.95)" stroke="rgba(101,125,104,0.6)" strokeWidth="2" />
-            <text x={983} y={101} textAnchor="middle" fontFamily="Manrope, sans-serif" fontWeight="800" fontSize="10.5" letterSpacing="1.5" fill="rgba(101,125,104,0.9)">
+            <rect
+              x={856}
+              y={84}
+              width={74}
+              height={26}
+              rx={6}
+              fill="rgba(238,242,237,0.95)"
+              stroke="rgba(101,125,104,0.6)"
+              strokeWidth="2"
+            />
+            <text
+              x={893}
+              y={101}
+              textAnchor="middle"
+              fontFamily="Manrope, sans-serif"
+              fontWeight="800"
+              fontSize="10.5"
+              letterSpacing="1.5"
+              fill="rgba(101,125,104,0.9)"
+            >
               SİCİL ✓
             </text>
           </g>
 
-          {/* İnceleme listesi tepsisi */}
           <g>
-            <rect x={588} y={226} width={244} height={60} rx={14} fill="rgba(247,241,234,0.85)" stroke="#a39588" strokeWidth="1.2" strokeDasharray="4 4" />
-            <text x={608} y={251} fontFamily="Manrope, sans-serif" fontWeight="600" fontSize="13.5" fill="var(--text-strong)">
-              İnceleme listesi
+            <rect
+              x={668}
+              y={226}
+              width={244}
+              height={60}
+              rx={14}
+              fill="rgba(247,241,234,0.85)"
+              stroke="#a39588"
+              strokeWidth="1.2"
+              strokeDasharray="4 4"
+            />
+            <text x={688} y={251} fontFamily="Manrope, sans-serif" fontWeight="600" fontSize="13.5" fill="var(--text-strong)">
+              Sicil dışı adaylar
             </text>
-            <text x={608} y={270} fontFamily="Manrope, sans-serif" fontSize="10.5" fill="var(--text-muted)">
-              "karar sanılan"lar — gerekçesiyle, şeffafça
+            <text x={688} y={270} fontFamily="Manrope, sans-serif" fontSize="10.5" fill="var(--text-muted)">
+              "karar sanılan"lar — gerekçesi görünür
             </text>
           </g>
         </svg>
       </div>
 
-      {/* ── Mobil: dikey stepper ───────────────────────────── */}
       <div className="sm:hidden">
         <ol className="relative ml-1 space-y-0">
           {steps.map((s, i) => (
@@ -200,7 +212,7 @@ export default function DecisionFlow() {
                 <div className="text-[12px] text-[var(--text-muted)]">{s.sub}</div>
                 {i === 2 && (
                   <div className="mt-2 inline-block rounded-[10px] border border-dashed border-[#a39588] bg-[rgba(247,241,234,0.85)] px-3 py-1.5 text-[11px] text-[var(--text-body)]">
-                    ↳ "karar sanılan"lar → <strong>İnceleme listesi</strong> — şeffafça
+                    ↳ "karar sanılan"lar → <strong>sicil dışı</strong> — gerekçesi görünür
                   </div>
                 )}
               </div>

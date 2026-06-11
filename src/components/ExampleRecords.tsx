@@ -49,7 +49,7 @@ const examples: WorkflowExample[] = [
       'Sicile YAZILMADI: öneri, onaylanmamış.',
       'Gerekçe: kişisel görüş olarak ifade edilmiş, onay yok.',
       '"Toplantı ayarlandı" karar değil, takvim koordinasyonu.',
-      'Durum: inceleme listesinde, şeffafça.',
+      'Durum: sicil dışı, gerekçesi görünür.',
     ],
     teamSees:
       'Ekibin yarısı bunu "karar" diye hatırlayacaktı. Decdock karar ile karar sanılanı ayırır.',

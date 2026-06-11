@@ -18,7 +18,7 @@ const nodes: ChainNode[] = [
     badge: 'Sicile girmedi',
     title: 'Öneri — karar değil',
     body:
-      'Selin: "Frigo araç kiralayarak kapasiteyi geçici artırabiliriz bence." Decdock bunu sicile yazmadı: kişisel görüş, onay yok. İnceleme listesinde şeffafça duruyor.',
+      'Selin: "Frigo araç kiralayarak kapasiteyi geçici artırabiliriz bence." Decdock bunu sicile yazmadı: kişisel görüş, onay yok. Gerekçesi görünür kaldı.',
   },
   {
     kind: 'ratified',

@@ -17,7 +17,7 @@ const capabilities: CapabilityCard[] = [
   {
     title: '"Karar sanılanı" ayırır',
     description:
-      'Asıl tehlike kaybolan karar değil, karar sanılan şeydir. Öneri, niyet ve takvim konuşması sicile girmez — ayrı bir inceleme listesinde şeffafça durur.',
+      'Asıl tehlike kaybolan karar değil, karar sanılan şeydir. Öneri, niyet ve takvim konuşması sicile girmez — kayıt dışı kalır, gerekçesi görünür olur.',
   },
   {
     title: 'Riskleri işaretler',
