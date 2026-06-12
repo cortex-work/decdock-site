@@ -13,7 +13,7 @@ https://decdock.com/urun/
 - Decision chains: conflict warnings when a new message contradicts an earlier decision (shows both records side by side); supersession links so the old record remains accessible with its context; unowned decisions flagged automatically.
 - Sources today: email threads and meeting notes. Turkish-optimized; works with English content.
 - Entry offer: one-time "Karar Denetimi" (Decision Audit) report from 20–50 emails of a finished project, delivered in one week, no integration or system access required.
-- Human review before every report delivery — nothing uncertain is shown as definitive fact.
+- Nothing uncertain is presented as definitive fact — unratified candidates stay out of the registry, with their reasoning visible.
 - Data used solely for report production and destroyed after delivery with written confirmation.
 - NOT: a meeting-notes tool, task manager (not a replacement for Jira/Asana), enterprise search (not a replacement for Glean), surveillance system, or a platform-assistant alternative (Copilot/Slack AI summarize conversations; Decdock maintains a permanent auditable record of what was decided, who ratified it, and whether it is still valid).
 
