@@ -32,6 +32,12 @@ export default function Nav() {
             Ürün detayı
           </a>
           <a
+            href="/karsilastirma/"
+            className="hidden text-[13px] font-medium text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)] sm:block"
+          >
+            Karşılaştırma
+          </a>
+          <a
             href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
             className="button-primary px-4 py-2 text-[13px] font-semibold"
           >

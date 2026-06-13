@@ -21,6 +21,12 @@ export default function Footer() {
             Süreç
           </a>
           <a
+            href="/karsilastirma/"
+            className="text-[13px] text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)]"
+          >
+            Karşılaştırma
+          </a>
+          <a
             href="mailto:pilot@decdock.com"
             className="text-[13px] text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)]"
           >
