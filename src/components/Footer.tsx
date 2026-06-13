@@ -32,6 +32,14 @@ export default function Footer() {
           >
             pilot@decdock.com
           </a>
+          <a
+            href="https://www.linkedin.com/company/decdock"
+            className="text-[13px] text-[var(--text-body)] transition-colors hover:text-[var(--text-strong)]"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
       </div>
     </footer>
