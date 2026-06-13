@@ -36,4 +36,14 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+# Meta AI (Llama / Meta AI assistant) crawlers
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 Sitemap: https://decdock.com/sitemap.xml

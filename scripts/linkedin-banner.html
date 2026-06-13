@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; }
+  body {
+    font-family: 'Manrope', sans-serif;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(216,203,190,0.40), transparent 32%),
+      radial-gradient(circle at 88% 12%, rgba(154,132,111,0.16), transparent 30%),
+      linear-gradient(160deg, #f6f0e8 0%, #efe5d8 58%, #e9ddcd 100%);
+    color: #2f2925;
+    position: relative;
+  }
+  /* LinkedIn kişisel profilde avatar SOL-ALT köşeyi kapatır → içerik merkezde/sağda */
+  .wrap {
+    position: absolute;
+    top: 50%; left: 540px;
+    transform: translateY(-50%);
+    max-width: 980px;
+  }
+  .eyebrow {
+    font-size: 18px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #a1764e; margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Newsreader', serif; font-size: 76px; font-weight: 600;
+    letter-spacing: -0.02em; line-height: 1; margin-bottom: 20px;
+  }
+  .sub { font-size: 27px; font-weight: 500; color: #5e5650; line-height: 1.45; max-width: 900px; }
+  .sub b { color: #2f2925; font-weight: 600; }
+  .domain {
+    position: absolute; top: 40px; right: 56px;
+    font-size: 22px; font-weight: 700; color: #2f2925; letter-spacing: 0.01em;
+  }
+  .stamp {
+    position: absolute; bottom: 40px; right: 56px;
+    transform: rotate(-7deg);
+    border: 3px solid rgba(101,125,104,0.55); border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(101,125,104,0.85); background: rgba(244,238,230,0.6);
+  }
+</style>
+</head>
+<body>
+  <div class="domain">decdock.com</div>
+  <div class="wrap">
+    <div class="eyebrow">Karar Sicili</div>
+    <h1>Decdock</h1>
+    <div class="sub">Yazışmalardan otomatik karar sicili:<br/><b>ne kararlaştırıldı · kim onayladı · ne zaman</b></div>
+  </div>
+  <div class="stamp">Sicile işlendi</div>
+</body>
+</html>
