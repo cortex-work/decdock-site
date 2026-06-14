@@ -1,75 +1,121 @@
+import { useEffect, useRef } from 'react'
+
 export default function PilotCTA() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          el.querySelectorAll('.reveal').forEach((node, i) => {
+            ;(node as HTMLElement).style.transitionDelay = `${i * 100}ms`
+            node.classList.add('in-view')
+          })
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section id="contact" className="section-band py-24 lg:py-28">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="page-panel-dark relative overflow-hidden rounded-[32px] px-8 py-16 text-center md:px-16 md:py-20">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top,rgba(255,248,239,0.14),transparent_72%)]" />
-          <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-[rgba(161,118,78,0.1)] blur-3xl" />
+    <section id="contact" ref={ref} className="band-ledger relative overflow-hidden py-28 lg:py-36">
+      {/* Background atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_-10%,rgba(161,118,78,0.18),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_70%_at_10%_100%,rgba(161,118,78,0.08),transparent)]" />
+      {/* Horizontal ledger rule stripes */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-full opacity-40"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(180deg, transparent 0px, transparent 47px, rgba(255,244,232,0.03) 47px, rgba(255,244,232,0.03) 48px)',
+        }}
+      />
 
-          <div className="mb-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
-            Nasıl başlıyoruz
-          </div>
+      <div className="relative mx-auto max-w-6xl px-6">
 
-          <h2 className="mx-auto mb-5 max-w-[16ch] font-display text-[40px] font-[600] leading-[1.08] tracking-[-0.03em] text-white">
-            İlk adım kurulum değil: Karar Denetimi raporu.
-          </h2>
+        {/* Two-column editorial layout: copy left, info boxes right */}
+        <div className="grid gap-16 lg:grid-cols-[1fr_400px] lg:items-center xl:gap-24">
 
-          <p className="mx-auto mb-10 max-w-[42rem] text-[17px] leading-[1.8] text-[rgba(239,230,220,0.84)]">
-            Bitmiş bir projenizin yazışma dilimini paylaşın; 3 iş günü içinde o projenin
-            karar sicilini rapor olarak teslim edelim. Rapor işinize yaramazsa orada
-            biter — yararsa sürekli halini konuşuruz.
-          </p>
+          {/* Left — main copy */}
+          <div>
+            <div className="reveal eyebrow-invert mb-6">Nasıl başlıyoruz</div>
 
-          <div className="mx-auto mb-10 grid max-w-4xl gap-4 text-left md:grid-cols-3">
-            <div className="rounded-[22px] border border-[rgba(255,247,240,0.14)] bg-[rgba(255,248,240,0.06)] p-5">
-              <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
-                Girdi
-              </div>
-              <div className="text-[15px] font-semibold text-white">
-                Bitmiş bir projenin 20–50 e-postası
-              </div>
-            </div>
-
-            <div className="rounded-[22px] border border-[rgba(255,247,240,0.14)] bg-[rgba(255,248,240,0.06)] p-5">
-              <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
-                Çıktı
-              </div>
-              <div className="text-[15px] font-semibold text-white">
-                Karar sicili: karar, onaylayan, tarih, alıntı
-              </div>
-            </div>
-
-            <div className="rounded-[22px] border border-[rgba(255,247,240,0.14)] bg-[rgba(255,248,240,0.06)] p-5">
-              <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[rgba(226,210,193,0.72)]">
-                Süre
-              </div>
-              <div className="text-[15px] font-semibold text-white">
-                3 iş günü — kurulum ve entegrasyon yok
-              </div>
-            </div>
-          </div>
-
-          <a
-            href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
-            className="inline-flex items-center justify-center rounded-[0.9rem] border border-[rgba(255,247,240,0.18)] bg-[rgba(250,244,237,0.96)] px-8 py-3.5 text-[14px] font-semibold text-[var(--brand)] shadow-[0_16px_30px_rgba(33,26,21,0.16)] transition hover:-translate-y-[1px] hover:bg-[rgba(252,246,240,1)]"
-          >
-            Karar Denetimi isteyin — pilot@decdock.com
-          </a>
-
-          <div className="mt-4">
-            <a
-              href="/basla/"
-              className="text-[13px] text-[rgba(226,210,193,0.8)] transition-colors hover:text-white"
+            <h2
+              className="reveal reveal-delay-1 mb-7 font-display font-[640] leading-[1.0] tracking-[-0.04em] text-white"
+              style={{ fontSize: 'clamp(38px, 5.5vw, 66px)' }}
             >
-              Önce süreci inceleyin →
-            </a>
+              İlk adım kurulum değil: Karar Denetimi raporu.
+            </h2>
+
+            <span className="reveal reveal-delay-2 block h-[2px] w-12 bg-[var(--accent)] mb-7" />
+
+            <p className="reveal reveal-delay-2 mb-10 max-w-[50ch] text-[16px] leading-[1.82] text-[rgba(239,229,217,0.82)]">
+              Bitmiş bir projenizin yazışma dilimini paylaşın; 3 iş günü içinde o projenin
+              karar sicilini rapor olarak teslim edelim. Rapor işinize yaramazsa orada
+              biter — yararsa sürekli halini konuşuruz.
+            </p>
+
+            <div className="reveal reveal-delay-3 flex flex-wrap gap-3">
+              <a
+                href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
+                className="inline-flex items-center gap-2 rounded-[3px] border border-[rgba(255,244,232,0.16)] bg-[rgba(251,244,236,0.97)] px-7 py-3.5 text-[13.5px] font-[700] text-[var(--brand)] shadow-[0_12px_32px_rgba(28,20,14,0.24)] transition hover:-translate-y-[1px] hover:bg-white"
+              >
+                Karar Denetimi isteyin
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+              <a
+                href="/basla/"
+                className="inline-flex items-center gap-2 rounded-[3px] border border-[rgba(255,244,232,0.16)] bg-transparent px-6 py-3.5 text-[13.5px] font-[600] text-[rgba(226,210,193,0.9)] transition hover:border-[rgba(255,244,232,0.3)] hover:text-white"
+              >
+                Önce süreci inceleyin →
+              </a>
+            </div>
+
+            <p className="reveal reveal-delay-4 mt-8 max-w-[46ch] text-[12.5px] leading-[1.75] text-[rgba(200,183,164,0.72)]">
+              Veriniz yalnız rapor üretimi için kullanılır, teslim sonrası imha edilir
+              ve yazılı olarak teyit edilir. Decdock izleme yapmaz.
+            </p>
           </div>
 
-          <p className="mt-7 text-[13px] text-[rgba(210,195,180,0.74)]">
-            Veriniz yalnız rapor üretimi için kullanılır, teslim sonrası imha edilir ve
-            yazılı olarak teyit edilir. Decdock izleme yapmaz; yalnız sizin seçtiğiniz
-            dilimi görür.
-          </p>
+          {/* Right — info cards stack */}
+          <div className="reveal reveal-delay-2 flex flex-col gap-3">
+            {[
+              {
+                label: 'Girdi',
+                value: 'Bitmiş bir projenin 20–50 e-postası',
+                sub: 'Entegrasyon yok, sistem erişimi yok',
+              },
+              {
+                label: 'Çıktı',
+                value: 'Karar sicili: karar, onaylayan, tarih, alıntı',
+                sub: 'Kaynağa bağlı, denetlenebilir kayıtlar',
+              },
+              {
+                label: 'Süre',
+                value: '3 iş günü',
+                sub: 'Kurulum ve entegrasyon gerekmez',
+              },
+            ].map((box) => (
+              <div
+                key={box.label}
+                className="rounded-[4px] border border-[rgba(255,244,232,0.1)] bg-[rgba(255,248,240,0.055)] p-5 backdrop-blur-sm"
+              >
+                <div className="mb-1.5 text-[10px] font-[800] uppercase tracking-[0.16em] text-[rgba(200,175,148,0.8)]">
+                  {box.label}
+                </div>
+                <div className="mb-0.5 text-[14.5px] font-[680] text-white">{box.value}</div>
+                <div className="text-[12px] text-[rgba(200,183,164,0.65)]">{box.sub}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

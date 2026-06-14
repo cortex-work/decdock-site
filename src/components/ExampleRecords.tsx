@@ -1,9 +1,9 @@
+import { useEffect, useRef } from 'react'
+
 interface WorkflowExample {
   label: string
-  thread: Array<{
-    speaker: string
-    message: string
-  }>
+  labelKind: 'approved' | 'rejected' | 'conflict'
+  thread: Array<{ speaker: string; message: string }>
   extracts: string[]
   teamSees: string
 }
@@ -11,16 +11,15 @@ interface WorkflowExample {
 const examples: WorkflowExample[] = [
   {
     label: 'Onaylı karar',
+    labelKind: 'approved',
     thread: [
       {
         speaker: 'Selin',
-        message:
-          'Bütçe revizyonu için iki senaryo hazırladık, ekte. Görüşünüzü bekliyoruz.',
+        message: 'Bütçe revizyonu için iki senaryo hazırladık, ekte. Görüşünüzü bekliyoruz.',
       },
       {
         speaker: 'Esra (CFO)',
-        message:
-          'İnceledim. Onaylıyorum — 2026 pazarlama bütçesi %5 artışla kesinleşti.',
+        message: 'İnceledim. Onaylıyorum — 2026 pazarlama bütçesi %5 artışla kesinleşti.',
       },
     ],
     extracts: [
@@ -34,6 +33,7 @@ const examples: WorkflowExample[] = [
   },
   {
     label: '"Karar sanılan"',
+    labelKind: 'rejected',
     thread: [
       {
         speaker: 'Selin',
@@ -56,6 +56,7 @@ const examples: WorkflowExample[] = [
   },
   {
     label: 'Tekrar açılan konu',
+    labelKind: 'conflict',
     thread: [
       {
         speaker: 'Mart kararı',
@@ -68,7 +69,7 @@ const examples: WorkflowExample[] = [
       },
     ],
     extracts: [
-      'Uyarı: bu konu Mart’ta karara bağlanmıştı.',
+      'Uyarı: bu konu Mart\'ta karara bağlanmıştı.',
       'Olası çelişki: müşteri taahhüdü ile yeni öneri.',
       'İlgili kayıtlar: Mart kararı + Nisan mesajı yan yana.',
       'Durum: incelenmeli.',
@@ -78,16 +79,27 @@ const examples: WorkflowExample[] = [
   },
 ]
 
-function StoryPart({
-  label,
-  children,
-}: {
+const kindBadge: Record<WorkflowExample['labelKind'], string> = {
+  approved: 'border-[rgba(92,117,96,0.28)] bg-[rgba(235,242,235,0.95)] text-[var(--success)]',
+  rejected: 'border-[var(--line-medium)] bg-[rgba(244,238,230,0.92)] text-[var(--text-muted)]',
+  conflict: 'border-[rgba(160,112,72,0.3)] bg-[rgba(247,238,227,0.95)] text-[var(--warning)]',
+}
+
+const kindAccent: Record<WorkflowExample['labelKind'], string> = {
+  approved: 'border-t-[var(--success)]',
+  rejected: 'border-t-[var(--line-medium)]',
+  conflict: 'border-t-[var(--warning)]',
+}
+
+interface StoryPartProps {
   label: string
   children: React.ReactNode
-}) {
+}
+
+function StoryPart({ label, children }: StoryPartProps) {
   return (
-    <div className="border-t border-[var(--line-soft)] pt-2.5">
-      <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--text-faint)]">
+    <div className="border-t border-[var(--line-soft)] pt-3">
+      <div className="mb-2 text-[9.5px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
         {label}
       </div>
       {children}
@@ -96,39 +108,79 @@ function StoryPart({
 }
 
 export default function ExampleRecords() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          el.querySelectorAll('.reveal').forEach((node, i) => {
+            ;(node as HTMLElement).style.transitionDelay = `${i * 80}ms`
+            node.classList.add('in-view')
+          })
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.06 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="section-band py-16 lg:py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-9 grid gap-5 lg:grid-cols-[0.92fr_0.96fr] lg:items-start">
+    <section ref={ref} className="band-paper relative overflow-hidden py-24 lg:py-28">
+      {/* Editorial background number */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-8 top-10 select-none font-display text-[140px] font-[700] leading-none text-[rgba(161,118,78,0.04)] lg:text-[200px]"
+      >
+        02
+      </span>
+
+      <div className="relative mx-auto max-w-6xl px-6">
+
+        {/* Header — off-center offset */}
+        <div className="mb-14 grid gap-6 lg:grid-cols-[0.85fr_1.1fr] lg:items-end">
           <div>
-            <div className="eyebrow-plain">Yazışmadan sicile</div>
-            <h2 className="max-w-[16ch] font-display text-[34px] font-[600] leading-[1.08] text-[var(--text-strong)] sm:text-[38px]">
+            <div className="reveal eyebrow-plain">Yazışmadan sicile</div>
+            <h2
+              className="reveal reveal-delay-1 max-w-[16ch] font-display font-[640] leading-[1.04] tracking-[-0.03em] text-[var(--text-strong)]"
+              style={{ fontSize: 'clamp(30px, 3.8vw, 46px)' }}
+            >
               Dağınık zincirden karar kaydına
             </h2>
           </div>
-          <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
+          <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
             Decdock seçtiğiniz kaynaklara bakar, karar ve sahiplik sinyallerini çıkarır
             ve bunları ekibinizin güvenebileceği, kaynağa bağlı kayıtlara çevirir.
             Üç gerçekçi örnek:
           </p>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-3">
-          {examples.map((example) => (
-            <article key={example.label} className="page-panel rounded-[24px] p-5">
-              <span className="chip-soft mb-4">{example.label}</span>
+        {/* Cards — varied heights on purpose */}
+        <div className="grid gap-5 lg:grid-cols-3">
+          {examples.map((example, i) => (
+            <article
+              key={example.label}
+              className={`reveal reveal-delay-${i + 1} panel relative overflow-hidden rounded-[4px] border-t-2 p-5 ${kindAccent[example.labelKind]}`}
+            >
+              <span
+                className={`mb-4 inline-flex rounded-[3px] border px-2 py-0.5 text-[9.5px] font-[800] uppercase tracking-[0.12em] ${kindBadge[example.labelKind]}`}
+              >
+                {example.label}
+              </span>
 
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 <StoryPart label="Yazışma">
                   <div className="space-y-1.5">
                     {example.thread.map((line) => (
                       <div
-                        key={`${line.speaker}-${line.message}`}
-                        className="rounded-[12px] border border-[var(--line-soft)] bg-[rgba(250,245,239,0.66)] px-3 py-1.5 text-[12.5px] leading-[1.5]"
+                        key={`${line.speaker}-${line.message.slice(0, 20)}`}
+                        className="rounded-[3px] border border-[var(--line-soft)] bg-[rgba(251,246,239,0.7)] px-3 py-2 text-[12px] leading-[1.55]"
                       >
-                        <span className="font-semibold text-[var(--text-strong)]">
-                          {line.speaker}:
-                        </span>{' '}
+                        <span className="font-[700] text-[var(--text-strong)]">{line.speaker}:</span>{' '}
                         <span className="text-[var(--text-body)]">{line.message}</span>
                       </div>
                     ))}
@@ -136,17 +188,21 @@ export default function ExampleRecords() {
                 </StoryPart>
 
                 <StoryPart label="Decdock'un çıkardığı">
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-1">
                     {example.extracts.map((item) => (
-                      <li key={item} className="text-[12.5px] leading-[1.5] text-[var(--text-strong)]">
-                        {item}
+                      <li
+                        key={item}
+                        className="flex gap-2 text-[12px] leading-[1.55] text-[var(--text-strong)]"
+                      >
+                        <span className="mt-[3px] shrink-0 text-[var(--accent)]">—</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </StoryPart>
 
                 <StoryPart label="Ekibin gördüğü">
-                  <p className="rounded-[12px] border border-[rgba(161,118,78,0.2)] bg-[rgba(247,239,228,0.8)] px-3 py-2 text-[13px] font-medium leading-[1.5] text-[var(--text-strong)]">
+                  <p className="rounded-[3px] border border-[rgba(161,118,78,0.18)] bg-[rgba(247,239,228,0.82)] px-3 py-2.5 text-[12.5px] font-[560] italic leading-[1.58] text-[var(--text-strong)]">
                     &ldquo;{example.teamSees}&rdquo;
                   </p>
                 </StoryPart>

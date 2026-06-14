@@ -1,3 +1,6 @@
+import * as Accordion from '@radix-ui/react-accordion'
+import { useEffect, useRef } from 'react'
+
 interface FAQItem {
   question: string
   answer: string
@@ -27,34 +30,108 @@ const items: FAQItem[] = [
 ]
 
 export default function FAQ() {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          el.querySelectorAll('.reveal').forEach((node, i) => {
+            ;(node as HTMLElement).style.transitionDelay = `${i * 80}ms`
+            node.classList.add('in-view')
+          })
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.08 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section id="faq" className="section-band-soft py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 grid gap-5 lg:grid-cols-[0.95fr_0.98fr] lg:items-start">
+    <section id="faq" ref={ref} className="band-cream relative overflow-hidden py-24 lg:py-28">
+      {/* Editorial section number */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-6 top-10 select-none font-display text-[130px] font-[700] leading-none text-[rgba(161,118,78,0.04)] lg:text-[180px]"
+      >
+        06
+      </span>
+
+      <div className="relative mx-auto max-w-6xl px-6">
+
+        {/* Asymmetric header */}
+        <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_1.6fr] lg:items-end">
           <div>
-            <div className="eyebrow-plain">Sık sorulanlar</div>
-            <h2 className="max-w-[16ch] font-display text-[38px] font-[600] leading-[1.08] text-[var(--text-strong)]">
+            <div className="reveal eyebrow-plain">Sık sorulanlar</div>
+            <h2
+              className="reveal reveal-delay-1 max-w-[14ch] font-display font-[640] leading-[1.04] tracking-[-0.03em] text-[var(--text-strong)]"
+              style={{ fontSize: 'clamp(28px, 3.6vw, 44px)' }}
+            >
               Sormadan cevaplayalım.
             </h2>
           </div>
-          <p className="max-w-[52ch] text-[14.5px] leading-[1.75] text-[var(--text-body)] lg:pt-9">
+          <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
             Bu dört soru her görüşmede geliyor — gelmesi de doğru. Kısa cevapları
             burada, uzun cevapları görüşmede.
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          {items.map((item) => (
-            <article key={item.question} className="page-panel rounded-[24px] p-6">
-              <h3 className="mb-3 text-[17px] font-semibold leading-[1.35] text-[var(--text-strong)]">
-                {item.question}
-              </h3>
-              <p className="text-[14px] leading-[1.75] text-[var(--text-body)]">
+        {/*
+          Radix Accordion — all answer text stays in the DOM for SEO.
+          Radix renders content with data-state="closed" but it remains
+          in the HTML; only the animated height hides it visually.
+          This satisfies the prerender + SEO requirement.
+        */}
+        <Accordion.Root
+          type="single"
+          collapsible
+          className="reveal reveal-delay-2 grid gap-0 overflow-hidden rounded-[4px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(251,246,239,0.96),rgba(242,234,222,0.93))]"
+        >
+          {items.map((item, i) => (
+            <Accordion.Item
+              key={item.question}
+              value={`item-${i}`}
+              className={i > 0 ? 'border-t border-[var(--line-soft)]' : ''}
+            >
+              <Accordion.Header asChild>
+                <h3>
+                  <Accordion.Trigger className="group flex w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-[rgba(161,118,78,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2">
+                    <span className="text-[15px] font-[680] leading-[1.38] text-[var(--text-strong)]">
+                      {item.question}
+                    </span>
+                    {/* Chevron — rotates open */}
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                      className="shrink-0 text-[var(--accent)] transition-transform duration-200 group-data-[state=open]:rotate-180"
+                    >
+                      <path
+                        d="M3 6l5 5 5-5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Accordion.Trigger>
+                </h3>
+              </Accordion.Header>
+              <Accordion.Content
+                data-radix-accordion-content
+                className="px-6 pb-5 text-[14px] leading-[1.8] text-[var(--text-body)]"
+              >
                 {item.answer}
-              </p>
-            </article>
+              </Accordion.Content>
+            </Accordion.Item>
           ))}
-        </div>
+        </Accordion.Root>
       </div>
     </section>
   )
