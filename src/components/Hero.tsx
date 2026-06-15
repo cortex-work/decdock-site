@@ -157,7 +157,7 @@ export default function Hero() {
             </p>
 
             <p className="reveal reveal-delay-3 mb-8 text-[11.5px] font-[700] uppercase tracking-[0.12em] text-[var(--text-faint)]">
-              E-posta ve toplantı notlarıyla başlar &middot; İzleme değil, seçtiğiniz kaynaklar
+              E-posta ve toplantı notlarıyla başlar &middot; İzleme değil, seçtiğiniz kaynaklar &middot; KVKK uyumlu
             </p>
 
             {/* CTAs */}

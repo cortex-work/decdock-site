@@ -11,13 +11,13 @@ const items: TrustItem[] = [
     glyph: '○',
     title: 'İzleme yok',
     description:
-      'Decdock tüm iletişimi okumaz. Yalnız sizin seçtiğiniz kaynaklar işlenir — bugün rapor dilimi, yarın bağladığınız kanallar. Kapsamı her zaman siz belirlersiniz.',
+      'Decdock tüm iletişimi okumaz, insanları izlemez, performans ölçmez. Yalnız sizin seçtiğiniz kaynaklardan kararlar işlenir — konu kişi değil, karar. Kapsamı her zaman siz belirlersiniz.',
   },
   {
     glyph: '◇',
     title: 'Veri tek amaç için',
     description:
-      'İçeriğiniz yalnız karar sicili üretiminde kullanılır; model eğitiminde kullanılmaz, üçüncü taraflarla paylaşılmaz.',
+      'KVKK uyumlu işlenir. İçeriğiniz yalnız karar sicili üretiminde kullanılır; model eğitiminde kullanılmaz, üçüncü taraflarla paylaşılmaz.',
   },
   {
     glyph: '△',
@@ -81,8 +81,9 @@ export default function TrustStrip() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Güven, sonradan eklenen bir özellik değil; ürünün kuruluş ilkesi. Bu dört
-            kural tek seferlik raporda da, sürekli çalışan sicilde de aynen geçerlidir.
+            Güven, sonradan eklenen bir özellik değil; ürünün kuruluş ilkesi.{' '}
+            <span className="font-[680] text-[var(--text-strong)]">Amaç suçlamak değil, hatırlamak — konu kişi değil, karar.</span>{' '}
+            Bu dört kural tek seferlik raporda da, sürekli çalışan sicilde de aynen geçerlidir.
           </p>
         </div>
 
