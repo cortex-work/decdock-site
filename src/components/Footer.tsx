@@ -11,6 +11,7 @@ const guideLinks: Array<{ href: string; label: string }> = [
   { href: '/karar-takibi/', label: 'Kararlar nasıl takip edilir?' },
   { href: '/kurumsal-hafiza/', label: 'Kurumsal hafıza' },
   { href: '/rag-vs-karar-sicili/', label: 'Yapay zekâ asistanından farkı' },
+  { href: '/karar-kaybinin-maliyeti/', label: 'Kaybın maliyeti (ROI)' },
 ]
 
 export default function Footer() {

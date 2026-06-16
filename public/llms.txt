@@ -39,3 +39,4 @@ Product and website primarily Turkish (tr); English content supported.
 - Guide — how to track meeting & email decisions; why task managers / minutes miss decisions (Turkish): https://decdock.com/karar-takibi/
 - Guide — what institutional/corporate memory (kurumsal hafıza) is, why it is lost on employee turnover, sustainable memory (Turkish): https://decdock.com/kurumsal-hafiza/
 - Guide — difference between a RAG-based corporate AI assistant (document Q&A / enterprise search) and a decision registry (Turkish): https://decdock.com/rag-vs-karar-sicili/
+- Guide — the cost of lost/conflicting decisions and Decdock's ROI, explained with concrete examples (no fabricated numbers) (Turkish): https://decdock.com/karar-kaybinin-maliyeti/

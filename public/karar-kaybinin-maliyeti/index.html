@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karar kaybı şirkete neye mal olur? Decdock'un getirisi (ROI) — Decdock</title>
+  <meta name="description" content="Kaybolan, yanlış hatırlanan veya çelişen kararlar şirkete rework, ihtilaf, bilgi kaybı ve tekrarlanan toplantı olarak geri döner. Decdock'un ROI'sini somut örneklerle açıklıyoruz — uydurma rakamla değil, kendi durumunuza uygulayacağınız maliyetle." />
+  <link rel="canonical" href="https://decdock.com/karar-kaybinin-maliyeti/" />
+  <meta property="og:title" content="Karar kaybı şirkete neye mal olur? (ROI)" />
+  <meta property="og:description" content="Kayıp kararın gerçek maliyetini somut örneklerle gösteriyoruz; ROI'yi kendi durumunuza uygularsınız." />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://decdock.com/karar-kaybinin-maliyeti/" />
+  <meta property="og:image" content="https://decdock.com/og-image.png" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Decdock'un ROI'si (yatırım getirisi) nedir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Decdock'un getirisi, kaybolan ve çelişen kararların önlenmesinden gelir: tekrarlanan toplantılar, yanlış hatırlanan karardan doğan rework, 'kim onayladı' anlaşmazlıkları, ayrılan kişiyle giden bağlam ve denetimde kanıtlanamayan kararlar. Biz sabit bir rakam vaat etmeyiz; bu maliyetleri somut örneklerle gösteririz, siz kendi durumunuza uygularsınız."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Neden 'yılda şu kadar saat/para kazandırır' demiyorsunuz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Çünkü her şirketin karar hacmi ve kayıp maliyeti farklıdır; tek bir evrensel rakam uydurmak dürüst olmaz ve kanıtlanamaz. Bunun yerine kayıp kararın nerede paraya dönüştüğünü gösteririz; en ikna edici hesabı kendi son tartışmalı kararınızı düşününce siz yaparsınız."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jira veya CRM gibi doğrudan getirisi var mı?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jira işi takip eder, CRM satışı; Decdock ise gelecekteki karmaşayı önler — getirisi 'olmayan maliyet'tir. Tek bir tedarikçi ihtilafı, başarısız bir denetim veya sıfırdan tekrarlanan bir proje analizi, çoğu zaman aracın yıllık bedelinin katıdır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kendi ROI'mi nasıl görürüm?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "İlk adım soyut değildir: bitmiş bir projenizin e-postalarından üretilen Karar Denetimi raporu, o projede kaç kararın sahipsiz kaldığını ve kaç çelişki olduğunu kendi verinizle gösterir. ROI'yi kendi sayılarınızla görürsünüz."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f4eee6; --text-strong: #2f2925; --text-body: #5e5650; --text-muted: #756b64;
+      --accent: #a1764e; --green: #657d68; --line-soft: rgba(94, 86, 80, 0.16); --card-bg: rgba(250, 245, 239, 0.8);
+    }
+    html { background: var(--bg); color: var(--text-body); font-family: 'Manrope', system-ui, sans-serif; font-size: 16px; line-height: 1.75; -webkit-text-size-adjust: 100%; }
+    body { min-height: 100vh; background: var(--bg); }
+    .topbar { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line-soft); background: rgba(244, 238, 230, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .topbar-inner { max-width: 800px; margin: 0 auto; padding: 0.875rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .topbar-logo { font-size: 15px; font-weight: 700; color: var(--text-strong); text-decoration: none; letter-spacing: -0.01em; transition: opacity 0.15s; }
+    .topbar-logo:hover { opacity: 0.75; }
+    .topbar-link { font-size: 13px; color: var(--text-body); text-decoration: none; transition: color 0.15s; }
+    .topbar-link:hover { color: var(--text-strong); }
+    .main { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    h1 { font-family: 'Newsreader', Georgia, serif; font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 700; color: var(--text-strong); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+    h2 { font-family: 'Newsreader', Georgia, serif; font-size: clamp(1.25rem, 3vw, 1.625rem); font-weight: 600; color: var(--text-strong); line-height: 1.3; letter-spacing: -0.01em; margin-top: 3rem; margin-bottom: 0.875rem; }
+    h3 { font-family: 'Manrope', system-ui, sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-strong); line-height: 1.4; margin-bottom: 0.375rem; }
+    p { color: var(--text-body); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    .lead { font-size: 1.0625rem; color: var(--text-body); line-height: 1.8; margin-bottom: 1.25rem; }
+    a.inline { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    ul li { margin-bottom: 0.375rem; color: var(--text-body); }
+    .section-divider { border: none; border-top: 1px solid var(--line-soft); margin: 2.5rem 0; }
+    .callout { border: 1px solid rgba(101, 125, 104, 0.28); background: rgba(101, 125, 104, 0.08); border-radius: 16px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; color: var(--text-body); font-size: 0.96rem; }
+    .callout strong { color: var(--text-strong); }
+    /* cost example cards */
+    .cost { border: 1px solid var(--line-soft); border-left: 3px solid var(--accent); border-radius: 12px; background: var(--card-bg); padding: 1.1rem 1.4rem; margin-bottom: 1rem; }
+    .cost h3 { margin-bottom: 0.3rem; }
+    .cost .ex { font-size: 0.92rem; color: var(--text-body); margin-bottom: 0.4rem; }
+    .cost .tag { font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    .faq-card { border: 1px solid var(--line-soft); border-radius: 16px; background: var(--card-bg); padding: 1.25rem 1.5rem; }
+    .faq-q { font-weight: 600; color: var(--text-strong); margin-bottom: 0.5rem; line-height: 1.5; }
+    .faq-a { color: var(--text-body); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 0; }
+    .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 700; text-decoration: none; border-radius: 4px; padding: 0.7rem 1.4rem; transition: transform 0.15s, background 0.15s; }
+    .btn-primary { background: #2c2620; color: #f7f0e8; }
+    .btn-primary:hover { transform: translateY(-1px); background: #211c18; }
+    .btn-ghost { border: 1px solid var(--line-soft); color: var(--text-body); background: rgba(251,246,239,0.6); }
+    .btn-ghost:hover { color: var(--text-strong); border-color: rgba(94,86,80,0.3); }
+    .footer { border-top: 1px solid var(--line-soft); background: rgba(244, 238, 230, 0.6); padding: 2rem 1.5rem; margin-top: 4rem; }
+    .footer-inner { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; align-items: center; text-align: center; }
+    .footer-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .footer-link { color: var(--text-body); text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: var(--text-strong); }
+    .badge { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(161, 118, 78, 0.1); color: var(--accent); border: 1px solid rgba(161, 118, 78, 0.25); border-radius: 999px; padding: 0.2em 0.75em; margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="topbar" aria-label="Ana navigasyon">
+    <div class="topbar-inner">
+      <a href="/" class="topbar-logo">Decdock</a>
+      <a href="/" class="topbar-link">Ana sayfa</a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <div class="badge">ROI</div>
+
+    <h1>Karar kaybı şirkete neye mal olur?</h1>
+
+    <p class="lead">"Bu araç bize ne kazandırır?" sorusu haklı. Ama dürüst olalım: <strong>"yılda şu kadar saat/para kazandırır" demiyoruz</strong> — her şirketin karar hacmi farklı, uydurma bir rakam kanıtlanamaz. Bunun yerine kaybolan kararın gerçek maliyetini somut örneklerle gösteriyoruz; ROI'yi kendi durumunuza uygularsınız.</p>
+
+    <hr class="section-divider" />
+
+    <section aria-labelledby="maliyetler">
+      <h2 id="maliyetler">Kayıp kararın 5 somut maliyeti</h2>
+
+      <div class="cost">
+        <span class="tag">Rework</span>
+        <h3>Yanlış hatırlanan karar, ekipleri ayırır</h3>
+        <p class="ex">Mart'ta "Seçenek B" onaylanır. Mayıs'ta haberi olmayan biri farklı bir yöne karar verir. İki ekip iki ay iki ayrı yönde çalışır; sonra biri geri alınır. Maliyet: <strong>kaybedilen iki ay + geri-alma.</strong></p>
+      </div>
+
+      <div class="cost">
+        <span class="tag">İhtilaf / risk</span>
+        <h3>"Bu fiyatı kim onayladı?" — cevap kimsede yok</h3>
+        <p class="ex">Bir tedarikçiyle anlaşmazlık çıkar; onayın kimde, hangi gerekçeyle olduğu belgesiz. Maliyet: <strong>savunmasız kalmak</strong> — tek bir ihtilaf çoğu zaman aracın yıllık bedelinin katıdır.</p>
+      </div>
+
+      <div class="cost">
+        <span class="tag">Bilgi kaybı</span>
+        <h3>Ayrılan yöneticiyle gerekçe de gider</h3>
+        <p class="ex">Projeyi yürüten müdür ayrılır. "Neden bu tedarikçiyi seçmiştik?" cevabı onunla gider. Maliyet: <strong>yeni ekip aynı analizi sıfırdan yapar</strong> ya da aynı hatayı tekrarlar.</p>
+      </div>
+
+      <div class="cost">
+        <span class="tag">Toplantı israfı</span>
+        <h3>Aynı konu üçüncü kez masaya gelir</h3>
+        <p class="ex">Kimse "bunu geçen çeyrek karara bağlamıştık"ı hatırlamaz; tartışma baştan yapılır. Maliyet: <strong>toplantı israfının önemli kısmı aslında hafıza kaybıdır.</strong></p>
+      </div>
+
+      <div class="cost">
+        <span class="tag">Denetim / uyum</span>
+        <h3>Denetimde kararı kanıtlayamamak</h3>
+        <p class="ex">"Bu kararın gerekçesi ve onayı nerede?" sorusuna cevap, e-posta arşivinde günlerce kazı demek — ya da hiç bulunamaz. Maliyet: <strong>başarısız denetim / uyum riski.</strong></p>
+      </div>
+    </section>
+
+    <section aria-labelledby="hesap">
+      <h2 id="hesap">ROI'yi kendiniz hesaplayın</h2>
+      <p>Bizim rakam uydurmamıza gerek yok. Şunu sorun:</p>
+      <div class="callout">
+        <strong>Son bir yılda yukarıdakilerden kaçı başınıza geldi — ve her biri size kaça mal oldu?</strong> Çoğu şirkette tek bir ihtilaf, tek bir başarısız denetim ya da sıfırdan tekrarlanan tek bir proje, böyle bir aracın yıllık bedelinin kat kat üzerindedir.
+      </div>
+      <p>En ikna edici hesabı, kendi son "biz buna ne zaman karar verdik?" anınızı düşününce siz yaparsınız. Bizimki abartılı bir vaat değil; sizinki kendi gerçeğiniz.</p>
+    </section>
+
+    <section aria-labelledby="kanit">
+      <h2 id="kanit">Somut kanıt: kendi raporunuz</h2>
+      <p>İlk adım soyut değildir. Bitmiş bir projenizin 20-50 e-postasından üretilen <a class="inline" href="/karar-sicili/">Karar Denetimi raporu</a>, o projede kaç kararın <strong>sahipsiz</strong> kaldığını ve kaç <strong>çelişki</strong> olduğunu kendi verinizle gösterir. ROI tartışmasını soyut bir vaatten, elinizdeki somut bir rapora taşır.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi">Karar Denetimi isteyin</a>
+        <a class="btn btn-ghost" href="/karar-sicili/">Karar sicili nedir?</a>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section aria-labelledby="faq">
+      <h2 id="faq">Sık sorulanlar</h2>
+      <div class="faq-list">
+        <div class="faq-card">
+          <h3 class="faq-q">Decdock'un ROI'si nedir?</h3>
+          <p class="faq-a">Getiri, kaybolan ve çelişen kararların önlenmesinden gelir: tekrarlanan toplantılar, yanlış karardan doğan rework, "kim onayladı" anlaşmazlıkları, ayrılan kişiyle giden bağlam, denetimde kanıtlanamayan kararlar. Sabit rakam vaat etmeyiz; maliyeti gösterir, siz kendi durumunuza uygularsınız.</p>
+        </div>
+        <div class="faq-card">
+          <h3 class="faq-q">Neden net bir rakam vermiyorsunuz?</h3>
+          <p class="faq-a">Her şirketin karar hacmi ve kayıp maliyeti farklı; evrensel bir rakam uydurmak dürüst değil ve kanıtlanamaz. Kayıp kararın nerede paraya döndüğünü gösteririz; hesabı kendi gerçek örneğinizle siz yaparsınız.</p>
+        </div>
+        <div class="faq-card">
+          <h3 class="faq-q">Jira/CRM gibi doğrudan getirisi var mı?</h3>
+          <p class="faq-a">Jira işi takip eder, CRM satışı; Decdock gelecekteki karmaşayı önler — getirisi "olmayan maliyet"tir. Tek bir ihtilaf, başarısız denetim veya tekrarlanan proje, çoğu zaman aracın yıllık bedelinin katıdır.</p>
+        </div>
+        <div class="faq-card">
+          <h3 class="faq-q">Küçük/orta şirkete değer mi?</h3>
+          <p class="faq-a">Özellikle 30-300 kişilik, karar yoğun şirketlerde — çünkü orada kararlar yazışmada alınır, ayrı kaydedilmez ve kişi ayrıldığında kaybolur. Tek seferlik rapor düşük riskli bir başlangıçtır: kurulum yok, kendi verinizle değeri görürsünüz.</p>
+        </div>
+      </div>
+    </section>
+
+    <div style="border-top:1px solid var(--line-soft);margin-top:3rem;padding-top:1.5rem;font-size:0.9rem;">
+      İlgili rehberler:
+      <a class="inline" href="/karar-sicili/">Karar sicili nedir?</a> ·
+      <a class="inline" href="/karar-takibi/">Kararlar nasıl takip edilir?</a> ·
+      <a class="inline" href="/kurumsal-hafiza/">Kurumsal hafıza</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Decdock — Şirketinizin karar sicili &nbsp;·&nbsp;
+        <a href="mailto:pilot@decdock.com" class="footer-link">pilot@decdock.com</a> &nbsp;·&nbsp;
+        <a href="mailto:founder@decdock.com" class="footer-link">Soru: founder@decdock.com</a> &nbsp;·&nbsp;
+        Ana sayfa: <a href="https://decdock.com/" class="footer-link">decdock.com</a> &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/company/decdock" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+      <p class="footer-text">&copy; 2026 Decdock</p>
+    </div>
+  </footer>
+
+</body>
+</html>
