@@ -50,17 +50,43 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Decdock",
+        "alternateName": ["Karar sicili", "Decision registry", "Karar Denetimi"],
         "url": "https://decdock.com/",
         "applicationCategory": "BusinessApplication",
-        "description": "Decdock, yazışmalarınızdan şirketinizin karar sicilini çıkarır: ne kararlaştırıldı, kim onayladı, ne zaman — kaynağından birebir alıntıyla.",
+        "applicationSubCategory": "Decision registry / corporate memory (karar sicili)",
         "operatingSystem": "Web",
         "inLanguage": "tr",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Decdock",
-          "url": "https://decdock.com/",
-          "sameAs": ["https://www.linkedin.com/company/decdock"]
-        }
+        "description": "Decdock, şirket içi e-posta ve toplantı yazışmalarından kaynağa bağlı, denetlenebilir bir karar sicili çıkarır: ne kararlaştırıldı, kim onayladı, ne zaman, hangi gerekçeyle. Onaylanmış kararı 'karar sanılan' öneriden ayırır.",
+        "featureList": [
+          "Yazışmalardan otomatik karar çıkarımı",
+          "Ratifikasyon doğrulaması — kararı öneriden ayırır",
+          "Kaynağa bağlı, denetlenebilir karar kaydı",
+          "Karar zinciri: çelişki uyarısı ve revizyon takibi",
+          "Sahipsiz karar tespiti",
+          "Tek seferlik Karar Denetimi raporu (entegrasyonsuz)"
+        ],
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "30-300 çalışanlı, karar yoğun şirketler (üretim, lojistik, finans, mühendislik, danışmanlık, holding)"
+        },
+        "publisher": { "@id": "https://decdock.com/#organization" }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://decdock.com/#organization",
+        "name": "Decdock",
+        "url": "https://decdock.com/",
+        "logo": "https://decdock.com/favicon.svg",
+        "description": "Decdock, şirket içi yazışmalardan kaynağa bağlı ve denetlenebilir bir karar sicili çıkaran kurumsal yazılımdır.",
+        "sameAs": ["https://www.linkedin.com/company/decdock"],
+        "contactPoint": [
+          { "@type": "ContactPoint", "email": "pilot@decdock.com", "contactType": "sales", "availableLanguage": ["Turkish", "English"] },
+          { "@type": "ContactPoint", "email": "founder@decdock.com", "contactType": "customer support", "availableLanguage": ["Turkish", "English"] }
+        ]
       }
     </script>
 
