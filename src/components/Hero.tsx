@@ -161,7 +161,7 @@ export default function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="reveal reveal-delay-3 mb-10 flex flex-wrap gap-3">
+            <div className="reveal reveal-delay-3 mb-4 flex flex-wrap gap-3">
               <a
                 href="mailto:pilot@decdock.com?subject=Karar%20Denetimi%20talebi"
                 className="btn-primary"
@@ -175,6 +175,17 @@ export default function Hero() {
                 </svg>
               </a>
             </div>
+
+            {/* Live demo — secondary path */}
+            <a
+              href="/demo-canli/"
+              className="reveal reveal-delay-3 mb-10 inline-flex items-center gap-1.5 text-[13px] font-[600] text-[var(--accent)] transition-opacity hover:opacity-70"
+            >
+              Ya da çalışan bir karar sicilini kendiniz gezin — canlı demo
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
 
             {/* Trust footnote */}
             <p className="reveal reveal-delay-4 max-w-[50ch] text-[13px] leading-[1.8] text-[var(--text-faint)]">
