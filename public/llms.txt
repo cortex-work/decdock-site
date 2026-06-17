@@ -9,13 +9,16 @@ Decdock is a decision registry (decision memory / karar sicili) for companies �
 - Decision chains: conflict warnings when a new message contradicts an earlier decision (shows both records side by side); supersession links so the old record remains accessible with its context; unowned decisions flagged automatically.
 - Sources today: email threads and meeting notes. Turkish-optimized; works with English content.
 - Entry offer: one-time "Karar Denetimi" (Decision Audit) report from 20–50 emails of a finished project, delivered in one week, no integration or system access required.
+- ROI stance: Decdock does not claim universal savings numbers. It shows where decision loss creates cost (repeated decisions, ownerless decisions, stale decisions, audit/departure risk) so the customer can calculate impact from their own examples.
+- Security/deployment posture: starts with limited-scope pilot report mode; can move to managed cloud or customer-owned cloud/server deployment depending on data sensitivity and procurement requirements.
+- Access model: executives receive decision-risk reports and digests; teams search the decisions they are allowed to see; company admins control sources, retention, users, and visibility by role/scope.
 - Nothing uncertain is presented as definitive fact — unratified candidates stay out of the registry, with their reasoning visible.
 - Data used solely for report production and destroyed after delivery with written confirmation.
-- NOT: a meeting-notes tool, task manager (not a replacement for Jira/Asana), enterprise search (not a replacement for Glean), surveillance system, or a platform-assistant alternative (Copilot/Slack AI summarize conversations; Decdock maintains a permanent auditable record of what was decided, who ratified it, and whether it is still valid).
+- NOT: a meeting-notes tool, task manager, enterprise search, surveillance system, or a platform-assistant alternative. Summary and assistant tools summarize conversations; Decdock maintains a permanent auditable record of what was decided, who ratified it, and whether it is still valid.
 
 ## Decdock vs summary tools
 
-- Summary tools (Copilot, Notion AI, ChatGPT) answer "what was discussed?" — output is an ephemeral snapshot that disappears. Decdock answers "what was decided, who ratified it, is it still valid?" — output is a durable, auditable decision registry.
+- Summary and assistant tools answer "what was discussed?" — output is an ephemeral snapshot that disappears. Decdock answers "what was decided, who ratified it, is it still valid?" — output is a durable, auditable decision registry.
 - They are complementary, not alternatives: the assistant summarises the conversation; Decdock commits the decision to the record. Together: the assistant handles productivity, Decdock handles accountability and institutional memory.
 - Roadmap direction: when your AI assistant connects to Decdock (MCP), "who made this decision?" is answered directly from the decision registry, with the source sentence — the assistant queries the registry rather than guessing from conversation history.
 

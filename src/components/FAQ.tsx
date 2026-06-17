@@ -18,7 +18,7 @@ const items: FAQItem[] = [
       'Sicil "kim ne yaptı"yı değil, "ne kararlaştırıldı"yı gösterir. Sahipsiz karar bulgusu bile kişiye değil sürece işaret eder. Decdock bir suçlama aracı değil, bağlam aracıdır — amaç geçmişi sorgulamak değil, kurumsal hafızayı korumaktır.',
   },
   {
-    question: 'Copilot veya benzeri araçlar bunu zaten yapmıyor mu?',
+    question: 'Özet veya toplantı asistanları bunu zaten yapmıyor mu?',
     answer:
       'Onlar "bu hafta ne konuşuldu?" sorusunu özetler; özet o anda tüketilir ve kaybolur. Decdock "ne kararlaştırıldı, kim onayladı, hâlâ geçerli mi?" sorusunun kalıcı ve denetlenebilir kaydını tutar — her kayıt kaynağındaki cümleye bağlıdır. Ayrıca öneriyi karardan ayırır; özet araçları bu ayrımı yapmaz.',
   },

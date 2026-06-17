@@ -6,6 +6,7 @@ import Scenarios from './components/Scenarios'
 import ExampleRecords from './components/ExampleRecords'
 import DecisionChain from './components/DecisionChain'
 import Differentiation from './components/Differentiation'
+import BuyerQuestions from './components/BuyerQuestions'
 import TrustStrip from './components/TrustStrip'
 import FAQ from './components/FAQ'
 import PilotCTA from './components/PilotCTA'
@@ -24,6 +25,7 @@ export default function App() {
           <DecisionChain />
           <HowItWorks />
           <Differentiation />
+          <BuyerQuestions />
           <TrustStrip />
           <FAQ />
           <PilotCTA />
