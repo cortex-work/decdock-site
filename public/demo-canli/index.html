@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Karar Sicili — canlı demo | Decdock</title>
+<meta name="description" content="Decdock karar sicilini canlı deneyin: ara, filtrele, bir karara tıkla — onaylı kararları, sahipsizleri ve 'karar sanılan' adayları kaynağıyla görün. Temsili örnek veri." />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://decdock.com/demo-canli/" />
+<meta property="og:title" content="Karar Sicili — canlı demo | Decdock" />
+<meta property="og:description" content="Çalışan bir karar sicilini gezin: ara, filtrele, tıkla. Temsili örnek veri." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://decdock.com/demo-canli/" />
+<meta property="og:image" content="https://decdock.com/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --page:#f4eee6; --ink:#2b2420; --body:#574f48; --muted:#8a7d71;
+    --accent:#9c6e44; --accent-d:#84592f; --success:#5c7560; --warning:#a86f3d;
+    --line:rgba(74,66,58,0.16); --line2:rgba(74,66,58,0.28); --pane:#fdfaf5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:radial-gradient(120% 80% at 50% -10%,#f7f0e6,var(--page) 55%,#e8ded0);min-height:100%;}
+  body{font-family:'Manrope',system-ui,sans-serif;color:var(--body);line-height:1.6;font-size:14px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 64px;}
+
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .brand{font-weight:800;font-size:16px;letter-spacing:-0.02em;color:var(--ink);}
+  .brand a{color:inherit;}
+  .demo-tag{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-d);background:rgba(156,110,68,0.12);border:1px solid rgba(156,110,68,0.3);border-radius:99px;padding:4px 12px;}
+
+  h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.12;margin-bottom:8px;}
+  .dek{max-width:62ch;color:var(--body);font-size:14.5px;margin-bottom:18px;}
+  .dek b{color:var(--ink);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .stat{flex:1 1 130px;border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:11px 14px;}
+  .stat .n{font-family:'Newsreader',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1;}
+  .stat.s .n{color:var(--success);} .stat.a .n{color:var(--accent);} .stat.w .n{color:var(--warning);}
+  .stat .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  .search{flex:1 1 240px;display:flex;align-items:center;gap:8px;background:var(--pane);border:1px solid var(--line2);border-radius:8px;padding:9px 12px;}
+  .search input{border:none;background:none;outline:none;flex:1;font:inherit;color:var(--ink);font-size:14px;}
+  .search svg{flex:0 0 auto;color:var(--muted);}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{font-size:12px;font-weight:600;color:var(--body);background:var(--pane);border:1px solid var(--line2);border-radius:99px;padding:7px 13px;cursor:pointer;transition:all .12s;}
+  .chip:hover{border-color:var(--accent);}
+  .chip.on{background:var(--ink);color:#f7f0e8;border-color:var(--ink);}
+
+  .list{display:flex;flex-direction:column;gap:8px;}
+  .row{border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:13px 16px;cursor:pointer;transition:all .12s;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:start;}
+  .row:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(43,35,29,.06);transform:translateY(-1px);}
+  .row .dtext{font-weight:600;color:var(--ink);font-size:13.5px;line-height:1.4;grid-column:1;}
+  .row .meta{grid-column:1;font-size:11.5px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;}
+  .row .meta b{color:var(--success);font-weight:600;}
+  .badges{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+  .badge{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 9px;white-space:nowrap;}
+  .badge.onayli{color:var(--success);background:rgba(92,117,96,.12);border:1px solid rgba(92,117,96,.3);}
+  .badge.aday{color:var(--accent-d);background:rgba(156,110,68,.12);border:1px solid rgba(156,110,68,.3);}
+  .badge.sahipsiz{color:var(--warning);background:rgba(168,111,61,.1);border:1px solid rgba(168,111,61,.35);}
+  .badge.conf{color:var(--muted);background:transparent;border:1px solid var(--line2);font-weight:600;}
+  .empty{text-align:center;color:var(--muted);padding:40px;font-size:13px;}
+
+  /* detail panel */
+  .scrim{position:fixed;inset:0;background:rgba(30,22,16,.42);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .18s;z-index:40;}
+  .scrim.open{opacity:1;pointer-events:auto;}
+  .panel{position:fixed;top:0;right:0;height:100%;width:min(460px,92vw);background:var(--page);border-left:1px solid var(--line2);box-shadow:-20px 0 50px rgba(40,32,24,.18);transform:translateX(100%);transition:transform .2s cubic-bezier(.22,1,.36,1);z-index:50;overflow-y:auto;}
+  .panel.open{transform:translateX(0);}
+  .panel-in{padding:24px 26px 40px;}
+  .panel .close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;}
+  .panel h2{font-family:'Newsreader',serif;font-size:20px;font-weight:600;color:var(--ink);line-height:1.25;margin:8px 40px 14px 0;}
+  .kv{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;}
+  .kv .k{width:96px;flex:0 0 auto;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
+  .kv .v{color:var(--ink);font-weight:560;}
+  .quote{margin-top:14px;border-left:3px solid var(--accent-soft,#d8c4ae);padding:10px 14px;background:var(--pane);border-radius:0 8px 8px 0;font-style:italic;color:var(--body);font-size:12.5px;line-height:1.6;}
+  .reason{margin-top:14px;border:1px solid rgba(156,110,68,.3);background:rgba(156,110,68,.07);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--accent-d);}
+  .reason b{display:block;margin-bottom:3px;color:var(--warning);}
+
+  .cta{margin-top:26px;border:1px solid var(--accent);border-radius:12px;background:rgba(156,110,68,.06);padding:16px 18px;font-size:13.5px;line-height:1.65;}
+  .cta b{color:var(--accent-d);}
+  .foot{margin-top:22px;text-align:center;font-size:11.5px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><a href="/">Decdock</a></div>
+    <span class="demo-tag">Canlı demo · temsili veri</span>
+  </div>
+
+  <h1>Karar Sicili — gezin, arayın, tıklayın</h1>
+  <p class="dek">Aşağıdaki, bitmiş bir "ERP seçim projesi"nin yazışmalarından çıkarılmış <b>temsili</b> bir karar sicili. Gerçek müşteri verisi değil — ürünün nasıl göründüğünü deneyin: bir karara tıklayın, kaynağını görün; <b>onaylı karar</b> ile <b>"karar sanılan" aday</b> ayrımına bakın.</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <label class="search">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <input id="q" type="text" placeholder="Kararlarda ara… (örn. Firm-B, SAP, rollback, Selin)" autocomplete="off" />
+    </label>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="cta">
+    Bu sicil <b>tek tık ile</b> kaynağına bağlı; onaylanmamış öneriler <b>"aday"</b> olarak ayrı durur, gerekçesiyle. Kendi <b>bitmiş bir projenizin</b> e-postalarından <b>ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
+  </div>
+  <p class="foot">Temsili/örnek veridir; gerçek bir şirketin verisi değildir. © 2026 Decdock</p>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" aria-hidden="true"><div class="panel-in" id="panelIn"></div></aside>
+
+<script>
+const DATA = [
+  {st:'onayli',d:"Finalist listesi: A, B, C — üç firmayla devam edilecek",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: ERP finalist seçimi",ex:"Finalist listesi: A, B, C. Kerem Bey'in A konusundaki çekincesini not ettim ama üç firmayla devam etmek istiyorum — nihai karardan önce daha fazla bilgiye ihtiyacımız var."},
+  {st:'onayli',d:"ERP/TMS sistemi olarak Firm-B seçildi",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: finalist final seçim",ex:"ERP/TMS seçimi: Firm-B. Koşullar: 1. Sözleşmede API olgunluğu SLA: Q3 2026'ya kadar üretim kalitesi API — garantisiz imzalanmaz."},
+  {st:'onayli',d:"API olgunluğu SLA koşulu: Q3 2026'ya kadar üretim kalitesi API garantisi",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: finalist final seçim",ex:"Koşullar: 1. Sözleşmede API olgunluğu SLA: Q3 2026'ya kadar üretim kalitesi API — garantisiz imzalanmaz."},
+  {st:'onayli',d:"SAP paralel çalışma 2 ay (Nisan-Mayıs); Haziran'da Firm-B'ye tam geçiş",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: İstanbul pilot",ex:"Firm-B İstanbul pilot kararları: 1. SAP paralel çalışma: 2 ay (Nisan-Mayıs). Haziran'da Firm-B'ye tam geçiş."},
+  {st:'onayli',d:"Rollback kriterleri: muhasebe tutarsızlığı veya TMS SLA %5+ düşüşte otomatik değerlendirme",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: İstanbul pilot",ex:"Rollback kriterleri (Kerem Bey'in önerisi kabul): muhasebe tutarsızlığı veya TMS SLA %5+ düşüş → otomatik değerlendirme."},
+  {st:'onayli',d:"SAP lisans yenileme: 1 yıl, %13,5 zam (1.407.400 TL) ile imzalanacak",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: SAP lisans yenileme",ex:"Müzakere sonucu: 1 yıl anlaşma, %13,5 zam (1.407.400 TL). SAP %14 eşiğinin altına geldi. İmzalayabilir miyim? İmzala."},
+  {st:'onayli',d:"SAP müzakere pozisyonu: 1 yıl, maksimum %14 zam; üzerini kabul etme",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: SAP lisans yenileme",ex:"Müzakere direktifim: 1 yıl anlaşma, maksimum %14 zam. %14 üzerini kabul etmeyin — bana gelsin."},
+  {st:'onayli',d:"Geri bildirim ilk ay boyunca haftalık anketle toplanacak",o:"Kerem Yılmaz",os:"ratifier",c:"medium",src:"e-posta: değişim yönetimi",ex:"4. Geri bildirim: haftalık anket, ilk ay. (Plan onay.)"},
+  {st:'onayli',d:"Ankara genişlemesi onaylandı: Eylül başı, aynı paralel-çalışma ve rollback modeli",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: Ankara genişleme",ex:"Pilot başarılı — tebrikler. Ankara genişlemesi onaylıyorum. Eylül başı. Aynı paralel çalışma modeli (2 ay), aynı rollback kriterleri."},
+
+  {st:'aday',d:"Ocak takvimi: derinlemesine teknik değerlendirme + referans müşteri görüşmeleri",o:"Selin Aydın",os:"ratifier",c:"high",src:"e-posta: finalist seçimi",ex:"Ocak takvimi: Aylin Hanım organize etsin. Her firma için derinlemesine teknik değerlendirme + referans müşteri görüşmeleri.",r:"Bu bir takvim/koordinasyon talimatı ve süreç adımı — ratife edilmiş örgütsel bir karar değil."},
+  {st:'aday',d:"Firm-B teknik demo puanı 81/100 olarak revize edildi",o:"Gökhan Arslan",os:"extraction",c:"high",src:"e-posta: demo değerlendirme",ex:"Genel puan (revize): 81/100 (önceki 78 — canlı demo sonrası güncellendi).",r:"Puan güncellemesi raporlanan bir durum/olgu — açıkça onaylanmış bir karar değil."},
+  {st:'aday',d:"'API olgunluğu bağımlılığı' riski değerlendirme raporuna eklenecek",o:"Gökhan Arslan",os:"extraction",c:"medium",src:"e-posta: demo değerlendirme",ex:"Bu riski raporumuza ekleyelim: 'API olgunluğu bağımlılığı'.",r:"Gökhan'ın 'ekleyelim'i tek taraflı bir öneri/niyet — yetkili bir grubun onayladığı bir karar değil."},
+  {st:'aday',d:"API migration süresi sözleşmede max 8 hafta olarak sabitlenecek",o:"Selin Aydın",os:"extraction",c:"medium",src:"e-posta: referans müşteri",ex:"API migration 4 ay — bu sözleşmede maksimum 8 hafta (2 ay) olarak sabitlenmeli. Ceza maddesiyle.",r:"Kerem'in mesajı bir öneri/tavsiye; Selin yalnız müzakere listesine yönlendirdi, açık onay yok."},
+  {st:'aday',d:"Paralel sistem maliyeti (SAP + Firm-B, 2 ay) kabul edilecek",o:null,os:null,c:"medium",src:"e-posta: proje risk günlüğü",ex:"Paralel sistem maliyeti (düşük): SAP + Firm-B aynı anda = çift lisans, 2 ay.",r:"Paralel maliyet, izlenen bir risk olgusu olarak listelenmiş — kimse tarafından açıkça onaylanmamış/ratife edilmemiş."},
+  {st:'aday',d:"Nisan İstanbul pilot eğitimi 3-7 Nisan'da 22 kişiye verilecek",o:null,os:null,c:"medium",src:"e-posta: değişim yönetimi",ex:"1. Eğitim: 3-7 Nisan, İstanbul muhasebe + finans ekibi (22 kişi).",r:"Kerem'in 'Plan onay'ı önceki bir karara atıf; eğitim detayı bir öneri öğesi, burada yeni ratife edilmedi."},
+  {st:'aday',d:"Departmandan 2 'ERP şampiyonu' seçilecek",o:null,os:null,c:"medium",src:"e-posta: değişim yönetimi",ex:"2. Şampiyonlar programı: departmandan 2 'ERP şampiyonu' seçilecek.",r:"Şampiyon seçimi planın bir öneri öğesi — bu yazışmada açıkça ayrıca onaylanmadı."},
+  {st:'aday',d:"Firm-B'ye yazılı bildirim yapıldı, 30 gün süre verildi",o:"Gökhan Arslan",os:"extraction",c:"high",src:"e-posta: API SLA ihlali",ex:"Firm-B'ye yazılı bildirim yaptım, 30 gün süre verdim.",r:"Bu raporlanan operasyonel bir aksiyon/durum olgusu — açıkça ratife edilmiş bir karar değil."},
+  {st:'aday',d:"Plan B hazır olacak: ceza uygulaması veya scope daraltma",o:"Kerem Yılmaz",os:"extraction",c:"medium",src:"e-posta: API SLA ihlali",ex:"İçeride plan B hazır olsun: ceza uygulaması veya scope daraltma.",r:"Kerem'in 'plan B hazır olsun'u bir öneri/tavsiye — açık onay ya da ratife edilmiş karar değil."}
+];
+
+const ESC = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const confTr = c => ({high:'yüksek',medium:'orta',low:'düşük'}[c]||c);
+let filter='all', query='';
+
+const FILTERS=[['all','Tümü'],['onayli','Onaylı'],['sahipsiz','Sahipsiz'],['aday','İnceleme adayı']];
+
+function matches(it){
+  if(filter==='onayli'&&it.st!=='onayli')return false;
+  if(filter==='aday'&&it.st!=='aday')return false;
+  if(filter==='sahipsiz'&&it.o)return false;
+  if(query){const q=query.toLowerCase();return (it.d+' '+(it.o||'')+' '+it.ex+' '+it.src).toLowerCase().includes(q);}
+  return true;
+}
+
+function renderStats(){
+  const onayli=DATA.filter(x=>x.st==='onayli').length;
+  const sahipsiz=DATA.filter(x=>!x.o).length;
+  const aday=DATA.filter(x=>x.st==='aday').length;
+  document.getElementById('stats').innerHTML=
+    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Onaylı karar</div></div>`+
+    `<div class="stat"><div class="n">${onayli-DATA.filter(x=>x.st==='onayli'&&!x.o).length}</div><div class="l">Sahibi net</div></div>`+
+    `<div class="stat w"><div class="n">${sahipsiz}</div><div class="l">Sahipsiz</div></div>`+
+    `<div class="stat a"><div class="n">${aday}</div><div class="l">İnceleme adayı</div></div>`;
+}
+function renderChips(){
+  document.getElementById('chips').innerHTML=FILTERS.map(([k,l])=>
+    `<button class="chip${filter===k?' on':''}" data-k="${k}">${l}</button>`).join('');
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{filter=c.dataset.k;renderChips();renderList();});
+}
+function renderList(){
+  const items=DATA.map((it,i)=>({...it,i})).filter(matches);
+  const el=document.getElementById('list');
+  if(!items.length){el.innerHTML='<div class="empty">Eşleşen kayıt yok.</div>';return;}
+  el.innerHTML=items.map(it=>`
+    <div class="row" data-i="${it.i}">
+      <div class="dtext">${ESC(it.d)}</div>
+      <div class="meta">${it.o?`<span>👤 <b>${ESC(it.o)}</b></span>`:'<span style="color:var(--warning)">👤 sahip belirsiz</span>'}<span>📄 ${ESC(it.src)}</span></div>
+      <div class="badges">
+        <span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>
+        ${!it.o?'<span class="badge sahipsiz">sahipsiz</span>':''}
+        <span class="badge conf">${confTr(it.c)} güven</span>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.row').forEach(r=>r.onclick=()=>openDetail(+r.dataset.i));
+}
+function openDetail(i){
+  const it=DATA[i];
+  document.getElementById('panelIn').innerHTML=`
+    <button class="close" id="closeBtn" aria-label="Kapat">×</button>
+    <span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>
+    <h2>${ESC(it.d)}</h2>
+    <div class="kv"><div class="k">Onaylayan</div><div class="v">${it.o?ESC(it.o)+(it.os==='ratifier'?'':' (çıkarım sinyali *)'):'— sahip belirsiz'}</div></div>
+    <div class="kv"><div class="k">Güven</div><div class="v">${confTr(it.c)}</div></div>
+    <div class="kv"><div class="k">Kaynak</div><div class="v">${ESC(it.src)}</div></div>
+    <div class="quote">${ESC(it.ex)}</div>
+    ${it.st==='aday'?`<div class="reason"><b>Neden sicile girmedi (aday):</b>${ESC(it.r)}</div>`:''}`;
+  document.getElementById('closeBtn').onclick=closeDetail;
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('panel').setAttribute('aria-hidden','false');
+  document.getElementById('scrim').classList.add('open');
+}
+function closeDetail(){
+  document.getElementById('panel').classList.remove('open');
+  document.getElementById('panel').setAttribute('aria-hidden','true');
+  document.getElementById('scrim').classList.remove('open');
+}
+document.getElementById('scrim').onclick=closeDetail;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value;renderList();});
+
+renderStats();renderChips();renderList();
+</script>
+</body>
+</html>
