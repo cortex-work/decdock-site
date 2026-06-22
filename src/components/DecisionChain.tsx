@@ -20,14 +20,14 @@ const nodes: ChainNode[] = [
     badge: 'Sicile girmedi',
     title: 'Öneri — karar değil',
     body:
-      'Selin: "Frigo araç kiralayarak kapasiteyi geçici artırabiliriz bence." Decdock bunu sicile yazmadı: kişisel görüş, onay yok. Gerekçesi görünür kaldı.',
+      'Selin geçici kiralama önerdi; onay olmadığı için sicile yazılmadı.',
   },
   {
     kind: 'ratified',
     date: '12 Mart',
     badge: 'Onaylı karar',
     title: 'Soğuk zincir kapasitesi Seçenek B ile artırılacak',
-    body: 'Kısmi filo yenileme + depo genişletme. Q2 bütçesine işlendi.',
+    body: 'Kısmi filo yenileme + depo genişletme Q2 bütçesine işlendi.',
     quote:
       '"İki senaryoyu inceledim. Onaylıyorum — Seçenek B ile ilerliyoruz, Q2 bütçesine işleyin."',
     meta: [
@@ -41,7 +41,7 @@ const nodes: ChainNode[] = [
     badge: 'Çelişki uyarısı',
     title: 'Yeni mesaj eski kararla çelişiyor',
     body:
-      "Operasyon kanalında \"filo yenilemeyi durduralım, tamamen kiralamayla gidelim\" yazıldı. Decdock uyardı: bu konu 12 Mart'ta karara bağlanmıştı. İki kayıt yan yana, karar vereni ve gerekçesiyle.",
+      "Operasyon kanalı tamamen kiralama önerince 12 Mart kararıyla çelişki işaretlendi.",
     link: '12 Mart kaydına bağlı',
   },
   {
@@ -49,7 +49,7 @@ const nodes: ChainNode[] = [
     date: '9 Mayıs',
     badge: 'Revize karar',
     title: "Filo yenileme 2027'ye ertelendi; 2026 kiralama ile yürüyecek",
-    body: 'Yeni karar sicile işlendi ve eski kararın yerini aldı — zincir kopmadı.',
+    body: 'Yeni kayıt eski kararın yerini aldı; zincir kopmadı.',
     quote:
       '"Nakit akışını koruyalım. Karar verildi: yenileme 2027\'ye, bu yıl kiralama."',
     meta: [
@@ -179,9 +179,8 @@ export default function DecisionChain() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Gerçek hayatta karar tek bir cümle değildir: önerilir, onaylanır, biri
-            unutup tersini söyler, sonra revize edilir. Decdock bu zinciri kopmadan
-            tutar. "Soğuk zincir kapasitesi" konusunun üç aylık izi:
+            Gerçek hayatta karar önerilir, onaylanır, unutulur ve revize edilir.
+            "Soğuk zincir kapasitesi" konusunun üç aylık izi:
           </p>
         </div>
 
@@ -224,9 +223,8 @@ export default function DecisionChain() {
 
         {/* Closing callout */}
         <p className="reveal mx-auto mt-12 max-w-3xl rounded-[4px] border border-[rgba(161,118,78,0.18)] bg-[rgba(247,239,228,0.82)] px-6 py-5 text-center text-[14px] font-[560] leading-[1.78] text-[var(--text-strong)]">
-          Yeni gelen bir yönetici bu zinciri 30 saniyede okur: ne önerildi, ne
-          kararlaştırıldı, kim onayladı, neden değişti. Kimse rapor yazmadı — zincir
-          yazışmalardan kendiliğinden çıktı.
+          Yeni gelen bir yönetici bu zinciri 30 saniyede okur: ne değişti, neden değişti,
+          hangi kayıt önceydi.
         </p>
       </div>
     </section>

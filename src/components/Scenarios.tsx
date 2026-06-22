@@ -11,25 +11,25 @@ const capabilities: CapabilityCard[] = [
     index: 1,
     title: 'Kararları yakalar',
     description:
-      'Yazışmalarınızdan kararları çıkarır: karar metni, tarih ve kaynaktan birebir alıntı. Kimseden log tutmasını, etiketlemesini, not yazmasını istemez.',
+      'Karar metni, tarih ve kaynaktan birebir alıntı çıkar; kimseden yeni not tutması istenmez.',
   },
   {
     index: 2,
     title: 'Onaylayanı gösterir',
     description:
-      '"Kim söyledi" değil, "kim onayladı": her kararın yanında onaylayan kişi durur. Sahiplik ve hesap verebilirlik tahmine değil kayda dayanır.',
+      '"Kim söyledi" değil, "kim onayladı": sahiplik tahmine değil kayda dayanır.',
   },
   {
     index: 3,
     title: '"Karar sanılanı" ayırır',
     description:
-      'Asıl tehlike kaybolan karar değil, karar sanılan şeydir. Öneri, niyet ve takvim konuşması sicile girmez — kayıt dışı kalır, gerekçesi görünür olur.',
+      'Öneri, niyet ve takvim konuşması sicile girmez; kayıt dışı kalır, gerekçesi görünür olur.',
   },
   {
     index: 4,
     title: 'Riskleri işaretler',
     description:
-      'Sahibi belirsiz kalmış kararlar, birbiriyle çelişen yönler ve yeniden açılan konular kendiliğinden işaretlenir — siz sormadan.',
+      'Sahipsiz kararlar, çelişkiler ve yeniden açılan konular işaretlenir.',
   },
 ]
 
@@ -80,16 +80,14 @@ export default function Scenarios() {
             <span className="ledger-rule" />
             <div className="max-w-[50ch] space-y-3 text-[14.5px] leading-[1.8] text-[var(--text-body)]">
               <p>
-                Decdock, dağınık yazışmaları kaynağa bağlı karar kayıtlarına çevirir.
-                Sorduğu soru "bu hafta ne konuşuldu?" değildir:{' '}
+                Decdock, dağınık yazışmaları karar kayıtlarına çevirir.
+                Sorduğu soru:{' '}
                 <strong className="font-[680] text-[var(--text-strong)]">
-                  ne kararlaştırıldı, kim onayladı, hâlâ geçerli mi?
+                  ne kararlaştırıldı, hâlâ geçerli mi?
                 </strong>
               </p>
               <p>
-                Görev yöneticisi değildir, kurumsal arama değildir, toplantı not aracı
-                değildir. Tek odağı karar hafızasıdır — ve emin olmadığı hiçbir şeyi
-                kesin gerçek gibi göstermez.
+                Tek odağı karar hafızasıdır; emin olmadığı hiçbir şeyi kesin gerçek gibi göstermez.
               </p>
             </div>
           </div>

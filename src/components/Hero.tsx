@@ -151,9 +151,8 @@ export default function Hero() {
 
             {/* Body */}
             <p className="reveal reveal-delay-2 mb-4 max-w-[52ch] text-[16px] leading-[1.82] text-[var(--text-body)]">
-              Kararlar e-postalarda ve toplantılarda alınıp kayboluyor. Decdock,
-              yazışmalarınızdan şirketinizin karar sicilini çıkarır: ne kararlaştırıldı,
-              kim onayladı, ne zaman — kaynağından birebir alıntıyla.
+              Kararlar e-posta ve toplantılarda kaybolur. Decdock karar sicilini çıkarır:
+              ne kararlaştırıldı, kim onayladı, ne zaman — kaynağından birebir alıntıyla.
             </p>
 
             <p className="reveal reveal-delay-3 mb-8 text-[11.5px] font-[700] uppercase tracking-[0.12em] text-[var(--text-faint)]">
@@ -210,9 +209,7 @@ export default function Hero() {
 
             {/* Trust footnote */}
             <p className="reveal reveal-delay-4 max-w-[50ch] text-[13px] leading-[1.8] text-[var(--text-faint)]">
-              İlk adım kurulum değil: bitmiş bir projenizin 20–50 e-postasını paylaşın,
-              3 iş günü içinde karar sicili raporunuzu teslim edelim.
-              Entegrasyon yok, sistem erişimi yok.
+              20–50 e-postayla başlarız; izleme, entegrasyon, sistem erişimi yok.
             </p>
           </div>
 

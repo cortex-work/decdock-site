@@ -10,27 +10,27 @@ const audiences: AudienceCard[] = [
   {
     title: 'Genel Müdür / CEO',
     description:
-      '"Bu kararı kim almıştı, neye dayanarak?" sorusuna e-posta arşivi kazmadan, saniyeler içinde kaynaklı cevap.',
+      '"Bu kararı kim almıştı?" sorusuna arşiv kazmadan yanıt.',
   },
   {
     title: 'COO / Operasyon',
     description:
-      '"Karar alındı ama top kimde?" boşluğu kapanır: sahipsiz kararlar ve düşen toplar kendiliğinden görünür olur.',
+      'Sahipsiz kararlar ve düşen toplar erken görünür.',
   },
   {
     title: 'Holding iştirakleri',
     description:
-      'Denetim, raporlama ve kurumsal yönetim için kaynağa bağlı karar izi — kim onayladı, ne zaman, hangi gerekçeyle.',
+      'Denetim ve raporlama için düzenli karar izi.',
   },
   {
     title: 'Proje-yoğun ekipler',
     description:
-      'Aynı konunun ikinci kez toplantıya gelmesi azalır: eski karar, vereni ve gerekçesiyle bir arama uzağınızda.',
+      'Eski karar, vereni ve gerekçesiyle bir arama uzağınızda.',
   },
   {
     title: 'Kararları e-postada alınan her şirket',
     description:
-      'Karar iziniz yazışmalarda yaşıyorsa Decdock onu sicile çevirir — kimseye yeni bir araç öğretmeden.',
+      'Karar iziniz yazışmalarda yaşıyorsa Decdock onu sicile çevirir.',
     emphasized: true,
   },
 ]
@@ -81,8 +81,7 @@ export default function Differentiation() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Decdock; 30–300 çalışanlı, karar yoğun ve formal yazışma kültürü olan
-            şirketler için tasarlandı: üretim, lojistik, finans hizmetleri, mühendislik,
+            Karar yoğun ekipler için: üretim, lojistik, finans, mühendislik,
             danışmanlık ve holding iştirakleri.
           </p>
         </div>

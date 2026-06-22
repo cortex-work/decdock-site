@@ -15,7 +15,7 @@ const examples: WorkflowExample[] = [
     thread: [
       {
         speaker: 'Selin',
-        message: 'Bütçe revizyonu için iki senaryo hazırladık, ekte. Görüşünüzü bekliyoruz.',
+        message: 'Bütçe revizyonu ekte. Görüşünüzü bekliyoruz.',
       },
       {
         speaker: 'Esra (CFO)',
@@ -25,11 +25,10 @@ const examples: WorkflowExample[] = [
     extracts: [
       'Karar: 2026 pazarlama bütçesi %5 artışla kesinleşti.',
       'Onaylayan: Esra — CFO.',
-      'Kaynak: Bütçe revizyonu e-posta zinciri.',
       'Alıntı: "Onaylıyorum — %5 artışla kesinleşti."',
     ],
     teamSees:
-      'Sicile işlendi: karar, onaylayan ve kaynak alıntısıyla birlikte aranabilir durumda.',
+      'Sicile işlendi: karar aranabilir durumda.',
   },
   {
     label: '"Karar sanılan"',
@@ -38,7 +37,7 @@ const examples: WorkflowExample[] = [
       {
         speaker: 'Selin',
         message:
-          'Pazarlama kalemini %10 kısabiliriz diye düşünüyorum, ama tabii karar sizin.',
+          'Pazarlama kalemini %10 kısabiliriz diye düşünüyorum.',
       },
       {
         speaker: 'Murat',
@@ -47,12 +46,11 @@ const examples: WorkflowExample[] = [
     ],
     extracts: [
       'Sicile YAZILMADI: öneri, onaylanmamış.',
-      'Gerekçe: kişisel görüş olarak ifade edilmiş, onay yok.',
       '"Toplantı ayarlandı" karar değil, takvim koordinasyonu.',
       'Durum: sicil dışı, gerekçesi görünür.',
     ],
     teamSees:
-      'Ekibin yarısı bunu "karar" diye hatırlayacaktı. Decdock karar ile karar sanılanı ayırır.',
+      'Karar ile karar sanılan ayrıldı.',
   },
   {
     label: 'Tekrar açılan konu',
@@ -61,7 +59,7 @@ const examples: WorkflowExample[] = [
       {
         speaker: 'Mart kararı',
         message:
-          'Kurumsal müşteriler için manuel rapor desteği yeni sistem hazır olana kadar sürecek.',
+          'Manuel rapor desteği yeni sistem hazır olana kadar sürecek.',
       },
       {
         speaker: 'Nisan mesajı',
@@ -70,12 +68,11 @@ const examples: WorkflowExample[] = [
     ],
     extracts: [
       'Uyarı: bu konu Mart\'ta karara bağlanmıştı.',
-      'Olası çelişki: müşteri taahhüdü ile yeni öneri.',
       'İlgili kayıtlar: Mart kararı + Nisan mesajı yan yana.',
       'Durum: incelenmeli.',
     ],
     teamSees:
-      'O toplantı ya hiç yapılmaz ya beş dakika sürer: eski karar, vereni ve gerekçesiyle önünüzde.',
+      'Eski karar ve yeni öneri yan yana görünür.',
   },
 ]
 
@@ -153,9 +150,8 @@ export default function ExampleRecords() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Decdock seçtiğiniz kaynaklara bakar, karar ve sahiplik sinyallerini çıkarır
-            ve bunları ekibinizin güvenebileceği, kaynağa bağlı kayıtlara çevirir.
-            Üç gerçekçi örnek:
+            Aynı yazışma içinden üç farklı sonuç: sicile giren karar, dışarıda kalan
+            öneri ve yeniden açılan konu.
           </p>
         </div>
 

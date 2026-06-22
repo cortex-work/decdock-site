@@ -50,15 +50,14 @@ export default function PilotCTA() {
               className="reveal reveal-delay-1 mb-7 font-display font-[640] leading-[1.0] tracking-[-0.04em] text-white"
               style={{ fontSize: 'clamp(38px, 5.5vw, 66px)' }}
             >
-              İlk adım kurulum değil: Karar Denetimi raporu.
+              İlk adım: Karar Denetimi raporu.
             </h2>
 
             <span className="reveal reveal-delay-2 block h-[2px] w-12 bg-[var(--accent)] mb-7" />
 
             <p className="reveal reveal-delay-2 mb-10 max-w-[50ch] text-[16px] leading-[1.82] text-[rgba(239,229,217,0.82)]">
-              Bitmiş bir projenizin yazışma dilimini paylaşın; 3 iş günü içinde o projenin
-              karar sicilini rapor olarak teslim edelim. Rapor işinize yaramazsa orada
-              biter — yararsa sürekli halini konuşuruz.
+              Bitmiş bir projenizin yazışma dilimini paylaşın; 3 iş gününde karar sicili
+              raporu gelsin. İşe yararsa sürekli halini konuşuruz.
             </p>
 
             <div className="reveal reveal-delay-3 flex flex-wrap gap-3">
@@ -80,8 +79,7 @@ export default function PilotCTA() {
             </div>
 
             <p className="reveal reveal-delay-4 mt-8 max-w-[46ch] text-[12.5px] leading-[1.75] text-[rgba(200,183,164,0.72)]">
-              Veriniz yalnız rapor üretimi için kullanılır, teslim sonrası imha edilir
-              ve yazılı olarak teyit edilir. Decdock izleme yapmaz.
+              İlk rapor deneme kapısıdır; satın alma kararı için baskı değil.
             </p>
           </div>
 
@@ -95,8 +93,8 @@ export default function PilotCTA() {
               },
               {
                 label: 'Çıktı',
-                value: 'Karar sicili: karar, onaylayan, tarih, alıntı',
-                sub: 'Kaynağa bağlı, denetlenebilir kayıtlar',
+                value: 'Karar sicili raporu',
+                sub: 'Kararlar, tarihler ve açık riskler',
               },
               {
                 label: 'Süre',

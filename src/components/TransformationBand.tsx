@@ -39,24 +39,20 @@ export default function TransformationBand() {
         aria-hidden="true"
         className="pointer-events-none absolute right-6 top-8 select-none font-display text-[120px] font-[700] leading-none text-[rgba(161,118,78,0.045)] lg:text-[160px]"
       >
-        01
+        00
       </span>
 
       <div className="relative mx-auto max-w-6xl px-6">
 
-        {/* Header — eyebrow + headline + one line of support text */}
+        {/* Header — eyebrow + one-line headline */}
         <div className="mb-12 text-center lg:mb-14">
           <div className="reveal eyebrow-plain">Tek bakışta</div>
           <h2
             className="reveal reveal-delay-1 mx-auto mb-4 font-display font-[640] leading-[1.04] tracking-[-0.035em] text-[var(--text-strong)]"
-            style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', maxWidth: '22ch' }}
+            style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', maxWidth: '25ch' }}
           >
-            Dağınık yazışmadan denetlenebilir sicile.
+            Dağınık yazışmadan, karar sanılanları ayıran denetlenebilir sicile.
           </h2>
-          <p className="reveal reveal-delay-2 mx-auto max-w-[52ch] text-[14px] leading-[1.8] text-[var(--text-body)]">
-            Decdock her yazışmayı bir doğrulama kapısından geçirir:
-            onaylananlar sicile, karar sanılanlar gerekçesiyle birlikte inceleme listesine gider.
-          </p>
         </div>
 
         {/* Diagram — full-width visual hero */}

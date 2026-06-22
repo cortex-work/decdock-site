@@ -8,24 +8,19 @@ interface FAQItem {
 
 const items: FAQItem[] = [
   {
-    question: 'Verimiz güvende mi? KVKK tarafı nasıl işliyor?',
+    question: 'Bu gözetim mi? KVKK ve veri imha tarafı nasıl işliyor?',
     answer:
-      'Decdock izleme sistemi değildir; yalnız sizin seçtiğiniz, bitmiş bir dilimi işler. Veri tek amaçla kullanılır (rapor üretimi), teslim sonrası ham veri imha edilir ve bu yazılı olarak teyit edilir. İK, disiplin ve hukuki ihtilaf içerikleri ilk dilimde zaten kabul edilmez.',
-  },
-  {
-    question: 'Çalışanlar bunu gözetim olarak algılamaz mı?',
-    answer:
-      'Sicil "kim ne yaptı"yı değil, "ne kararlaştırıldı"yı gösterir. Sahipsiz karar bulgusu bile kişiye değil sürece işaret eder. Decdock bir suçlama aracı değil, bağlam aracıdır — amaç geçmişi sorgulamak değil, kurumsal hafızayı korumaktır.',
+      'Decdock izleme sistemi değildir; yalnız seçtiğiniz, bitmiş bir dilimi rapor için işler. Sicil "kim ne yaptı"yı değil, "ne kararlaştırıldı"yı gösterir; teslim sonrası ham veri imha edilir ve yazılı teyit verilir.',
   },
   {
     question: 'Özet veya toplantı asistanları bunu zaten yapmıyor mu?',
     answer:
-      'Onlar "bu hafta ne konuşuldu?" sorusunu özetler; özet o anda tüketilir ve kaybolur. Decdock "ne kararlaştırıldı, kim onayladı, hâlâ geçerli mi?" sorusunun kalıcı ve denetlenebilir kaydını tutar — her kayıt kaynağındaki cümleye bağlıdır. Ayrıca öneriyi karardan ayırır; özet araçları bu ayrımı yapmaz.',
+      'Onlar "bu hafta ne konuşuldu?" sorusunu özetler. Decdock "ne kararlaştırıldı, kim onayladı, hâlâ geçerli mi?" sorusunun kalıcı sicilini tutar; öneriyi karardan ayırır.',
   },
   {
     question: 'Ya yanlış bir şeyi karar diye yazarsa?',
     answer:
-      'Emin olmadığını sicile yazmaz: her aday ikinci bir doğrulamadan geçer, onaylanmamış ifadeler sicil dışı kalır ve gerekçesi görünür olur. İlke basit: ya güvenilir biçimde vardır, ya gösterilmez.',
+      'Emin olmadığını sicile yazmaz: aday ikinci doğrulamadan geçer, onay yoksa gerekçesiyle dışarıda kalır.',
   },
 ]
 
@@ -75,8 +70,7 @@ export default function FAQ() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Bu dört soru her görüşmede geliyor — gelmesi de doğru. Kısa cevapları
-            burada, uzun cevapları görüşmede.
+            Kısa cevaplar burada.
           </p>
         </div>
 

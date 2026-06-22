@@ -12,28 +12,28 @@ const steps: StepCard[] = [
     step: '1',
     title: 'Bitmiş bir projenin yazışmalarını paylaşın',
     description:
-      'Tüm şirket verisi değil: bitmiş bir projenin 20–50 e-postalık dilimi yeter. Kurulum yok, entegrasyon yok, sistem erişimi yok.',
+      'Tüm şirket verisi değil: bitmiş bir projenin 20–50 e-postalık dilimi yeter.',
     tags: ['Seçili dilim', 'E-posta', 'Toplantı notları'],
   },
   {
     step: '2',
     title: 'Decdock karar sinyallerini çıkarır',
     description:
-      'Yazışmalardan karar, onaylayan, tarih ve bağlam sinyalleri çıkarılır — her biri kaynaktaki cümleye bağlı kalır.',
-    tags: ['Karar', 'Onaylayan', 'Kaynak alıntısı'],
+      'Karar, tarih ve bağlam sinyalleri insanın inceleyebileceği kayıt adaylarına dönüşür.',
+    tags: ['Karar', 'Tarih', 'Bağlam'],
   },
   {
     step: '3',
     title: '"Karar mı, karar sanılan mı?" ikinci geçiş',
     description:
-      'Her aday ikinci bir doğrulamadan geçer: bu gerçekten onaylanmış bir karar mı? Emin olunmayan sicile yazılmaz; gerekçesi görünür kalır.',
+      'Onay yoksa kayıt adayda kalır; sicile kesin gerçek gibi yazılmaz.',
     tags: ['Doğrulama', 'Sicil dışı adaylar'],
   },
   {
     step: '4',
     title: 'Karar sicili elinizde',
     description:
-      'İlk teslimat rapor olarak gelir. Sürekli versiyonda sicil aranabilir kalır, yeni kararlar kendiliğinden işlenir ve haftalık özet gelir.',
+      'İlk teslimat rapor olarak gelir; sürekli versiyonda sicil aranabilir kalır.',
     tags: ['Rapor', 'Aranabilir', 'Haftalık özet'],
   },
 ]
@@ -84,9 +84,7 @@ export default function HowItWorks() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[50ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Geniş kurumsal kurulum değil, odaklı bir dilim:
-            seçtiğiniz kaynaklar, incelenebilir sinyaller, kaynağa bağlı kayıtlar.
-            İlk değer 3 iş gününde elinizde olur.
+            Geniş kurulum değil; seçtiğiniz küçük dilimle ilk değer 3 iş gününde gelir.
           </p>
         </div>
 
