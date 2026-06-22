@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr-temp && node scripts/prerender.mjs",
+    "smoke:demo": "node scripts/smoke-demo-canli.mjs",
+    "build": "npm run smoke:demo && tsc && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr-temp && node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
