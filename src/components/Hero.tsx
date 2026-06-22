@@ -24,7 +24,7 @@ function MetaRow({ label, value, dot }: MetaRowProps) {
 
 function DecisionCard() {
   return (
-    <div className="relative select-none" aria-hidden="true">
+    <div className="relative">
       {/* Stacked card shadows */}
       <div
         className="pointer-events-none absolute inset-0 -z-10 rounded-[6px] border border-[var(--line-soft)] bg-[rgba(244,237,228,0.38)]"
@@ -43,21 +43,43 @@ function DecisionCard() {
         {/* Top sheen */}
         <div className="absolute inset-x-0 top-0 h-16 bg-[linear-gradient(180deg,rgba(255,252,248,0.5),transparent)]" />
 
-        {/* Stamp */}
-        <div
-          className="stamp-animate pointer-events-none absolute right-4 top-14 z-10 rounded-[3px] border-2 border-[rgba(92,117,96,0.55)] px-2 py-[3px] text-[9px] font-[800] uppercase tracking-[0.2em] text-[rgba(92,117,96,0.82)]"
-        >
-          Sicile işlendi
+        {/* Source thread */}
+        <div className="relative border-b border-[var(--line-soft)] px-5 py-4">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="text-[9.5px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
+              Kaynak · dağınık e-posta zinciri
+            </div>
+            <div
+              className="stamp-animate pointer-events-none shrink-0 rounded-[3px] border-2 border-[rgba(92,117,96,0.55)] px-2 py-[3px] text-[9px] font-[800] uppercase tracking-[0.2em] text-[rgba(92,117,96,0.82)]"
+            >
+              Sicile işlendi
+            </div>
+          </div>
+          <div className="space-y-2 rounded-[4px] border border-[var(--line-soft)] bg-[rgba(244,238,230,0.54)] px-3 py-3 font-mono text-[11px] leading-[1.55] text-[var(--text-muted)]">
+            <p><span className="font-[700] text-[var(--text-body)]">Selin:</span> Apollo lansmanı için pazarlama bütçesini netleştirelim.</p>
+            <p><span className="font-[700] text-[var(--text-body)]">Burak:</span> Finans uygun — kontrollü artış mantıklı.</p>
+            <p><span className="font-[700] text-[var(--text-body)]">Esra:</span> Onaylıyorum — pazarlama bütçesi %5 artışla kesinleşti.</p>
+          </div>
         </div>
 
-        {/* Header */}
+        {/* Transformation */}
+        <div className="relative flex items-center justify-center gap-2 border-b border-[var(--line-soft)] px-5 py-3">
+          <span aria-hidden="true" className="font-display text-[18px] leading-none text-[var(--accent)]">
+            ↓
+          </span>
+          <span className="rounded-[999px] border border-[rgba(161,118,78,0.22)] bg-[rgba(247,238,227,0.8)] px-3 py-1 text-[9.5px] font-[800] uppercase tracking-[0.14em] text-[var(--accent)]">
+            Decdock · okur, doğrular, işler
+          </span>
+        </div>
+
+        {/* Clean decision record */}
         <div className="relative flex items-center justify-between border-b border-[var(--line-soft)] px-5 py-3.5">
           <div>
             <div className="text-[9.5px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
               Karar kaydı · KD-2026-0312
             </div>
             <div className="mt-0.5 text-[11px] text-[var(--text-faint)]">
-              Tedarikçi seçimi &middot; 12 Mart 2026
+              Pazarlama bütçesi &middot; 12 Mart 2026
             </div>
           </div>
           <span className="rounded-[3px] border border-[rgba(92,117,96,0.22)] bg-[rgba(236,241,236,0.95)] px-2 py-0.5 text-[9.5px] font-[800] uppercase tracking-[0.1em] text-[var(--success)]">
@@ -65,19 +87,16 @@ function DecisionCard() {
           </span>
         </div>
 
-        {/* Decision text */}
         <div className="px-5 py-4">
           <p className="text-[14.5px] font-[640] leading-snug text-[var(--text-strong)]">
-            2026 lojistik sözleşmesi KargoPlus ile yapılacak; SLA taahhüdü ve Anadolu
-            kapsaması belirleyici oldu.
+            Pazarlama bütçesi 2026&apos;da %5 artırıldı.
           </p>
         </div>
 
-        {/* Meta rows */}
         <div className="space-y-2 border-t border-[var(--line-soft)] px-5 py-4">
-          <MetaRow label="Onaylayan" value="Murat Aksoy — Operasyon Direktörü" dot="green" />
-          <MetaRow label="Kaynak" value="E-posta zinciri — Tedarikçi seçimi" />
+          <MetaRow label="Onaylayan" value="Esra Tekin — CFO" dot="green" />
           <MetaRow label="Tarih" value="12 Mart 2026" />
+          <MetaRow label="Kaynak" value="E-posta zinciri — Pazarlama bütçesi" />
         </div>
 
         {/* Source quote */}
@@ -86,14 +105,23 @@ function DecisionCard() {
             Kaynak alıntısı
           </div>
           <p className="border-l-2 border-[var(--accent-soft)] pl-3 text-[11.5px] italic leading-[1.65] text-[var(--text-body)]">
-            "Karar verildi: 2026 sözleşmesini KargoPlus ile yapıyoruz. SLA taahhüdü ve
-            Anadolu kapsaması belirleyici oldu. Onaylıyorum."
+            "…pazarlama bütçesi %5 artışla kesinleşti."
+          </p>
+          <p className="mt-3 text-[10.5px] font-[650] uppercase tracking-[0.12em] text-[var(--text-faint)]">
+            kaynaktaki cümleye birebir bağlı
           </p>
         </div>
 
         {/* Ledger-line footer texture */}
         <div className="h-[3px] bg-[linear-gradient(90deg,var(--accent-soft),transparent_80%)]" />
       </div>
+
+      <a
+        href="/demo-canli/"
+        className="btn-primary mt-4 flex w-full items-center justify-center px-5 py-3 text-center text-[13px]"
+      >
+        Bunun gibi onlarcasını canlı demoda gör →
+      </a>
     </div>
   )
 }
@@ -175,31 +203,17 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Live surfaces */}
-            <div className="reveal reveal-delay-3 mb-10 grid max-w-[620px] gap-3 sm:grid-cols-2">
+            {/* Live graph */}
+            <div className="reveal reveal-delay-3 mb-10 max-w-[310px]">
               <a
                 href="/karar-grafi/"
-                className="group rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
+                className="group block rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
               >
                 <span className="block text-[10px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
                   Karar Grafı
                 </span>
                 <span className="mt-1 flex items-center justify-between gap-3 text-[13px] font-[680] text-[var(--accent)]">
                   Kararların ağını canlı gör
-                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-              </a>
-              <a
-                href="/demo-canli/"
-                className="group rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
-              >
-                <span className="block text-[10px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
-                  Canlı Demo
-                </span>
-                <span className="mt-1 flex items-center justify-between gap-3 text-[13px] font-[680] text-[var(--accent)]">
-                  Çalışan sicili gez
                   <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -214,7 +228,7 @@ export default function Hero() {
           </div>
 
           {/* Right column — artifact card */}
-          <div className="reveal reveal-delay-2 hidden lg:block">
+          <div className="reveal reveal-delay-2 mx-auto w-full max-w-[440px] lg:block">
             <DecisionCard />
           </div>
         </div>
