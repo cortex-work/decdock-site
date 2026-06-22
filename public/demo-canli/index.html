@@ -63,8 +63,11 @@
   .scrim.open{opacity:1;pointer-events:auto;}
   .panel{position:fixed;top:0;right:0;height:100%;width:min(520px,94vw);background:var(--page);border-left:1px solid var(--line2);box-shadow:-20px 0 50px rgba(40,32,24,.18);transform:translateX(100%);transition:transform .2s cubic-bezier(.22,1,.36,1);z-index:50;overflow-y:auto;}
   .panel.open{transform:translateX(0);}
-  .panel-in{padding:24px 26px 44px;}
+  .panel-in{padding:24px 26px 44px;transition:opacity .12s ease;}
+  .panel-in.fade{opacity:0;}
   .panel .close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;z-index:2;}
+  .crumb{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:0;background:none;border:none;font:inherit;font-size:12px;font-weight:700;color:var(--accent-d);cursor:pointer;}
+  .crumb:hover{text-decoration:underline;}
   .panel h2{font-family:'Newsreader',serif;font-size:20px;font-weight:600;color:var(--ink);line-height:1.25;margin:8px 40px 14px 0;}
   .kv{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;}
   .kv .k{width:96px;flex:0 0 auto;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
@@ -78,8 +81,21 @@
   .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line2);background:var(--pane);border-radius:8px;padding:11px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;transition:all .12s;}
   .btn:hover{border-color:var(--accent);background:#fff;}
   .btn .arr{color:var(--accent);}
-  .btn.chain{border-color:rgba(156,110,68,.4);background:rgba(156,110,68,.06);color:var(--accent-d);}
   .btn .sub{font-size:11px;font-weight:500;color:var(--muted);display:block;margin-top:2px;}
+  .sec{margin-top:18px;} .sec-h{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);margin-bottom:8px;}
+  .rel{border:1px solid var(--line);border-radius:8px;background:var(--pane);padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:border-color .12s,background .12s,transform .12s;}
+  .rel:hover{border-color:var(--accent);background:#fff;transform:translateX(-1px);}
+  .rel.danger{border-color:rgba(169,68,54,.46);background:rgba(169,68,54,.055);}
+  .rel.ok{border-color:rgba(92,117,96,.34);background:rgba(92,117,96,.065);}
+  .rel.fill{border-color:rgba(169,68,54,.62);background:rgba(169,68,54,.11);}
+  .rel-line{display:grid;grid-template-columns:22px minmax(78px,.72fr) 1fr 12px;align-items:center;gap:8px;}
+  .rel .rg{font-size:15px;font-weight:800;color:var(--accent);line-height:1;}
+  .rel.danger .rg,.rel.danger .rv{color:var(--danger);}
+  .rel.ok .rg,.rel.ok .rv{color:var(--success);}
+  .rel .rv{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+  .rel .rx{font-size:12.8px;color:var(--ink);font-weight:680;line-height:1.35;}
+  .rel .chev{font-size:18px;color:var(--accent);line-height:1;}
+  .rel .rr{padding-left:30px;font-size:11.5px;color:var(--muted);font-style:italic;margin-top:5px;line-height:1.45;}
   /* source view */
   .src-head{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
   .src-sub{font-family:'Newsreader',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;}
@@ -230,12 +246,12 @@ const DATA = [
   {id:'ref2',kind:'karar',st:'aday',d:"İade limiti 1000₺ olsun",o:"Deniz Koç",os:"extraction",c:"medium",sk:'refund',hl:'"Limiti 1.000₺’ye çeksek?" — öneri, onay yok.',r:"Limit değişikliği öneri olarak kaldı; politika değişikliği onaylanmadı."},
   {id:'pol-hire',kind:'politika',st:'onayli',d:"İşe alım: CFO onayı şart",o:"Esra Tekin",os:"policy",c:"high",sk:'hire',hl:'"İstisnasız tüm işe alımlar CFO onayından geçer." — işe alım politikası.'},
   {id:'h1',kind:'karar',st:'onayli',d:"Destek ekibine 2 kişi",o:"Mert Demir (İK)",os:"ratifier",c:"high",sk:'hire',hl:'"İki destek temsilcisi için onay verildi." — Mert.'},
-  {id:'h2',kind:'karar',st:'onayli',d:"İşe alım donduruldu",o:"Esra Tekin",os:"ratifier",c:"high",sk:'hire',hl:'"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.',chainTo:'h1',chainLabel:"Önceki destek alımı kararını geçersiz kılar"},
-  {id:'hire-viol',kind:'karar',st:'onayli',d:"Stajyer alındı (CFO onayı yok)",o:"Selin Aydın",os:"ratifier",c:"high",sk:'hire',hl:'"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.',violates:'pol-hire',violationLabel:'İşe alım: CFO onayı şart',chainTo:'h2',chainLabel:"Alım dondurma kararıyla çelişiyor"},
+  {id:'h2',kind:'karar',st:'onayli',d:"İşe alım donduruldu",o:"Esra Tekin",os:"ratifier",c:"high",sk:'hire',hl:'"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.',chainTo:'h1',relType:'supersedes',chainLabel:"Önceki destek alımı kararını geçersiz kılar"},
+  {id:'hire-viol',kind:'karar',st:'onayli',d:"Stajyer alındı (CFO onayı yok)",o:"Selin Aydın",os:"ratifier",c:"high",sk:'hire',hl:'"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.',violates:'pol-hire',violationLabel:'İşe alım: CFO onayı şart',chainTo:'h2',relType:'conflicts',chainLabel:"Alım dondurma kararıyla çelişiyor"},
   {id:'str-cost',kind:'karar',st:'onayli',d:"2026: Maliyet disiplini",o:"Esra Tekin (CFO)",os:"ratifier",c:"high",sk:'budget',hl:'"2026 maliyet disiplini yılı — her harcama bu çerçevede değerlendirilecek." — yönetim kararı.'},
   {id:'b1',kind:'karar',st:'onayli',d:"Pazarlama bütçesi %5 artırıldı",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Pazarlama bütçesi %5 artışla kesinleşti." — Esra.'},
   {id:'b2',kind:'karar',st:'aday',d:"Pazarlama %10 kısılsın",o:"Selin Aydın",os:"extraction",c:"medium",sk:'budget',hl:'"%10 kısabiliriz bence…" — öneri olarak kaldı, kimse onaylamadı.',r:"Onaylı %5 artışla çelişen bir senaryo önerisi; karar olarak ratife edilmedi."},
-  {id:'b3',kind:'karar',st:'onayli',d:"Yıllık etkinlik iptal",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.',chainTo:'str-cost',chainLabel:"Maliyet disiplini kararına dayanıyor"},
+  {id:'b3',kind:'karar',st:'onayli',d:"Yıllık etkinlik iptal",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.',chainTo:'str-cost',relType:'depends_on',chainLabel:"Maliyet disiplini kararına dayanıyor"},
   {id:'pol-deploy',kind:'politika',st:'onayli',d:"Deploy: cuma 16:00 sonrası yok",o:"Can Yıldız",os:"policy",c:"high",sk:'deploy',hl:'"Cuma 16:00’dan sonra prod’a deploy yapılmaz." — mühendislik politikası.'},
   {id:'dep1',kind:'karar',st:'onayli',d:"v2.3 cuma 17:30 yayına alındı",o:"Can Yıldız",os:"ratifier",c:"high",sk:'deploy',hl:'"v2.3’ü cuma akşam çıktık, acildi." — 16:00 kuralından sonra.',violates:'pol-deploy',violationLabel:'Deploy: cuma 16:00 sonrası yok'},
 ];
@@ -245,6 +261,15 @@ const confTr=c=>({high:'yüksek',medium:'orta',low:'düşük'}[c]||c);
 let filter='all',query='';
 const FILTERS=[['all','Tümü'],['onayli','Onaylı karar'],['aday','İnceleme adayı'],['politika','Politika'],['violation','⚠ İhlal'],['chain','⛓ Zincirli']];
 const byId=Object.fromEntries(DATA.map((it,i)=>[it.id,{...it,i}]));
+const navStack=[];
+const REL={
+  depends_on:{out:['→','dayanıyor',''],in:['←','dayanak oldu','']},
+  references:{out:['→','atıf veriyor',''],in:['←','atıf alıyor','']},
+  supersedes:{out:['→','geri aldı',''],in:['←','geri alındı','']},
+  conflicts:{out:['↔','çelişiyor','danger'],in:['↔','çelişiyor','danger']},
+  complies_with:{out:['✓','uyuyor','ok'],in:['←','uyan karar','ok']},
+  violates:{out:['⚠','ihlal ediyor','danger'],in:['⚠','ihlal eden','danger fill']},
+};
 
 function matches(it){
   if(filter==='onayli'&&(it.st!=='onayli'||it.kind==='politika'))return false;
@@ -284,19 +309,40 @@ function renderList(){
         <span class="badge conf">${confTr(it.c)} güven</span>
       </div>
     </div>`).join('');
-  document.querySelectorAll('.row').forEach(r=>r.onclick=()=>openDetail(+r.dataset.i));
+  document.querySelectorAll('.row').forEach(r=>r.onclick=()=>openDetail(+r.dataset.i,{reset:true}));
 }
-function openDetail(i){
+function relSpec(edge,id){
+  const outgoing=edge.from===id, target=byId[outgoing?edge.to:edge.from], spec=REL[edge.type][outgoing?'out':'in'];
+  return {target,glyph:spec[0],verb:spec[1],tone:spec[2],why:edge.why};
+}
+function relationEdges(it){
+  const edges=[];
+  if(it.chainTo!==undefined) edges.push({from:it.id,to:it.chainTo,type:it.relType||'references',why:it.chainLabel});
+  if(it.violates!==undefined) edges.push({from:it.id,to:it.violates,type:'violates',why:`“${it.violationLabel}” politikasını ihlal ediyor`});
+  DATA.forEach(other=>{
+    if(other.id===it.id)return;
+    if(other.chainTo===it.id) edges.push({from:other.id,to:it.id,type:other.relType||'references',why:other.chainLabel});
+    if(other.violates===it.id) edges.push({from:other.id,to:it.id,type:'violates',why:`“${it.d}” politikasını ihlal ediyor`});
+  });
+  return edges;
+}
+function renderRelations(it){
+  const rows=relationEdges(it).map(edge=>relSpec(edge,it.id));
+  if(!rows.length) return '<div class="empty" style="padding:14px 0;text-align:left">—</div>';
+  return rows.map(r=>`<div class="rel ${r.tone}" data-go="${r.target.id}">
+    <div class="rel-line"><span class="rg">${r.glyph}</span><span class="rv">${ESC(r.verb)}</span><span class="rx">${ESC(r.target.d)}</span><span class="chev">›</span></div>
+    ${r.why?`<div class="rr">${ESC(r.why)}</div>`:''}
+  </div>`).join('');
+}
+function renderDetail(i){
   const it=DATA[i];
-  const target=it.chainTo!==undefined?byId[it.chainTo]:undefined;
-  const chainBtn=target!==undefined
-    ? `<button class="btn chain" onclick="openDetail(${target.i})">⛓ ${ESC(it.chainLabel)}<span class="sub">${ESC(target.d)}</span></button>`
-    : '';
+  const prev=navStack.length?byId[navStack[navStack.length-1]]:null;
   const violationNote=it.violates
     ? `<div class="violation-note"><b>Politika ihlali:</b>“${ESC(it.violationLabel)}” politikasını ihlal ediyor.</div>`
     : '';
   document.getElementById('panelIn').innerHTML=`
     <button class="close" id="closeBtn" aria-label="Kapat">×</button>
+    ${prev?`<button class="crumb" id="crumb">↩ geldiğin: ${ESC(prev.d)}</button>`:''}
     ${it.kind==='politika'?'<span class="badge politika">Politika</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>`}
     ${it.violates?'<span class="badge violation" style="margin-left:6px">İhlal</span>':''}
     <h2>${ESC(it.d)}</h2>
@@ -307,13 +353,22 @@ function openDetail(i){
     <div class="quote">${ESC(it.hl)}</div>
     ${it.st==='aday'?`<div class="reason"><b>Neden sicile girmedi (aday):</b>${ESC(it.r)}</div>`:''}
     ${violationNote}
+    <div class="sec"><div class="sec-h">Bağlantılar</div>${renderRelations(it)}</div>
     <div class="actions">
       <button class="btn" onclick="openSource(${i})">📄 Kaynağı aç — e-postada vurgulu gör <span class="arr">→</span></button>
-      ${chainBtn}
     </div>`;
   document.getElementById('closeBtn').onclick=closeDetail;
+  const crumb=document.getElementById('crumb');
+  if(crumb) crumb.onclick=()=>{const prevId=navStack.pop(); if(prevId) openDetail(byId[prevId].i,{back:true});};
+  document.querySelectorAll('#panelIn [data-go]').forEach(el=>el.onclick=()=>openDetail(byId[el.dataset.go].i,{from:it.id}));
+}
+function openDetail(i,opts={}){
+  if(opts.reset) navStack.length=0;
+  if(opts.from) navStack.push(opts.from);
+  const panelIn=document.getElementById('panelIn');
+  const draw=()=>{renderDetail(i);panelIn.classList.remove('fade');panelIn.scrollTop=0;};
+  if(document.getElementById('panel').classList.contains('open')){panelIn.classList.add('fade');setTimeout(draw,120);} else draw();
   showPanel();
-  document.getElementById('panelIn').scrollTop=0;
 }
 function openSource(i){
   const it=DATA[i], s=SOURCES[it.sk];
@@ -331,7 +386,7 @@ function openSource(i){
   const m=document.getElementById('hlmark'); if(m) m.scrollIntoView({block:'center'});
 }
 function showPanel(){document.getElementById('panel').classList.add('open');document.getElementById('panel').setAttribute('aria-hidden','false');document.getElementById('scrim').classList.add('open');}
-function closeDetail(){document.getElementById('panel').classList.remove('open');document.getElementById('panel').setAttribute('aria-hidden','true');document.getElementById('scrim').classList.remove('open');}
+function closeDetail(){navStack.length=0;document.getElementById('panel').classList.remove('open');document.getElementById('panel').setAttribute('aria-hidden','true');document.getElementById('scrim').classList.remove('open');}
 document.getElementById('scrim').onclick=closeDetail;
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 document.getElementById('q').addEventListener('input',e=>{query=e.target.value;renderList();});

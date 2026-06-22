@@ -55,7 +55,9 @@
   .edge.complies_with{stroke:var(--success);stroke-dasharray:1 5;stroke-width:1.4;opacity:.4;}
   .edge.violates{stroke:var(--danger);stroke-width:2.4;opacity:.82;}
   .edge.glow{opacity:1;stroke-width:2.8;}
+  .edge.flash{opacity:1;stroke-width:4;filter:drop-shadow(0 0 5px rgba(156,110,68,.62));}
   .edge.violates.glow{stroke-width:3.4;}
+  .edge.violates.flash{stroke-width:4.8;filter:drop-shadow(0 0 6px rgba(168,80,61,.7));}
   .edge.dim{opacity:.05;}
   /* nodes */
   .node{transition:opacity .18s;}
@@ -80,8 +82,11 @@
   .scrim.open{opacity:1;pointer-events:auto;}
   .panel{position:fixed;top:0;right:0;height:100%;width:min(440px,94vw);background:var(--page);border-left:1px solid var(--line2);box-shadow:-20px 0 50px rgba(40,32,24,.18);transform:translateX(100%);transition:transform .2s cubic-bezier(.22,1,.36,1);z-index:50;overflow-y:auto;}
   .panel.open{transform:translateX(0);}
-  .panel-in{padding:24px 26px 44px;}
+  .panel-in{padding:24px 26px 44px;transition:opacity .12s ease;}
+  .panel-in.fade{opacity:0;}
   .panel .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;}
+  .crumb{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:0;background:none;border:none;font:inherit;font-size:12px;font-weight:700;color:var(--accent-d);cursor:pointer;}
+  .crumb:hover{text-decoration:underline;}
   .pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:3px 10px;margin:0 6px 10px 0;}
   .pill.ratified{color:var(--success);background:rgba(92,117,96,.13);border:1px solid rgba(92,117,96,.3);}
   .pill.candidate{color:var(--accent-d);background:rgba(156,110,68,.13);border:1px solid rgba(156,110,68,.3);}
@@ -93,13 +98,19 @@
   .kv .k{width:80px;flex:0 0 auto;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding-top:2px;}
   .kv .v{color:var(--ink);font-weight:560;}
   .sec{margin-top:18px;} .sec-h{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);margin-bottom:8px;}
-  .rel{border:1px solid var(--line);border-radius:8px;background:var(--pane);padding:9px 12px;margin-bottom:7px;cursor:pointer;transition:border-color .12s;}
-  .rel:hover{border-color:var(--accent);}
-  .rel.v{border-color:rgba(168,80,61,.5);background:rgba(168,80,61,.05);}
-  .rel .rt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);}
-  .rel.v .rt{color:var(--danger);}
-  .rel .rx{font-size:12.5px;color:var(--ink);font-weight:560;margin-top:2px;}
-  .rel .rr{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px;}
+  .rel{border:1px solid var(--line);border-radius:8px;background:var(--pane);padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:border-color .12s,background .12s,transform .12s;}
+  .rel:hover{border-color:var(--accent);transform:translateX(-1px);}
+  .rel.danger{border-color:rgba(168,80,61,.46);background:rgba(168,80,61,.055);}
+  .rel.ok{border-color:rgba(92,117,96,.34);background:rgba(92,117,96,.065);}
+  .rel.fill{border-color:rgba(168,80,61,.62);background:rgba(168,80,61,.11);}
+  .rel-line{display:grid;grid-template-columns:22px minmax(78px,.72fr) 1fr 12px;align-items:center;gap:8px;}
+  .rel .rg{font-size:15px;font-weight:800;color:var(--accent);line-height:1;}
+  .rel.danger .rg,.rel.danger .rv{color:var(--danger);}
+  .rel.ok .rg,.rel.ok .rv{color:var(--success);}
+  .rel .rv{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+  .rel .rx{font-size:12.8px;color:var(--ink);font-weight:680;line-height:1.35;}
+  .rel .chev{font-size:18px;color:var(--accent);line-height:1;}
+  .rel .rr{padding-left:30px;font-size:11.5px;color:var(--muted);font-style:italic;margin-top:5px;line-height:1.45;}
   .empty{font-size:12.5px;color:var(--muted);}
   .cta{margin-top:22px;border:1px solid var(--accent);border-radius:12px;background:rgba(156,110,68,.06);padding:14px 16px;font-size:13px;line-height:1.6;} .cta b{color:var(--accent-d);}
   .cta.viol{border-color:var(--danger);background:rgba(168,80,61,.07);} .cta.viol b{color:var(--danger);}
@@ -113,7 +124,7 @@
     <span class="demo-tag">Karar Grafı · temsili veri</span>
   </div>
   <h1>Kararlar ve politikalar tek tek yaşamaz — birbirini etkiler.</h1>
-  <p class="dek">Bir şirketin birkaç aylık kararları ve <b>duran kuralları</b>, tek bir <b>ağ</b> olarak. <b>Daire</b> = karar, <b>kare</b> = politika. Renk = durum, büyüklük = kaç düğüme bağlı. Politikalar doğal <b>merkez</b>lerdir: bir politika onlarca kararı yönetir — kararlar ona <b>uyabilir</b> ya da <b>ihlal</b> edebilir (kırmızı). Bir düğümün <b>üstüne gelin</b> → bağlantılıları parlar; <b>tıklayın</b> → ileri etkisi ve geri soyağacı açılır.</p>
+  <p class="dek">Bir şirketin birkaç aylık kararları ve <b>duran kuralları</b>, tek bir <b>ağ</b> olarak. <b>Daire</b> = karar, <b>kare</b> = politika. Renk = durum, büyüklük = kaç düğüme bağlı. Politikalar doğal <b>merkez</b>lerdir: bir politika onlarca kararı yönetir — kararlar ona <b>uyabilir</b> ya da <b>ihlal</b> edebilir (kırmızı). Bir düğümün <b>üstüne gelin</b> → bağlantılıları parlar; <b>tıklayın</b> → yönlü <b>Bağlantılar</b> açılır.</p>
 
   <div class="filters" id="filters">
     <span class="fl">Görünüm</span>
@@ -282,6 +293,7 @@
   ];
 
   const byId = Object.fromEntries(NODES.map(n=>[n.id,n]));
+  const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const NS='http://www.w3.org/2000/svg';
   const svg=document.getElementById('graph');
   const gEdges=document.getElementById('edges'), gNodes=document.getElementById('nodes');
@@ -343,41 +355,69 @@
     if(frames<800 && energy>0.03) requestAnimationFrame(tick); else running=false;
   }
 
-  let selected=null;
+  let selected=null, activeEdgeKey=null, edgeFlashTimer=null;
+  const navStack=[];
+  const REL={
+    depends_on:{out:['→','dayanıyor',''],in:['←','dayanak oldu','']},
+    references:{out:['→','atıf veriyor',''],in:['←','atıf alıyor','']},
+    supersedes:{out:['→','geri aldı',''],in:['←','geri alındı','']},
+    conflicts:{out:['↔','çelişiyor','danger'],in:['↔','çelişiyor','danger']},
+    complies_with:{out:['✓','uyuyor','ok'],in:['←','uyan karar','ok']},
+    violates:{out:['⚠','ihlal ediyor','danger'],in:['⚠','ihlal eden','danger fill']},
+  };
+  const edgeKey=e=>e.from+'|'+e.to+'|'+e.type;
   function hi(id){ const keep=new Set([id]); if(id) nbr[id].forEach(x=>keep.add(x));
     nodeEls.forEach(({n,g})=>{ if(n.hidden)return; g.classList.toggle('dim', id&&!keep.has(n.id)); g.classList.toggle('glow', id&&keep.has(n.id)); });
-    edgeEls.forEach(({e,ln})=>{ if(byId[e.from].hidden||byId[e.to].hidden)return; const on=id&&(e.from===id||e.to===id); ln.classList.toggle('glow',!!on); ln.classList.toggle('dim', id&&!on); }); }
-  function clearHi(){ if(selected){hi(selected);return;} nodeEls.forEach(({g})=>g.classList.remove('dim','glow')); edgeEls.forEach(({ln})=>ln.classList.remove('glow','dim')); }
+    edgeEls.forEach(({e,ln})=>{ if(byId[e.from].hidden||byId[e.to].hidden)return; const on=id&&(e.from===id||e.to===id); ln.classList.toggle('glow',!!on); ln.classList.toggle('flash',activeEdgeKey===edgeKey(e)); ln.classList.toggle('dim', id&&!on); }); }
+  function clearHi(){ if(selected){hi(selected);return;} nodeEls.forEach(({g})=>g.classList.remove('dim','glow')); edgeEls.forEach(({ln})=>ln.classList.remove('glow','dim','flash')); }
 
   const scrim=document.getElementById('scrim'),panel=document.getElementById('panel'),pin=document.getElementById('panel-in');
   const ST={ratified:'Onaylı',candidate:'Aday — karar sanılan',ownerless:'Sahipsiz',stale:'Bayat / geri-alınmış'};
-  const RT={depends_on:'dayanıyor',references:'referans',supersedes:'geri-alıyor',conflicts:'çeliştiriyor',complies_with:'uyuyor',violates:'İHLAL EDİYOR'};
-  function open(id){ const n=byId[id]; selected=id; const isPol=n.kind==='policy';
-    nodeEls.forEach(({n:nn,g})=>g.classList.toggle('sel',nn.id===id)); hi(id);
-    const fwd=EDGES.filter(e=>e.to===id).map(e=>({o:byId[e.from],t:e.type,w:e.why}));
-    const back=EDGES.filter(e=>e.from===id).map(e=>({o:byId[e.to],t:e.type,w:e.why}));
+  function relationFor(e,id){
+    const outgoing=e.from===id, target=byId[outgoing?e.to:e.from], spec=REL[e.type][outgoing?'out':'in'];
+    return {target,glyph:spec[0],verb:spec[1],tone:spec[2],why:e.why,key:edgeKey(e)};
+  }
+  function relRows(id){
+    const rows=EDGES.filter(e=>e.from===id||e.to===id).map(e=>relationFor(e,id));
+    if(!rows.length) return '<div class="empty">—</div>';
+    return rows.map(r=>'<div class="rel '+r.tone+'" data-go="'+r.target.id+'" data-edge="'+r.key+'">'+
+      '<div class="rel-line"><span class="rg">'+r.glyph+'</span><span class="rv">'+ESC(r.verb)+'</span><span class="rx">'+ESC(r.target.label)+'</span><span class="chev">›</span></div>'+
+      (r.why?'<div class="rr">'+ESC(r.why)+'</div>':'')+'</div>').join('');
+  }
+  function renderPanel(id){
+    const n=byId[id]; const isPol=n.kind==='policy';
     const myViol=EDGES.filter(e=>e.type==='violates'&&e.from===id).map(e=>byId[e.to]);
     const violatedBy=EDGES.filter(e=>e.type==='violates'&&e.to===id).map(e=>byId[e.from]);
-    const rel=a=>a.length?a.map(r=>'<div class="rel'+(r.t==='violates'?' v':'')+'" data-go="'+r.o.id+'"><div class="rt">'+RT[r.t]+'</div><div class="rx">'+r.o.label+'</div><div class="rr">'+r.w+'</div></div>').join(''):'<div class="empty">—</div>';
-    const fwdH = isPol? 'Bu politikaya bağlı kararlar' : 'İleri etki — neyi tetikledi / etkiledi';
-    const backH = isPol? 'İlgili politikalar / dayanak' : 'Geri soyağacı — neye dayanıyor';
+    const prev=navStack.length?byId[navStack[navStack.length-1]]:null;
     pin.innerHTML='<button class="close" id="cl">×</button>'+
-      '<span class="pill kind">'+(isPol?'Politika':'Karar')+'</span><span class="pill '+n.status+'">'+ST[n.status]+'</span><h2>'+n.label+'</h2>'+
-      '<div class="kv"><div class="k">Sahip</div><div class="v">'+(n.owner||'—')+'</div></div>'+
-      '<div class="kv"><div class="k">Tarih</div><div class="v">'+n.date+'</div></div>'+
-      '<div class="kv"><div class="k">Kaynak</div><div class="v" style="font-style:italic;color:var(--body)">'+n.quote+'</div></div>'+
-      '<div class="sec"><div class="sec-h">'+fwdH+'</div>'+rel(fwd)+'</div>'+
-      '<div class="sec"><div class="sec-h">'+backH+'</div>'+rel(back)+'</div>'+
-      (myViol.length? '<div class="cta viol">Bu karar, <b>“'+myViol[0].label+'”</b> politikasını <b>ihlal ediyor</b>. Liste görünümü bunu yakalamaz — graf yakalar.</div>':
+      (prev?'<button class="crumb" id="crumb">↩ geldiğin: '+ESC(prev.label)+'</button>':'')+
+      '<span class="pill kind">'+(isPol?'Politika':'Karar')+'</span><span class="pill '+n.status+'">'+ST[n.status]+'</span><h2>'+ESC(n.label)+'</h2>'+
+      '<div class="kv"><div class="k">Sahip</div><div class="v">'+ESC(n.owner||'—')+'</div></div>'+
+      '<div class="kv"><div class="k">Tarih</div><div class="v">'+ESC(n.date)+'</div></div>'+
+      '<div class="kv"><div class="k">Kaynak</div><div class="v" style="font-style:italic;color:var(--body)">'+ESC(n.quote)+'</div></div>'+
+      '<div class="sec"><div class="sec-h">Bağlantılar</div>'+relRows(id)+'</div>'+
+      (myViol.length? '<div class="cta viol">Bu karar, <b>“'+ESC(myViol[0].label)+'”</b> politikasını <b>ihlal ediyor</b>. Liste görünümü bunu yakalamaz — graf yakalar.</div>':
        isPol&&violatedBy.length? '<div class="cta viol">Bu politika <b>'+violatedBy.length+' kararca ihlal edildi</b>. Hangi kararlar olduğu yukarıda kırmızıyla işaretli.</div>':
        isPol? '<div class="cta">Bu bir <b>politika</b> (duran kural). Altındaki kararlar buna <b>uyabilir</b> ya da <b>ihlal</b> edebilir — Decdock ikisini ayırır ve ihlalleri yakalar.</div>':
        n.status==='stale'? '<div class="cta">Bu karar sonradan <b>sessizce geri alındı</b> — kırmızı bağ bunu yakalar. Liste görünümü kaçırır.</div>':
        n.status==='candidate'? '<div class="cta">Bu bir <b>karar sanılan</b>: konuşuldu ama onaylanmadı. Sicile girmez, ayrı durur.</div>':
        n.status==='ownerless'? '<div class="cta">Kararlaştı ama <b>sahibi net değil</b> — sessizce düşen iş buradan çıkar.</div>':'');
     document.getElementById('cl').onclick=close;
-    pin.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>open(el.dataset.go));
+    const crumb=document.getElementById('crumb');
+    if(crumb) crumb.onclick=()=>{ const prevId=navStack.pop(); if(prevId) open(prevId,{back:true}); };
+    pin.querySelectorAll('[data-go]').forEach(el=>el.onclick=()=>open(el.dataset.go,{from:id,edge:el.dataset.edge}));
+  }
+  function open(id,opts={}){ const n=byId[id]; if(!n)return;
+    if(opts.reset) navStack.length=0;
+    if(opts.from) navStack.push(opts.from);
+    selected=id; activeEdgeKey=opts.edge||null;
+    if(edgeFlashTimer) clearTimeout(edgeFlashTimer);
+    if(activeEdgeKey) edgeFlashTimer=setTimeout(()=>{activeEdgeKey=null;hi(selected);},850);
+    nodeEls.forEach(({n:nn,g})=>g.classList.toggle('sel',nn.id===id)); hi(id);
+    const draw=()=>{renderPanel(id);pin.classList.remove('fade');pin.scrollTop=0;};
+    if(panel.classList.contains('open')){pin.classList.add('fade');setTimeout(draw,120);} else draw();
     scrim.classList.add('open');panel.classList.add('open'); }
-  function close(){ selected=null;scrim.classList.remove('open');panel.classList.remove('open');
+  function close(){ selected=null;activeEdgeKey=null;navStack.length=0;scrim.classList.remove('open');panel.classList.remove('open');
     nodeEls.forEach(({g})=>g.classList.remove('sel'));clearHi(); }
   scrim.onclick=close;
 
@@ -394,8 +434,8 @@
     chips.forEach(c=>c.classList.toggle('on',c.dataset.f===name));
     NODES.forEach(n=>{ n.hidden=!visible(n,name); });
     nodeEls.forEach(({n,g})=>{ g.style.display=n.hidden?'none':''; g.classList.remove('dim','glow','sel'); });
-    edgeEls.forEach(({e,ln})=>{ ln.style.display=(byId[e.from].hidden||byId[e.to].hidden)?'none':''; ln.classList.remove('dim','glow'); });
-    if(selected && byId[selected].hidden){ selected=null;scrim.classList.remove('open');panel.classList.remove('open'); }
+    edgeEls.forEach(({e,ln})=>{ ln.style.display=(byId[e.from].hidden||byId[e.to].hidden)?'none':''; ln.classList.remove('dim','glow','flash'); });
+    if(selected && byId[selected].hidden){ selected=null;activeEdgeKey=null;navStack.length=0;scrim.classList.remove('open');panel.classList.remove('open'); }
     const live=NODES.filter(n=>!n.hidden); seed(live);
     for(let i=0;i<220;i++) step();
     running=true; frames=0; requestAnimationFrame(tick); }
@@ -407,7 +447,7 @@
     g.addEventListener('mouseenter',()=>{ if(!selected&&!n.hidden)hi(n.id); });
     g.addEventListener('mouseleave',clearHi);
     g.addEventListener('pointerdown',ev=>{ ev.preventDefault();drag={n,moved:false};n.fixed=true;g.setPointerCapture(ev.pointerId);svg.style.cursor='grabbing'; kick(); });
-    g.addEventListener('click',ev=>{ ev.stopPropagation(); if(drag&&drag.moved)return; open(n.id); }); });
+    g.addEventListener('click',ev=>{ ev.stopPropagation(); if(drag&&drag.moved)return; open(n.id,{reset:true}); }); });
   svg.addEventListener('pointermove',ev=>{ if(!drag)return; const p=pt(ev);drag.n.x=p.x;drag.n.y=p.y;drag.n.vx=0;drag.n.vy=0;drag.moved=true; kick(); });
   function end(){ if(!drag)return;drag.n.fixed=false;drag=null;svg.style.cursor='grab'; }
   svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
@@ -417,7 +457,7 @@
   requestAnimationFrame(tick);
   const params=new URLSearchParams(location.search);
   const vw=params.get('view'); if(vw&&chips.some(c=>c.dataset.f===vw)) applyFilter(vw);
-  const q=params.get('open'); if(q&&byId[q]) open(q);
+  const q=params.get('open'); if(q&&byId[q]) open(q,{reset:true});
 })();
 </script>
 </body>
