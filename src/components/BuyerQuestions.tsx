@@ -66,7 +66,7 @@ export default function BuyerQuestions() {
             </h2>
           </div>
           <p className="reveal reveal-delay-2 max-w-[56ch] text-[14.5px] leading-[1.8] text-[var(--text-body)] lg:pb-1">
-            Kısa çerçeve.
+            Önce karar kaybının nerede olduğunu, verinin nerede duracağını ve kimin neyi göreceğini netleştiririz.
           </p>
         </div>
 
