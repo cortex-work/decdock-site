@@ -82,20 +82,33 @@
   .btn:hover{border-color:var(--accent);background:#fff;}
   .btn .arr{color:var(--accent);}
   .btn .sub{font-size:11px;font-weight:500;color:var(--muted);display:block;margin-top:2px;}
-  .sec{margin-top:18px;} .sec-h{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);margin-bottom:8px;}
-  .rel{border:1px solid var(--line);border-radius:8px;background:var(--pane);padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:border-color .12s,background .12s,transform .12s;}
-  .rel:hover{border-color:var(--accent);background:#fff;transform:translateX(-1px);}
-  .rel.danger{border-color:rgba(169,68,54,.46);background:rgba(169,68,54,.055);}
-  .rel.ok{border-color:rgba(92,117,96,.34);background:rgba(92,117,96,.065);}
-  .rel.fill{border-color:rgba(169,68,54,.62);background:rgba(169,68,54,.11);}
-  .rel-line{display:grid;grid-template-columns:22px minmax(78px,.72fr) 1fr 12px;align-items:center;gap:8px;}
-  .rel .rg{font-size:15px;font-weight:800;color:var(--accent);line-height:1;}
-  .rel.danger .rg,.rel.danger .rv{color:var(--danger);}
-  .rel.ok .rg,.rel.ok .rv{color:var(--success);}
-  .rel .rv{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
-  .rel .rx{font-size:12.8px;color:var(--ink);font-weight:680;line-height:1.35;}
-  .rel .chev{font-size:18px;color:var(--accent);line-height:1;}
-  .rel .rr{padding-left:30px;font-size:11.5px;color:var(--muted);font-style:italic;margin-top:5px;line-height:1.45;}
+  .sec{margin-top:18px;} .sec-h{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);margin-bottom:10px;}
+  .timeline{position:relative;display:flex;flex-direction:column;gap:2px;margin-top:2px;}
+  .timeline:before{content:"";position:absolute;left:66px;top:9px;bottom:9px;width:1px;background:linear-gradient(to bottom,transparent,var(--line2) 12%,var(--line2) 88%,transparent);}
+  .tl-row{position:relative;display:grid;grid-template-columns:48px 22px minmax(0,1fr) 12px;gap:8px;align-items:start;padding:6px 0;cursor:pointer;}
+  .tl-row:hover .tl-card{border-color:var(--accent);background:#fff;transform:translateX(-1px);}
+  .tl-row.anchor{cursor:default;}
+  .tl-row.anchor:hover .tl-card{transform:none;}
+  .tl-date{font-size:10.5px;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap;padding-top:13px;}
+  .tl-dot{z-index:1;justify-self:center;width:13px;height:13px;border-radius:99px;margin-top:12px;background:#f7f0e7;border:2px solid var(--accent);box-shadow:0 0 0 4px var(--page);}
+  .tl-card{border:1px solid var(--line);border-radius:9px;background:var(--pane);padding:9px 11px;transition:border-color .12s,background .12s,transform .12s;}
+  .tl-row.danger .tl-dot{border-color:var(--danger);background:rgba(169,68,54,.16);}
+  .tl-row.danger .tl-card{border-color:rgba(169,68,54,.46);background:rgba(169,68,54,.055);}
+  .tl-row.ok .tl-dot{border-color:var(--success);background:rgba(92,117,96,.14);}
+  .tl-row.ok .tl-card{border-color:rgba(92,117,96,.34);background:rgba(92,117,96,.065);}
+  .tl-row.fill .tl-dot{background:var(--danger);border-color:var(--danger);}
+  .tl-row.fill .tl-card{border-color:rgba(169,68,54,.62);background:rgba(169,68,54,.11);}
+  .tl-row.anchor .tl-dot{width:17px;height:17px;margin-top:10px;background:var(--ink);border-color:var(--accent);box-shadow:0 0 0 5px var(--page),0 0 0 7px rgba(156,110,68,.2);}
+  .tl-row.anchor .tl-card{border-color:var(--accent);background:linear-gradient(135deg,#fffaf3,#f4eadf);}
+  .tl-verb{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:6px;}
+  .tl-glyph{font-size:14px;color:var(--accent);line-height:1;}
+  .tl-row.danger .tl-glyph,.tl-row.danger .tl-verb{color:var(--danger);}
+  .tl-row.ok .tl-glyph,.tl-row.ok .tl-verb{color:var(--success);}
+  .tl-title{font-size:12.8px;color:var(--ink);font-weight:720;line-height:1.35;}
+  .tl-owner{margin-top:3px;font-size:11.5px;color:var(--muted);line-height:1.35;}
+  .tl-gap{display:inline-flex;margin-left:6px;border:1px solid var(--line2);border-radius:99px;padding:1px 6px;font-size:10px;font-weight:700;color:var(--accent-d);background:rgba(156,110,68,.07);white-space:nowrap;}
+  .tl-why{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:5px;line-height:1.45;}
+  .tl-chev{font-size:18px;color:var(--accent);line-height:1;padding-top:14px;}
   /* source view */
   .src-head{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
   .src-sub{font-family:'Newsreader',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;}
@@ -241,19 +254,19 @@ Olay sonrası istisna prosedürünü ayrıca yazacağım.
 
 // id'ler kanonik public/karar-grafi/index.html grafındaki düğüm id'leridir.
 const DATA = [
-  {id:'pol-refund',kind:'politika',st:'onayli',d:"İade: 500₺ üstü müdür onayı",o:"Deniz Koç",os:"policy",c:"high",sk:'refund',hl:'"500₺ üstü iadeler müdür onayı ister." — iade politikası.'},
-  {id:'ref1',kind:'karar',st:'onayli',d:"800₺ iade onaysız verildi",o:"Deniz Koç",os:"ratifier",c:"high",sk:'refund',hl:'"Müşteri mağdur oldu, 800₺ iadeyi hemen yaptım." — müdür onayı alınmamış.',violates:'pol-refund',violationLabel:'İade: 500₺ üstü müdür onayı'},
-  {id:'ref2',kind:'karar',st:'aday',d:"İade limiti 1000₺ olsun",o:"Deniz Koç",os:"extraction",c:"medium",sk:'refund',hl:'"Limiti 1.000₺’ye çeksek?" — öneri, onay yok.',r:"Limit değişikliği öneri olarak kaldı; politika değişikliği onaylanmadı."},
-  {id:'pol-hire',kind:'politika',st:'onayli',d:"İşe alım: CFO onayı şart",o:"Esra Tekin",os:"policy",c:"high",sk:'hire',hl:'"İstisnasız tüm işe alımlar CFO onayından geçer." — işe alım politikası.'},
-  {id:'h1',kind:'karar',st:'onayli',d:"Destek ekibine 2 kişi",o:"Mert Demir (İK)",os:"ratifier",c:"high",sk:'hire',hl:'"İki destek temsilcisi için onay verildi." — Mert.'},
-  {id:'h2',kind:'karar',st:'onayli',d:"İşe alım donduruldu",o:"Esra Tekin",os:"ratifier",c:"high",sk:'hire',hl:'"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.',chainTo:'h1',relType:'supersedes',chainLabel:"Önceki destek alımı kararını geçersiz kılar"},
-  {id:'hire-viol',kind:'karar',st:'onayli',d:"Stajyer alındı (CFO onayı yok)",o:"Selin Aydın",os:"ratifier",c:"high",sk:'hire',hl:'"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.',violates:'pol-hire',violationLabel:'İşe alım: CFO onayı şart',chainTo:'h2',relType:'conflicts',chainLabel:"Alım dondurma kararıyla çelişiyor"},
-  {id:'str-cost',kind:'karar',st:'onayli',d:"2026: Maliyet disiplini",o:"Esra Tekin (CFO)",os:"ratifier",c:"high",sk:'budget',hl:'"2026 maliyet disiplini yılı — her harcama bu çerçevede değerlendirilecek." — yönetim kararı.'},
-  {id:'b1',kind:'karar',st:'onayli',d:"Pazarlama bütçesi %5 artırıldı",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Pazarlama bütçesi %5 artışla kesinleşti." — Esra.'},
-  {id:'b2',kind:'karar',st:'aday',d:"Pazarlama %10 kısılsın",o:"Selin Aydın",os:"extraction",c:"medium",sk:'budget',hl:'"%10 kısabiliriz bence…" — öneri olarak kaldı, kimse onaylamadı.',r:"Onaylı %5 artışla çelişen bir senaryo önerisi; karar olarak ratife edilmedi."},
-  {id:'b3',kind:'karar',st:'onayli',d:"Yıllık etkinlik iptal",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.',chainTo:'str-cost',relType:'depends_on',chainLabel:"Maliyet disiplini kararına dayanıyor"},
-  {id:'pol-deploy',kind:'politika',st:'onayli',d:"Deploy: cuma 16:00 sonrası yok",o:"Can Yıldız",os:"policy",c:"high",sk:'deploy',hl:'"Cuma 16:00’dan sonra prod’a deploy yapılmaz." — mühendislik politikası.'},
-  {id:'dep1',kind:'karar',st:'onayli',d:"v2.3 cuma 17:30 yayına alındı",o:"Can Yıldız",os:"ratifier",c:"high",sk:'deploy',hl:'"v2.3’ü cuma akşam çıktık, acildi." — 16:00 kuralından sonra.',violates:'pol-deploy',violationLabel:'Deploy: cuma 16:00 sonrası yok'},
+  {id:'pol-refund',kind:'politika',st:'onayli',d:"İade: 500₺ üstü müdür onayı",o:"Deniz Koç",os:"policy",c:"high",date:'10 Mar',sk:'refund',hl:'"500₺ üstü iadeler müdür onayı ister." — iade politikası.'},
+  {id:'ref1',kind:'karar',st:'onayli',d:"800₺ iade onaysız verildi",o:"Deniz Koç",os:"ratifier",c:"high",date:'24 Nis',sk:'refund',hl:'"Müşteri mağdur oldu, 800₺ iadeyi hemen yaptım." — müdür onayı alınmamış.',violates:'pol-refund',violationLabel:'İade: 500₺ üstü müdür onayı'},
+  {id:'ref2',kind:'karar',st:'aday',d:"İade limiti 1000₺ olsun",o:"Deniz Koç",os:"extraction",c:"medium",date:'2 May',sk:'refund',hl:'"Limiti 1.000₺’ye çeksek?" — öneri, onay yok.',r:"Limit değişikliği öneri olarak kaldı; politika değişikliği onaylanmadı."},
+  {id:'pol-hire',kind:'politika',st:'onayli',d:"İşe alım: CFO onayı şart",o:"Esra Tekin",os:"policy",c:"high",date:'5 Mar',sk:'hire',hl:'"İstisnasız tüm işe alımlar CFO onayından geçer." — işe alım politikası.'},
+  {id:'h1',kind:'karar',st:'onayli',d:"Destek ekibine 2 kişi",o:"Mert Demir (İK)",os:"ratifier",c:"high",date:'2 Nis',sk:'hire',hl:'"İki destek temsilcisi için onay verildi." — Mert.'},
+  {id:'h2',kind:'karar',st:'onayli',d:"İşe alım donduruldu",o:"Esra Tekin",os:"ratifier",c:"high",date:'18 Nis',sk:'hire',hl:'"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.',chainTo:'h1',relType:'supersedes',chainLabel:"Önceki destek alımı kararını geçersiz kılar"},
+  {id:'hire-viol',kind:'karar',st:'onayli',d:"Stajyer alındı (CFO onayı yok)",o:"Selin Aydın",os:"ratifier",c:"high",date:'22 Nis',sk:'hire',hl:'"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.',violates:'pol-hire',violationLabel:'İşe alım: CFO onayı şart',chainTo:'h2',relType:'conflicts',chainLabel:"Alım dondurma kararıyla çelişiyor"},
+  {id:'str-cost',kind:'karar',st:'onayli',d:"2026: Maliyet disiplini",o:"Esra Tekin (CFO)",os:"ratifier",c:"high",date:'4 Mar',sk:'budget',hl:'"2026 maliyet disiplini yılı — her harcama bu çerçevede değerlendirilecek." — yönetim kararı.'},
+  {id:'b1',kind:'karar',st:'onayli',d:"Pazarlama bütçesi %5 artırıldı",o:"Esra Tekin",os:"ratifier",c:"high",date:'12 Mar',sk:'budget',hl:'"Pazarlama bütçesi %5 artışla kesinleşti." — Esra.'},
+  {id:'b2',kind:'karar',st:'aday',d:"Pazarlama %10 kısılsın",o:"Selin Aydın",os:"extraction",c:"medium",date:'8 Mar',sk:'budget',hl:'"%10 kısabiliriz bence…" — öneri olarak kaldı, kimse onaylamadı.',r:"Onaylı %5 artışla çelişen bir senaryo önerisi; karar olarak ratife edilmedi."},
+  {id:'b3',kind:'karar',st:'onayli',d:"Yıllık etkinlik iptal",o:"Esra Tekin",os:"ratifier",c:"high",date:'20 Mar',sk:'budget',hl:'"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.',chainTo:'str-cost',relType:'depends_on',chainLabel:"Maliyet disiplini kararına dayanıyor"},
+  {id:'pol-deploy',kind:'politika',st:'onayli',d:"Deploy: cuma 16:00 sonrası yok",o:"Can Yıldız",os:"policy",c:"high",date:'9 Mar',sk:'deploy',hl:'"Cuma 16:00’dan sonra prod’a deploy yapılmaz." — mühendislik politikası.'},
+  {id:'dep1',kind:'karar',st:'onayli',d:"v2.3 cuma 17:30 yayına alındı",o:"Can Yıldız",os:"ratifier",c:"high",date:'24 Nis',sk:'deploy',hl:'"v2.3’ü cuma akşam çıktık, acildi." — 16:00 kuralından sonra.',violates:'pol-deploy',violationLabel:'Deploy: cuma 16:00 sonrası yok'},
 ];
 
 const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -270,6 +283,19 @@ const REL={
   complies_with:{out:['✓','uyuyor','ok'],in:['←','uyan karar','ok']},
   violates:{out:['⚠','ihlal ediyor','danger'],in:['⚠','ihlal eden','danger fill']},
 };
+const MONTHS={Oca:1,Şub:2,Mar:3,Nis:4,May:5,Haz:6,Tem:7,Ağu:8,Eyl:9,Eki:10,Kas:11,Ara:12};
+function dateKey(date){
+  const parts=String(date||'').trim().split(/\s+/);
+  const day=Number(parts[0])||1;
+  const month=MONTHS[parts[1]]||1;
+  return month*31+day;
+}
+function gapLabel(key,anchorKey){
+  const diff=key-anchorKey;
+  if(Math.abs(diff)<45) return '';
+  const months=Math.max(1,Math.round(Math.abs(diff)/31));
+  return (diff>0?'+':'-')+months+' ay '+(diff>0?'sonra':'önce');
+}
 
 function matches(it){
   if(filter==='onayli'&&(it.st!=='onayli'||it.kind==='politika'))return false;
@@ -313,7 +339,7 @@ function renderList(){
 }
 function relSpec(edge,id){
   const outgoing=edge.from===id, target=byId[outgoing?edge.to:edge.from], spec=REL[edge.type][outgoing?'out':'in'];
-  return {target,glyph:spec[0],verb:spec[1],tone:spec[2],why:edge.why};
+  return {target,relGlyph:spec[0],verb:spec[1],tone:spec[2],why:edge.why,type:edge.type};
 }
 function relationEdges(it){
   const edges=[];
@@ -327,12 +353,32 @@ function relationEdges(it){
   return edges;
 }
 function renderRelations(it){
-  const rows=relationEdges(it).map(edge=>relSpec(edge,it.id));
-  if(!rows.length) return '<div class="empty" style="padding:14px 0;text-align:left">—</div>';
-  return rows.map(r=>`<div class="rel ${r.tone}" data-go="${r.target.id}">
-    <div class="rel-line"><span class="rg">${r.glyph}</span><span class="rv">${ESC(r.verb)}</span><span class="rx">${ESC(r.target.d)}</span><span class="chev">›</span></div>
-    ${r.why?`<div class="rr">${ESC(r.why)}</div>`:''}
-  </div>`).join('');
+  const anchorKey=dateKey(it.date);
+  const rows=relationEdges(it).map(edge=>relSpec(edge,it.id)).map(r=>({
+    ...r,
+    sortKey:dateKey(r.target.date),
+    gap:gapLabel(dateKey(r.target.date),anchorKey),
+  }));
+  rows.push({target:it,verb:'bu karar',tone:'anchor',why:'',type:'anchor',anchor:true,sortKey:anchorKey,gap:''});
+  rows.sort((a,b)=>a.sortKey-b.sortKey||a.target.d.localeCompare(b.target.d,'tr'));
+  const glyph=r=>{
+    if(r.anchor)return '●';
+    if(r.type==='conflicts')return '↔';
+    if(r.type==='violates')return '⚠';
+    if(r.sortKey<anchorKey)return '↑';
+    if(r.sortKey>anchorKey)return '↓';
+    return r.relGlyph||'•';
+  };
+  return `<div class="timeline">${rows.map(r=>`<div class="tl-row ${r.anchor?'anchor':r.tone}"${r.anchor?'':` data-go="${r.target.id}"`}>
+    <div class="tl-date">${ESC(r.target.date)}</div>
+    <div class="tl-dot" aria-hidden="true"></div>
+    <div class="tl-card">
+      <div><span class="tl-verb"><span class="tl-glyph">${glyph(r)}</span>${ESC(r.verb)}</span><span class="tl-title">${ESC(r.target.d)}</span>${r.gap?`<span class="tl-gap">${ESC(r.gap)}</span>`:''}</div>
+      <div class="tl-owner">${ESC(r.target.o||'Sahipsiz')}</div>
+      ${r.why?`<div class="tl-why">${ESC(r.why)}</div>`:''}
+    </div>
+    ${r.anchor?'<span></span>':'<span class="tl-chev">›</span>'}
+  </div>`).join('')}</div>`;
 }
 function renderDetail(i){
   const it=DATA[i];
@@ -347,13 +393,14 @@ function renderDetail(i){
     ${it.violates?'<span class="badge violation" style="margin-left:6px">İhlal</span>':''}
     <h2>${ESC(it.d)}</h2>
     <div class="kv"><div class="k">${it.kind==='politika'?'Sahip':'Onaylayan'}</div><div class="v">${ESC(it.o)}${it.os==='ratifier'||it.os==='policy'?'':' <span style="color:var(--muted)">(çıkarım sinyali)</span>'}</div></div>
+    <div class="kv"><div class="k">Tarih</div><div class="v">${ESC(it.date)}</div></div>
     <div class="kv"><div class="k">Tür</div><div class="v">${it.kind==='politika'?'Duran kural / politika':'Karar kaydı'}</div></div>
     <div class="kv"><div class="k">Güven</div><div class="v">${confTr(it.c)}</div></div>
     <div class="kv"><div class="k">Kaynak</div><div class="v">${ESC(SOURCES[it.sk].sub)}</div></div>
     <div class="quote">${ESC(it.hl)}</div>
     ${it.st==='aday'?`<div class="reason"><b>Neden sicile girmedi (aday):</b>${ESC(it.r)}</div>`:''}
     ${violationNote}
-    <div class="sec"><div class="sec-h">Bağlantılar</div>${renderRelations(it)}</div>
+    <div class="sec"><div class="sec-h">Bağlantılar · zaman çizgisi</div>${renderRelations(it)}</div>
     <div class="actions">
       <button class="btn" onclick="openSource(${i})">📄 Kaynağı aç — e-postada vurgulu gör <span class="arr">→</span></button>
     </div>`;
