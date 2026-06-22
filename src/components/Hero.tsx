@@ -176,16 +176,37 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Live demo — secondary path */}
-            <a
-              href="/demo-canli/"
-              className="reveal reveal-delay-3 mb-10 inline-flex items-center gap-1.5 text-[13px] font-[600] text-[var(--accent)] transition-opacity hover:opacity-70"
-            >
-              Ya da çalışan bir karar sicilini kendiniz gezin — canlı demo
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
+            {/* Live surfaces */}
+            <div className="reveal reveal-delay-3 mb-10 grid max-w-[620px] gap-3 sm:grid-cols-2">
+              <a
+                href="/karar-grafi/"
+                className="group rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
+              >
+                <span className="block text-[10px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
+                  Karar Grafı
+                </span>
+                <span className="mt-1 flex items-center justify-between gap-3 text-[13px] font-[680] text-[var(--accent)]">
+                  Kararların ağını canlı gör
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+              <a
+                href="/demo-canli/"
+                className="group rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
+              >
+                <span className="block text-[10px] font-[800] uppercase tracking-[0.14em] text-[var(--text-faint)]">
+                  Canlı Demo
+                </span>
+                <span className="mt-1 flex items-center justify-between gap-3 text-[13px] font-[680] text-[var(--accent)]">
+                  Çalışan sicili gez
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </div>
 
             {/* Trust footnote */}
             <p className="reveal reveal-delay-4 max-w-[50ch] text-[13px] leading-[1.8] text-[var(--text-faint)]">

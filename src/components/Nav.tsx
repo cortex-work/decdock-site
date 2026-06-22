@@ -5,6 +5,8 @@ import { useState } from 'react'
 const links = [
   { href: '/#how-it-works', label: 'Nasıl çalışır' },
   { href: '/#faq', label: 'Sık sorulanlar' },
+  { href: '/karar-grafi/', label: 'Karar ağı' },
+  { href: '/demo-canli/', label: 'Canlı demo' },
   { href: '/demo/', label: '60 sn tanıtım' },
   { href: '/urun/', label: 'Ürün detayı' },
   { href: '/karsilastirma/', label: 'Karşılaştırma' },
@@ -30,7 +32,7 @@ export default function Nav() {
           <span className="text-[14px] font-[780] tracking-[-0.02em]">Decdock</span>
         </a>
 
-        <nav className="hidden items-center gap-6 sm:flex" aria-label="Ana navigasyon">
+        <nav className="hidden items-center gap-5 sm:flex" aria-label="Ana navigasyon">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="nav-link">
               {link.label}

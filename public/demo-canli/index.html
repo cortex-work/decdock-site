@@ -18,7 +18,7 @@
 <style>
   :root{
     --page:#f4eee6; --ink:#2b2420; --body:#574f48; --muted:#8a7d71;
-    --accent:#9c6e44; --accent-d:#84592f; --success:#5c7560; --warning:#a86f3d;
+    --accent:#9c6e44; --accent-d:#84592f; --success:#5c7560; --warning:#a86f3d; --danger:#a94436;
     --line:rgba(74,66,58,0.16); --line2:rgba(74,66,58,0.28); --pane:#fdfaf5;
     --mark:#f5e4a8;
   }
@@ -35,7 +35,7 @@
   .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
   .stat{flex:1 1 120px;border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:11px 14px;}
   .stat .n{font-family:'Newsreader',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1;}
-  .stat.s .n{color:var(--success);} .stat.a .n{color:var(--accent);} .stat.k .n{color:var(--ink);}
+  .stat.s .n{color:var(--success);} .stat.a .n{color:var(--accent);} .stat.v .n{color:var(--danger);} .stat.p .n{color:#6f5f92;} .stat.k .n{color:var(--ink);}
   .stat .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;}
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
   .search{flex:1 1 240px;display:flex;align-items:center;gap:8px;background:var(--pane);border:1px solid var(--line2);border-radius:8px;padding:9px 12px;}
@@ -55,6 +55,8 @@
   .badge{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 9px;white-space:nowrap;}
   .badge.onayli{color:var(--success);background:rgba(92,117,96,.12);border:1px solid rgba(92,117,96,.3);}
   .badge.aday{color:var(--accent-d);background:rgba(156,110,68,.12);border:1px solid rgba(156,110,68,.3);}
+  .badge.politika{color:#6f5f92;background:rgba(111,95,146,.11);border:1px solid rgba(111,95,146,.28);}
+  .badge.violation{color:var(--danger);background:rgba(169,68,54,.11);border:1px solid rgba(169,68,54,.32);}
   .badge.conf{color:var(--muted);background:transparent;border:1px solid var(--line2);font-weight:600;}
   .empty{text-align:center;color:var(--muted);padding:40px;font-size:13px;}
   .scrim{position:fixed;inset:0;background:rgba(30,22,16,.42);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .18s;z-index:40;}
@@ -70,6 +72,8 @@
   .quote{margin-top:14px;border-left:3px solid #d8c4ae;padding:10px 14px;background:var(--pane);border-radius:0 8px 8px 0;font-style:italic;color:var(--body);font-size:12.5px;line-height:1.6;}
   .reason{margin-top:14px;border:1px solid rgba(156,110,68,.3);background:rgba(156,110,68,.07);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--accent-d);}
   .reason b{display:block;margin-bottom:3px;color:var(--warning);}
+  .violation-note{margin-top:14px;border:1px solid rgba(169,68,54,.34);background:rgba(169,68,54,.08);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--danger);}
+  .violation-note b{display:block;margin-bottom:3px;color:var(--danger);}
   .actions{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
   .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line2);background:var(--pane);border-radius:8px;padding:11px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;transition:all .12s;}
   .btn:hover{border-color:var(--accent);background:#fff;}
@@ -91,23 +95,23 @@
 <div class="wrap">
   <div class="top">
     <div class="brand"><a href="/">Decdock</a></div>
-    <span class="demo-tag">Canlı demo · temsili veri</span>
+    <a class="demo-tag" href="/karar-grafi/">Tüm kararların ağı →</a>
   </div>
   <h1>Karar Sicili — gezin, kaynağına inin, zinciri izleyin</h1>
-  <p class="dek">Bitmiş bir "ERP seçim projesi"nin yazışmalarından çıkarılmış <b>temsili</b> karar sicili. Bir karara tıklayın → <b>"Kaynağı aç"</b> ile kararı <b>gerçek e-postanın içinde vurgulu</b> görün. Bazı kararlar <b>birbirine bağlı</b> (⛓): bir seçim koşulu, aylar sonra nasıl zorlanmış izleyin.</p>
+  <p class="dek">Kanonik karar grafındaki <b>temsili</b> şirket dünyasından çıkarılmış küçük bir sicil. Bir kayda tıklayın → <b>"Kaynağı aç"</b> ile karar ya da politikayı <b>e-postanın içinde birebir vurgulu</b> görün. Bazı kararlar <b>bir politikayı ihlal eder</b>; bazıları da eski kararı zincirde geçersiz kılar.</p>
 
   <div class="stats" id="stats"></div>
   <div class="toolbar">
     <label class="search">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <input id="q" type="text" placeholder="Ara… (örn. Firm-B, SAP, API SLA, %14)" autocomplete="off" />
+      <input id="q" type="text" placeholder="Ara… (örn. iade, CFO, deploy, 500₺, ihlal)" autocomplete="off" />
     </label>
     <div class="chips" id="chips"></div>
   </div>
   <div class="list" id="list"></div>
 
   <div class="cta">
-    Gördüğünüz her satır <b>kaynağına bağlı</b> — uydurma yok, e-postadaki cümleye iner. Onaylanmamış öneriler <b>"aday"</b> olarak ayrı durur, gerekçesiyle. Kendi <b>bitmiş bir projenizden ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
+    Gördüğünüz her satır <b>kaynağına bağlı</b> — uydurma yok, e-postadaki cümleye iner. Politikalar duran kural olarak ayrılır; ihlaller kırmızı görünür. Kendi <b>bitmiş bir projenizden ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
   </div>
   <p class="foot">Temsili/örnek veridir; gerçek bir şirketin verisi değildir. © 2026 Decdock</p>
 </div>
@@ -117,107 +121,148 @@
 
 <script>
 const SOURCES = {
-  '0042': { sub:"ERP/TMS Finalist Karşılaştırma — Final Karar", body:`From: Gökhan Arslan → Selin Aydın, Kerem Yılmaz, Burak Şahin, Murat Ateş
+  'refund': { sub:"İade Politikası ve 800₺ İade İncelemesi", body:`From: Deniz Koç → Burak Şahin, Ayşe Ünal
+Konu: İade politikası duyurusu
 
-Herkese,
-Üç finalistin tüm değerlendirmeleri tamamlandı. Karşılaştırma özeti:
+"500₺ üstü iadeler müdür onayı ister." — iade politikası.
 
-Firm-A (SAP iş ortağı): Puan 74/100 · TMS zayıf, muhasebe güçlü · 3 yıl toplam 10,3M TL
-Firm-B (Türk ERP): Puan 81/100 · TMS iyi, muhasebe TÜRMOB uyumlu · 3 yıl 7,2M TL · Risk: API olgunluğu Q3 2026 (sözlü)
-Firm-C (Global TMS): Puan 77/100 · TMS mükemmel, muhasebe sınırlı · 3 yıl 8M TL
+Bu kuralı destek ekibi için bugün yürürlüğe alıyorum. Müşteri memnuniyeti önemli ama 500₺ üstünde müdür onayı olmadan ödeme çıkmayacak.
+— Deniz
+---
+From: Deniz Koç → Burak Şahin
+Konu: 800₺ iade
 
-Önerim: Firm-B. En dengeli seçim, en düşük toplam maliyet, yerel destek avantajı.
-— Gökhan
----
-From: Kerem Yılmaz → Gökhan, Selin
-Firm-B API riski beni hâlâ rahatsız ediyor. 'Q3 2026 sözlü' — tutmazsa entegrasyon maliyetimiz Firm-C'ye benzer.
-Önerim: Firm-B seçersek API SLA garantisi sözleşmeye girecek. Bu şart olmalı. — K.
----
-From: Burak Şahin → Selin
-Finans: Firm-B toplam sahip olma maliyeti en düşük. Kerem Bey'in şartı makul — API garantisi sözleşmede olsun. — Burak
----
-From: Murat Ateş → Selin
-Saha: Firm-B mobil uygulaması Şubat güncellemesiyle stable. Engel kalktı. Firm-B kabul edilebilir.
----
-From: Selin Aydın → herkes
+"Müşteri mağdur oldu, 800₺ iadeyi hemen yaptım." — müdür onayı alınmamış.
 
-ERP/TMS seçimi: Firm-B.
+Durum acildi; onay akışını sonradan tamamlayacağım.
+— Deniz
+---
+From: Deniz Koç → Esra Tekin
+Konu: İade limiti önerisi
 
-Koşullar:
-1. Sözleşmede API olgunluğu SLA: Q3 2026'ya kadar üretim kalitesi API — garantisiz imzalanmaz
-2. Mobil uygulama stabil sürüm yazılı teyit alınacak
-3. Uygulama takvimi: pilot Nisan (İstanbul), genişletme Q3
+"Limiti 1.000₺’ye çeksek?" — öneri, onay yok.
 
-Gökhan Bey müzakereyi başlatır. Kerem Bey tekniği takip eder. Burak Bey finansmanı organize eder. — Selin` },
-  '0072': { sub:"SAP Lisans Yenileme — Fiyat Müzakeresi", body:`From: Okan Demir → Burak Şahin, Kerem Yılmaz
-SAP lisans yenileme teklifi: 1.240.000 → 1.485.000 TL (%19,8 zam). 3 yıllık anlaşma teklif ediyorlar.
-Müzakere stratejisi önerim: 3 yıl yerine 1 yıl ile devam, Firm-B (ERP geçişi) baskısını kullanabiliriz. — Okan
----
-From: Burak Şahin → Okan, Kerem
-%19,8 yüksek ama kur gerçek. 3 yıl bağlamamalıyız: Firm-B geçişi Q4. 1 yıl + geçiş fiyatlandırması talep edilebilir. — Burak
----
-From: Kerem Yılmaz → Okan, Burak
-Selin Hanım'ı bilgilendiriyorum — bu karar COO seviyesine yakın.
-Müzakere pozisyonu: 1 yıl, %12 zam maksimum. Kabul edilmezse yeniden görüşme. — K.
----
-From: Selin Aydın → Okan, Burak, Kerem
+Bu sadece operasyonel öneri; politikayı değiştirmeden işlem yapmayacağım.
+— Deniz` },
+  'hire': { sub:"İşe Alım Politikası, Dondurma ve İstisna", body:`From: Esra Tekin → Mert Demir, Selin Aydın
+Konu: İşe alım politikası
 
-Müzakere direktifim: 1 yıl anlaşma, maksimum %14 zam. %14 üzerini kabul etmeyin — bana gelsin.
-Firm-B baskısı kullanılabilir ama açıkça söylemeyin — ima yeterli. — Selin
----
-From: Okan Demir → Selin, Burak
-Müzakere sonucu: 1 yıl anlaşma, %13,5 zam (1.407.400 TL). SAP %14 eşiğinin altına geldi. İmzalayabilir miyim? — Okan
----
-From: Selin Aydın → Okan
+"İstisnasız tüm işe alımlar CFO onayından geçer." — işe alım politikası.
 
-İmzala.
-— S.` },
-  '0102': { sub:"Firm-B API SLA — Q3 Taahhüt Gözden Geçirme", body:`From: Gökhan Arslan → Kerem Yılmaz, Selin Aydın
-Firm-B API SLA durumu: Q3 2026 taahhüdü 'üretim kalitesi API'ydi. Bugün API hâlâ beta kalitesinde — 3 kritik endpoint eksik.
-Sözleşme şartı: Q3 tutmazsa ceza maddesi (aylık lisansın %10'u).
-Firm-B'ye yazılı bildirim yaptım, 30 gün süre verdim. — Gökhan
+Bu kural destek, ürün ve pazarlama rolleri için aynı şekilde geçerli.
+— Esra
 ---
-From: Kerem Yılmaz → Gökhan, Selin
-İyi adım. Ama ceza maddesi yerine önce müzakere edelim — ilişkiyi bozmadan.
-30 gün doğru, ama içeride plan B hazır olsun: ceza uygulaması veya scope daraltma. — K.
----
-From: Selin Aydın → Gökhan, Kerem
+From: Mert Demir → Esra Tekin
+Konu: Destek ekibi
 
-30 gün bildirim doğru adım. Müzakere önce ama sözleşme hakkımızı kullanmaktan çekinmeyin.
-Temmuz 15'e API teslim edilmezse ceza maddesi + Ankara/İzmir genişleme takvimi yeniden değerlendirilir. — Selin` },
+"İki destek temsilcisi için onay verildi." — Mert.
+
+CFO onayı kayıt altına alındı; başlangıç tarihlerini planlıyorum.
+— Mert
+---
+From: Esra Tekin → Mert Demir, Selin Aydın
+Konu: Q2 alım planı
+
+"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.
+
+Maliyet disiplini nedeniyle yalnızca daha önce onaylanmış kritik roller ilerleyebilir.
+— Esra
+---
+From: Selin Aydın → Esra Tekin, Mert Demir
+Konu: Pazarlama stajyeri
+
+"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.
+
+Süreç hızlandı ama onay zincirini sonra tamamlamamız gerekecek.
+— Selin` },
+  'budget': { sub:"2026 Maliyet Disiplini ve Pazarlama Bütçesi", body:`From: Esra Tekin → Selin Aydın, Burak Şahin, Mert Demir
+Konu: 2026 maliyet çerçevesi
+
+"2026 maliyet disiplini yılı — her harcama bu çerçevede değerlendirilecek." — yönetim kararı.
+
+Bu çerçeve bütçe, işe alım ve etkinlik kararlarında ortak referans olacak.
+— Esra
+---
+From: Esra Tekin → Selin Aydın
+Konu: Pazarlama bütçesi
+
+"Pazarlama bütçesi %5 artışla kesinleşti." — Esra.
+
+Apollo lansman hazırlığı nedeniyle artış onaylandı; harcama kalemleri ayrıca izlenecek.
+— Esra
+---
+From: Selin Aydın → Esra Tekin
+Konu: Bütçe alternatifi
+
+"%10 kısabiliriz bence…" — öneri olarak kaldı, kimse onaylamadı.
+
+Bunu sadece senaryo olarak bırakıyorum; onaylı bütçeyi değiştirmiyorum.
+— Selin
+---
+From: Esra Tekin → Burak Şahin, Selin Aydın
+Konu: Yıllık etkinlik
+
+"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.
+
+Etkinlik bütçesini Q3 nakit tamponuna aktaracağız.
+— Esra` },
+  'deploy': { sub:"Deploy Politikası ve v2.3 Yayını", body:`From: Can Yıldız → Deniz Koç, Ayşe Ünal
+Konu: Mühendislik deploy politikası
+
+"Cuma 16:00’dan sonra prod’a deploy yapılmaz." — mühendislik politikası.
+
+Bu kural hotfix prosedürü tanımlanana kadar tüm prod çıkışları için geçerli.
+— Can
+---
+From: Can Yıldız → Deniz Koç, Ayşe Ünal
+Konu: v2.3 çıkışı
+
+"v2.3’ü cuma akşam çıktık, acildi." — 16:00 kuralından sonra.
+
+Olay sonrası istisna prosedürünü ayrıca yazacağım.
+— Can` },
 };
 
-// chainTo: ilgili kararın index'i · chainLabel: ilişki etiketi
+// id'ler kanonik public/karar-grafi/index.html grafındaki düğüm id'leridir.
 const DATA = [
-  {st:'onayli',d:"ERP/TMS sistemi olarak Firm-B seçildi",o:"Selin Aydın",os:"ratifier",c:"high",sk:'0042',hl:"ERP/TMS seçimi: Firm-B."},
-  {st:'onayli',d:"Firm-B seçim koşulu: API olgunluğu SLA (Q3 2026); garantisiz imzalanmaz",o:"Selin Aydın",os:"ratifier",c:"high",sk:'0042',hl:"Sözleşmede API olgunluğu SLA: Q3 2026'ya kadar üretim kalitesi API — garantisiz imzalanmaz",chainTo:7,chainLabel:"Bu koşul sonradan zorlandı"},
-  {st:'aday',d:"Mobil uygulama stabil sürüm yazılı teyit alınacak",o:"Selin Aydın",os:"extraction",c:"high",sk:'0042',hl:"Mobil uygulama stabil sürüm yazılı teyit alınacak",r:"Operasyonel takip koşulu — bağımsız ratife edilmiş bir karar değil, seçim kararının alt-şartı."},
-  {st:'aday',d:"Firm-B önerisi (değerlendirme özeti)",o:"Gökhan Arslan",os:"extraction",c:"high",sk:'0042',hl:"Önerim: Firm-B.",r:"Gökhan'ın önerisi — Selin'in ratifikasyonundan önceki bir tavsiye, henüz karar değil."},
-  {st:'onayli',d:"SAP lisans yenileme: 1 yıl, %13,5 zam (1.407.400 TL) imzalanacak",o:"Selin Aydın",os:"ratifier",c:"high",sk:'0072',hl:"İmzala."},
-  {st:'onayli',d:"SAP müzakere pozisyonu: 1 yıl, maksimum %14 zam",o:"Selin Aydın",os:"ratifier",c:"high",sk:'0072',hl:"Müzakere direktifim: 1 yıl anlaşma, maksimum %14 zam. %14 üzerini kabul etmeyin"},
-  {st:'aday',d:"Müzakere stratejisi: 3 yıl yerine 1 yıl ile devam",o:"Okan Demir",os:"extraction",c:"medium",sk:'0072',hl:"Müzakere stratejisi önerim: 3 yıl yerine 1 yıl ile devam",r:"Okan'ın strateji önerisi — yetkili onayından önce; Selin sonra kendi direktifini verdi."},
-  {st:'onayli',d:"Temmuz 15'e API teslim edilmezse ceza + Ankara/İzmir genişleme yeniden değerlendirilir",o:"Selin Aydın",os:"ratifier",c:"high",sk:'0102',hl:"Temmuz 15'e API teslim edilmezse ceza maddesi + Ankara/İzmir genişleme takvimi yeniden değerlendirilir.",chainTo:1,chainLabel:"Önceki seçim koşuluna bağlı"},
-  {st:'aday',d:"Firm-B'ye yazılı bildirim yapıldı, 30 gün süre verildi",o:"Gökhan Arslan",os:"extraction",c:"high",sk:'0102',hl:"Firm-B'ye yazılı bildirim yaptım, 30 gün süre verdim.",r:"Raporlanan operasyonel aksiyon/durum — ratife edilmiş örgütsel bir karar değil."},
-  {st:'aday',d:"Plan B hazır olacak: ceza uygulaması veya scope daraltma",o:"Kerem Yılmaz",os:"extraction",c:"medium",sk:'0102',hl:"içeride plan B hazır olsun: ceza uygulaması veya scope daraltma.",r:"Kerem'in önerisi/tedbiri — açık onay ya da ratifikasyon yok."},
+  {id:'pol-refund',kind:'politika',st:'onayli',d:"İade: 500₺ üstü müdür onayı",o:"Deniz Koç",os:"policy",c:"high",sk:'refund',hl:'"500₺ üstü iadeler müdür onayı ister." — iade politikası.'},
+  {id:'ref1',kind:'karar',st:'onayli',d:"800₺ iade onaysız verildi",o:"Deniz Koç",os:"ratifier",c:"high",sk:'refund',hl:'"Müşteri mağdur oldu, 800₺ iadeyi hemen yaptım." — müdür onayı alınmamış.',violates:'pol-refund',violationLabel:'İade: 500₺ üstü müdür onayı'},
+  {id:'ref2',kind:'karar',st:'aday',d:"İade limiti 1000₺ olsun",o:"Deniz Koç",os:"extraction",c:"medium",sk:'refund',hl:'"Limiti 1.000₺’ye çeksek?" — öneri, onay yok.',r:"Limit değişikliği öneri olarak kaldı; politika değişikliği onaylanmadı."},
+  {id:'pol-hire',kind:'politika',st:'onayli',d:"İşe alım: CFO onayı şart",o:"Esra Tekin",os:"policy",c:"high",sk:'hire',hl:'"İstisnasız tüm işe alımlar CFO onayından geçer." — işe alım politikası.'},
+  {id:'h1',kind:'karar',st:'onayli',d:"Destek ekibine 2 kişi",o:"Mert Demir (İK)",os:"ratifier",c:"high",sk:'hire',hl:'"İki destek temsilcisi için onay verildi." — Mert.'},
+  {id:'h2',kind:'karar',st:'onayli',d:"İşe alım donduruldu",o:"Esra Tekin",os:"ratifier",c:"high",sk:'hire',hl:'"Yeni alımları bu çeyrek donduruyoruz." — CFO kararı.',chainTo:'h1',chainLabel:"Önceki destek alımı kararını geçersiz kılar"},
+  {id:'hire-viol',kind:'karar',st:'onayli',d:"Stajyer alındı (CFO onayı yok)",o:"Selin Aydın",os:"ratifier",c:"high",sk:'hire',hl:'"Pazarlamaya stajyer aldık, hızlı oldu." — CFO onayı atlanmış.',violates:'pol-hire',violationLabel:'İşe alım: CFO onayı şart',chainTo:'h2',chainLabel:"Alım dondurma kararıyla çelişiyor"},
+  {id:'str-cost',kind:'karar',st:'onayli',d:"2026: Maliyet disiplini",o:"Esra Tekin (CFO)",os:"ratifier",c:"high",sk:'budget',hl:'"2026 maliyet disiplini yılı — her harcama bu çerçevede değerlendirilecek." — yönetim kararı.'},
+  {id:'b1',kind:'karar',st:'onayli',d:"Pazarlama bütçesi %5 artırıldı",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Pazarlama bütçesi %5 artışla kesinleşti." — Esra.'},
+  {id:'b2',kind:'karar',st:'aday',d:"Pazarlama %10 kısılsın",o:"Selin Aydın",os:"extraction",c:"medium",sk:'budget',hl:'"%10 kısabiliriz bence…" — öneri olarak kaldı, kimse onaylamadı.',r:"Onaylı %5 artışla çelişen bir senaryo önerisi; karar olarak ratife edilmedi."},
+  {id:'b3',kind:'karar',st:'onayli',d:"Yıllık etkinlik iptal",o:"Esra Tekin",os:"ratifier",c:"high",sk:'budget',hl:'"Bu yıl etkinliği iptal edelim, bütçeyi koruyalım." — onaylandı.',chainTo:'str-cost',chainLabel:"Maliyet disiplini kararına dayanıyor"},
+  {id:'pol-deploy',kind:'politika',st:'onayli',d:"Deploy: cuma 16:00 sonrası yok",o:"Can Yıldız",os:"policy",c:"high",sk:'deploy',hl:'"Cuma 16:00’dan sonra prod’a deploy yapılmaz." — mühendislik politikası.'},
+  {id:'dep1',kind:'karar',st:'onayli',d:"v2.3 cuma 17:30 yayına alındı",o:"Can Yıldız",os:"ratifier",c:"high",sk:'deploy',hl:'"v2.3’ü cuma akşam çıktık, acildi." — 16:00 kuralından sonra.',violates:'pol-deploy',violationLabel:'Deploy: cuma 16:00 sonrası yok'},
 ];
 
 const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const confTr=c=>({high:'yüksek',medium:'orta',low:'düşük'}[c]||c);
 let filter='all',query='';
-const FILTERS=[['all','Tümü'],['onayli','Onaylı karar'],['aday','İnceleme adayı'],['chain','⛓ Zincirli']];
+const FILTERS=[['all','Tümü'],['onayli','Onaylı karar'],['aday','İnceleme adayı'],['politika','Politika'],['violation','⚠ İhlal'],['chain','⛓ Zincirli']];
+const byId=Object.fromEntries(DATA.map((it,i)=>[it.id,{...it,i}]));
 
 function matches(it){
-  if(filter==='onayli'&&it.st!=='onayli')return false;
+  if(filter==='onayli'&&(it.st!=='onayli'||it.kind==='politika'))return false;
   if(filter==='aday'&&it.st!=='aday')return false;
+  if(filter==='politika'&&it.kind!=='politika')return false;
+  if(filter==='violation'&&!it.violates)return false;
   if(filter==='chain'&&it.chainTo===undefined)return false;
-  if(query){const q=query.toLowerCase();return (it.d+' '+(it.o||'')+' '+it.hl+' '+SOURCES[it.sk].sub).toLowerCase().includes(q);}
+  if(query){const q=query.toLowerCase();return (it.d+' '+(it.o||'')+' '+it.hl+' '+(it.violationLabel||'')+' '+SOURCES[it.sk].sub).toLowerCase().includes(q);}
   return true;
 }
 function renderStats(){
-  const onayli=DATA.filter(x=>x.st==='onayli').length, aday=DATA.filter(x=>x.st==='aday').length;
+  const onayli=DATA.filter(x=>x.st==='onayli'&&x.kind!=='politika').length, aday=DATA.filter(x=>x.st==='aday').length;
+  const violation=DATA.filter(x=>x.violates).length, politika=DATA.filter(x=>x.kind==='politika').length;
   document.getElementById('stats').innerHTML=
     `<div class="stat s"><div class="n">${onayli}</div><div class="l">Onaylı karar</div></div>`+
     `<div class="stat a"><div class="n">${aday}</div><div class="l">İnceleme adayı</div></div>`+
+    `<div class="stat v"><div class="n">${violation}</div><div class="l">İhlal</div></div>`+
+    `<div class="stat p"><div class="n">${politika}</div><div class="l">Politika</div></div>`+
     `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Kaynak e-posta</div></div>`+
     `<div class="stat k"><div class="n">%100</div><div class="l">Kaynağa bağlı</div></div>`;
 }
@@ -232,9 +277,10 @@ function renderList(){
   el.innerHTML=items.map(it=>`
     <div class="row" data-i="${it.i}">
       <div class="dtext">${ESC(it.d)}</div>
-      <div class="meta"><span>👤 <b>${ESC(it.o)}</b></span><span>📄 ${ESC(SOURCES[it.sk].sub)}</span>${it.chainTo!==undefined?'<span class="chainpill">⛓ zincirli</span>':''}</div>
+      <div class="meta"><span>👤 <b>${ESC(it.o)}</b></span><span>📄 ${ESC(SOURCES[it.sk].sub)}</span>${it.chainTo!==undefined?'<span class="chainpill">⛓ zincirli</span>':''}${it.violates?'<span class="chainpill">⚠ politika ihlali</span>':''}</div>
       <div class="badges">
-        <span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>
+        ${it.kind==='politika'?'<span class="badge politika">Politika</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>`}
+        ${it.violates?'<span class="badge violation">İhlal</span>':''}
         <span class="badge conf">${confTr(it.c)} güven</span>
       </div>
     </div>`).join('');
@@ -242,18 +288,25 @@ function renderList(){
 }
 function openDetail(i){
   const it=DATA[i];
-  let chainBtn='';
-  if(it.chainTo!==undefined){const t=DATA[it.chainTo];
-    chainBtn=`<button class="btn chain" onclick="openDetail(${it.chainTo})">⛓ ${ESC(it.chainLabel)}<span class="sub">${ESC(t.d)}</span></button>`;}
+  const target=it.chainTo!==undefined?byId[it.chainTo]:undefined;
+  const chainBtn=target!==undefined
+    ? `<button class="btn chain" onclick="openDetail(${target.i})">⛓ ${ESC(it.chainLabel)}<span class="sub">${ESC(target.d)}</span></button>`
+    : '';
+  const violationNote=it.violates
+    ? `<div class="violation-note"><b>Politika ihlali:</b>“${ESC(it.violationLabel)}” politikasını ihlal ediyor.</div>`
+    : '';
   document.getElementById('panelIn').innerHTML=`
     <button class="close" id="closeBtn" aria-label="Kapat">×</button>
-    <span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>
+    ${it.kind==='politika'?'<span class="badge politika">Politika</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Onaylı karar':'İnceleme adayı'}</span>`}
+    ${it.violates?'<span class="badge violation" style="margin-left:6px">İhlal</span>':''}
     <h2>${ESC(it.d)}</h2>
-    <div class="kv"><div class="k">Onaylayan</div><div class="v">${ESC(it.o)}${it.os==='ratifier'?'':' <span style="color:var(--muted)">(çıkarım sinyali)</span>'}</div></div>
+    <div class="kv"><div class="k">${it.kind==='politika'?'Sahip':'Onaylayan'}</div><div class="v">${ESC(it.o)}${it.os==='ratifier'||it.os==='policy'?'':' <span style="color:var(--muted)">(çıkarım sinyali)</span>'}</div></div>
+    <div class="kv"><div class="k">Tür</div><div class="v">${it.kind==='politika'?'Duran kural / politika':'Karar kaydı'}</div></div>
     <div class="kv"><div class="k">Güven</div><div class="v">${confTr(it.c)}</div></div>
     <div class="kv"><div class="k">Kaynak</div><div class="v">${ESC(SOURCES[it.sk].sub)}</div></div>
     <div class="quote">${ESC(it.hl)}</div>
     ${it.st==='aday'?`<div class="reason"><b>Neden sicile girmedi (aday):</b>${ESC(it.r)}</div>`:''}
+    ${violationNote}
     <div class="actions">
       <button class="btn" onclick="openSource(${i})">📄 Kaynağı aç — e-postada vurgulu gör <span class="arr">→</span></button>
       ${chainBtn}
