@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decdock — Başlayalım | Karar Denetimi süreci</title>
-  <meta name="description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Gizlilik sözleşmesi tam metni, veri aktarım yöntemleri ve teslim detayları bu sayfadadır." />
+  <meta name="description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Veri hazırlığı, aktarım yöntemi, pilot sözleşmesi ve teslim detayları bu sayfadadır." />
   <link rel="canonical" href="https://decdock.com/basla/" />
   <meta property="og:title" content="Decdock — Başlayalım | Karar Denetimi süreci" />
-  <meta property="og:description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Gizlilik sözleşmesi tam metni, veri aktarım yöntemleri ve teslim detayları bu sayfadadır." />
+  <meta property="og:description" content="Karar Denetimi süreci: beş adım, baştan sona şeffaf. Veri hazırlığı, aktarım yöntemi, pilot sözleşmesi ve teslim detayları bu sayfadadır." />
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://decdock.com/basla/" />
@@ -510,26 +510,37 @@
     </section>
 
     <section aria-labelledby="nda">
-      <h2 id="nda">Gizlilik sözleşmesi — tam metin</h2>
+      <h2 id="nda">Gizlilik ve pilot sözleşmesi</h2>
 
       <div class="nda-card">
-        <h3>Gizlilik Sözleşmesi</h3>
+        <h3>Pilot sözleşmesi talep üzerine paylaşılır</h3>
 
-        <p><strong>Taraflar:</strong> [Müşteri Şirket Unvanı] ("Veri Sahibi") ile Decdock ("Hizmet Sağlayıcı") arasında [tarih] tarihinde akdedilmiştir.</p>
-
-        <ol>
-          <li><strong>Konu:</strong> Veri Sahibi'nin, karar denetimi raporu üretimi amacıyla Hizmet Sağlayıcı'ya ileteceği yazışma ve doküman içerikleri ("Veri") ile Hizmet Sağlayıcı'nın ürün ve yöntemlerine ilişkin bilgiler bu sözleşme kapsamında gizli bilgidir.</li>
-          <li><strong>Amaç sınırı:</strong> Veri, yalnızca karar denetimi raporunun üretimi amacıyla işlenir. Başka hiçbir amaçla (model eğitimi dahil) kullanılmaz, üçüncü taraflarla paylaşılmaz.</li>
-          <li><strong>İşleme:</strong> Veri, Hizmet Sağlayıcı'nın kontrolündeki ortamda işlenir. İşleme sırasında yapay zekâ servis sağlayıcısı altyapısı kullanılır; bu altyapıya iletilen içerik, sağlayıcının kurumsal gizlilik koşullarına tabidir ve model eğitiminde kullanılmaz.</li>
-          <li><strong>Saklama ve imha:</strong> Ham Veri, raporun teslimini izleyen 7 gün içinde tüm kopyalarıyla birlikte imha edilir ve imha yazılı olarak teyit edilir. Teslim edilen rapor Veri Sahibi'nin mülkiyetindedir.</li>
-          <li><strong>Kapsam dışı içerik:</strong> İK disiplin süreçleri, hukuki ihtilaf ve sağlık verisi içeren içerikler kabul edilmez; tespit edilirse işlenmeden iade/imha edilir.</li>
-          <li><strong>Referans hakkı:</strong> Hizmet Sağlayıcı, Veri Sahibi'nin yazılı onayı olmadan bu çalışmayı referans olarak kullanamaz.</li>
-          <li><strong>Süre:</strong> Gizlilik yükümlülükleri imza tarihinden itibaren 3 yıl geçerlidir.</li>
-          <li><strong>Uyuşmazlık:</strong> [İl] mahkemeleri ve icra daireleri yetkilidir.</li>
-        </ol>
+        <p>Public sayfada ham sözleşme taslağı yayınlamıyoruz. Pilot kapsamı netleştiğinde gizlilik, veri işleme, saklama, imha ve referans kullanımı maddelerini içeren güncel PDF taslağı e-posta üzerinden paylaşılır.</p>
+        <p class="nda-note">{{TODO: founder doğrulayacak}} Nihai saklama süresi, imha teyidi, altyapı bölgesi ve hizmet sağlayıcı maddeleri imza öncesinde yazılı hale getirilir.</p>
       </div>
+    </section>
 
-      <p class="nda-note">Sözleşme karşılıklı imzayla yürürlüğe girer; PDF olarak e-posta üzerinden iletilir.</p>
+    <section aria-labelledby="veri-hazirligi">
+      <h2 id="veri-hazirligi">Ne gönderilir, ne gönderilmez?</h2>
+
+      <div class="info-block">
+        <h3>Gönderilebilir</h3>
+        <ul>
+          <li>Bitmiş bir proje, karar zinciri veya bilgi akışına ait sınırlı e-posta/not dilimi.</li>
+          <li>Kaynağın bağlamını anlatan kısa not: proje adı, tarih aralığı, beklenen çıktı.</li>
+          <li>Varsa sizin bildiğiniz 5-10 kritik karar veya bilgi maddesi; raporu buna karşı kontrol ederiz.</li>
+        </ul>
+
+        <h3>Gönderilmemeli</h3>
+        <ul>
+          <li>İK disiplin süreçleri, sağlık verisi, özel nitelikli kişisel veri veya aktif hukuki ihtilaf yazışmaları.</li>
+          <li>Geniş posta kutusu dökümü, tüm şirket arşivi veya kapsamı belirsiz ham veri.</li>
+          <li>Gereksiz ek dosyalar, kimlik belgeleri, ödeme bilgileri veya müşteri sırlarını içeren ilgisiz materyaller.</li>
+        </ul>
+
+        <h3>Veri nasıl silinir?</h3>
+        <p>{{TODO: founder doğrulayacak}} Pilot öncesi yazılı kapsamda silme süresi, silme teyidi ve rapor tesliminden sonra elde tutulacak tek kopyanın ne olacağı netleştirilir. Bu sayfa bağlayıcı politika değil; görüşmeye hazırlık rehberidir.</p>
+      </div>
     </section>
 
     <section aria-labelledby="baslayalim">

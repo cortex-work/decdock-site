@@ -1,26 +1,26 @@
 # Decdock
 
-Decdock is a decision registry (decision memory / karar sicili) for companies — it extracts decisions from internal email and meeting notes into a source-linked, auditable record: what was decided, who ratified it, when, why.
+Decdock is a corporate memory engine for companies. Its first wedge is a source-linked decision registry: it turns scattered emails and meeting notes into auditable records of what was decided, who ratified it, when, why, and how later decisions changed it. The same engine direction also supports reusable institutional knowledge: extracted facts, source trails, freshness signals, conflicts, and human review.
 
 ## Key facts
 
-- Two-stage extraction: extract candidate decisions, then verify ratification (second pass confirms the statement was actually approved in that correspondence).
-- Distinguishes ratified decisions from "looks like a decision" (suggestions, intentions, scheduling) — unratified candidates are kept out of the registry and shown transparently in a review list with reasoning.
-- Decision chains: conflict warnings when a new message contradicts an earlier decision (shows both records side by side); supersession links so the old record remains accessible with its context; unowned decisions flagged automatically.
-- Sources today: email threads and meeting notes. Turkish-optimized; works with English content.
-- Entry offer: one-time "Karar Denetimi" (Decision Audit) report from 20–50 emails of a finished project, delivered in one week, no integration or system access required.
-- ROI stance: Decdock does not claim universal savings numbers. It shows where decision loss creates cost (repeated decisions, ownerless decisions, stale decisions, audit/departure risk) so the customer can calculate impact from their own examples.
-- Security/deployment posture: starts with limited-scope pilot report mode; can move to managed cloud or customer-owned cloud/server deployment depending on data sensitivity and procurement requirements.
-- Access model: executives receive decision-risk reports and digests; teams search the decisions they are allowed to see; company admins control sources, retention, users, and visibility by role/scope.
-- Nothing uncertain is presented as definitive fact — unratified candidates stay out of the registry, with their reasoning visible.
-- Data used solely for report production and destroyed after delivery with written confirmation.
-- NOT: a meeting-notes tool, task manager, enterprise search, surveillance system, or a platform-assistant alternative. Summary and assistant tools summarize conversations; Decdock maintains a permanent auditable record of what was decided, who ratified it, and whether it is still valid.
+- Decision registry: extracts candidate decisions, verifies ratification in a second pass, and keeps unratified suggestions out of the official registry.
+- Knowledge memory direction: decisions and reusable business knowledge are treated as related memory objects with provenance, dates, conflicts, supersession, and review state.
+- Source-linked by design: every accepted record is tied to the source sentence or source pointer; uncertain items remain transparent review candidates.
+- Decision graph: policies, decisions, conflicts, supersession, compliance, and violations can be explored as a connected graph.
+- Live static demos: public graph and demo pages show the interaction model with representative data only; they do not call live LLMs or APIs.
+- Sources today: email threads and meeting notes. Turkish-optimized; English content supported.
+- Entry offer: a limited-scope pilot or one-time Decision Audit from a small project slice, without broad integration or system access.
+- ROI stance: Decdock does not invent universal savings numbers. It shows where decision loss, stale knowledge, ownerless decisions, and repeated work create measurable risk so the customer can calculate impact from their own examples.
+- Security/deployment posture: starts with limited-scope report mode; later deployment can be managed cloud or customer-owned cloud/server depending on sensitivity and procurement.
+- Access model: executives receive risk/digest views; teams search records they are allowed to see; admins control sources, retention, users, and visibility by role/scope.
+- NOT: a meeting-notes tool, task manager, surveillance system, or generic enterprise search assistant. Summary tools answer "what was discussed?" Decdock preserves "what was decided or learned, where it came from, and whether it is still valid."
 
 ## Decdock vs summary tools
 
-- Summary and assistant tools answer "what was discussed?" — output is an ephemeral snapshot that disappears. Decdock answers "what was decided, who ratified it, is it still valid?" — output is a durable, auditable decision registry.
-- They are complementary, not alternatives: the assistant summarises the conversation; Decdock commits the decision to the record. Together: the assistant handles productivity, Decdock handles accountability and institutional memory.
-- Roadmap direction: when your AI assistant connects to Decdock (MCP), "who made this decision?" is answered directly from the decision registry, with the source sentence — the assistant queries the registry rather than guessing from conversation history.
+- Summary and assistant tools produce ephemeral summaries of conversations. Decdock creates durable, source-linked memory records that can be reviewed, challenged, superseded, and audited.
+- They are complementary: assistants help with productivity; Decdock handles accountability and institutional memory.
+- Roadmap direction: when an AI assistant connects to Decdock, it should query verified memory records rather than guess from raw conversation history.
 
 ## Stage
 
@@ -36,10 +36,13 @@ Product and website primarily Turkish (tr); English content supported.
 
 ## Links
 
+- Home: https://decdock.com/
 - Product detail (Turkish): https://decdock.com/urun/
-- Comparison — Decdock vs summary tools: https://decdock.com/karsilastirma/
-- Guide — what a decision registry (karar sicili) is, why company decisions get lost, decision vs proposal, conflicting decisions, why manual logs fail (Turkish): https://decdock.com/karar-sicili/
-- Guide — how to track meeting & email decisions; why task managers / minutes miss decisions (Turkish): https://decdock.com/karar-takibi/
-- Guide — what institutional/corporate memory (kurumsal hafıza) is, why it is lost on employee turnover, sustainable memory (Turkish): https://decdock.com/kurumsal-hafiza/
-- Guide — difference between a RAG-based corporate AI assistant (document Q&A / enterprise search) and a decision registry (Turkish): https://decdock.com/rag-vs-karar-sicili/
-- Guide — the cost of lost/conflicting decisions and Decdock's ROI, explained with concrete examples (no fabricated numbers) (Turkish): https://decdock.com/karar-kaybinin-maliyeti/
+- Live decision graph demo (representative data): https://decdock.com/karar-grafi/
+- Live source-to-record demo (representative data): https://decdock.com/demo-canli/
+- Comparison - Decdock vs summary tools: https://decdock.com/karsilastirma/
+- Guide - what a decision registry is and why company decisions get lost (Turkish): https://decdock.com/karar-sicili/
+- Guide - how to track meeting and email decisions (Turkish): https://decdock.com/karar-takibi/
+- Guide - institutional/corporate memory (Turkish): https://decdock.com/kurumsal-hafiza/
+- Guide - RAG assistant vs decision registry (Turkish): https://decdock.com/rag-vs-karar-sicili/
+- Guide - cost of lost/conflicting decisions and ROI framing (Turkish): https://decdock.com/karar-kaybinin-maliyeti/
