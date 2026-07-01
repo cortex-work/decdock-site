@@ -7,8 +7,8 @@ const DATA_FILES = [
 ]
 
 const PAGE_FILES = [
-  ['TR page', 'public/enron-kanit/index.html'],
-  ['EN page', 'public/enron-proof/index.html'],
+  ['TR page', 'public/enron-kanit/index.html', '/enron-grafi/'],
+  ['EN page', 'public/enron-proof/index.html', '/enron-graph/'],
 ]
 
 const errors = []
@@ -67,11 +67,11 @@ const trIds = tr.DATA.map(record => record.id).join('|')
 const enIds = en.DATA.map(record => record.id).join('|')
 if (trIds !== enIds) errors.push('TR/EN DATA ids are not in the same order')
 
-for (const [label, file] of PAGE_FILES) {
+for (const [label, file, graphLink] of PAGE_FILES) {
   const html = readFileSync(file, 'utf8')
   if (!html.includes('hreflang="tr"')) errors.push(`${label}: missing tr hreflang`)
   if (!html.includes('hreflang="en"')) errors.push(`${label}: missing en hreflang`)
-  if (!html.includes('/karar-grafi/')) errors.push(`${label}: missing graph link`)
+  if (!html.includes(graphLink)) errors.push(`${label}: missing graph link ${graphLink}`)
   if (/Temsili\/örnek veridir|representative sample data/i.test(html)) {
     errors.push(`${label}: misleading representative-data copy remains`)
   }

@@ -1,0 +1,58 @@
+import { readFileSync } from 'node:fs'
+import vm from 'node:vm'
+
+const GRAPH_FILES = [
+  ['TR graph', 'public/enron-grafi/index.html', '/enron-kanit/', '/karar-grafi/'],
+  ['EN graph', 'public/enron-graph/index.html', '/enron-proof/', '/karar-grafi/'],
+]
+
+const errors = []
+
+function loadGraph(file) {
+  const html = readFileSync(file, 'utf8')
+  const dataMatch = html.match(/const NODES=(\[[\s\S]*?\]);\s*const EDGES=(\[[\s\S]*?\]);/)
+  if (!dataMatch) {
+    errors.push(`${file}: NODES/EDGES literals not found`)
+    return { html, nodes: [], edges: [] }
+  }
+  const sandbox = vm.createContext({})
+  const nodes = vm.runInContext(`(${dataMatch[1]})`, sandbox)
+  const edges = vm.runInContext(`(${dataMatch[2]})`, sandbox)
+  return { html, nodes, edges }
+}
+
+for (const [label, file, proofLink, sampleLink] of GRAPH_FILES) {
+  const { html, nodes, edges } = loadGraph(file)
+  const ids = new Set(nodes.map((node) => node.id))
+
+  if (nodes.length !== 20) errors.push(`${label}: expected 20 nodes, got ${nodes.length}`)
+  if (!html.includes(proofLink)) errors.push(`${label}: missing proof link ${proofLink}`)
+  if (!html.includes(sampleLink)) errors.push(`${label}: missing synthetic graph link ${sampleLink}`)
+  if (!html.includes('hreflang="tr"')) errors.push(`${label}: missing tr hreflang`)
+  if (!html.includes('hreflang="en"')) errors.push(`${label}: missing en hreflang`)
+  if (!html.includes('same_source')) errors.push(`${label}: missing same_source provenance edge support`)
+
+  for (const edge of edges) {
+    if (!ids.has(edge.from)) errors.push(`${label}: edge from missing node ${edge.from}`)
+    if (!ids.has(edge.to)) errors.push(`${label}: edge to missing node ${edge.to}`)
+    if (!['references', 'depends_on', 'conflicts', 'violates', 'complies_with', 'supersedes', 'same_source'].includes(edge.type)) {
+      errors.push(`${label}: unknown edge type ${edge.type}`)
+    }
+  }
+
+  const driftEdges = edges.filter((edge) => edge.type === 'conflicts' || edge.type === 'supersedes')
+  const sameSourceEdges = edges.filter((edge) => edge.type === 'same_source')
+  if (driftEdges.length !== 4) errors.push(`${label}: expected 4 drift edges, got ${driftEdges.length}`)
+  if (sameSourceEdges.length < 3) errors.push(`${label}: expected same-source provenance edges`)
+
+  const isoDates = nodes.filter((node) => /^\d{4}-\d{2}-\d{2}$/.test(node.date))
+  if (isoDates.length !== nodes.length) errors.push(`${label}: expected all node dates to be ISO`)
+}
+
+if (errors.length > 0) {
+  console.error('enron-graph smoke failed:')
+  for (const error of errors) console.error(`- ${error}`)
+  process.exit(1)
+}
+
+console.log('enron-graph smoke passed: 20 nodes, 4 drift edges, same-source provenance links')

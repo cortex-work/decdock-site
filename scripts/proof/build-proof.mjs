@@ -69,7 +69,7 @@ replaceOrThrow(
 
 replaceOrThrow(
   `<a class="demo-tag" href="/karar-grafi/">Tüm kararların ağı →</a>`,
-  `<a class="demo-tag" href="/karar-grafi/">Tüm kararların ağını gör →</a>`,
+  `<a class="demo-tag" href="/enron-grafi/">Ağ görünümü: Enron →</a>`,
 )
 replaceOrThrow(
   `<h1>Karar Sicili — gezin, kaynağına inin, zinciri izleyin</h1>`,
@@ -91,7 +91,7 @@ replaceOrThrow(
 )
 replaceOrThrow(
   `    Gördüğünüz her satır <b>kaynağına bağlı</b> — uydurma yok, e-postadaki cümleye iner. Politikalar duran kural olarak ayrılır; ihlaller kırmızı görünür. Kendi <b>bitmiş bir projenizden ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>`,
-  `    <b>Neden önemli?</b> Bu sayfa Decdock'un "doğruyu ilan ettiğini" değil, kamuya açık bir arşivde <b>kaynaklı aday hafıza</b> ve <b>drift sinyali</b> üretebildiğini gösterir; son kararı insan doğrular. Aynı motor, yalnızca bir <b>JSON tenant profili</b> ile enerji ticareti gibi farklı bir sektöre uygulandı. Ölçek notu: bu koşuda 37 ham kayıt 28 konsolide kayda indirildi; burada en güçlü 20 kayıt gösteriliyor. Kendi public/sanitized arşivinizle benzer bir pilot için: <b>pilot@decdock.com</b> · <a href="/karar-grafi/">tüm kararların ağını görün</a>`,
+  `    <b>Neden önemli?</b> Bu sayfa Decdock'un "doğruyu ilan ettiğini" değil, kamuya açık bir arşivde <b>kaynaklı aday hafıza</b> ve <b>drift sinyali</b> üretebildiğini gösterir; son kararı insan doğrular. Aynı motor, yalnızca bir <b>JSON tenant profili</b> ile enerji ticareti gibi farklı bir sektöre uygulandı. Ölçek notu: bu koşuda 37 ham kayıt 28 konsolide kayda indirildi; burada en güçlü 20 kayıt gösteriliyor. Kendi public/sanitized arşivinizle benzer bir pilot için: <b>pilot@decdock.com</b> · <a href="/enron-grafi/">Enron ağ görünümünü açın</a>`,
 )
 replaceOrThrow(
   `<p class="foot">Temsili/örnek veridir; gerçek bir şirketin verisi değildir. © 2026 Decdock</p>`,

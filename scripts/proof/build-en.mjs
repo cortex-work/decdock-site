@@ -75,7 +75,7 @@ replaceOrThrow(
 
 replaceOrThrow(
   `<a class="demo-tag" href="/karar-grafi/">Tüm kararların ağı →</a>`,
-  `<a class="demo-tag" href="/karar-grafi/">See the full decision graph →</a>`,
+  `<a class="demo-tag" href="/enron-graph/">Graph view: Enron →</a>`,
 )
 replaceOrThrow(
   `<h1>Karar Sicili — gezin, kaynağına inin, zinciri izleyin</h1>`,
@@ -97,7 +97,7 @@ replaceOrThrow(
 )
 replaceOrThrow(
   `    Gördüğünüz her satır <b>kaynağına bağlı</b> — uydurma yok, e-postadaki cümleye iner. Politikalar duran kural olarak ayrılır; ihlaller kırmızı görünür. Kendi <b>bitmiş bir projenizden ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>`,
-  `    <b>So what?</b> This page does not claim Decdock declares truth. It shows that, on a public archive, the engine can produce <b>sourced candidate memory</b> and <b>drift signals</b> for a human to verify. The same engine, with only a <b>JSON tenant profile</b>, was pointed at a different domain: energy trading. Scale note: this run consolidated 37 raw records into 28 records; this page shows the strongest 20. For your own public/sanitized archive: <b>pilot@decdock.com</b> · <a href="/karar-grafi/">see the full decision graph</a>`,
+  `    <b>So what?</b> This page does not claim Decdock declares truth. It shows that, on a public archive, the engine can produce <b>sourced candidate memory</b> and <b>drift signals</b> for a human to verify. The same engine, with only a <b>JSON tenant profile</b>, was pointed at a different domain: energy trading. Scale note: this run consolidated 37 raw records into 28 records; this page shows the strongest 20. For your own public/sanitized archive: <b>pilot@decdock.com</b> · <a href="/enron-graph/">open the Enron graph view</a>`,
 )
 replaceOrThrow(
   `<p class="foot">Temsili/örnek veridir; gerçek bir şirketin verisi değildir. © 2026 Decdock</p>`,
