@@ -7,6 +7,7 @@ const links = [
   { href: '/#faq', label: 'Sık sorulanlar' },
   { href: '/karar-grafi/', label: 'Karar ağı' },
   { href: '/demo-canli/', label: 'Canlı demo' },
+  { href: '/enron-kanit/', label: 'Enron kanıtı' },
   { href: '/demo/', label: '60 sn tanıtım' },
   { href: '/urun/', label: 'Ürün detayı' },
   { href: '/karsilastirma/', label: 'Karşılaştırma' },
