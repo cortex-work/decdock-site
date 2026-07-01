@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A real run on Enron's public archive | Decdock</title>
+<meta name="description" content="The Decdock engine run over Enron's public email archive: two conflicts and two supersede chains in the risk policy, each sourced to a real email. Real-run proof." />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://decdock.com/enron-proof/" />
+<meta property="og:title" content="A real run on Enron's archive — Decdock" />
+<meta property="og:description" content="The Decdock engine on Enron's public archive: two conflicts, two supersede chains — every row sourced to a real email." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://decdock.com/enron-proof/" />
+<meta property="og:image" content="https://decdock.com/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --page:#f4eee6; --ink:#2b2420; --body:#574f48; --muted:#8a7d71;
+    --accent:#9c6e44; --accent-d:#84592f; --success:#5c7560; --warning:#a86f3d; --danger:#a94436;
+    --line:rgba(74,66,58,0.16); --line2:rgba(74,66,58,0.28); --pane:#fdfaf5;
+    --mark:#f5e4a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:radial-gradient(120% 80% at 50% -10%,#f7f0e6,var(--page) 55%,#e8ded0);min-height:100%;}
+  body{font-family:'Manrope',system-ui,sans-serif;color:var(--body);line-height:1.6;font-size:14px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 64px;}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .brand{font-weight:800;font-size:16px;letter-spacing:-0.02em;color:var(--ink);} .brand a{color:inherit;}
+  .demo-tag{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-d);background:rgba(156,110,68,0.12);border:1px solid rgba(156,110,68,0.3);border-radius:99px;padding:4px 12px;}
+  h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.12;margin-bottom:8px;}
+  .dek{max-width:64ch;color:var(--body);font-size:14.5px;margin-bottom:18px;} .dek b{color:var(--ink);}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .stat{flex:1 1 120px;border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:11px 14px;}
+  .stat .n{font-family:'Newsreader',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1;}
+  .stat.s .n{color:var(--success);} .stat.a .n{color:var(--accent);} .stat.v .n{color:var(--danger);} .stat.p .n{color:#6f5f92;} .stat.k .n{color:var(--ink);}
+  .stat .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  .search{flex:1 1 240px;display:flex;align-items:center;gap:8px;background:var(--pane);border:1px solid var(--line2);border-radius:8px;padding:9px 12px;}
+  .search input{border:none;background:none;outline:none;flex:1;font:inherit;color:var(--ink);font-size:14px;}
+  .search svg{flex:0 0 auto;color:var(--muted);}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{font-size:12px;font-weight:600;color:var(--body);background:var(--pane);border:1px solid var(--line2);border-radius:99px;padding:7px 13px;cursor:pointer;transition:all .12s;}
+  .chip:hover{border-color:var(--accent);} .chip.on{background:var(--ink);color:#f7f0e8;border-color:var(--ink);}
+  .list{display:flex;flex-direction:column;gap:8px;}
+  .row{border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:13px 16px;cursor:pointer;transition:all .12s;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:start;}
+  .row:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(43,35,29,.06);transform:translateY(-1px);}
+  .row .dtext{font-weight:600;color:var(--ink);font-size:13.5px;line-height:1.4;grid-column:1;}
+  .row .meta{grid-column:1;font-size:11.5px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .row .meta b{color:var(--success);font-weight:600;}
+  .chainpill{color:var(--accent-d);background:rgba(156,110,68,.1);border:1px solid rgba(156,110,68,.28);border-radius:99px;padding:1px 8px;font-size:10.5px;font-weight:600;}
+  .badges{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+  .badge{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 9px;white-space:nowrap;}
+  .badge.onayli{color:var(--success);background:rgba(92,117,96,.12);border:1px solid rgba(92,117,96,.3);}
+  .badge.aday{color:var(--accent-d);background:rgba(156,110,68,.12);border:1px solid rgba(156,110,68,.3);}
+  .badge.politika{color:#6f5f92;background:rgba(111,95,146,.11);border:1px solid rgba(111,95,146,.28);}
+  .badge.violation{color:var(--danger);background:rgba(169,68,54,.11);border:1px solid rgba(169,68,54,.32);}
+  .badge.conf{color:var(--muted);background:transparent;border:1px solid var(--line2);font-weight:600;}
+  .empty{text-align:center;color:var(--muted);padding:40px;font-size:13px;}
+  .scrim{position:fixed;inset:0;background:rgba(30,22,16,.42);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .18s;z-index:40;}
+  .scrim.open{opacity:1;pointer-events:auto;}
+  .panel{position:fixed;top:0;right:0;height:100%;width:min(520px,94vw);background:var(--page);border-left:1px solid var(--line2);box-shadow:-20px 0 50px rgba(40,32,24,.18);transform:translateX(100%);transition:transform .2s cubic-bezier(.22,1,.36,1);z-index:50;overflow-y:auto;}
+  .panel.open{transform:translateX(0);}
+  .panel-in{padding:24px 26px 44px;transition:opacity .12s ease;}
+  .panel-in.fade{opacity:0;}
+  .panel .close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;z-index:2;}
+  .crumb{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:0;background:none;border:none;font:inherit;font-size:12px;font-weight:700;color:var(--accent-d);cursor:pointer;}
+  .crumb:hover{text-decoration:underline;}
+  .panel h2{font-family:'Newsreader',serif;font-size:20px;font-weight:600;color:var(--ink);line-height:1.25;margin:8px 40px 14px 0;}
+  .kv{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;}
+  .kv .k{width:96px;flex:0 0 auto;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
+  .kv .v{color:var(--ink);font-weight:560;}
+  .quote{margin-top:14px;border-left:3px solid #d8c4ae;padding:10px 14px;background:var(--pane);border-radius:0 8px 8px 0;font-style:italic;color:var(--body);font-size:12.5px;line-height:1.6;}
+  .reason{margin-top:14px;border:1px solid rgba(156,110,68,.3);background:rgba(156,110,68,.07);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--accent-d);}
+  .reason b{display:block;margin-bottom:3px;color:var(--warning);}
+  .violation-note{margin-top:14px;border:1px solid rgba(169,68,54,.34);background:rgba(169,68,54,.08);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--danger);}
+  .violation-note b{display:block;margin-bottom:3px;color:var(--danger);}
+  .actions{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+  .btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line2);background:var(--pane);border-radius:8px;padding:11px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;transition:all .12s;}
+  .btn:hover{border-color:var(--accent);background:#fff;}
+  .btn .arr{color:var(--accent);}
+  .btn .sub{font-size:11px;font-weight:500;color:var(--muted);display:block;margin-top:2px;}
+  .sec{margin-top:18px;} .sec-h{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-d);margin-bottom:10px;}
+  .timeline{position:relative;display:flex;flex-direction:column;gap:2px;margin-top:2px;}
+  .timeline:before{content:"";position:absolute;left:66px;top:9px;bottom:9px;width:1px;background:linear-gradient(to bottom,transparent,var(--line2) 12%,var(--line2) 88%,transparent);}
+  .tl-row{position:relative;display:grid;grid-template-columns:48px 22px minmax(0,1fr) 12px;gap:8px;align-items:start;padding:6px 0;cursor:pointer;}
+  .tl-row:hover .tl-card{border-color:var(--accent);background:#fff;transform:translateX(-1px);}
+  .tl-row.anchor{cursor:default;}
+  .tl-row.anchor:hover .tl-card{transform:none;}
+  .tl-date{font-size:10.5px;font-weight:700;color:var(--muted);text-align:right;white-space:nowrap;padding-top:13px;}
+  .tl-dot{z-index:1;justify-self:center;width:13px;height:13px;border-radius:99px;margin-top:12px;background:#f7f0e7;border:2px solid var(--accent);box-shadow:0 0 0 4px var(--page);}
+  .tl-card{border:1px solid var(--line);border-radius:9px;background:var(--pane);padding:9px 11px;transition:border-color .12s,background .12s,transform .12s;}
+  .tl-row.danger .tl-dot{border-color:var(--danger);background:rgba(169,68,54,.16);}
+  .tl-row.danger .tl-card{border-color:rgba(169,68,54,.46);background:rgba(169,68,54,.055);}
+  .tl-row.ok .tl-dot{border-color:var(--success);background:rgba(92,117,96,.14);}
+  .tl-row.ok .tl-card{border-color:rgba(92,117,96,.34);background:rgba(92,117,96,.065);}
+  .tl-row.fill .tl-dot{background:var(--danger);border-color:var(--danger);}
+  .tl-row.fill .tl-card{border-color:rgba(169,68,54,.62);background:rgba(169,68,54,.11);}
+  .tl-row.anchor .tl-dot{width:17px;height:17px;margin-top:10px;background:var(--ink);border-color:var(--accent);box-shadow:0 0 0 5px var(--page),0 0 0 7px rgba(156,110,68,.2);}
+  .tl-row.anchor .tl-card{border-color:var(--accent);background:linear-gradient(135deg,#fffaf3,#f4eadf);}
+  .tl-verb{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:6px;}
+  .tl-glyph{font-size:14px;color:var(--accent);line-height:1;}
+  .tl-row.danger .tl-glyph,.tl-row.danger .tl-verb{color:var(--danger);}
+  .tl-row.ok .tl-glyph,.tl-row.ok .tl-verb{color:var(--success);}
+  .tl-title{font-size:12.8px;color:var(--ink);font-weight:720;line-height:1.35;}
+  .tl-owner{margin-top:3px;font-size:11.5px;color:var(--muted);line-height:1.35;}
+  .tl-gap{display:inline-flex;margin-left:6px;border:1px solid var(--line2);border-radius:99px;padding:1px 6px;font-size:10px;font-weight:700;color:var(--accent-d);background:rgba(156,110,68,.07);white-space:nowrap;}
+  .tl-why{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:5px;line-height:1.45;}
+  .tl-chev{font-size:18px;color:var(--accent);line-height:1;padding-top:14px;}
+  /* source view */
+  .src-head{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+  .src-sub{font-family:'Newsreader',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;}
+  .email{white-space:pre-wrap;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.7;color:var(--body);background:var(--pane);border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+  .email mark{background:var(--mark);color:var(--ink);padding:1px 2px;border-radius:2px;box-shadow:0 0 0 3px var(--mark);}
+  .back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;font:inherit;font-size:13px;font-weight:600;color:var(--accent);cursor:pointer;margin-bottom:12px;padding:0;}
+  .src-note{margin-top:10px;font-size:11px;color:var(--muted);}
+  .cta{margin-top:26px;border:1px solid var(--accent);border-radius:12px;background:rgba(156,110,68,.06);padding:16px 18px;font-size:13.5px;line-height:1.65;} .cta b{color:var(--accent-d);}
+  .foot{margin-top:22px;text-align:center;font-size:11.5px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><a href="/">Decdock</a></div>
+    <a class="demo-tag" href="/karar-grafi/">● Real run · Enron/FERC</a>
+  </div>
+  <h1>A real run — Enron's public archive</h1>
+  <p class="dek">This is <b>not representative</b>. The Decdock engine was run over Enron's public email archive (FERC release) — every record below is tied to <b>a real sentence in a real email</b>. In this run the engine surfaced two <b>conflicts</b> and two <b>supersede</b> chains (a newer record overriding an older one). Click a record → use <b>"Open source"</b> to see the real quote. Not a verdict; a <b>candidate signal</b> for a human to confirm.</p>
+
+  <div class="stats" id="stats"></div>
+  <div class="toolbar">
+    <label class="search">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <input id="q" type="text" placeholder="Search… (e.g. VaR, DPR, DASH, $1M)" autocomplete="off" />
+    </label>
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="list" id="list"></div>
+
+  <div class="cta">
+    Every row on this page drills into <b>a real sentence</b> from Enron's public email — no fabrication. The engine was not hand-coded for this content: <b>the same engine + one JSON tenant profile</b>, pointed at a different domain (energy trading). Scale note: this run consolidated 37 raw records → 28; the engine is early, and a human corrects some matches. For your own archive: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
+  </div>
+  <p class="foot">Enron public FERC email archive · Decdock engine + tenant profile · candidate signal, not a verdict · © 2026 Decdock</p>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" aria-hidden="true"><div class="panel-in" id="panelIn"></div></aside>
+
+<script>
+// Real Decdock run — Enron public email archive (FERC release).
+// Source: decdock-enron-moat.json (consolidate + drift). Quotes are verbatim.
+const SOURCES = {
+  'var': { sub:"Risk Policy & VaR Limits — August 2001", body:`ENRON — public email archive (FERC release)
+Subject: "Policy and other items" / "RE: Policy and other items"
+File: ENR-DEC-001, ENR-DEC-002 · 16–17 August 2001
+
+I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.
+
+The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.
+
+Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM
+
+Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th` },
+
+  'dpr': { sub:"Daily Position Report (DPR) — Signing Authority", body:`ENRON — public email archive (FERC release)
+Subject: "Global Risk Management"
+File: ENR-DEC-004 · 8 May 2000
+
+Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report
+
+Please obtain Greg Whalley's approval for all DPR's prior to that date
+
+Going forward, please coordinate with each as to their preferred method of designating approval.` },
+
+  'dash': { sub:"DASH Deal Classification — RAC", body:`ENRON — public email archive (FERC release)
+Subject: RE: DASH Classification - "Proceed - See Other RAC Comments"
+File: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025 · 13 September 2001
+
+three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.
+
+Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.
+
+we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option` },
+
+  'payment': { sub:"Payment Approval Thresholds & PO Billing", body:`ENRON — public email archive (FERC release)
+Subject: "Updated - Approval Authorizations" / PO 20120613
+File: ENR-DEC-018, ENR-REQ-016 · December 2000
+
+If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.
+
+Approved - Pls bill half to DealBench RC and the other half to Networks corpo` },
+};
+
+const DATA = [
+  {id:'var-policy',kind:'politika',st:'onayli',d:"Policy update: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:`I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.`,chainTo:'var-agg',relType:'supersedes',chainLabel:"adds $50MM discretionary VaR, updating the prior-day definition"},
+  {id:'var-agg',kind:'politika',st:'onayli',d:"Board limit $150MM — but the new policy doesn't recognize discretionary VaR",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.`,chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR is approved, yet the policy doesn't recognize it — internal contradiction"},
+  {id:'var-buckets',kind:'politika',st:'onayli',d:"Business-line VaR limits: US Gas/Elec $100MM, Europe $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM`},
+  {id:'var-europe',kind:'karar',st:'onayli',d:"Europe to aggregate positions and report VaR to Houston (May 10)",o:"Europe desk",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:`Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th`},
+
+  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR signing authority: Lavorato (West) & Sherriff (East)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:`Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report`},
+  {id:'dpr-before',kind:'politika',st:'onayli',d:"DPRs before 5 May 2000: Greg Whalley approval required",o:"Greg Whalley (approver)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:`Please obtain Greg Whalley's approval for all DPR's prior to that date`},
+  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR approval method: to be coordinated with each executive",o:"Risk management",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:`Going forward, please coordinate with each as to their preferred method of designating approval.`,r:"Method not yet finalized; each executive will state their preferred approval form — candidate signal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"replaces the old Whalley-approval procedure for the post-5-May period"},
+
+  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 categories (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:`three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.`},
+  {id:'dash-q',kind:'karar',st:'aday',d:"DASH categories questioned (naming/order differ)",o:"RAC (discussion)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:`Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.`,r:"Category names and ordering unsettled; open debate on a separate RAC Comments category.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"conflicts on category definition and ordering"},
+  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' to be removed from the DASH template",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:`we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option`},
+
+  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ payment + contract → only Accounting Director's signature",o:"Approval authorities (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:`If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.`},
+  {id:'po-bill',kind:'karar',st:'onayli',d:"PO 20120613: bill half DealBench, half Networks",o:"Harry Arora (ECT)",os:"ratifier",c:"high",date:'2000-12-18',sk:'payment',hl:`Approved - Pls bill half to DealBench RC and the other half to Networks corpo`},
+];
+
+const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const confTr=c=>({high:'high',medium:'medium',low:'low'}[c]||c);
+let filter='all',query='';
+const FILTERS=[['all','All'],['onayli','Approved'],['aday','Candidate'],['politika','Policy'],['violation','⚠ Violation'],['chain','⛓ Chained']];
+const byId=Object.fromEntries(DATA.map((it,i)=>[it.id,{...it,i}]));
+const navStack=[];
+const REL={
+  depends_on:{out:['→','depends on',''],in:['←','basis for','']},
+  references:{out:['→','references',''],in:['←','referenced by','']},
+  supersedes:{out:['→','supersedes',''],in:['←','superseded by','']},
+  conflicts:{out:['↔','conflicts','danger'],in:['↔','conflicts','danger']},
+  complies_with:{out:['✓','complies','ok'],in:['←','complying record','ok']},
+  violates:{out:['⚠','violates','danger'],in:['⚠','violated by','danger fill']},
+};
+const MONTHS={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+function dateKey(date){
+  const s=String(date||'').trim();
+  const iso=s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(iso) return Number(iso[1])*372+Number(iso[2])*31+Number(iso[3]);
+  const parts=s.split(/\s+/);
+  const day=Number(parts[0])||1;
+  const month=MONTHS[parts[1]]||1;
+  return month*31+day;
+}
+function gapLabel(key,anchorKey){
+  const diff=key-anchorKey;
+  if(Math.abs(diff)<45) return '';
+  const months=Math.max(1,Math.round(Math.abs(diff)/31));
+  return (diff>0?'+':'-')+months+' mo '+(diff>0?'later':'earlier');
+}
+
+function matches(it){
+  if(filter==='onayli'&&(it.st!=='onayli'||it.kind==='politika'))return false;
+  if(filter==='aday'&&it.st!=='aday')return false;
+  if(filter==='politika'&&it.kind!=='politika')return false;
+  if(filter==='violation'&&!it.violates)return false;
+  if(filter==='chain'&&it.chainTo===undefined)return false;
+  if(query){const q=query.toLowerCase();return (it.d+' '+(it.o||'')+' '+it.hl+' '+(it.violationLabel||'')+' '+SOURCES[it.sk].sub).toLowerCase().includes(q);}
+  return true;
+}
+function renderStats(){
+  const onayli=DATA.filter(x=>x.st==='onayli'&&x.kind!=='politika').length, aday=DATA.filter(x=>x.st==='aday').length;
+  const violation=DATA.filter(x=>x.violates).length, politika=DATA.filter(x=>x.kind==='politika').length;
+  document.getElementById('stats').innerHTML=
+    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Approved decision</div></div>`+
+    `<div class="stat a"><div class="n">${aday}</div><div class="l">Review candidate</div></div>`+
+    `<div class="stat v"><div class="n">${violation}</div><div class="l">Violation</div></div>`+
+    `<div class="stat p"><div class="n">${politika}</div><div class="l">Policy</div></div>`+
+    `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Source emails</div></div>`+
+    `<div class="stat k"><div class="n">%100</div><div class="l">Source-linked</div></div>`;
+}
+function renderChips(){
+  document.getElementById('chips').innerHTML=FILTERS.map(([k,l])=>`<button class="chip${filter===k?' on':''}" data-k="${k}">${l}</button>`).join('');
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{filter=c.dataset.k;renderChips();renderList();});
+}
+function renderList(){
+  const items=DATA.map((it,i)=>({...it,i})).filter(matches);
+  const el=document.getElementById('list');
+  if(!items.length){el.innerHTML='<div class="empty">No matching records.</div>';return;}
+  el.innerHTML=items.map(it=>`
+    <div class="row" data-i="${it.i}">
+      <div class="dtext">${ESC(it.d)}</div>
+      <div class="meta"><span>👤 <b>${ESC(it.o)}</b></span><span>📄 ${ESC(SOURCES[it.sk].sub)}</span>${it.chainTo!==undefined?'<span class="chainpill">⛓ chained</span>':''}${it.violates?'<span class="chainpill">⚠ policy violation</span>':''}</div>
+      <div class="badges">
+        ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved decision':'Review candidate'}</span>`}
+        ${it.violates?'<span class="badge violation">Violation</span>':''}
+        <span class="badge conf">${confTr(it.c)} confidence</span>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.row').forEach(r=>r.onclick=()=>openDetail(+r.dataset.i,{reset:true}));
+}
+function relSpec(edge,id){
+  const outgoing=edge.from===id, target=byId[outgoing?edge.to:edge.from], spec=REL[edge.type][outgoing?'out':'in'];
+  return {target,relGlyph:spec[0],verb:spec[1],tone:spec[2],why:edge.why,type:edge.type};
+}
+function relationEdges(it){
+  const edges=[];
+  if(it.chainTo!==undefined) edges.push({from:it.id,to:it.chainTo,type:it.relType||'references',why:it.chainLabel});
+  if(it.violates!==undefined) edges.push({from:it.id,to:it.violates,type:'violates',why:`“${it.violationLabel}” violates this policy`});
+  DATA.forEach(other=>{
+    if(other.id===it.id)return;
+    if(other.chainTo===it.id) edges.push({from:other.id,to:it.id,type:other.relType||'references',why:other.chainLabel});
+    if(other.violates===it.id) edges.push({from:other.id,to:it.id,type:'violates',why:`“${it.d}” violates this policy`});
+  });
+  return edges;
+}
+function renderRelations(it){
+  const anchorKey=dateKey(it.date);
+  const rows=relationEdges(it).map(edge=>relSpec(edge,it.id)).map(r=>({
+    ...r,
+    sortKey:dateKey(r.target.date),
+    gap:gapLabel(dateKey(r.target.date),anchorKey),
+  }));
+  rows.push({target:it,verb:'this record',tone:'anchor',why:'',type:'anchor',anchor:true,sortKey:anchorKey,gap:''});
+  rows.sort((a,b)=>a.sortKey-b.sortKey||a.target.d.localeCompare(b.target.d,'tr'));
+  const glyph=r=>{
+    if(r.anchor)return '●';
+    if(r.type==='conflicts')return '↔';
+    if(r.type==='violates')return '⚠';
+    if(r.sortKey<anchorKey)return '↑';
+    if(r.sortKey>anchorKey)return '↓';
+    return r.relGlyph||'•';
+  };
+  return `<div class="timeline">${rows.map(r=>`<div class="tl-row ${r.anchor?'anchor':r.tone}"${r.anchor?'':` data-go="${r.target.id}"`}>
+    <div class="tl-date">${ESC(r.target.date)}</div>
+    <div class="tl-dot" aria-hidden="true"></div>
+    <div class="tl-card">
+      <div><span class="tl-verb"><span class="tl-glyph">${glyph(r)}</span>${ESC(r.verb)}</span><span class="tl-title">${ESC(r.target.d)}</span>${r.gap?`<span class="tl-gap">${ESC(r.gap)}</span>`:''}</div>
+      <div class="tl-owner">${ESC(r.target.o||'Unowned')}</div>
+      ${r.why?`<div class="tl-why">${ESC(r.why)}</div>`:''}
+    </div>
+    ${r.anchor?'<span></span>':'<span class="tl-chev">›</span>'}
+  </div>`).join('')}</div>`;
+}
+function renderDetail(i){
+  const it=DATA[i];
+  const prev=navStack.length?byId[navStack[navStack.length-1]]:null;
+  const violationNote=it.violates
+    ? `<div class="violation-note"><b>Policy violation:</b>“${ESC(it.violationLabel)}” violates this policy.</div>`
+    : '';
+  document.getElementById('panelIn').innerHTML=`
+    <button class="close" id="closeBtn" aria-label="Close">×</button>
+    ${prev?`<button class="crumb" id="crumb">↩ from: ${ESC(prev.d)}</button>`:''}
+    ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved decision':'Review candidate'}</span>`}
+    ${it.violates?'<span class="badge violation" style="margin-left:6px">Violation</span>':''}
+    <h2>${ESC(it.d)}</h2>
+    <div class="kv"><div class="k">${it.kind==='politika'?'Owner':'Ratified by'}</div><div class="v">${ESC(it.o)}${it.os==='ratifier'||it.os==='policy'?'':' <span style="color:var(--muted)">(inference signal)</span>'}</div></div>
+    <div class="kv"><div class="k">Date</div><div class="v">${ESC(it.date)}</div></div>
+    <div class="kv"><div class="k">Type</div><div class="v">${it.kind==='politika'?'Standing rule / policy':'Decision record'}</div></div>
+    <div class="kv"><div class="k">Confidence</div><div class="v">${confTr(it.c)}</div></div>
+    <div class="kv"><div class="k">Source</div><div class="v">${ESC(SOURCES[it.sk].sub)}</div></div>
+    <div class="quote">${ESC(it.hl)}</div>
+    ${it.st==='aday'?`<div class="reason"><b>Why it is a candidate (not ratified):</b>${ESC(it.r)}</div>`:''}
+    ${violationNote}
+    <div class="sec"><div class="sec-h">Relations · timeline</div>${renderRelations(it)}</div>
+    <div class="actions">
+      <button class="btn" onclick="openSource(${i})">📄 Open source — see it highlighted <span class="arr">→</span></button>
+    </div>`;
+  document.getElementById('closeBtn').onclick=closeDetail;
+  const crumb=document.getElementById('crumb');
+  if(crumb) crumb.onclick=()=>{const prevId=navStack.pop(); if(prevId) openDetail(byId[prevId].i,{back:true});};
+  document.querySelectorAll('#panelIn [data-go]').forEach(el=>el.onclick=()=>openDetail(byId[el.dataset.go].i,{from:it.id}));
+}
+function openDetail(i,opts={}){
+  if(opts.reset) navStack.length=0;
+  if(opts.from) navStack.push(opts.from);
+  const panelIn=document.getElementById('panelIn');
+  const draw=()=>{renderDetail(i);panelIn.classList.remove('fade');panelIn.scrollTop=0;};
+  if(document.getElementById('panel').classList.contains('open')){panelIn.classList.add('fade');setTimeout(draw,120);} else draw();
+  showPanel();
+}
+function openSource(i){
+  const it=DATA[i], s=SOURCES[it.sk];
+  let body=ESC(s.body); const hl=ESC(it.hl); const idx=body.indexOf(hl);
+  if(idx>=0) body=body.slice(0,idx)+'<mark id="hlmark">'+hl+'</mark>'+body.slice(idx+hl.length);
+  document.getElementById('panelIn').innerHTML=`
+    <button class="close" id="closeBtn" aria-label="Close">×</button>
+    <button class="back" onclick="openDetail(${i})">← Back to record</button>
+    <div class="src-head">Source — Enron / FERC archive</div>
+    <div class="src-sub">${ESC(s.sub)}</div>
+    <div class="email">${body}</div>
+    <div class="src-note">Each record maps verbatim to the source sentence — ${idx>=0?'highlighted in yellow':'quote shown above'}. No fabrication; what you see is the phrase as it appears in the email.</div>`;
+  document.getElementById('closeBtn').onclick=closeDetail;
+  showPanel();
+  const m=document.getElementById('hlmark'); if(m) m.scrollIntoView({block:'center'});
+}
+function showPanel(){document.getElementById('panel').classList.add('open');document.getElementById('panel').setAttribute('aria-hidden','false');document.getElementById('scrim').classList.add('open');}
+function closeDetail(){navStack.length=0;document.getElementById('panel').classList.remove('open');document.getElementById('panel').setAttribute('aria-hidden','true');document.getElementById('scrim').classList.remove('open');}
+document.getElementById('scrim').onclick=closeDetail;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value;renderList();});
+renderStats();renderChips();renderList();
+</script>
+</body>
+</html>
