@@ -28,6 +28,8 @@
   .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
   .brand{font-weight:800;font-size:16px;letter-spacing:-0.02em;color:var(--ink);} .brand a{color:inherit;}
   .demo-tag{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-d);background:rgba(156,110,68,0.12);border:1px solid rgba(156,110,68,0.3);border-radius:99px;padding:4px 12px;}
+  .proof-link{display:inline-flex;margin:0 0 12px;padding:7px 12px;border:1px solid rgba(92,117,96,.28);border-radius:99px;background:rgba(92,117,96,.09);color:var(--success);font-size:12px;font-weight:800;letter-spacing:.02em;}
+  .proof-link:hover{border-color:rgba(92,117,96,.48);background:rgba(92,117,96,.14);}
   h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.12;margin-bottom:8px;}
   .dek{max-width:74ch;color:var(--body);font-size:14.5px;margin-bottom:16px;} .dek b{color:var(--ink);}
   .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:1040px;margin:0 auto 13px;}
@@ -188,6 +190,7 @@
     <span class="demo-tag">Karar Grafı · temsili veri</span>
   </div>
   <h1>Kararlar ve politikalar tek tek yaşamaz — birbirini etkiler.</h1>
+  <a class="proof-link" href="/enron-kanit/">Gerçek bir koşu: Enron →</a>
   <p class="dek">Bir şirketin birkaç aylık kararları ve <b>duran kuralları</b>, tek bir <b>ağ</b> olarak. <b>Daire</b> = karar, <b>kare</b> = politika. Renk = durum, büyüklük = kaç düğüme bağlı. Politikalar doğal <b>merkez</b>lerdir: bir politika onlarca kararı yönetir — kararlar ona <b>uyabilir</b> ya da <b>ihlal</b> edebilir (kırmızı). Bir düğümün <b>üstüne gelin</b> → bağlantılıları parlar; <b>tıklayın</b> → yönlü <b>Bağlantılar</b> açılır.</p>
 
   <div class="graph-tools" aria-label="Graf araması">

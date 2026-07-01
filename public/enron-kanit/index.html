@@ -4,11 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gerçek çalıştırma: Enron kamuya açık arşivi | Decdock</title>
-<meta name="description" content="Decdock motoru Enron'un kamuya açık e-posta arşivi üzerinde çalıştırıldı: risk politikasında iki çelişki ve iki supersede zinciri, her biri gerçek bir e-postaya kaynaklı. Gerçek çalıştırma kanıtı." />
+<meta name="description" content="Decdock motoru Enron'un kamuya açık e-posta arşivi üzerinde çalıştırıldı: 2 çelişki, 2 supersede zinciri ve 20 kaynaklı kayıt. Gerçek çalıştırma kanıtı." />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://decdock.com/enron-kanit/" />
+<link rel="alternate" hreflang="tr" href="https://decdock.com/enron-kanit/" />
+<link rel="alternate" hreflang="en" href="https://decdock.com/enron-proof/" />
+<link rel="alternate" hreflang="x-default" href="https://decdock.com/enron-proof/" />
 <meta property="og:title" content="Gerçek çalıştırma: Enron arşivi — Decdock" />
-<meta property="og:description" content="Decdock motoru Enron'un kamuya açık arşivinde: iki çelişki, iki supersede zinciri — her satır gerçek bir e-postaya kaynaklı." />
+<meta property="og:description" content="Decdock motoru Enron'un kamuya açık arşivinde: 2 çelişki, 2 supersede zinciri, 20 kaynaklı kayıt — her satır gerçek bir e-postaya bağlı." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://decdock.com/enron-kanit/" />
 <meta property="og:image" content="https://decdock.com/og-image.png" />
@@ -31,7 +34,14 @@
   .brand{font-weight:800;font-size:16px;letter-spacing:-0.02em;color:var(--ink);} .brand a{color:inherit;}
   .demo-tag{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-d);background:rgba(156,110,68,0.12);border:1px solid rgba(156,110,68,0.3);border-radius:99px;padding:4px 12px;}
   h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.12;margin-bottom:8px;}
-  .dek{max-width:64ch;color:var(--body);font-size:14.5px;margin-bottom:18px;} .dek b{color:var(--ink);}
+  .dek{max-width:64ch;color:var(--body);font-size:14.5px;margin-bottom:14px;} .dek b{color:var(--ink);}
+  .proof-strip{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:10px;align-items:stretch;margin:0 0 18px;padding:10px;border:1px solid rgba(156,110,68,.28);border-radius:12px;background:linear-gradient(135deg,rgba(255,250,243,.86),rgba(156,110,68,.07));}
+  .proof-strip .claim{font-size:12.5px;line-height:1.5;color:var(--body);padding:5px 6px;}
+  .proof-strip .claim b{color:var(--ink);}
+  .proof-metric{min-width:86px;border:1px solid var(--line);border-radius:9px;background:var(--pane);padding:8px 10px;text-align:center;}
+  .proof-metric b{display:block;font-family:'Newsreader',serif;font-size:20px;color:var(--ink);line-height:1;}
+  .proof-metric span{display:block;margin-top:4px;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  @media (max-width:720px){.proof-strip{grid-template-columns:1fr 1fr}.proof-strip .claim{grid-column:1/-1}.proof-metric{min-width:0}}
   .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
   .stat{flex:1 1 120px;border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:11px 14px;}
   .stat .n{font-family:'Newsreader',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1;}
@@ -124,23 +134,29 @@
 <div class="wrap">
   <div class="top">
     <div class="brand"><a href="/">Decdock</a></div>
-    <a class="demo-tag" href="/karar-grafi/">● Gerçek koşu · Enron/FERC</a>
+    <a class="demo-tag" href="/karar-grafi/">Tüm kararların ağını gör →</a>
   </div>
   <h1>Gerçek çalıştırma — Enron'un kamuya açık arşivi</h1>
-  <p class="dek">Bu <b>temsili değil</b>. Decdock motoru, Enron'un kamuya açık e-posta arşivi (FERC yayını) üzerinde çalıştırıldı — aşağıdaki her kayıt <b>gerçek bir e-postadaki cümleye</b> bağlı. Motor bu koşuda iki <b>çelişki</b> ve iki <b>supersede</b> (eskiyi geçersiz kılan) zinciri yüzeye çıkardı. Bir kayda tıklayın → <b>"Kaynağı aç"</b> ile gerçek alıntıyı görün. Hüküm değil; insanın doğrulayacağı <b>aday sinyal</b>.</p>
+  <p class="dek">Bu <b>temsili değil</b>. Decdock motoru, Enron'un kamuya açık e-posta arşivi (FERC yayını) üzerinde çalıştırıldı — aşağıdaki her kayıt <b>gerçek bir e-postadaki cümleye</b> bağlı. Bir kayda tıklayın → <b>"Kaynağı aç"</b> ile gerçek alıntıyı görün. Hüküm değil; insanın doğrulayacağı <b>aday sinyal</b>.</p>
+  <div class="proof-strip" aria-label="Enron proof summary">
+    <div class="claim"><b>Ne oldu?</b> Kamuya açık Enron/FERC e-postalarında Decdock, karar/kural kayıtlarını ve zaman içinde birbirini güncelleyen ya da çelişen sinyalleri kaynağına bağlı şekilde yüzeye çıkardı.</div>
+    <div class="proof-metric"><b>2</b><span>Çelişki</span></div>
+    <div class="proof-metric"><b>2</b><span>Supersede</span></div>
+    <div class="proof-metric"><b>20</b><span>Kaynaklı kayıt</span></div>
+  </div>
 
   <div class="stats" id="stats"></div>
   <div class="toolbar">
     <label class="search">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <input id="q" type="text" placeholder="Ara… (örn. iade, CFO, deploy, 500₺, ihlal)" autocomplete="off" />
+      <input id="q" type="text" placeholder="Ara… (örn. VaR, DPR, DASH, $1M, MSA)" autocomplete="off" />
     </label>
     <div class="chips" id="chips"></div>
   </div>
   <div class="list" id="list"></div>
 
   <div class="cta">
-    Bu sayfadaki her satır Enron'un kamuya açık e-postasındaki <b>gerçek bir cümleye</b> iner — uydurma yok. Motor içeriğe özel kodlanmadı: <b>aynı motor + bir JSON tenant profili</b> farklı bir sektöre (enerji ticareti) uygulandı. Ölçek notu: bu koşuda 37 ham kayıt → 28'e konsolide edildi; motor erken aşamada, bazı eşleştirmeleri insan düzeltir. Kendi arşiviniz için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
+    <b>Neden önemli?</b> Bu sayfa Decdock'un "doğruyu ilan ettiğini" değil, kamuya açık bir arşivde <b>kaynaklı aday hafıza</b> ve <b>drift sinyali</b> üretebildiğini gösterir; son kararı insan doğrular. Aynı motor, yalnızca bir <b>JSON tenant profili</b> ile enerji ticareti gibi farklı bir sektöre uygulandı. Ölçek notu: bu koşuda 37 ham kayıt 28 konsolide kayda indirildi; burada en güçlü 20 kayıt gösteriliyor. Kendi public/sanitized arşivinizle benzer bir pilot için: <b>pilot@decdock.com</b> · <a href="/karar-grafi/">tüm kararların ağını görün</a>
   </div>
   <p class="foot">Enron kamuya açık FERC e-posta arşivi · Decdock motoru + tenant profili · aday sinyal, hüküm değil · © 2026 Decdock</p>
 </div>
@@ -153,8 +169,8 @@
 // Kaynak: decdock-enron-moat.json (consolidate + drift). Alıntılar birebir gerçektir.
 const SOURCES = {
   'var': { sub:"Risk Politikası & VaR Limitleri — Ağustos 2001", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
-Konu: "Policy and other items" / "RE: Policy and other items"
-Dosya: ENR-DEC-001, ENR-DEC-002 · 16–17 Ağustos 2001
+Konu: "Policy and other items" / "RE: Policy and other items" / "FW: New product approvals"
+Dosya: ENR-DEC-001, ENR-DEC-002, ENR-EDGE-001 · 9 Mayıs / 16–17 Ağustos 2001
 
 I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.
 
@@ -176,45 +192,90 @@ Going forward, please coordinate with each as to their preferred method of desig
 
   'dash': { sub:"DASH Deal Sınıflandırması — RAC", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
 Konu: RE: DASH Classification - "Proceed - See Other RAC Comments"
-Dosya: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025 · 13 Eylül 2001
+Dosya: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025, ENR-DEC-026 · 13 Eylül 2001
 
 three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.
 
 Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.
 
-we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option` },
+we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option
 
-  'payment': { sub:"Ödeme Onay Eşikleri & PO Faturalama", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
-Konu: "Updated - Approval Authorizations" / PO 20120613
-Dosya: ENR-DEC-018, ENR-REQ-016 · Aralık 2000
+in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999` },
 
-If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.
+  'payment': { sub:"Ödeme Onay Eşikleri", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: "Updated - Approval Authorizations"
+Dosya: ENR-DEC-018 · 8 Aralık 2000
 
-Approved - Pls bill half to DealBench RC and the other half to Networks corpo` },
+If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.` },
+
+  'hr': { sub:"HR Politika Kapsamı — Severance / Vacation / Sick Pay", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: RE: REVISED - Policy Changes
+Dosya: ENR-DEC-009 · 28 Kasım 2001
+
+the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue.` },
+
+  'msa': { sub:"IT & Back Office MSA — NETCO Devri", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: RE: IT & Back Office Service Agreements
+Dosya: ENR-DEC-011 · 2 Ocak 2002
+
+we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred.` },
+
+  'eogil': { sub:"EOGIL Satışı — Board Action Item mı?", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: RE: EOGIL sale to BG
+Dosya: ENR-DEC-012 · 24 Ocak 2002
+
+in October it was decided by Rick Buy and Pug Winokur that this was not a board action item` },
+
+  'nyiso': { sub:"NYISO Stage 2 ICAP Manual", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: Stage 2 Manual Add'l changes
+Dosya: ENR-DEC-015 · 17 Temmuz 2001
+
+Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting.` },
+
+  'liquidity': { sub:"Liquidity Ratio — Eşikler ve Tanımlar", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: RE: Liquidity Ratio Calculation and Definitions in Policy
+Dosya: ENR-DEC-016 · 2 Ağustos 2001
+
+CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes
+
+Numerator from Global Finance, not Accounting. FAC and BC as previously defined
+
+I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week` },
+
+  'redrock': { sub:"Red Rock Expansion Station 4 — EPA Permit / Turbine", body:`ENRON — kamuya açık e-posta arşivi (FERC yayını)
+Konu: RE: FW: Red Rock Expansion Station 4
+Dosya: ENR-DEC-017 · 21 Kasım 2001
+
+I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit.` },
 };
 
 const DATA = [
-  {id:'var-policy',kind:'politika',st:'onayli',d:"Politika güncellemesi: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:`I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.`,chainTo:'var-agg',relType:'supersedes',chainLabel:"$50MM discretionary VaR ekleyerek bir gün önceki tanımı günceller"},
-  {id:'var-agg',kind:'politika',st:'onayli',d:"BOD limiti $150MM — ama yeni politika discretionary VaR tanımıyor",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.`,chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR onaylı, ama politika kavramı tanımıyor — kendi içinde çelişki"},
-  {id:'var-buckets',kind:'politika',st:'onayli',d:"İş kolu VaR limitleri: US Gas/Elec $100MM, Avrupa $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM`},
-  {id:'var-europe',kind:'karar',st:'onayli',d:"Avrupa: pozisyonları toplayıp VaR'ı Houston'a raporlayacak (10 Mayıs)",o:"Avrupa masası",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:`Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th`},
-
-  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR imza yetkisi: Lavorato (Batı) & Sherriff (Doğu)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:`Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report`},
-  {id:'dpr-before',kind:'politika',st:'onayli',d:"5 Mayıs 2000 öncesi DPR'ler: Greg Whalley onayı şart",o:"Greg Whalley (onay mercii)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:`Please obtain Greg Whalley's approval for all DPR's prior to that date`},
-  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR onay yöntemi: her iki yöneticiyle koordine edilecek",o:"Risk yönetimi",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:`Going forward, please coordinate with each as to their preferred method of designating approval.`,r:"Yöntem henüz kesinleşmemiş; her yönetici tercih edeceği onay biçimini belirtecek — aday sinyal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"5 Mayıs sonrası için eski Whalley-onay prosedürünün yerini alır"},
-
-  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 kategori (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:`three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.`},
-  {id:'dash-q',kind:'karar',st:'aday',d:"DASH kategorileri sorgulanıyor (isim/sıra farkı)",o:"RAC (tartışma)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:`Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.`,r:"Kategori isim ve sıralaması netleşmemiş; RAC Comments için ayrı kategori tartışması açık.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"kategori tanım/sıralamasında çelişiyor"},
-  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' DASH şablonundan kaldırılacak",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:`we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option`},
-
-  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ ödeme + sözleşme → yalnız Muhasebe Müdürü imzası",o:"Onay yetkileri (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:`If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.`},
-  {id:'po-bill',kind:'karar',st:'onayli',d:"PO 20120613: fatura yarısı DealBench, yarısı Networks",o:"Harry Arora (ECT)",os:"ratifier",c:"high",date:'2000-12-18',sk:'payment',hl:`Approved - Pls bill half to DealBench RC and the other half to Networks corpo`},
+  {id:'var-policy',kind:'politika',st:'onayli',d:"Politika güncellemesi: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:"I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.",chainTo:'var-agg',relType:'supersedes',chainLabel:"$50MM discretionary VaR ekleyerek bir gün önceki tanımı günceller"},
+  {id:'var-agg',kind:'politika',st:'onayli',d:"BOD limiti $150MM — ama yeni politika discretionary VaR tanımıyor",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.",chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR onaylı, ama politika kavramı tanımıyor — kendi içinde çelişki"},
+  {id:'var-buckets',kind:'politika',st:'onayli',d:"İş kolu VaR limitleri: US Gas/Elec $100MM, Avrupa $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM"},
+  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR imza yetkisi: Lavorato (Batı) & Sherriff (Doğu)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:"Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report"},
+  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR onay yöntemi: her iki yöneticiyle koordine edilecek",o:"Risk yönetimi",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:"Going forward, please coordinate with each as to their preferred method of designating approval.",r:"Yöntem henüz kesinleşmemiş; her yönetici tercih edeceği onay biçimini belirtecek — aday sinyal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"5 Mayıs sonrası için eski Whalley-onay prosedürünün yerini alır"},
+  {id:'dpr-before',kind:'politika',st:'onayli',d:"5 Mayıs 2000 öncesi DPR'ler: Greg Whalley onayı şart",o:"Greg Whalley (onay mercii)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:"Please obtain Greg Whalley's approval for all DPR's prior to that date"},
+  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 kategori (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:"three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation."},
+  {id:'dash-q',kind:'karar',st:'aday',d:"DASH kategorileri sorgulanıyor (isim/sıra farkı)",o:"RAC (tartışma)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.",r:"Kategori isim ve sıralaması netleşmemiş; RAC Comments için ayrı kategori tartışması açık.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"kategori tanım/sıralamasında çelişiyor"},
+  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' DASH şablonundan kaldırılacak",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:"we will remove \"See Other RAC Comments\" from the DASH template and library as an ongoing classification option"},
+  {id:'dash-review',kind:'karar',st:'aday',d:"DASH: 36 onaylı işlemde öneri-performans uyumsuzluğu bulundu",o:"RAC review",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999",r:"Bu bir risk/performans inceleme sinyali; tek başına yeni politika kararı değil.",chainTo:'dash-3cat',relType:'references',chainLabel:"DASH sınıflandırma politikasının neden gözden geçirildiğini gösterir"},
+  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ ödeme + sözleşme → yalnız Muhasebe Müdürü imzası",o:"Onay yetkileri (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:"If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature."},
+  {id:'hr-severance',kind:'politika',st:'onayli',d:"Severance/vacation/sick pay politikaları tüm entity'lerde aynı değil",o:"HR / Rick Johnson",os:"policy",c:"high",date:'2001-11-28',sk:'hr',hl:"the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue."},
+  {id:'msa-netco',kind:'politika',st:'onayli',d:"MSA'lar müşteri onayı olmadan NETCO'ya devredilemez",o:"IT & Back Office",os:"policy",c:"high",date:'2002-01-02',sk:'msa',hl:"we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred."},
+  {id:'eogil-board',kind:'karar',st:'onayli',d:"EOGIL satışı board action item değil",o:"Rick Buy & Pug Winokur",os:"ratifier",c:"high",date:'2002-01-24',sk:'eogil',hl:"in October it was decided by Rick Buy and Pug Winokur that this was not a board action item"},
+  {id:'nyiso-icap',kind:'karar',st:'onayli',d:"NYISO Stage 2 ICAP Manual 19 Temmuz BIC onayına gidecek",o:"BIC",os:"ratifier",c:"high",date:'2001-07-17',sk:'nyiso',hl:"Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting."},
+  {id:'liq-threshold',kind:'politika',st:'onayli',d:"Liquidity Ratio eşikleri 3.0 ve 1.5; değişirse BOD ratify eder",o:"CEO / BOD",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes"},
+  {id:'liq-numerator',kind:'politika',st:'onayli',d:"Liquidity numerator kaynağı Global Finance, Accounting değil",o:"Global Finance",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"Numerator from Global Finance, not Accounting. FAC and BC as previously defined"},
+  {id:'liq-pfcr',kind:'karar',st:'aday',d:"PFCR tanımı yeterli; 10 günlük horizon varsa haftalık revizyon gerekebilir",o:"Risk policy review",os:"extraction",c:"medium",date:'2001-08-02',sk:'liquidity',hl:"I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week",r:"Bu ifade politika revizyon ihtiyacına işaret ediyor; kesinleşmiş değişiklik olarak değil aday sinyal olarak tutuldu."},
+  {id:'redrock-permit',kind:'karar',st:'onayli',d:"Red Rock: permit alınsın, turbine kararı pazar taahhüdüne kadar beklesin",o:"Larry Campbell / Roger Kohn",os:"ratifier",c:"high",date:'2001-11-21',sk:'redrock',hl:"I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit."},
+  {id:'var-europe',kind:'karar',st:'onayli',d:"Avrupa: pozisyonları toplayıp VaR'ı Houston'a raporlayacak (10 Mayıs)",o:"Avrupa masası",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:"Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th"},
 ];
 
 const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const confTr=c=>({high:'yüksek',medium:'orta',low:'düşük'}[c]||c);
 let filter='all',query='';
-const FILTERS=[['all','Tümü'],['onayli','Onaylı karar'],['aday','İnceleme adayı'],['politika','Politika'],['violation','⚠ İhlal'],['chain','⛓ Zincirli']];
+const FILTERS=[['all','Tümü'],['chain','Drift / zincir'],['onayli','Onaylı kayıt'],['aday','Aday sinyal'],['politika','Kural / politika']];
 const byId=Object.fromEntries(DATA.map((it,i)=>[it.id,{...it,i}]));
 const navStack=[];
 const REL={
@@ -253,13 +314,13 @@ function matches(it){
 }
 function renderStats(){
   const onayli=DATA.filter(x=>x.st==='onayli'&&x.kind!=='politika').length, aday=DATA.filter(x=>x.st==='aday').length;
-  const violation=DATA.filter(x=>x.violates).length, politika=DATA.filter(x=>x.kind==='politika').length;
+  const drift=DATA.filter(x=>x.chainTo!==undefined).length, politika=DATA.filter(x=>x.kind==='politika').length;
   document.getElementById('stats').innerHTML=
-    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Onaylı karar</div></div>`+
-    `<div class="stat a"><div class="n">${aday}</div><div class="l">İnceleme adayı</div></div>`+
-    `<div class="stat v"><div class="n">${violation}</div><div class="l">İhlal</div></div>`+
-    `<div class="stat p"><div class="n">${politika}</div><div class="l">Politika</div></div>`+
-    `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Kaynak e-posta</div></div>`+
+    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Onaylı kayıt</div></div>`+
+    `<div class="stat a"><div class="n">${aday}</div><div class="l">Aday sinyal</div></div>`+
+    `<div class="stat v"><div class="n">${drift}</div><div class="l">Drift / zincir</div></div>`+
+    `<div class="stat p"><div class="n">${politika}</div><div class="l">Kural / politika</div></div>`+
+    `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Kaynak thread</div></div>`+
     `<div class="stat k"><div class="n">%100</div><div class="l">Kaynağa bağlı</div></div>`;
 }
 function renderChips(){

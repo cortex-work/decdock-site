@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:proof": "node scripts/proof/build-proof.mjs && node scripts/proof/build-en.mjs",
     "smoke:demo": "node scripts/smoke-demo-canli.mjs",
-    "build": "npm run smoke:demo && tsc && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr-temp && node scripts/prerender.mjs",
+    "smoke:proof": "node scripts/proof/smoke-enron-proof.mjs",
+    "build": "npm run build:proof && npm run smoke:demo && npm run smoke:proof && tsc && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr-temp && node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

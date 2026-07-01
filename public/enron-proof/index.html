@@ -4,11 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>A real run on Enron's public archive | Decdock</title>
-<meta name="description" content="The Decdock engine run over Enron's public email archive: two conflicts and two supersede chains in the risk policy, each sourced to a real email. Real-run proof." />
+<meta name="description" content="The Decdock engine run over Enron's public email archive: 2 conflicts, 2 supersede chains, and 20 source-linked records. Real-run proof." />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://decdock.com/enron-proof/" />
+<link rel="alternate" hreflang="tr" href="https://decdock.com/enron-kanit/" />
+<link rel="alternate" hreflang="en" href="https://decdock.com/enron-proof/" />
+<link rel="alternate" hreflang="x-default" href="https://decdock.com/enron-proof/" />
 <meta property="og:title" content="A real run on Enron's archive — Decdock" />
-<meta property="og:description" content="The Decdock engine on Enron's public archive: two conflicts, two supersede chains — every row sourced to a real email." />
+<meta property="og:description" content="The Decdock engine on Enron's public archive: 2 conflicts, 2 supersede chains, 20 source-linked records — every row tied to a real email." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://decdock.com/enron-proof/" />
 <meta property="og:image" content="https://decdock.com/og-image.png" />
@@ -31,7 +34,14 @@
   .brand{font-weight:800;font-size:16px;letter-spacing:-0.02em;color:var(--ink);} .brand a{color:inherit;}
   .demo-tag{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-d);background:rgba(156,110,68,0.12);border:1px solid rgba(156,110,68,0.3);border-radius:99px;padding:4px 12px;}
   h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:600;color:var(--ink);letter-spacing:-0.02em;line-height:1.12;margin-bottom:8px;}
-  .dek{max-width:64ch;color:var(--body);font-size:14.5px;margin-bottom:18px;} .dek b{color:var(--ink);}
+  .dek{max-width:64ch;color:var(--body);font-size:14.5px;margin-bottom:14px;} .dek b{color:var(--ink);}
+  .proof-strip{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:10px;align-items:stretch;margin:0 0 18px;padding:10px;border:1px solid rgba(156,110,68,.28);border-radius:12px;background:linear-gradient(135deg,rgba(255,250,243,.86),rgba(156,110,68,.07));}
+  .proof-strip .claim{font-size:12.5px;line-height:1.5;color:var(--body);padding:5px 6px;}
+  .proof-strip .claim b{color:var(--ink);}
+  .proof-metric{min-width:86px;border:1px solid var(--line);border-radius:9px;background:var(--pane);padding:8px 10px;text-align:center;}
+  .proof-metric b{display:block;font-family:'Newsreader',serif;font-size:20px;color:var(--ink);line-height:1;}
+  .proof-metric span{display:block;margin-top:4px;font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  @media (max-width:720px){.proof-strip{grid-template-columns:1fr 1fr}.proof-strip .claim{grid-column:1/-1}.proof-metric{min-width:0}}
   .stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
   .stat{flex:1 1 120px;border:1px solid var(--line);border-radius:10px;background:var(--pane);padding:11px 14px;}
   .stat .n{font-family:'Newsreader',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1;}
@@ -124,23 +134,29 @@
 <div class="wrap">
   <div class="top">
     <div class="brand"><a href="/">Decdock</a></div>
-    <a class="demo-tag" href="/karar-grafi/">● Real run · Enron/FERC</a>
+    <a class="demo-tag" href="/karar-grafi/">See the full decision graph →</a>
   </div>
   <h1>A real run — Enron's public archive</h1>
-  <p class="dek">This is <b>not representative</b>. The Decdock engine was run over Enron's public email archive (FERC release) — every record below is tied to <b>a real sentence in a real email</b>. In this run the engine surfaced two <b>conflicts</b> and two <b>supersede</b> chains (a newer record overriding an older one). Click a record → use <b>"Open source"</b> to see the real quote. Not a verdict; a <b>candidate signal</b> for a human to confirm.</p>
+  <p class="dek">This is <b>not representative</b>. The Decdock engine was run over Enron's public email archive (FERC release) — every record below is tied to <b>a real sentence in a real email</b>. Click a record → use <b>"Open source"</b> to see the real quote. Not a verdict; a <b>candidate signal</b> for a human to confirm.</p>
+  <div class="proof-strip" aria-label="Enron proof summary">
+    <div class="claim"><b>What happened?</b> In public Enron/FERC emails, Decdock surfaced source-linked decision/rule records and signals where later records update or conflict with earlier ones.</div>
+    <div class="proof-metric"><b>2</b><span>Conflicts</span></div>
+    <div class="proof-metric"><b>2</b><span>Supersedes</span></div>
+    <div class="proof-metric"><b>20</b><span>Sourced records</span></div>
+  </div>
 
   <div class="stats" id="stats"></div>
   <div class="toolbar">
     <label class="search">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <input id="q" type="text" placeholder="Search… (e.g. VaR, DPR, DASH, $1M)" autocomplete="off" />
+      <input id="q" type="text" placeholder="Search… (e.g. VaR, DPR, DASH, $1M, MSA)" autocomplete="off" />
     </label>
     <div class="chips" id="chips"></div>
   </div>
   <div class="list" id="list"></div>
 
   <div class="cta">
-    Every row on this page drills into <b>a real sentence</b> from Enron's public email — no fabrication. The engine was not hand-coded for this content: <b>the same engine + one JSON tenant profile</b>, pointed at a different domain (energy trading). Scale note: this run consolidated 37 raw records → 28; the engine is early, and a human corrects some matches. For your own archive: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>
+    <b>So what?</b> This page does not claim Decdock declares truth. It shows that, on a public archive, the engine can produce <b>sourced candidate memory</b> and <b>drift signals</b> for a human to verify. The same engine, with only a <b>JSON tenant profile</b>, was pointed at a different domain: energy trading. Scale note: this run consolidated 37 raw records into 28 records; this page shows the strongest 20. For your own public/sanitized archive: <b>pilot@decdock.com</b> · <a href="/karar-grafi/">see the full decision graph</a>
   </div>
   <p class="foot">Enron public FERC email archive · Decdock engine + tenant profile · candidate signal, not a verdict · © 2026 Decdock</p>
 </div>
@@ -153,8 +169,8 @@
 // Source: decdock-enron-moat.json (consolidate + drift). Quotes are verbatim.
 const SOURCES = {
   'var': { sub:"Risk Policy & VaR Limits — August 2001", body:`ENRON — public email archive (FERC release)
-Subject: "Policy and other items" / "RE: Policy and other items"
-File: ENR-DEC-001, ENR-DEC-002 · 16–17 August 2001
+Subject: "Policy and other items" / "RE: Policy and other items" / "FW: New product approvals"
+File: ENR-DEC-001, ENR-DEC-002, ENR-EDGE-001 · 9 May / 16–17 August 2001
 
 I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.
 
@@ -176,45 +192,90 @@ Going forward, please coordinate with each as to their preferred method of desig
 
   'dash': { sub:"DASH Deal Classification — RAC", body:`ENRON — public email archive (FERC release)
 Subject: RE: DASH Classification - "Proceed - See Other RAC Comments"
-File: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025 · 13 September 2001
+File: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025, ENR-DEC-026 · 13 September 2001
 
 three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.
 
 Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.
 
-we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option` },
+we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option
 
-  'payment': { sub:"Payment Approval Thresholds & PO Billing", body:`ENRON — public email archive (FERC release)
-Subject: "Updated - Approval Authorizations" / PO 20120613
-File: ENR-DEC-018, ENR-REQ-016 · December 2000
+in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999` },
 
-If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.
+  'payment': { sub:"Payment Approval Thresholds", body:`ENRON — public email archive (FERC release)
+Subject: "Updated - Approval Authorizations"
+File: ENR-DEC-018 · 8 December 2000
 
-Approved - Pls bill half to DealBench RC and the other half to Networks corpo` },
+If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.` },
+
+  'hr': { sub:"HR Policy Scope — Severance / Vacation / Sick Pay", body:`ENRON — public email archive (FERC release)
+Subject: RE: REVISED - Policy Changes
+File: ENR-DEC-009 · 28 November 2001
+
+the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue.` },
+
+  'msa': { sub:"IT & Back Office MSA — NETCO Assignment", body:`ENRON — public email archive (FERC release)
+Subject: RE: IT & Back Office Service Agreements
+File: ENR-DEC-011 · 2 January 2002
+
+we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred.` },
+
+  'eogil': { sub:"EOGIL Sale — Board Action Item?", body:`ENRON — public email archive (FERC release)
+Subject: RE: EOGIL sale to BG
+File: ENR-DEC-012 · 24 January 2002
+
+in October it was decided by Rick Buy and Pug Winokur that this was not a board action item` },
+
+  'nyiso': { sub:"NYISO Stage 2 ICAP Manual", body:`ENRON — public email archive (FERC release)
+Subject: Stage 2 Manual Add'l changes
+File: ENR-DEC-015 · 17 July 2001
+
+Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting.` },
+
+  'liquidity': { sub:"Liquidity Ratio — Thresholds and Definitions", body:`ENRON — public email archive (FERC release)
+Subject: RE: Liquidity Ratio Calculation and Definitions in Policy
+File: ENR-DEC-016 · 2 August 2001
+
+CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes
+
+Numerator from Global Finance, not Accounting. FAC and BC as previously defined
+
+I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week` },
+
+  'redrock': { sub:"Red Rock Expansion Station 4 — EPA Permit / Turbine", body:`ENRON — public email archive (FERC release)
+Subject: RE: FW: Red Rock Expansion Station 4
+File: ENR-DEC-017 · 21 November 2001
+
+I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit.` },
 };
 
 const DATA = [
-  {id:'var-policy',kind:'politika',st:'onayli',d:"Policy update: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:`I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.`,chainTo:'var-agg',relType:'supersedes',chainLabel:"adds $50MM discretionary VaR, updating the prior-day definition"},
-  {id:'var-agg',kind:'politika',st:'onayli',d:"Board limit $150MM — but the new policy doesn't recognize discretionary VaR",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.`,chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR is approved, yet the policy doesn't recognize it — internal contradiction"},
-  {id:'var-buckets',kind:'politika',st:'onayli',d:"Business-line VaR limits: US Gas/Elec $100MM, Europe $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:`Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM`},
-  {id:'var-europe',kind:'karar',st:'onayli',d:"Europe to aggregate positions and report VaR to Houston (May 10)",o:"Europe desk",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:`Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th`},
-
-  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR signing authority: Lavorato (West) & Sherriff (East)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:`Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report`},
-  {id:'dpr-before',kind:'politika',st:'onayli',d:"DPRs before 5 May 2000: Greg Whalley approval required",o:"Greg Whalley (approver)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:`Please obtain Greg Whalley's approval for all DPR's prior to that date`},
-  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR approval method: to be coordinated with each executive",o:"Risk management",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:`Going forward, please coordinate with each as to their preferred method of designating approval.`,r:"Method not yet finalized; each executive will state their preferred approval form — candidate signal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"replaces the old Whalley-approval procedure for the post-5-May period"},
-
-  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 categories (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:`three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.`},
-  {id:'dash-q',kind:'karar',st:'aday',d:"DASH categories questioned (naming/order differ)",o:"RAC (discussion)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:`Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.`,r:"Category names and ordering unsettled; open debate on a separate RAC Comments category.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"conflicts on category definition and ordering"},
-  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' to be removed from the DASH template",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:`we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option`},
-
-  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ payment + contract → only Accounting Director's signature",o:"Approval authorities (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:`If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.`},
-  {id:'po-bill',kind:'karar',st:'onayli',d:"PO 20120613: bill half DealBench, half Networks",o:"Harry Arora (ECT)",os:"ratifier",c:"high",date:'2000-12-18',sk:'payment',hl:`Approved - Pls bill half to DealBench RC and the other half to Networks corpo`},
+  {id:'var-policy',kind:'politika',st:'onayli',d:"Policy update: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:"I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.",chainTo:'var-agg',relType:'supersedes',chainLabel:"adds $50MM discretionary VaR, updating the prior-day definition"},
+  {id:'var-agg',kind:'politika',st:'onayli',d:"Board limit $150MM — but the new policy doesn't recognize discretionary VaR",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.",chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR is approved, yet the policy doesn't recognize it — internal contradiction"},
+  {id:'var-buckets',kind:'politika',st:'onayli',d:"Business-line VaR limits: US Gas/Elec $100MM, Europe $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM"},
+  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR signing authority: Lavorato (West) & Sherriff (East)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:"Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report"},
+  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR approval method: to be coordinated with each executive",o:"Risk management",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:"Going forward, please coordinate with each as to their preferred method of designating approval.",r:"Method not yet finalized; each executive will state their preferred approval form — candidate signal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"replaces the old Whalley-approval procedure for the post-5-May period"},
+  {id:'dpr-before',kind:'politika',st:'onayli',d:"DPRs before 5 May 2000: Greg Whalley approval required",o:"Greg Whalley (approver)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:"Please obtain Greg Whalley's approval for all DPR's prior to that date"},
+  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 categories (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:"three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation."},
+  {id:'dash-q',kind:'karar',st:'aday',d:"DASH categories questioned (naming/order differ)",o:"RAC (discussion)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.",r:"Category names and ordering unsettled; open debate on a separate RAC Comments category.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"conflicts on category definition and ordering"},
+  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' to be removed from the DASH template",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:"we will remove \"See Other RAC Comments\" from the DASH template and library as an ongoing classification option"},
+  {id:'dash-review',kind:'karar',st:'aday',d:"DASH: 36 approved deals showed recommendation/performance mismatch",o:"RAC review",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999",r:"This is a risk/performance review signal, not by itself a new policy decision.",chainTo:'dash-3cat',relType:'references',chainLabel:"shows why the DASH classification policy was being reviewed"},
+  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ payment + contract → only Accounting Director's signature",o:"Approval authorities (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:"If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature."},
+  {id:'hr-severance',kind:'politika',st:'onayli',d:"Severance/vacation/sick pay policies are not uniform across entities",o:"HR / Rick Johnson",os:"policy",c:"high",date:'2001-11-28',sk:'hr',hl:"the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue."},
+  {id:'msa-netco',kind:'politika',st:'onayli',d:"MSAs cannot be assigned to NETCO without customer approval",o:"IT & Back Office",os:"policy",c:"high",date:'2002-01-02',sk:'msa',hl:"we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred."},
+  {id:'eogil-board',kind:'karar',st:'onayli',d:"EOGIL sale was not a board action item",o:"Rick Buy & Pug Winokur",os:"ratifier",c:"high",date:'2002-01-24',sk:'eogil',hl:"in October it was decided by Rick Buy and Pug Winokur that this was not a board action item"},
+  {id:'nyiso-icap',kind:'karar',st:'onayli',d:"NYISO Stage 2 ICAP Manual to go to July 19 BIC approval",o:"BIC",os:"ratifier",c:"high",date:'2001-07-17',sk:'nyiso',hl:"Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting."},
+  {id:'liq-threshold',kind:'politika',st:'onayli',d:"Liquidity Ratio thresholds remain 3.0 and 1.5; BOD can ratify changes",o:"CEO / BOD",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes"},
+  {id:'liq-numerator',kind:'politika',st:'onayli',d:"Liquidity numerator source is Global Finance, not Accounting",o:"Global Finance",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"Numerator from Global Finance, not Accounting. FAC and BC as previously defined"},
+  {id:'liq-pfcr',kind:'karar',st:'aday',d:"PFCR definition adequate; 10-day horizon may require weekly revision",o:"Risk policy review",os:"extraction",c:"medium",date:'2001-08-02',sk:'liquidity',hl:"I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week",r:"This points to a policy-revision need; kept as candidate signal rather than finalized change."},
+  {id:'redrock-permit',kind:'karar',st:'onayli',d:"Red Rock: obtain permit, hold turbine decision until market commitment",o:"Larry Campbell / Roger Kohn",os:"ratifier",c:"high",date:'2001-11-21',sk:'redrock',hl:"I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit."},
+  {id:'var-europe',kind:'karar',st:'onayli',d:"Europe to aggregate positions and report VaR to Houston (May 10)",o:"Europe desk",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:"Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th"},
 ];
 
 const ESC=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const confTr=c=>({high:'high',medium:'medium',low:'low'}[c]||c);
 let filter='all',query='';
-const FILTERS=[['all','All'],['onayli','Approved'],['aday','Candidate'],['politika','Policy'],['violation','⚠ Violation'],['chain','⛓ Chained']];
+const FILTERS=[['all','All'],['chain','Drift / chain'],['onayli','Approved record'],['aday','Candidate signal'],['politika','Rule / policy']];
 const byId=Object.fromEntries(DATA.map((it,i)=>[it.id,{...it,i}]));
 const navStack=[];
 const REL={
@@ -253,14 +314,14 @@ function matches(it){
 }
 function renderStats(){
   const onayli=DATA.filter(x=>x.st==='onayli'&&x.kind!=='politika').length, aday=DATA.filter(x=>x.st==='aday').length;
-  const violation=DATA.filter(x=>x.violates).length, politika=DATA.filter(x=>x.kind==='politika').length;
+  const drift=DATA.filter(x=>x.chainTo!==undefined).length, politika=DATA.filter(x=>x.kind==='politika').length;
   document.getElementById('stats').innerHTML=
-    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Approved decision</div></div>`+
-    `<div class="stat a"><div class="n">${aday}</div><div class="l">Review candidate</div></div>`+
-    `<div class="stat v"><div class="n">${violation}</div><div class="l">Violation</div></div>`+
-    `<div class="stat p"><div class="n">${politika}</div><div class="l">Policy</div></div>`+
-    `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Source emails</div></div>`+
-    `<div class="stat k"><div class="n">%100</div><div class="l">Source-linked</div></div>`;
+    `<div class="stat s"><div class="n">${onayli}</div><div class="l">Approved records</div></div>`+
+    `<div class="stat a"><div class="n">${aday}</div><div class="l">Candidate signals</div></div>`+
+    `<div class="stat v"><div class="n">${drift}</div><div class="l">Drift / chains</div></div>`+
+    `<div class="stat p"><div class="n">${politika}</div><div class="l">Rules / policies</div></div>`+
+    `<div class="stat k"><div class="n">${Object.keys(SOURCES).length}</div><div class="l">Source threads</div></div>`+
+    `<div class="stat k"><div class="n">100%</div><div class="l">Source-linked</div></div>`;
 }
 function renderChips(){
   document.getElementById('chips').innerHTML=FILTERS.map(([k,l])=>`<button class="chip${filter===k?' on':''}" data-k="${k}">${l}</button>`).join('');
@@ -275,8 +336,8 @@ function renderList(){
       <div class="dtext">${ESC(it.d)}</div>
       <div class="meta"><span>👤 <b>${ESC(it.o)}</b></span><span>📄 ${ESC(SOURCES[it.sk].sub)}</span>${it.chainTo!==undefined?'<span class="chainpill">⛓ chained</span>':''}${it.violates?'<span class="chainpill">⚠ policy violation</span>':''}</div>
       <div class="badges">
-        ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved decision':'Review candidate'}</span>`}
-        ${it.violates?'<span class="badge violation">Violation</span>':''}
+        ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved record':'Candidate signal'}</span>`}
+        ${it.violates?'<span class="badge violation">İhlal</span>':''}
         <span class="badge conf">${confTr(it.c)} confidence</span>
       </div>
     </div>`).join('');
@@ -329,13 +390,13 @@ function renderDetail(i){
   const it=DATA[i];
   const prev=navStack.length?byId[navStack[navStack.length-1]]:null;
   const violationNote=it.violates
-    ? `<div class="violation-note"><b>Policy violation:</b>“${ESC(it.violationLabel)}” violates this policy.</div>`
+    ? `<div class="violation-note"><b>Policy ihlali:</b>“${ESC(it.violationLabel)}” violates this policy.</div>`
     : '';
   document.getElementById('panelIn').innerHTML=`
     <button class="close" id="closeBtn" aria-label="Close">×</button>
     ${prev?`<button class="crumb" id="crumb">↩ from: ${ESC(prev.d)}</button>`:''}
-    ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved decision':'Review candidate'}</span>`}
-    ${it.violates?'<span class="badge violation" style="margin-left:6px">Violation</span>':''}
+    ${it.kind==='politika'?'<span class="badge politika">Policy</span>':`<span class="badge ${it.st}">${it.st==='onayli'?'Approved record':'Candidate signal'}</span>`}
+    ${it.violates?'<span class="badge violation" style="margin-left:6px">İhlal</span>':''}
     <h2>${ESC(it.d)}</h2>
     <div class="kv"><div class="k">${it.kind==='politika'?'Owner':'Ratified by'}</div><div class="v">${ESC(it.o)}${it.os==='ratifier'||it.os==='policy'?'':' <span style="color:var(--muted)">(inference signal)</span>'}</div></div>
     <div class="kv"><div class="k">Date</div><div class="v">${ESC(it.date)}</div></div>
@@ -343,7 +404,7 @@ function renderDetail(i){
     <div class="kv"><div class="k">Confidence</div><div class="v">${confTr(it.c)}</div></div>
     <div class="kv"><div class="k">Source</div><div class="v">${ESC(SOURCES[it.sk].sub)}</div></div>
     <div class="quote">${ESC(it.hl)}</div>
-    ${it.st==='aday'?`<div class="reason"><b>Why it is a candidate (not ratified):</b>${ESC(it.r)}</div>`:''}
+    ${it.st==='aday'?`<div class="reason"><b>Why it is a candidate signal:</b>${ESC(it.r)}</div>`:''}
     ${violationNote}
     <div class="sec"><div class="sec-h">Relations · timeline</div>${renderRelations(it)}</div>
     <div class="actions">
