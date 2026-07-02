@@ -7,25 +7,37 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const TEMPLATE = resolve(ROOT, 'public/karar-grafi/index.html')
 
 const SOURCE_TOPIC = {
-  var: 'risk',
-  liquidity: 'risk',
-  dpr: 'approvals',
-  payment: 'approvals',
+  var: 'var',
+  limit: 'limit',
+  dpr: 'dpr',
   dash: 'dash',
-  nyiso: 'regulatory',
-  redrock: 'regulatory',
-  hr: 'operations',
-  msa: 'operations',
-  eogil: 'operations',
+  reg: 'reg',
+  credit: 'credit',
+  people: 'people',
+  ops: 'ops',
 }
 
 const BASE_TOPICS = [
-  { id: 'risk', x: 0.28, y: 0.28 },
-  { id: 'approvals', x: 0.70, y: 0.26 },
-  { id: 'dash', x: 0.50, y: 0.48 },
-  { id: 'regulatory', x: 0.27, y: 0.72 },
-  { id: 'operations', x: 0.72, y: 0.72 },
+  { id: 'var', x: 0.24, y: 0.24 },
+  { id: 'limit', x: 0.50, y: 0.18 },
+  { id: 'dpr', x: 0.76, y: 0.25 },
+  { id: 'dash', x: 0.73, y: 0.52 },
+  { id: 'reg', x: 0.52, y: 0.78 },
+  { id: 'credit', x: 0.25, y: 0.72 },
+  { id: 'people', x: 0.18, y: 0.48 },
+  { id: 'ops', x: 0.50, y: 0.49 },
 ]
+
+const TOPIC_PALETTE = {
+  var: '#8fb0d6',
+  limit: '#d0a05f',
+  dpr: '#86b6ad',
+  dash: '#cf8679',
+  reg: '#8faa84',
+  credit: '#b98fa8',
+  people: '#bba178',
+  ops: '#9c8b7a',
+}
 
 const CONFIGS = [
   {
@@ -56,7 +68,7 @@ const CONFIGS = [
     timeLabel: 'Zaman çizgisi',
     zoomLabel: 'Yakınlık',
     queryHelp:
-      'Örnek sorgu: <code>owner:Rick</code> <code>status:aday</code> <code>type:policy</code> <code>topic:risk</code><br>Graph üstünde scroll = zoom, boş alanı sürükle = pan.',
+      'Örnek sorgu: <code>owner:Rick</code> <code>status:aday</code> <code>type:policy</code> <code>topic:var</code><br>Graph üstünde scroll = zoom, boş alanı sürükle = pan.',
     pathLabel: 'Yol bul',
     pathButton: 'Zinciri göster',
     pathHint: 'İki kayıt seç, Decdock aradaki kaynak/drift zincirini göstersin.',
@@ -81,11 +93,14 @@ const CONFIGS = [
     foot:
       'Enron kamuya açık FERC e-posta arşivi · gerçek Decdock koşusu · kaynaklı aday sinyal, hüküm değil · © 2026 Decdock',
     topics: {
-      risk: 'Risk / VaR',
-      approvals: 'DPR & onay',
+      var: 'Risk / VaR',
+      limit: 'Trading limitleri',
+      dpr: 'DPR & kayıp',
       dash: 'DASH',
-      regulatory: 'Regülasyon',
-      operations: 'HR / operasyon',
+      reg: 'Regülasyon',
+      credit: 'Kredi / counterparty',
+      people: 'İK / haklar',
+      ops: 'Operasyon',
     },
     sameSourceWhy: 'Aynı kaynak thread içinde; semantik karar ilişkisi değil.',
     rel: {
@@ -104,7 +119,7 @@ const CONFIGS = [
       stale: 'Bayat / geri-alınmış',
     },
     topicCardSuffix: (nodes, issues, policies) => `${nodes} kayıt · ${issues} drift/adayı · ${policies} politika`,
-    pathDefaults: ['var-policy', 'var-buckets'],
+    pathDefaults: ['rec-0120', 'rec-0070'],
     allText: 'Tümü',
     dateFallback: 'Tarih',
     panel: {
@@ -152,7 +167,7 @@ const CONFIGS = [
     timeLabel: 'Timeline',
     zoomLabel: 'Zoom',
     queryHelp:
-      'Example query: <code>owner:Rick</code> <code>status:candidate</code> <code>type:policy</code> <code>topic:risk</code><br>Scroll over graph = zoom, drag empty space = pan.',
+      'Example query: <code>owner:Rick</code> <code>status:candidate</code> <code>type:policy</code> <code>topic:var</code><br>Scroll over graph = zoom, drag empty space = pan.',
     pathLabel: 'Find path',
     pathButton: 'Show chain',
     pathHint: 'Choose two records; Decdock will show the source/drift chain between them.',
@@ -177,11 +192,14 @@ const CONFIGS = [
     foot:
       'Public Enron/FERC email archive · real Decdock run · sourced candidate signal, not a verdict · © 2026 Decdock',
     topics: {
-      risk: 'Risk / VaR',
-      approvals: 'DPR & approvals',
+      var: 'Risk / VaR',
+      limit: 'Trading limits',
+      dpr: 'DPR & loss',
       dash: 'DASH',
-      regulatory: 'Regulatory',
-      operations: 'HR / operations',
+      reg: 'Regulation',
+      credit: 'Credit / counterparty',
+      people: 'HR / benefits',
+      ops: 'Operations',
     },
     sameSourceWhy: 'Same source thread; not a semantic decision relationship.',
     rel: {
@@ -200,7 +218,7 @@ const CONFIGS = [
       stale: 'Stale / superseded',
     },
     topicCardSuffix: (nodes, issues, policies) => `${nodes} records · ${issues} drift/candidates · ${policies} policies`,
-    pathDefaults: ['var-policy', 'var-buckets'],
+    pathDefaults: ['rec-0120', 'rec-0070'],
     allText: 'All',
     dateFallback: 'Date',
     panel: {
@@ -317,7 +335,7 @@ function topicCode(config) {
   const topicById=Object.fromEntries(TOPICS.map(t=>[t.id,t]));
   const SOURCE_TOPIC=${JSON.stringify(SOURCE_TOPIC, null, 2)};
   function topicFor(n){
-    return SOURCE_TOPIC[n.sk]||'operations';
+    return SOURCE_TOPIC[n.sk]||'ops';
   }
   NODES.forEach(n=>{ n.topic=topicFor(n); });`
 }
@@ -502,6 +520,11 @@ function generate(config) {
     html,
     /const TOPICS=\[[\s\S]*?\n  NODES\.forEach\(n=>\{ n\.topic=topicFor\(n\); \}\);/,
     topicCode(config),
+  )
+  html = replaceRegexOrThrow(
+    html,
+    /const topicPalette=\{[\s\S]*?\};/,
+    `const topicPalette=${JSON.stringify(TOPIC_PALETTE)};`,
   )
   html = replaceRegexOrThrow(html, /const REL=\{[\s\S]*?\n  \};/, `const REL=${JSON.stringify(config.rel, null, 4)};`)
   html = replaceRegexOrThrow(html, /const ST=\{[\s\S]*?\};/, `const ST=${JSON.stringify(config.statusText)};`)

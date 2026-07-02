@@ -3,7 +3,7 @@
     "source": "decdock-enron-run2-moat",
     "sourceKind": "decdock.knowledge.raw.v1",
     "tenant": "enron-energy-trading",
-    "generatedAt": "2026-07-02T10:53:36.725Z",
+    "generatedAt": "2026-07-02T11:12:51.249Z",
     "rawRecords": 316,
     "rawExtractedItems": 441,
     "rawConflicts": 6,
@@ -39,6 +39,18 @@
       "sourceDate": "2000-04-10",
       "sourceSubject": "Re: Limit Violation - Enron Australia",
       "sourceFile": "033_re_limit_violation_enron_australia.md",
+      "sk": "limit"
+    },
+    {
+      "id": "rec-0424",
+      "type": "risk_politika",
+      "kosul": "Personal Achievement Award (PAA) program — tüm çalışanlar",
+      "bilgi": "Maksimum ödül tutarı $2,000. Bu tutarı aşan ödemeler Başkan onayı gerektirir.",
+      "excerpt": "The maximum award is $2,000. Awards over $2,000 maximum require Chairman approval",
+      "confidence": "high",
+      "sourceDate": "2000-05-24",
+      "sourceSubject": "Personal Achievement Award (PAA) Program",
+      "sourceFile": "242_personal_achievement_award_paa_program.md",
       "sk": "limit"
     },
     {
@@ -87,7 +99,7 @@
       "sourceDate": "2000-06-26",
       "sourceSubject": "Quarter-end DPR Process",
       "sourceFile": "027_quarter_end_dpr_process.md",
-      "sk": "limit"
+      "sk": "dpr"
     },
     {
       "id": "rec-0064",
@@ -123,7 +135,19 @@
       "sourceDate": "2000-08-22",
       "sourceSubject": "Re: Approval for Sign on Bonuses",
       "sourceFile": "016_re_approval_for_sign_on_bonuses.md",
-      "sk": "limit"
+      "sk": "people"
+    },
+    {
+      "id": "rec-0021",
+      "type": "surec_kurali",
+      "kosul": "Sign-on bonus onay süreci — tutar eşiğine göre",
+      "bilgi": "Küçük sign-on bonus tutarları için (eşik: $5,000 ve altı) yönetici onayı yeterlidir. Önemli/yüksek tutarlar için David Oxley'den onay alınması tavsiye edilir.",
+      "excerpt": "If you are primarily in agreement regarding a small sign on bonus award, then no further approval process is necessary. If the sign on bonus amount is substantial then approval from David Oxley is advisable.",
+      "confidence": "high",
+      "sourceDate": "2000-08-22",
+      "sourceSubject": "Re: Approval for Sign on Bonuses",
+      "sourceFile": "016_re_approval_for_sign_on_bonuses.md",
+      "sk": "people"
     },
     {
       "id": "rec-0269",
@@ -138,18 +162,6 @@
       "sk": "ops"
     },
     {
-      "id": "rec-0295",
-      "type": "risk_politika",
-      "kosul": "Meter/well satış işlemlerinde (CES acquisition, Ocak 2000 ve sonrası) — ENA anlaşması ve spesifik meter numaraları olmadan",
-      "bilgi": "Uygun dokümantasyon olmaksızın anlaşmaları 'assign' etmek risk alanına girebilir. Meter/well satışında edinilen metreler ve efektif tarih listeleyen dokümantasyon gereklidir. Tedarikçi konumunda olunsa da (alıcı konumundan daha az risk), dokümantasyon olmadan ilişkiye dayalı risk vardır.",
-      "excerpt": "we may be putting ourselves in a risk area by 'assigning' the deals without proper documentation. The documentation that was supplied did not refence any ENA agreements, nor any specific meter numbers. If the purchase was indeed a meter/well sale; there should be documentation listing the meters acquired and the effective date.",
-      "confidence": "high",
-      "sourceDate": "2000-10-16",
-      "sourceSubject": "Re: Koch Midstream Services Co",
-      "sourceFile": "165_re_koch_midstream_services_co.md",
-      "sk": "people"
-    },
-    {
       "id": "rec-0398",
       "type": "surec_kurali",
       "kosul": "Individually negotiated contracts (outside Master Agreement) with term > 1 year",
@@ -162,16 +174,16 @@
       "sk": "credit"
     },
     {
-      "id": "rec-0326",
+      "id": "rec-0123",
       "type": "surec_kurali",
-      "kosul": "ETS (Enron Transportation Services) uçak rezervasyonu - Houston ve Omaha arası seferler",
-      "bilgi": "Enron uçağı kullanımı için minimum 4-6 yolcu veya ticari uçakla ulaşılması zor destinasyonlar gereklidir. Onay için VP (Vice President) onayı zorunludur. İstisna: Zamanlanmış seferlerde bireysel koltuk rezervasyonları VP onayı gerektirmez.",
-      "excerpt": "minimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial airlines... company plane usage requires the approval of your vice president. If employees are reserving individual available seats on a scheduled flight, vice presidential approval isn't required.",
+      "kosul": "EGM (Enron Global Markets) içinde tüm işlemler (sermaye harcaması veya risk ayarlı sermaye) $500,000 üzerinde",
+      "bilgi": "DASH (Deal Approval Sheet) tamamlanmalı ve aşağıdaki gruplar tarafından onaylanmalı: EGM iş birimi yönetimi, EGM Office of the Chairman, Legal, RAC, EGM Operations, Enron Capital Management, uygun seviye Enron Corp. yönetimi (gerekirse)",
+      "excerpt": "All transactions (capital expenditures or risk adjusted capital) in excess of $500,000 must have a completed DASH and sign off by the following groups: applicable EGM business unit management, EGM Office of the Chairman, Legal, RAC, EGM Operations, Enron Capital Management, appropriate level of Enron Corp. management",
       "confidence": "high",
-      "sourceDate": "2000-11-08",
-      "sourceSubject": "ETS Shuttle Plane Service",
-      "sourceFile": "187_ets_shuttle_plane_service.md",
-      "sk": "people"
+      "sourceDate": "2000-11-13",
+      "sourceSubject": "Deal Approval Sheet (DASH) Process",
+      "sourceFile": "044_deal_approval_sheet_dash_process.md",
+      "sk": "dash"
     },
     {
       "id": "rec-0124",
@@ -183,6 +195,18 @@
       "sourceDate": "2000-11-13",
       "sourceSubject": "Deal Approval Sheet (DASH) Process",
       "sourceFile": "044_deal_approval_sheet_dash_process.md",
+      "sk": "dash"
+    },
+    {
+      "id": "rec-0393",
+      "type": "surec_kurali",
+      "kosul": "EGM biriminde $500,000 ve üzeri tüm işlemler (sermaye harcamaları veya risk ayarlı sermaye)",
+      "bilgi": "DASH (Deal Approval Sheet) tamamlanmalı ve aşağıdaki gruplar tarafından onaylanmalıdır: ilgili EGM iş birimi yönetimi, EGM Başkan Yardımcılığı, Hukuk, RAC, EGM Operasyonları, Enron Capital Management, gerekirse uygun seviye Enron Corp. yönetimi",
+      "excerpt": "All transactions (capital expenditures or risk adjusted capital) in excess of $500,000 must have a completed DASH and sign off by the following groups: applicable EGM business unit management, EGM Office of the Chairman, Legal, RAC, EGM Operations, Enron Capital Management, appropriate level of Enron Corp. management (if required)",
+      "confidence": "high",
+      "sourceDate": "2000-11-14",
+      "sourceSubject": "Deal Approval Sheet (DASH) Process for EGM",
+      "sourceFile": "225_deal_approval_sheet_dash_process_for_egm.md",
       "sk": "dash"
     },
     {
@@ -198,30 +222,6 @@
       "sk": "dash"
     },
     {
-      "id": "rec-0420",
-      "type": "surec_kurali",
-      "kosul": "Varlık satışı (asset divestiture) — Northfield/Faribault gibi operasyonel varlıklar",
-      "bilgi": "Pazarlama ve saha hizmetleri (marketing/field services) potansiyel alıcılarla müzakerelere başlamadan önce TÜM yöneticilerden (all officers) onay alınması zorunludur.",
-      "excerpt": "The asset divestiture procedure requires approval from all officers before marketing/field services begin negotiations with potential buyers.",
-      "confidence": "high",
-      "sourceDate": "2000-12-04",
-      "sourceSubject": "Re: Northfield / Faribault Asset Divestiture Approval Form",
-      "sourceFile": "240_re_northfield_faribault_asset_divestiture_approval.md",
-      "sk": "ops"
-    },
-    {
-      "id": "rec-0115",
-      "type": "sorumluluk_atamasi",
-      "kosul": "Structured Derivatives P/L raporlama ve DPR allocation — Eastern spread options",
-      "bilgi": "James New (LON/ECT) sorumlu: Oliver Gaylard ve commercial team ile birlikte P/L ve DPR raporlama için uygun metodoloji belirlemek ve policy compliance'ı sağlamak.",
-      "excerpt": "James, perhaps you could work with Oliver and the commercial team to determine a reasonable methodology to support the allocation of P/L and related DPR reporting for these positions so we can continue to evaluate in compliance with the policy.",
-      "confidence": "high",
-      "sourceDate": "2000-12-06",
-      "sourceSubject": "DPR and Loss Notification - \"Structured Derivatives\"",
-      "sourceFile": "042_dpr_and_loss_notification_structured_derivatives.md",
-      "sk": "dpr"
-    },
-    {
       "id": "rec-0116",
       "type": "onay_karari",
       "kosul": "$43MM kayıp — Structured Derivatives (Eastern spread options) — 12/5/2000 DPR",
@@ -231,7 +231,19 @@
       "sourceDate": "2000-12-06",
       "sourceSubject": "DPR and Loss Notification - \"Structured Derivatives\"",
       "sourceFile": "042_dpr_and_loss_notification_structured_derivatives.md",
-      "sk": "limit"
+      "sk": "dpr"
+    },
+    {
+      "id": "rec-0118",
+      "type": "risk_politika",
+      "kosul": "European Gas, Enron Europe, effective 1/1/2001",
+      "bilgi": "NOP and Maturity/Gap limits revert to permanent limits: 60 Bcf (NOP) and 90 Bcf (Maturity/Gap).",
+      "excerpt": "European Gas - NOP and Maturity/Gap Limits revert to permanent limits on 1/1/01 (as previously scheduled), of 60 Bcf and 90 Bcf, respectively",
+      "confidence": "high",
+      "sourceDate": "2000-12-12",
+      "sourceSubject": "Enron Europe Limit Changes and DPR Reporting",
+      "sourceFile": "043_enron_europe_limit_changes_and_dpr_reporting.md",
+      "sk": "dpr"
     },
     {
       "id": "rec-0120",
@@ -282,6 +294,18 @@
       "sk": "var"
     },
     {
+      "id": "rec-0055",
+      "type": "risk_politika",
+      "kosul": "UK Power birim, NOP limiti, 1/1/01 tarihinden itibaren",
+      "bilgi": "NOP limiti 59.5 Twh (azalış)",
+      "excerpt": "UK Power 68 Twh 68 Twh 59.5 Twh 59.5 Twh",
+      "confidence": "high",
+      "sourceDate": "2000-12-27",
+      "sourceSubject": "Summary of Changes to Trading Limits 12/7 - 1/6",
+      "sourceFile": "023_summary_of_changes_to_trading_limits_12_7_1_6.md",
+      "sk": "limit"
+    },
+    {
       "id": "rec-0271",
       "type": "surec_kurali",
       "kosul": "Non-solicitation anlaşması imzalanması — Enron North America Corp. ile ilgili tüm anlaşmalar",
@@ -318,52 +342,16 @@
       "sk": "dpr"
     },
     {
-      "id": "rec-0095",
+      "id": "rec-0148",
       "type": "surec_kurali",
-      "kosul": "Merchanting Metals birim, denetim süreci ve iç bilançosu incelemesi",
-      "bilgi": "İç bilançosu inceleme süreci yeniden öncelendirilmeli ve yeniden kapsamlandırılmalıdır. Trader pozisyon analizleri, AS400 ekran sorguları ve resmi global pozisyon raporu arasındaki uzlaştırma farklılıkları denetim takvimi içinde Denetçilere sunulmalıdır.",
-      "excerpt": "an outline of the internal balance sheet review process described in my earlier note which must now be reprioritised and rescoped... reconciling differences between trader position analyses, AS400 on screen enquiries and the formal global position report ( these differences are at present not understood but would need to be provided to AA within the audit timetable)",
+      "kosul": "eProcurement alışveriş sepeti — ek onay/inceleme gerektiren durumlar",
+      "bilgi": "Alışveriş sepeti harcama limitini aşarsa veya filo, yedek kapasite veya IT donanımı içeriyorsa ek onay/inceleme gerekir.",
+      "excerpt": "Note: if the shopping cart exceeds your spend limit, or contains fleet, stand-by or IT hardware items it will require additional approval/review.",
       "confidence": "high",
-      "sourceDate": "2001-04-04",
-      "sourceSubject": "Merchanting Metals Update #2",
-      "sourceFile": "037_merchanting_metals_update_2.md",
-      "sk": "dpr"
-    },
-    {
-      "id": "rec-0384",
-      "type": "surec_kurali",
-      "kosul": "Tüm sözleşme formları ve anlaşmalar",
-      "bilgi": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli büyüklükteki veya form şablonundan maddi sapmaları olan anlaşmalar EWS onayı da gerektirir.",
-      "excerpt": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
-      "confidence": "high",
-      "sourceDate": "2001-05-11",
-      "sourceSubject": "Plan to Rebuild the Business",
-      "sourceFile": "221_plan_to_rebuild_the_business.md",
-      "sk": "dash"
-    },
-    {
-      "id": "rec-0386",
-      "type": "surec_kurali",
-      "kosul": "Tüm sözleşme formları ve anlaşmalar",
-      "bilgi": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli büyüklükteki veya standart formdan maddi sapmaları olan anlaşmalar ek olarak EWS onayı gerektirir.",
-      "excerpt": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
-      "confidence": "high",
-      "sourceDate": "2001-05-14",
-      "sourceSubject": "Plan to Rebuild the Business",
-      "sourceFile": "222_plan_to_rebuild_the_business.md",
-      "sk": "dash"
-    },
-    {
-      "id": "rec-0275",
-      "type": "surec_kurali",
-      "kosul": "Profesyonel Hizmetler - satın alma platformu",
-      "bilgi": "Profesyonel Hizmetler için iBuyit platformu (http://ibuyit.enron.com/tibco) kullanılacak. Platform SSS, prosedürler ve formlar içeren destek içeriği sağlayacaktır.",
-      "excerpt": "The URL/Web reference in the Professional Services section has been changed to http://ibuyit.enron.com/tibco. This is the URL for iBuyit. We are currently creating the content (FAQ's, procedures, forms, and etc.) that will be available via iBuyit to support the initiative.",
-      "confidence": "high",
-      "sourceDate": "2001-06-08",
-      "sourceSubject": "Cost Savings Initiative",
-      "sourceFile": "148_cost_savings_initiative.md",
-      "sk": "people"
+      "sourceDate": "2001-06-29",
+      "sourceSubject": "Important eProcurement Information",
+      "sourceFile": "055_important_eprocurement_information.md",
+      "sk": "limit"
     },
     {
       "id": "rec-0171",
@@ -467,6 +455,18 @@
       "kosul": "Savings Plan — Kasım 30, 2001 ve sonrası",
       "bilgi": "30 Kasım bordrosundan kesilen katkılar nakit olarak eşleştirilecek (hisse senedi yerine) ve Fidelity Freedom 2000 fonuna yatırılacak. Etkili tarih: 29 Kasım 2001.",
       "excerpt": "Savings Plan contributions that are deducted from your November 30 paycheck will be matched by Enron in cash rather than Enron stock. The cash match will be placed into the Fidelity Freedom 2000 fund, the default fund for the Plan.",
+      "confidence": "high",
+      "sourceDate": "2001-11-29",
+      "sourceSubject": "REVISED DRAFT - Savings Plan Memo",
+      "sourceFile": "085_revised_draft_savings_plan_memo.md",
+      "sk": "people"
+    },
+    {
+      "id": "rec-0194",
+      "type": "surec_kurali",
+      "kosul": "Savings Plan — Diversifikasyon (tüm yaşlar, tüm çalışanlar)",
+      "bilgi": "Yaş kısıtlaması olmaksızın tüm şirket katkı hesaplarından (Prior Matching, QNEC, Union Matching, Company Matching) diversifikasyon izni verildi. Etkili: derhal. Web üzerinden 'Savings Plan--Restricted Employer Acct Transfer/Reallocation' seçeneği veya Voice Response üzerinden 'request for fund transfer/reallocation' kullanılarak gerçekleştirilir.",
+      "excerpt": "Diversification within the Plan will now be allowed, regardless of your age, from ALL company contribution accounts... Effective immediately, you can invest these amounts in the fund or funds of your choosing.",
       "confidence": "high",
       "sourceDate": "2001-11-29",
       "sourceSubject": "REVISED DRAFT - Savings Plan Memo",

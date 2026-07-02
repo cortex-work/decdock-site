@@ -61,7 +61,7 @@ const TOPIC_TR = {
   limit: 'Trading limitleri',
   dpr: 'DPR & kayip bildirimi',
   dash: 'DASH deal onayi',
-  people: 'Atama & IK',
+  people: 'IK / haklar',
   reg: 'Regulasyon',
   credit: 'Counterparty / kredi',
   ops: 'Operasyon',
@@ -72,7 +72,7 @@ const TOPIC_EN = {
   limit: 'Trading limits',
   dpr: 'DPR & loss notification',
   dash: 'DASH deal approval',
-  people: 'Assignments & HR',
+  people: 'HR / benefits',
   reg: 'Regulation',
   credit: 'Counterparty / credit',
   ops: 'Operations',
@@ -120,12 +120,12 @@ function trim(value, max) {
 function topicOf(item) {
   const text = `${item.kosul || ''} ${item.bilgi || ''} ${item.excerpt || ''} ${item.sourceSubject || ''}`.toLowerCase()
   if (/discretionary var|value at risk|\bvar\b/.test(text)) return 'var'
-  if (/\blimit\b|nop|notional|twh|\$[0-9]/i.test(text)) return 'limit'
+  if (/ferc|nyiso|nepool|\biso\b|tariff|cpuc|advice letters?|regulat|permit|filing|order|naesb|gisb/.test(text)) return 'reg'
   if (/dpr|position report|loss notification|daily loss|cumulative loss/.test(text)) return 'dpr'
   if (/dash|deal approval|rac\b/.test(text)) return 'dash'
-  if (/savings|payroll|bonus|severance|employee|personnel|assign|appointment|transfer|desk|rotation/.test(text)) return 'people'
-  if (/ferc|nyiso|nepool|\biso\b|tariff|regulat|permit|epa|order|naesb|gisb/.test(text)) return 'reg'
+  if (/savings plan|payroll|bonus|severance|hire|hiring|compensation|salary|union employees|employee benefits?|i[şs]e al[ıi]m|maa[şs]|[çc]al[ıi][şs]an haklar[ıi]/.test(text)) return 'people'
   if (/counterparty|isda|master agreement|credit|counterpart|collateral/.test(text)) return 'credit'
+  if (/\blimit\b|nop|notional|twh|\$[0-9]/i.test(text)) return 'limit'
   return 'ops'
 }
 

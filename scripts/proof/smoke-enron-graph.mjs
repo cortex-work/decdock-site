@@ -30,8 +30,21 @@ for (const [label, file, dataFile, proofLink, sampleLink] of GRAPH_FILES) {
   const { html, nodes, edges } = loadGraph(file)
   const meta = loadMeta(dataFile)
   const ids = new Set(nodes.map((node) => node.id))
+  const topicsMatch = html.match(/const TOPICS=(\[[\s\S]*?\]);/)
+  const sourceTopicMatch = html.match(/const SOURCE_TOPIC=(\{[\s\S]*?\});/)
+  const topics = topicsMatch ? vm.runInContext(`(${topicsMatch[1]})`, vm.createContext({})) : []
+  const sourceTopic = sourceTopicMatch ? vm.runInContext(`(${sourceTopicMatch[1]})`, vm.createContext({})) : {}
+  const topicDist = {}
+  for (const node of nodes) {
+    const topic = sourceTopic[node.sk] || 'ops'
+    topicDist[topic] = (topicDist[topic] || 0) + 1
+  }
 
   if (nodes.length !== meta.curatedRecords) errors.push(`${label}: expected ${meta.curatedRecords} nodes, got ${nodes.length}`)
+  if (topics.length !== 8) errors.push(`${label}: expected 8 topics, got ${topics.length}`)
+  for (const [topic, count] of Object.entries(topicDist)) {
+    if (count > 10) errors.push(`${label}: topic ${topic} is too large (${count} nodes)`)
+  }
   if (!html.includes(proofLink)) errors.push(`${label}: missing proof link ${proofLink}`)
   if (!html.includes(sampleLink)) errors.push(`${label}: missing synthetic graph link ${sampleLink}`)
   if (!html.includes('hreflang="tr"')) errors.push(`${label}: missing tr hreflang`)

@@ -281,7 +281,7 @@
           <button class="mini-btn" type="button" id="zoom-reset">Sıfırla</button>
         </div>
       </div>
-      <div class="query-help">Örnek sorgu: <code>owner:Rick</code> <code>status:aday</code> <code>type:policy</code> <code>topic:risk</code><br>Graph üstünde scroll = zoom, boş alanı sürükle = pan.</div>
+      <div class="query-help">Örnek sorgu: <code>owner:Rick</code> <code>status:aday</code> <code>type:policy</code> <code>topic:var</code><br>Graph üstünde scroll = zoom, boş alanı sürükle = pan.</div>
     </aside>
     <div class="pathbar" aria-label="Path finder">
       <label>Yol bul</label>
@@ -340,6 +340,16 @@
     "sk": "limit"
   },
   {
+    "id": "rec-0424",
+    "kind": "policy",
+    "label": "Maksimum ödül tutarı $2,000. Bu tutarı aşan ödemeler Başkan onayı gerektirir.",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-05-24",
+    "quote": "The maximum award is $2,000. Awards over $2,000 maximum require Chairman approval",
+    "sk": "limit"
+  },
+  {
     "id": "rec-0070",
     "kind": "policy",
     "label": "Loss notification memos zorunlu: Günlük zarar %50-75 VaR limitinin (VaR Limit=$40MM) arasında...",
@@ -377,7 +387,7 @@
     "owner": "John Lavorato",
     "date": "2000-06-26",
     "quote": "Adjustments > $250,000 require approval from John Lavorato or John Sherriff.",
-    "sk": "limit"
+    "sk": "dpr"
   },
   {
     "id": "rec-0064",
@@ -407,7 +417,17 @@
     "owner": "Sally Beck",
     "date": "2000-08-22",
     "quote": "If the sign on bonus amount is substantial then approval from David Oxley is advisable. In our current case, a $5,000.00 sign on for a Sr. Specialist would not require additional approval except your own.",
-    "sk": "limit"
+    "sk": "people"
+  },
+  {
+    "id": "rec-0021",
+    "kind": "policy",
+    "label": "Küçük sign-on bonus tutarları için (eşik: $5,000 ve altı) yönetici onayı yeterlidir....",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-08-22",
+    "quote": "If you are primarily in agreement regarding a small sign on bonus award, then no further approval process is necessary. If the sign on bonus amount is substantial then approval from David Oxley is advisable.",
+    "sk": "people"
   },
   {
     "id": "rec-0269",
@@ -420,16 +440,6 @@
     "sk": "ops"
   },
   {
-    "id": "rec-0295",
-    "kind": "policy",
-    "label": "Uygun dokümantasyon olmaksızın anlaşmaları 'assign' etmek risk alanına girebilir. Meter/well...",
-    "status": "ratified",
-    "owner": "",
-    "date": "2000-10-16",
-    "quote": "we may be putting ourselves in a risk area by 'assigning' the deals without proper documentation. The documentation that was supplied did not refence any ENA agreements, nor any specific meter numbers. If the purchase was indeed a meter/well sale; there should be documentation listing the meters...",
-    "sk": "people"
-  },
-  {
     "id": "rec-0398",
     "kind": "policy",
     "label": "OGC/AGC approval required for individually negotiated contracts with term greater than one...",
@@ -440,14 +450,14 @@
     "sk": "credit"
   },
   {
-    "id": "rec-0326",
+    "id": "rec-0123",
     "kind": "policy",
-    "label": "Enron uçağı kullanımı için minimum 4-6 yolcu veya ticari uçakla ulaşılması zor destinasyonlar...",
+    "label": "DASH (Deal Approval Sheet) tamamlanmalı ve aşağıdaki gruplar tarafından onaylanmalı: EGM iş...",
     "status": "ratified",
     "owner": "",
-    "date": "2000-11-08",
-    "quote": "minimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial airlines... company plane usage requires the approval of your vice president. If employees are reserving individual available seats on a scheduled flight, vice presidential approval isn't required.",
-    "sk": "people"
+    "date": "2000-11-13",
+    "quote": "All transactions (capital expenditures or risk adjusted capital) in excess of $500,000 must have a completed DASH and sign off by the following groups: applicable EGM business unit management, EGM Office of the Chairman, Legal, RAC, EGM Operations, Enron Capital Management, appropriate level of...",
+    "sk": "dash"
   },
   {
     "id": "rec-0124",
@@ -457,6 +467,16 @@
     "owner": "",
     "date": "2000-11-13",
     "quote": "Capital expenditures include any acquisitions/divestitures of assets, offerings of debt, subordinated debt, equity or partnership capital or entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a...",
+    "sk": "dash"
+  },
+  {
+    "id": "rec-0393",
+    "kind": "policy",
+    "label": "DASH (Deal Approval Sheet) tamamlanmalı ve aşağıdaki gruplar tarafından onaylanmalıdır: ilgili...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-11-14",
+    "quote": "All transactions (capital expenditures or risk adjusted capital) in excess of $500,000 must have a completed DASH and sign off by the following groups: applicable EGM business unit management, EGM Office of the Chairman, Legal, RAC, EGM Operations, Enron Capital Management, appropriate level of...",
     "sk": "dash"
   },
   {
@@ -470,26 +490,6 @@
     "sk": "dash"
   },
   {
-    "id": "rec-0420",
-    "kind": "policy",
-    "label": "Pazarlama ve saha hizmetleri (marketing/field services) potansiyel alıcılarla müzakerelere...",
-    "status": "ratified",
-    "owner": "",
-    "date": "2000-12-04",
-    "quote": "The asset divestiture procedure requires approval from all officers before marketing/field services begin negotiations with potential buyers.",
-    "sk": "ops"
-  },
-  {
-    "id": "rec-0115",
-    "kind": "decision",
-    "label": "James New (LON/ECT) sorumlu: Oliver Gaylard ve commercial team ile birlikte P/L ve DPR...",
-    "status": "ratified",
-    "owner": "",
-    "date": "2000-12-06",
-    "quote": "James, perhaps you could work with Oliver and the commercial team to determine a reasonable methodology to support the allocation of P/L and related DPR reporting for these positions so we can continue to evaluate in compliance with the policy.",
-    "sk": "dpr"
-  },
-  {
     "id": "rec-0116",
     "kind": "decision",
     "label": "Chris Abel (HOU/ECT) tarafından Ken Lay ve Jeff Skilling'e Loss Notification mektubu...",
@@ -497,7 +497,17 @@
     "owner": "Jeff Skilling",
     "date": "2000-12-06",
     "quote": "Chris, please include this loss in today's notification letters to Ken Lay and Jeff Skilling for the 5th. Per Oliver, the loss was due to power price curve shift and gas volatility curve shift against the Eastern spread options.",
-    "sk": "limit"
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0118",
+    "kind": "policy",
+    "label": "NOP and Maturity/Gap limits revert to permanent limits: 60 Bcf (NOP) and 90 Bcf (Maturity/Gap).",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-12",
+    "quote": "European Gas - NOP and Maturity/Gap Limits revert to permanent limits on 1/1/01 (as previously scheduled), of 60 Bcf and 90 Bcf, respectively",
+    "sk": "dpr"
   },
   {
     "id": "rec-0120",
@@ -540,6 +550,16 @@
     "sk": "var"
   },
   {
+    "id": "rec-0055",
+    "kind": "policy",
+    "label": "NOP limiti 59.5 Twh (azalış)",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-27",
+    "quote": "UK Power 68 Twh 68 Twh 59.5 Twh 59.5 Twh",
+    "sk": "limit"
+  },
+  {
     "id": "rec-0271",
     "kind": "policy",
     "label": "Jim Derrick'in 27 Ekim 1999 tarihli Interoffice Memorandum'una göre, Enron North America...",
@@ -570,44 +590,14 @@
     "sk": "dpr"
   },
   {
-    "id": "rec-0095",
+    "id": "rec-0148",
     "kind": "policy",
-    "label": "İç bilançosu inceleme süreci yeniden öncelendirilmeli ve yeniden kapsamlandırılmalıdır. Trader...",
+    "label": "Alışveriş sepeti harcama limitini aşarsa veya filo, yedek kapasite veya IT donanımı içeriyorsa...",
     "status": "ratified",
     "owner": "",
-    "date": "2001-04-04",
-    "quote": "an outline of the internal balance sheet review process described in my earlier note which must now be reprioritised and rescoped... reconciling differences between trader position analyses, AS400 on screen enquiries and the formal global position report ( these differences are at present not...",
-    "sk": "dpr"
-  },
-  {
-    "id": "rec-0384",
-    "kind": "policy",
-    "label": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli...",
-    "status": "ratified",
-    "owner": "",
-    "date": "2001-05-11",
-    "quote": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
-    "sk": "dash"
-  },
-  {
-    "id": "rec-0386",
-    "kind": "policy",
-    "label": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli...",
-    "status": "ratified",
-    "owner": "",
-    "date": "2001-05-14",
-    "quote": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
-    "sk": "dash"
-  },
-  {
-    "id": "rec-0275",
-    "kind": "policy",
-    "label": "Profesyonel Hizmetler için iBuyit platformu (http://ibuyit.enron.com/tibco) kullanılacak....",
-    "status": "ratified",
-    "owner": "",
-    "date": "2001-06-08",
-    "quote": "The URL/Web reference in the Professional Services section has been changed to http://ibuyit.enron.com/tibco. This is the URL for iBuyit. We are currently creating the content (FAQ's, procedures, forms, and etc.) that will be available via iBuyit to support the initiative.",
-    "sk": "people"
+    "date": "2001-06-29",
+    "quote": "Note: if the shopping cart exceeds your spend limit, or contains fleet, stand-by or IT hardware items it will require additional approval/review.",
+    "sk": "limit"
   },
   {
     "id": "rec-0171",
@@ -700,6 +690,16 @@
     "sk": "people"
   },
   {
+    "id": "rec-0194",
+    "kind": "policy",
+    "label": "Yaş kısıtlaması olmaksızın tüm şirket katkı hesaplarından (Prior Matching, QNEC, Union...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-11-29",
+    "quote": "Diversification within the Plan will now be allowed, regardless of your age, from ALL company contribution accounts... Effective immediately, you can invest these amounts in the fund or funds of your choosing.",
+    "sk": "people"
+  },
+  {
     "id": "rec-0011",
     "kind": "decision",
     "label": "Ken Lay, Enron Yönetim Kurulu Başkanı ve CEO pozisyonundan istifa etmiştir (23 Ocak 2002...",
@@ -781,26 +781,26 @@
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0063",
+    "from": "rec-0424",
     "to": "rec-0080",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0020",
-    "to": "rec-0063",
-    "type": "same_source",
-    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
-  },
-  {
-    "from": "rec-0116",
-    "to": "rec-0020",
+    "from": "rec-0055",
+    "to": "rec-0424",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
     "from": "rec-0084",
-    "to": "rec-0116",
+    "to": "rec-0055",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0148",
+    "to": "rec-0084",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
@@ -841,26 +841,32 @@
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0064",
+    "from": "rec-0063",
     "to": "rec-0071",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0115",
+    "from": "rec-0064",
+    "to": "rec-0063",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0116",
     "to": "rec-0064",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0091",
-    "to": "rec-0115",
+    "from": "rec-0118",
+    "to": "rec-0116",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0095",
-    "to": "rec-0091",
+    "from": "rec-0091",
+    "to": "rec-0118",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
@@ -883,32 +889,26 @@
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0420",
-    "to": "rec-0269",
-    "type": "same_source",
-    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
-  },
-  {
-    "from": "rec-0271",
-    "to": "rec-0420",
-    "type": "same_source",
-    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
-  },
-  {
-    "from": "rec-0326",
-    "to": "rec-0295",
-    "type": "same_source",
-    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
-  },
-  {
-    "from": "rec-0275",
-    "to": "rec-0326",
+    "from": "rec-0021",
+    "to": "rec-0020",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
     "from": "rec-0192",
-    "to": "rec-0275",
+    "to": "rec-0021",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0194",
+    "to": "rec-0193",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0271",
+    "to": "rec-0269",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
@@ -925,26 +925,26 @@
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0394",
+    "from": "rec-0124",
+    "to": "rec-0123",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0393",
     "to": "rec-0124",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "rec-0384",
-    "to": "rec-0394",
-    "type": "same_source",
-    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
-  },
-  {
-    "from": "rec-0386",
-    "to": "rec-0384",
+    "from": "rec-0394",
+    "to": "rec-0393",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
     "from": "rec-0186",
-    "to": "rec-0386",
+    "to": "rec-0394",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   }
@@ -1011,51 +1011,67 @@
   const minDepthDate=Math.min(...depthDates), maxDepthDate=Math.max(...depthDates);
   const TOPICS=[
   {
-    "id": "risk",
-    "x": 0.28,
-    "y": 0.28,
+    "id": "var",
+    "x": 0.24,
+    "y": 0.24,
     "label": "Risk / VaR"
   },
   {
-    "id": "approvals",
-    "x": 0.7,
-    "y": 0.26,
-    "label": "DPR & onay"
+    "id": "limit",
+    "x": 0.5,
+    "y": 0.18,
+    "label": "Trading limitleri"
+  },
+  {
+    "id": "dpr",
+    "x": 0.76,
+    "y": 0.25,
+    "label": "DPR & kayıp"
   },
   {
     "id": "dash",
-    "x": 0.5,
-    "y": 0.48,
+    "x": 0.73,
+    "y": 0.52,
     "label": "DASH"
   },
   {
-    "id": "regulatory",
-    "x": 0.27,
-    "y": 0.72,
+    "id": "reg",
+    "x": 0.52,
+    "y": 0.78,
     "label": "Regülasyon"
   },
   {
-    "id": "operations",
-    "x": 0.72,
+    "id": "credit",
+    "x": 0.25,
     "y": 0.72,
-    "label": "HR / operasyon"
+    "label": "Kredi / counterparty"
+  },
+  {
+    "id": "people",
+    "x": 0.18,
+    "y": 0.48,
+    "label": "İK / haklar"
+  },
+  {
+    "id": "ops",
+    "x": 0.5,
+    "y": 0.49,
+    "label": "Operasyon"
   }
 ];
   const topicById=Object.fromEntries(TOPICS.map(t=>[t.id,t]));
   const SOURCE_TOPIC={
-  "var": "risk",
-  "liquidity": "risk",
-  "dpr": "approvals",
-  "payment": "approvals",
+  "var": "var",
+  "limit": "limit",
+  "dpr": "dpr",
   "dash": "dash",
-  "nyiso": "regulatory",
-  "redrock": "regulatory",
-  "hr": "operations",
-  "msa": "operations",
-  "eogil": "operations"
+  "reg": "reg",
+  "credit": "credit",
+  "people": "people",
+  "ops": "ops"
 };
   function topicFor(n){
-    return SOURCE_TOPIC[n.sk]||'operations';
+    return SOURCE_TOPIC[n.sk]||'ops';
   }
   NODES.forEach(n=>{ n.topic=topicFor(n); });
 
@@ -1251,7 +1267,7 @@
   let scopeMode='global', localDepth=1, groupMode='status', timeIndex=null;
   const searchHits=new Set(), searchContext=new Set();
   let pathNodes=new Set(), pathEdges=new Set();
-  const topicPalette={strategy:'#8fb0d6',budget:'#d0a05f',people:'#cf8679',policy:'#bba178',ops:'#8faa84',tech:'#86b6ad'};
+  const topicPalette={"var":"#8fb0d6","limit":"#d0a05f","dpr":"#86b6ad","dash":"#cf8679","reg":"#8faa84","credit":"#b98fa8","people":"#bba178","ops":"#9c8b7a"};
   const statusPalette={ratified:'#5c7560',candidate:'#9c6e44',ownerless:'#fdfaf5',stale:'#bcab9c'};
   const dateKeys=[...new Set(NODES.map(n=>dateKey(n.date)))].sort((a,b)=>a-b);
   timeRange.max=String(Math.max(0,dateKeys.length-1)); timeRange.value=String(Math.max(0,dateKeys.length-1)); timeIndex=dateKeys.length-1;
@@ -1371,7 +1387,7 @@
   function populatePathSelects(){
     const opts=NODES.map(n=>'<option value="'+n.id+'">'+ESC(n.label)+'</option>').join('');
     pathFrom.innerHTML=opts; pathTo.innerHTML=opts;
-    pathFrom.value='var-policy'; pathTo.value='var-buckets';
+    pathFrom.value='rec-0120'; pathTo.value='rec-0070';
   }
   function shortestPath(from,to){
     if(!from||!to||!byId[from]||!byId[to])return null;
