@@ -34,8 +34,7 @@ const CONFIGS = [
     outFile: resolve(ROOT, 'public/enron-grafi/index.html'),
     canonical: 'https://decdock.com/enron-grafi/',
     title: 'Enron karar ağı — gerçek koşu | Decdock',
-    description:
-      "Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: 20 kaynaklı kayıt, 2 çelişki ve 2 supersede zinciri.",
+    description: '',
     ogTitle: 'Enron karar ağı — gerçek koşu | Decdock',
     tag: 'Enron / FERC · gerçek koşu',
     h1: 'Enron karar ağı — gerçek koşu',
@@ -43,8 +42,7 @@ const CONFIGS = [
     proofLabel: 'Kayıt listesi: Enron kanıtı →',
     sampleHref: '/karar-grafi/',
     sampleLabel: 'Temsili örnek →',
-    dek:
-      'Bu <b>temsili değil</b>: Enron/FERC kamuya açık arşivinden gerçek bir Decdock koşusu. Çoğu kayıt tek başına durur; motor çelişen ya da eskiyi güncelleyen az sayıdaki ilişkiyi (<b>2 çelişki, 2 supersede</b>) yüzeye çıkarır. İnce gri bağlar yalnızca <b>aynı kaynak thread</b> bağını gösterir; semantik karar ilişkisi değildir.',
+    dek: '',
     searchPlaceholder: 'VaR, DPR, DASH, $1M, MSA veya kişi ara...',
     tryLabel: 'Deneyin',
     tryChips: ['VaR', 'DPR', 'DASH', '$1M'],
@@ -132,8 +130,7 @@ const CONFIGS = [
     outFile: resolve(ROOT, 'public/enron-graph/index.html'),
     canonical: 'https://decdock.com/enron-graph/',
     title: 'Enron decision graph — real run | Decdock',
-    description:
-      'A real Decdock decision graph over the public Enron/FERC archive: 20 sourced records, 2 conflicts, and 2 supersession chains.',
+    description: '',
     ogTitle: 'Enron decision graph — real run | Decdock',
     tag: 'Enron / FERC · real run',
     h1: 'Enron decision graph — real run',
@@ -141,8 +138,7 @@ const CONFIGS = [
     proofLabel: 'Record list: Enron proof →',
     sampleHref: '/karar-grafi/',
     sampleLabel: 'Synthetic example →',
-    dek:
-      'This is <b>not synthetic</b>: a real Decdock run over the public Enron/FERC archive. Most records stand alone; the engine surfaces the small number of relationships that conflict or update earlier records (<b>2 conflicts, 2 supersedes</b>). Thin grey links mean <b>same source thread</b> only; they are not semantic decision relationships.',
+    dek: '',
     searchPlaceholder: 'Search VaR, DPR, DASH, $1M, MSA, or a person...',
     tryLabel: 'Try',
     tryChips: ['VaR', 'DPR', 'DASH', '$1M'],
@@ -228,7 +224,31 @@ const CONFIGS = [
 
 function loadData(file) {
   const source = readFileSync(file, 'utf8')
-  return vm.runInNewContext(`${source}\n;({ SOURCES, DATA })`, {})
+  return vm.runInNewContext(`${source}\n;({ META, SOURCES, DATA })`, {})
+}
+
+function metaFor(meta, records) {
+  return {
+    rawRecords: meta?.rawRecords ?? records.length,
+    rawSupersedes: meta?.rawSupersedes ?? records.filter((record) => record.relType === 'supersedes').length,
+    keptSupersedes: meta?.keptSupersedes ?? records.filter((record) => record.relType === 'supersedes').length,
+    keptConflicts: meta?.keptConflicts ?? records.filter((record) => record.relType === 'conflicts').length,
+    driftEdges: meta?.driftEdges ?? records.filter((record) => record.chainTo !== undefined).length,
+    curatedRecords: meta?.curatedRecords ?? records.length,
+  }
+}
+
+function descriptionFor(lang, meta) {
+  return lang === 'tr'
+    ? `Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: ${meta.curatedRecords} kaynaklı kayıt, ${meta.keptConflicts} çelişki ve ${meta.keptSupersedes} gerçek supersede.`
+    : `A real Decdock decision graph over the public Enron/FERC archive: ${meta.curatedRecords} sourced records, ${meta.keptConflicts} conflicts, and ${meta.keptSupersedes} real supersedes.`
+}
+
+function dekFor(lang, meta) {
+  if (lang === 'tr') {
+    return `Bu <b>temsili değil</b>: Enron/FERC kamuya açık arşivinden gerçek bir Decdock koşusu. ${meta.rawRecords} konsolide kayıt içinden ${meta.curatedRecords} kaynaklı kayıt ve ${meta.driftEdges} sağlam drift edge gösteriliyor. ${meta.rawSupersedes} aday supersede'den yalnız ${meta.keptSupersedes}'si gerçek tarih-farkı testini geçti; aynı-tarihli/sistem-işaretli çiftleri sahte edge olarak göstermiyoruz. İnce gri bağlar yalnızca <b>aynı kaynak thread</b> bağını gösterir; semantik karar ilişkisi değildir.`
+  }
+  return `This is <b>not synthetic</b>: a real Decdock run over the public Enron/FERC archive. From ${meta.rawRecords} consolidated records, this graph shows ${meta.curatedRecords} sourced records and ${meta.driftEdges} solid drift edges. Of ${meta.rawSupersedes} candidate supersedes, only ${meta.keptSupersedes} passed the real date-gap test; same-date/system-flagged pairs are not shown as fake edges. Thin grey links mean <b>same source thread</b> only; they are not semantic decision relationships.`
 }
 
 function graphData(records, config) {
@@ -325,7 +345,10 @@ function legendHtml(config) {
 }
 
 function generate(config) {
-  const { DATA } = loadData(config.dataFile)
+  const { META, DATA } = loadData(config.dataFile)
+  const meta = metaFor(META, DATA)
+  const description = descriptionFor(config.lang, meta)
+  const dek = dekFor(config.lang, meta)
   const { nodes, edges } = graphData(DATA, config)
   let html = readFileSync(TEMPLATE, 'utf8')
 
@@ -334,7 +357,7 @@ function generate(config) {
   html = replaceRegexOrThrow(
     html,
     /<meta name="description" content="[\s\S]*?" \/>/,
-    `<meta name="description" content="${config.description}" />`,
+    `<meta name="description" content="${description}" />`,
   )
   html = replaceRegexOrThrow(
     html,
@@ -345,7 +368,7 @@ function generate(config) {
 <link rel="alternate" hreflang="x-default" href="https://decdock.com/enron-graph/" />`,
   )
   html = replaceRegexOrThrow(html, /<meta property="og:title" content="[\s\S]*?" \/>/, `<meta property="og:title" content="${config.ogTitle}" />`)
-  html = replaceRegexOrThrow(html, /<meta property="og:description" content="[\s\S]*?" \/>/, `<meta property="og:description" content="${config.description}" />`)
+  html = replaceRegexOrThrow(html, /<meta property="og:description" content="[\s\S]*?" \/>/, `<meta property="og:description" content="${description}" />`)
   html = replaceRegexOrThrow(html, /<meta property="og:url" content="[\s\S]*?" \/>/, `<meta property="og:url" content="${config.canonical}" />`)
 
   html = replaceOrThrow(
@@ -371,7 +394,7 @@ function generate(config) {
     <a class="proof-link" href="${config.proofHref}">${config.proofLabel}</a>
     <a class="proof-link" href="${config.sampleHref}">${config.sampleLabel}</a>
   </div>
-  <p class="dek">${config.dek}</p>`,
+  <p class="dek">${dek}</p>`,
   )
 
   html = replaceRegexOrThrow(

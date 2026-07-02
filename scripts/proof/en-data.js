@@ -1,106 +1,569 @@
-// Real Decdock run — Enron public email archive (FERC release).
-// Source: decdock-enron-moat.json (consolidate + drift). Quotes are verbatim.
+// Real Decdock run - Enron public FERC archive (250 emails -> curated proof subset).
+const META = {
+  "source": "decdock-enron-run2-moat",
+  "sourceKind": "decdock.knowledge.raw.v1",
+  "tenant": "enron-energy-trading",
+  "generatedAt": "2026-07-02T10:53:36.725Z",
+  "rawRecords": 316,
+  "rawExtractedItems": 441,
+  "rawConflicts": 6,
+  "rawSupersedes": 22,
+  "curatedRecords": 41,
+  "keptConflicts": 5,
+  "keptSupersedes": 2,
+  "driftEdges": 7,
+  "droppedConflicts": 1,
+  "droppedSupersedes": 20,
+  "honestyNote": "Supersedes edges are kept only when newer.sourceDate is later than older.sourceDate and the edge explanation is not a system heuristic. Borderline UK TWh and Mahonia sequence edges are dropped."
+};
+
 const SOURCES = {
-  'var': { sub:"Risk Policy & VaR Limits — August 2001", body:`ENRON — public email archive (FERC release)
-Subject: "Policy and other items" / "RE: Policy and other items" / "FW: New product approvals"
-File: ENR-DEC-001, ENR-DEC-002, ENR-EDGE-001 · 9 May / 16–17 August 2001
-
-I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.
-
-The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.
-
-Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM
-
-Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th` },
-
-  'dpr': { sub:"Daily Position Report (DPR) — Signing Authority", body:`ENRON — public email archive (FERC release)
-Subject: "Global Risk Management"
-File: ENR-DEC-004 · 8 May 2000
-
-Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report
-
-Please obtain Greg Whalley's approval for all DPR's prior to that date
-
-Going forward, please coordinate with each as to their preferred method of designating approval.` },
-
-  'dash': { sub:"DASH Deal Classification — RAC", body:`ENRON — public email archive (FERC release)
-Subject: RE: DASH Classification - "Proceed - See Other RAC Comments"
-File: ENR-DEC-006, ENR-DEC-023, ENR-DEC-025, ENR-DEC-026 · 13 September 2001
-
-three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.
-
-Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.
-
-we will remove "See Other RAC Comments" from the DASH template and library as an ongoing classification option
-
-in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999` },
-
-  'payment': { sub:"Payment Approval Thresholds", body:`ENRON — public email archive (FERC release)
-Subject: "Updated - Approval Authorizations"
-File: ENR-DEC-018 · 8 December 2000
-
-If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.` },
-
-  'hr': { sub:"HR Policy Scope — Severance / Vacation / Sick Pay", body:`ENRON — public email archive (FERC release)
-Subject: RE: REVISED - Policy Changes
-File: ENR-DEC-009 · 28 November 2001
-
-the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue.` },
-
-  'msa': { sub:"IT & Back Office MSA — NETCO Assignment", body:`ENRON — public email archive (FERC release)
-Subject: RE: IT & Back Office Service Agreements
-File: ENR-DEC-011 · 2 January 2002
-
-we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred.` },
-
-  'eogil': { sub:"EOGIL Sale — Board Action Item?", body:`ENRON — public email archive (FERC release)
-Subject: RE: EOGIL sale to BG
-File: ENR-DEC-012 · 24 January 2002
-
-in October it was decided by Rick Buy and Pug Winokur that this was not a board action item` },
-
-  'nyiso': { sub:"NYISO Stage 2 ICAP Manual", body:`ENRON — public email archive (FERC release)
-Subject: Stage 2 Manual Add'l changes
-File: ENR-DEC-015 · 17 July 2001
-
-Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting.` },
-
-  'liquidity': { sub:"Liquidity Ratio — Thresholds and Definitions", body:`ENRON — public email archive (FERC release)
-Subject: RE: Liquidity Ratio Calculation and Definitions in Policy
-File: ENR-DEC-016 · 2 August 2001
-
-CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes
-
-Numerator from Global Finance, not Accounting. FAC and BC as previously defined
-
-I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week` },
-
-  'redrock': { sub:"Red Rock Expansion Station 4 — EPA Permit / Turbine", body:`ENRON — public email archive (FERC release)
-Subject: RE: FW: Red Rock Expansion Station 4
-File: ENR-DEC-017 · 21 November 2001
-
-I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit.` },
+  "limit": {
+    "sub": "Trading limits",
+    "body": "ENRON - public email archive (FERC)\nTrading limits\n\n[2000-04-10] Re: Limit Violation - Enron Australia\nit would be somewhat unprecedented to leave a \"proprietary\" position over the limit for that length of time, i.e., the Australian Electricity book would far exceed the number of position limit violations for any other commodities\n\n[2000-04-10] Re: Limit Violation - Enron Australia\nyou put together a request for approval to increase your limits to be presented at the first opportunity\n\n[2000-06-26] Quarter-end DPR Process\nAdjustments > $250,000 require approval from John Lavorato or John Sherriff.\n\n[2000-08-22] Re: Approval for Sign on Bonuses\nIf the sign on bonus amount is substantial then approval from David Oxley is advisable. In our current case, a $5,000.00 sign on for a Sr. Specialist would not require additional approval except your own.\n\n[2000-12-06] DPR and Loss Notification - \"Structured Derivatives\"\nChris, please include this loss in today's notification letters to Ken Lay and Jeff Skilling for the 5th. Per Oliver, the loss was due to power price curve shift and gas volatility curve shift against the Eastern spread options.\n\n[2001-02-13] Global Markets Limits\nA separate e-mail was sent to each of your head traders and business unit controllers/CAO for each of these commodity groups with limit changes."
+  },
+  "var": {
+    "sub": "Risk / VaR",
+    "body": "ENRON - public email archive (FERC)\nRisk / VaR\n\n[2000-06-12] Violation Memos Distribution\nDaily Loss 50% - 75% of VAR Limit > 75% of VAR Limit (VAR Limit = $40 MM); 5-Day Cumulative Loss 75% - 100% of VAR Limit > VAR Limit\n\n[2000-12-12] Enron Europe Limit Changes and DPR Reporting\nDaily Loss in any Commodity group or Portfolio: Report to Business Unit Office of the Chairman 100% of VaR... Report to Enron Corp. President 125% of VaR... Report to Enron Corp. Chairman 150% of VaR... Report to Audit Committee no reporting at commodity group level\n\n[2000-12-12] Enron Europe Limit Changes and DPR Reporting\nCumulative 5-day Loss in any Commodity Group or Portfolio: Report to Business Unit Office of the Chairman 125% of VaR... Report to Enron Corp. President 150% of VaR... Report to Enron Corp. Chairman 175% of VaR... Report to Audit Committee no reporting at commodity group level\n\n[2000-12-19] Upcoming Limit Changes- UK Power\nUK Power's VaR and NOP are as follows: 1/1/01 - 1/5/01 UK Power VaR $13.95MM\n\n[2000-12-27] Summary of Changes to Trading Limits 12/7 - 1/6\nUK Power $20.3MM $20.3MM $18.95MM $13.95MM\n\n[2001-08-16] Policy and other items\nThe BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.\n\n[2001-08-16] Policy and other items\nAt Business Unit level the individual commodity limits are unchanged, and I have put limits over the Business Units themselves as follows: Enron Americas $82MM, EWS OOC (aka George Martingale) $3MM, EEL $34MM, EGM $23MM, EIM $8MM, EBS $4MM, PGE $4MM, ETS $1MM.\n\n[2001-08-16] Policy and other items\nTotal trading was a loss of $106MM against a VaR limit of $150MM so no calls to Pug required (thank goodness).\n\n[2001-08-28] Limit Revision - Enron Americas\nReplace with one limit, expressed in VaR, for the entire business unit, of $100MM. ETL at this level could be in the region of $340MM."
+  },
+  "dpr": {
+    "sub": "DPR & loss notification",
+    "body": "ENRON - public email archive (FERC)\nDPR & loss notification\n\n[2000-06-12] Violation Memos Distribution\nMark Frevert and Joe Sutton have asked to be copied on all violation memos and loss notification memos.\n\n[2000-06-26] Quarter-end DPR Process\nNO DPR will be issued dated July 3, 2000. For divisions reporting P&L for July 3rd and/or July 4th, a 'Special DPR' will be issued on July 5th... For consolidated DPR purposes, July 3rd and July 4th will be combined and reported as one day. These combined days will be reported as July 4th.\n\n[2000-12-06] DPR and Loss Notification - \"Structured Derivatives\"\nJames, perhaps you could work with Oliver and the commercial team to determine a reasonable methodology to support the allocation of P/L and related DPR reporting for these positions so we can continue to evaluate in compliance with the policy.\n\n[2001-02-13] NA Gas and Power Limits\nClarify the cross-commodity trading policy to specify that trading limits are to be applied against Enron's consolidated commodity positions on an individual commodity group basis; Enron's consolidated Daily Position Report should provide required market risk disclosures by primary commodity group\n\n[2001-04-04] Merchanting Metals Update #2\nan outline of the internal balance sheet review process described in my earlier note which must now be reprioritised and rescoped... reconciling differences between trader position analyses, AS400 on screen enquiries and the formal global position report ( these differences are at present not..."
+  },
+  "reg": {
+    "sub": "Regulation",
+    "body": "ENRON - public email archive (FERC)\nRegulation\n\n[2000-06-15] *** INTERRUPTIBLE CUSTOMERS CAN PARTICIPATE IN ISO A/S PROGRAM ***\nComments are due on June 27. Unless you tell us otherwise, we plan to file and seek expedited treatment... Both have asked for a July 17 effective date.\n\n[2000-07-01] TW Capacity Options meeting\nsales of options require Board approval at Enron\n\n[2001-09-10] Redrock Permit Issue, Requested Information\nEither Bill Kendrick or I will be touching base with her again, tomorrow. The EPA contact for the Sta. 3 and 4 air permits: permit engineer Roger Cohn\n\n[2002-02-20] NAESB EC Meeting\nA vote will be taken to change the version 1.5 'GISB' standards to 'NAESB' standards... It will probably be a 17/2 vote... people will want to make it clear that this 17/2 vote should not be interpreted as a vote in favor of each and every standard. It is only a vote in favor of changing the...\n\n[2002-02-20] NAESB EC Meeting\nThe plan is to bring the response document before the Board at their March meeting for 'approval'. The response should also be reviewed by the Editorial Review Board... They may want the EC to approve the 'Executive Summary' and 'Conclusion' (total 3 pages). I have no problem with that vote except..."
+  },
+  "ops": {
+    "sub": "Operations",
+    "body": "ENRON - public email archive (FERC)\nOperations\n\n[2000-10-09] Signature authority\nhe can approve but can't sign as a director. You need to continue to manage. This would take a board resolution to change\n\n[2000-12-04] Re: Northfield / Faribault Asset Divestiture Approval Form\nThe asset divestiture procedure requires approval from all officers before marketing/field services begin negotiations with potential buyers.\n\n[2001-01-31] Approval of a Non-Solicitation Provision\nPursuant to an Interoffice Memorandum from Jim Derrick to all Enron Attorneys dated October 27, 1999, I am required to seek approval from each of you prior to signing off on a non-solicitation agreement which affects Enron North America Corp."
+  },
+  "people": {
+    "sub": "Assignments & HR",
+    "body": "ENRON - public email archive (FERC)\nAssignments & HR\n\n[2000-10-16] Re: Koch Midstream Services Co\nwe may be putting ourselves in a risk area by 'assigning' the deals without proper documentation. The documentation that was supplied did not refence any ENA agreements, nor any specific meter numbers. If the purchase was indeed a meter/well sale; there should be documentation listing the meters...\n\n[2000-11-08] ETS Shuttle Plane Service\nminimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial airlines... company plane usage requires the approval of your vice president. If employees are reserving individual available seats on a scheduled flight, vice presidential approval isn't required.\n\n[2001-06-08] Cost Savings Initiative\nThe URL/Web reference in the Professional Services section has been changed to http://ibuyit.enron.com/tibco. This is the URL for iBuyit. We are currently creating the content (FAQ's, procedures, forms, and etc.) that will be available via iBuyit to support the initiative.\n\n[2001-11-29] REVISED DRAFT - Savings Plan Memo\nAfter November 30, Enron will no longer match your savings plan contributions. As an exception, the company will continue to match union employees' contributions to the Plan.\n\n[2001-11-29] REVISED DRAFT - Savings Plan Memo\nSavings Plan contributions that are deducted from your November 30 paycheck will be matched by Enron in cash rather than Enron stock. The cash match will be placed into the Fidelity Freedom 2000 fund, the default fund for the Plan."
+  },
+  "credit": {
+    "sub": "Counterparty / credit",
+    "body": "ENRON - public email archive (FERC)\nCounterparty / credit\n\n[2000-10-26] OGC/AGC Approval Policy for More Than One Year Contracts\nIf a master is in place, confirmations will be used for terms of one month to greater than one year. I don't think it will be practical for us to approve these confirmations before signature unless there are material modifications done to the pre-approved confirmation template in the master, which...\n\n[2001-08-10] London Update\n2 risk policy issues came up - one regarding credit trading and the other regarding the freight book wanting to lay off credit risk with the credit book\n\n[2002-01-24] Message from Ken Lay\nEarlier today, I stepped down as Enron's Chairman of the Board and Chief Executive Officer. This decision was reached in cooperation with Enron's Board and the Creditor Committee and is effective immediately. The Creditor Committee has begun a search for a restructuring specialist to serve as..."
+  },
+  "dash": {
+    "sub": "DASH deal approval",
+    "body": "ENRON - public email archive (FERC)\nDASH deal approval\n\n[2000-11-13] Deal Approval Sheet (DASH) Process\nCapital expenditures include any acquisitions/divestitures of assets, offerings of debt, subordinated debt, equity or partnership capital or entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a...\n\n[2000-11-14] Deal Approval Sheet (DASH) Process for EGM\nentering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a commodity price to a counterparty should be analyzed separately for DASH purposes and authorized by the appropriate entity\n\n[2001-05-11] Plan to Rebuild the Business\nDevelop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval\n\n[2001-05-14] Plan to Rebuild the Business\nDevelop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval\n\n[2001-11-12] Dash Sign Off\nEffective immediately, I want to sign all Dashes for RAC. I have asked Dave to continue reviewing the deals and initial the Dash but I want to sign them."
+  }
 };
 
 const DATA = [
-  {id:'var-policy',kind:'politika',st:'onayli',d:"Policy update: discretionary VaR = $50MM",o:"Rick Buy (CRO)",os:"policy",c:"high",date:'2001-08-17',sk:'var',hl:"I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.",chainTo:'var-agg',relType:'supersedes',chainLabel:"adds $50MM discretionary VaR, updating the prior-day definition"},
-  {id:'var-agg',kind:'politika',st:'onayli',d:"Board limit $150MM — but the new policy doesn't recognize discretionary VaR",o:"BOD / Rick Buy",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.",chainTo:'var-buckets',relType:'conflicts',chainLabel:"$50MM discretionary VaR is approved, yet the policy doesn't recognize it — internal contradiction"},
-  {id:'var-buckets',kind:'politika',st:'onayli',d:"Business-line VaR limits: US Gas/Elec $100MM, Europe $35MM",o:"Pug Winokur (RAC)",os:"policy",c:"high",date:'2001-08-16',sk:'var',hl:"Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM"},
-  {id:'dpr-assign',kind:'karar',st:'onayli',d:"DPR signing authority: Lavorato (West) & Sherriff (East)",o:"Rick Buy & Jeff Skilling",os:"ratifier",c:"high",date:'2000-05-08',sk:'dpr',hl:"Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report"},
-  {id:'dpr-process',kind:'karar',st:'aday',d:"DPR approval method: to be coordinated with each executive",o:"Risk management",os:"extraction",c:"medium",date:'2000-05-08',sk:'dpr',hl:"Going forward, please coordinate with each as to their preferred method of designating approval.",r:"Method not yet finalized; each executive will state their preferred approval form — candidate signal.",chainTo:'dpr-before',relType:'supersedes',chainLabel:"replaces the old Whalley-approval procedure for the post-5-May period"},
-  {id:'dpr-before',kind:'politika',st:'onayli',d:"DPRs before 5 May 2000: Greg Whalley approval required",o:"Greg Whalley (approver)",os:"policy",c:"high",date:'2000-05-08',sk:'dpr',hl:"Please obtain Greg Whalley's approval for all DPR's prior to that date"},
-  {id:'dash-3cat',kind:'politika',st:'onayli',d:"DASH: 3 categories (Proceed / Return below Capital Price / Do Not Proceed)",o:"RAC",os:"policy",c:"high",date:'2001-09-13',sk:'dash',hl:"three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation."},
-  {id:'dash-q',kind:'karar',st:'aday',d:"DASH categories questioned (naming/order differ)",o:"RAC (discussion)",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.",r:"Category names and ordering unsettled; open debate on a separate RAC Comments category.",chainTo:'dash-3cat',relType:'conflicts',chainLabel:"conflicts on category definition and ordering"},
-  {id:'dash-remove',kind:'karar',st:'onayli',d:"'See Other RAC Comments' to be removed from the DASH template",o:"RAC",os:"ratifier",c:"high",date:'2001-09-13',sk:'dash',hl:"we will remove \"See Other RAC Comments\" from the DASH template and library as an ongoing classification option"},
-  {id:'dash-review',kind:'karar',st:'aday',d:"DASH: 36 approved deals showed recommendation/performance mismatch",o:"RAC review",os:"extraction",c:"medium",date:'2001-09-13',sk:'dash',hl:"in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999",r:"This is a risk/performance review signal, not by itself a new policy decision.",chainTo:'dash-3cat',relType:'references',chainLabel:"shows why the DASH classification policy was being reviewed"},
-  {id:'pay-1m',kind:'politika',st:'onayli',d:"$1M+ payment + contract → only Accounting Director's signature",o:"Approval authorities (RAC)",os:"policy",c:"high",date:'2000-12-08',sk:'payment',hl:"If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature."},
-  {id:'hr-severance',kind:'politika',st:'onayli',d:"Severance/vacation/sick pay policies are not uniform across entities",o:"HR / Rick Johnson",os:"policy",c:"high",date:'2001-11-28',sk:'hr',hl:"the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue."},
-  {id:'msa-netco',kind:'politika',st:'onayli',d:"MSAs cannot be assigned to NETCO without customer approval",o:"IT & Back Office",os:"policy",c:"high",date:'2002-01-02',sk:'msa',hl:"we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred."},
-  {id:'eogil-board',kind:'karar',st:'onayli',d:"EOGIL sale was not a board action item",o:"Rick Buy & Pug Winokur",os:"ratifier",c:"high",date:'2002-01-24',sk:'eogil',hl:"in October it was decided by Rick Buy and Pug Winokur that this was not a board action item"},
-  {id:'nyiso-icap',kind:'karar',st:'onayli',d:"NYISO Stage 2 ICAP Manual to go to July 19 BIC approval",o:"BIC",os:"ratifier",c:"high",date:'2001-07-17',sk:'nyiso',hl:"Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting."},
-  {id:'liq-threshold',kind:'politika',st:'onayli',d:"Liquidity Ratio thresholds remain 3.0 and 1.5; BOD can ratify changes",o:"CEO / BOD",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes"},
-  {id:'liq-numerator',kind:'politika',st:'onayli',d:"Liquidity numerator source is Global Finance, not Accounting",o:"Global Finance",os:"policy",c:"high",date:'2001-08-02',sk:'liquidity',hl:"Numerator from Global Finance, not Accounting. FAC and BC as previously defined"},
-  {id:'liq-pfcr',kind:'karar',st:'aday',d:"PFCR definition adequate; 10-day horizon may require weekly revision",o:"Risk policy review",os:"extraction",c:"medium",date:'2001-08-02',sk:'liquidity',hl:"I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week",r:"This points to a policy-revision need; kept as candidate signal rather than finalized change."},
-  {id:'redrock-permit',kind:'karar',st:'onayli',d:"Red Rock: obtain permit, hold turbine decision until market commitment",o:"Larry Campbell / Roger Kohn",os:"ratifier",c:"high",date:'2001-11-21',sk:'redrock',hl:"I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit."},
-  {id:'var-europe',kind:'karar',st:'onayli',d:"Europe to aggregate positions and report VaR to Houston (May 10)",o:"Europe desk",os:"ratifier",c:"high",date:'2001-05-09',sk:'var',hl:"Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th"},
+  {
+    "id": "rec-0078",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "it would be somewhat unprecedented to leave a \"proprietary\" position over the limit for that...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-04-10",
+    "sk": "limit",
+    "hl": "it would be somewhat unprecedented to leave a \"proprietary\" position over the limit for that length of time, i.e., the Australian Electricity book would far exceed the number of position limit violations for any other commodities"
+  },
+  {
+    "id": "rec-0080",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "you put together a request for approval to increase your limits to be presented at the first...",
+    "o": "Rick Buy",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-04-10",
+    "sk": "limit",
+    "hl": "you put together a request for approval to increase your limits to be presented at the first opportunity"
+  },
+  {
+    "id": "rec-0070",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Daily Loss 50% - 75% of VAR Limit > 75% of VAR Limit (VAR Limit = $40 MM); 5-Day Cumulative...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-06-12",
+    "sk": "var",
+    "hl": "Daily Loss 50% - 75% of VAR Limit > 75% of VAR Limit (VAR Limit = $40 MM); 5-Day Cumulative Loss 75% - 100% of VAR Limit > VAR Limit"
+  },
+  {
+    "id": "rec-0071",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Mark Frevert and Joe Sutton have asked to be copied on all violation memos and loss...",
+    "o": "Mark Frevert",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-06-12",
+    "sk": "dpr",
+    "hl": "Mark Frevert and Joe Sutton have asked to be copied on all violation memos and loss notification memos."
+  },
+  {
+    "id": "rec-0006",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Comments are due on June 27. Unless you tell us otherwise, we plan to file and seek expedited...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-06-15",
+    "sk": "reg",
+    "hl": "Comments are due on June 27. Unless you tell us otherwise, we plan to file and seek expedited treatment... Both have asked for a July 17 effective date."
+  },
+  {
+    "id": "rec-0063",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Adjustments > $250,000 require approval from John Lavorato or John Sherriff.",
+    "o": "John Lavorato",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-06-26",
+    "sk": "limit",
+    "hl": "Adjustments > $250,000 require approval from John Lavorato or John Sherriff."
+  },
+  {
+    "id": "rec-0064",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "NO DPR will be issued dated July 3, 2000. For divisions reporting P&L for July 3rd and/or July...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-06-26",
+    "sk": "dpr",
+    "hl": "NO DPR will be issued dated July 3, 2000. For divisions reporting P&L for July 3rd and/or July 4th, a 'Special DPR' will be issued on July 5th... For consolidated DPR purposes, July 3rd and July 4th will be combined and reported as one day. These combined days will be reported as July 4th."
+  },
+  {
+    "id": "rec-0310",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "sales of options require Board approval at Enron",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-07-01",
+    "sk": "reg",
+    "hl": "sales of options require Board approval at Enron"
+  },
+  {
+    "id": "rec-0020",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "If the sign on bonus amount is substantial then approval from David Oxley is advisable. In our...",
+    "o": "Sally Beck",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-08-22",
+    "sk": "limit",
+    "hl": "If the sign on bonus amount is substantial then approval from David Oxley is advisable. In our current case, a $5,000.00 sign on for a Sr. Specialist would not require additional approval except your own."
+  },
+  {
+    "id": "rec-0269",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "he can approve but can't sign as a director. You need to continue to manage. This would take a...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-10-09",
+    "sk": "ops",
+    "hl": "he can approve but can't sign as a director. You need to continue to manage. This would take a board resolution to change"
+  },
+  {
+    "id": "rec-0295",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "we may be putting ourselves in a risk area by 'assigning' the deals without proper...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-10-16",
+    "sk": "people",
+    "hl": "we may be putting ourselves in a risk area by 'assigning' the deals without proper documentation. The documentation that was supplied did not refence any ENA agreements, nor any specific meter numbers. If the purchase was indeed a meter/well sale; there should be documentation listing the meters..."
+  },
+  {
+    "id": "rec-0398",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "If a master is in place, confirmations will be used for terms of one month to greater than one...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-10-26",
+    "sk": "credit",
+    "hl": "If a master is in place, confirmations will be used for terms of one month to greater than one year. I don't think it will be practical for us to approve these confirmations before signature unless there are material modifications done to the pre-approved confirmation template in the master, which..."
+  },
+  {
+    "id": "rec-0326",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "minimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-11-08",
+    "sk": "people",
+    "hl": "minimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial airlines... company plane usage requires the approval of your vice president. If employees are reserving individual available seats on a scheduled flight, vice presidential approval isn't required."
+  },
+  {
+    "id": "rec-0124",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Capital expenditures include any acquisitions/divestitures of assets, offerings of debt,...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-11-13",
+    "sk": "dash",
+    "hl": "Capital expenditures include any acquisitions/divestitures of assets, offerings of debt, subordinated debt, equity or partnership capital or entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a..."
+  },
+  {
+    "id": "rec-0394",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "entering into a commodity or financial position that results in an exposure outside of Board...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-11-14",
+    "sk": "dash",
+    "hl": "entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a commodity price to a counterparty should be analyzed separately for DASH purposes and authorized by the appropriate entity"
+  },
+  {
+    "id": "rec-0420",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "The asset divestiture procedure requires approval from all officers before marketing/field...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-12-04",
+    "sk": "ops",
+    "hl": "The asset divestiture procedure requires approval from all officers before marketing/field services begin negotiations with potential buyers."
+  },
+  {
+    "id": "rec-0115",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "James, perhaps you could work with Oliver and the commercial team to determine a reasonable...",
+    "o": "",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-12-06",
+    "sk": "dpr",
+    "hl": "James, perhaps you could work with Oliver and the commercial team to determine a reasonable methodology to support the allocation of P/L and related DPR reporting for these positions so we can continue to evaluate in compliance with the policy."
+  },
+  {
+    "id": "rec-0116",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Chris, please include this loss in today's notification letters to Ken Lay and Jeff Skilling...",
+    "o": "Jeff Skilling",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2000-12-06",
+    "sk": "limit",
+    "hl": "Chris, please include this loss in today's notification letters to Ken Lay and Jeff Skilling for the 5th. Per Oliver, the loss was due to power price curve shift and gas volatility curve shift against the Eastern spread options."
+  },
+  {
+    "id": "rec-0120",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Daily Loss in any Commodity group or Portfolio: Report to Business Unit Office of the Chairman...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-12-12",
+    "sk": "var",
+    "hl": "Daily Loss in any Commodity group or Portfolio: Report to Business Unit Office of the Chairman 100% of VaR... Report to Enron Corp. President 125% of VaR... Report to Enron Corp. Chairman 150% of VaR... Report to Audit Committee no reporting at commodity group level",
+    "chainTo": "rec-0070",
+    "relType": "supersedes",
+    "chainLabel": "rec-0120 (2000-12-12) Daily loss notification thresholds'ı revize ederken, rec-0070 (2000-06-12) eski eşikleri belirtmektedir;..."
+  },
+  {
+    "id": "rec-0121",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Cumulative 5-day Loss in any Commodity Group or Portfolio: Report to Business Unit Office of...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-12-12",
+    "sk": "var",
+    "hl": "Cumulative 5-day Loss in any Commodity Group or Portfolio: Report to Business Unit Office of the Chairman 125% of VaR... Report to Enron Corp. President 150% of VaR... Report to Enron Corp. Chairman 175% of VaR... Report to Audit Committee no reporting at commodity group level",
+    "chainTo": "rec-0070",
+    "relType": "supersedes",
+    "chainLabel": "rec-0121 (2000-12-12) 5-day cumulative loss notification thresholds'ı revize ederken, rec-0070 (2000-06-12) eski eşikleri..."
+  },
+  {
+    "id": "rec-0035",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "UK Power's VaR and NOP are as follows: 1/1/01 - 1/5/01 UK Power VaR $13.95MM",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-12-19",
+    "sk": "var",
+    "hl": "UK Power's VaR and NOP are as follows: 1/1/01 - 1/5/01 UK Power VaR $13.95MM",
+    "chainTo": "rec-0048",
+    "relType": "conflicts",
+    "chainLabel": "rec-0035 $13.95MM belirtirken, rec-0048 $18.95MM belirtmektedir (aynı dönem için çelişkili değerler)"
+  },
+  {
+    "id": "rec-0048",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "UK Power $20.3MM $20.3MM $18.95MM $13.95MM",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2000-12-27",
+    "sk": "var",
+    "hl": "UK Power $20.3MM $20.3MM $18.95MM $13.95MM"
+  },
+  {
+    "id": "rec-0271",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Pursuant to an Interoffice Memorandum from Jim Derrick to all Enron Attorneys dated October...",
+    "o": "Mark Haedicke",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-01-31",
+    "sk": "ops",
+    "hl": "Pursuant to an Interoffice Memorandum from Jim Derrick to all Enron Attorneys dated October 27, 1999, I am required to seek approval from each of you prior to signing off on a non-solicitation agreement which affects Enron North America Corp."
+  },
+  {
+    "id": "rec-0084",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "A separate e-mail was sent to each of your head traders and business unit controllers/CAO for...",
+    "o": "Greg Whalley",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2001-02-13",
+    "sk": "limit",
+    "hl": "A separate e-mail was sent to each of your head traders and business unit controllers/CAO for each of these commodity groups with limit changes."
+  },
+  {
+    "id": "rec-0091",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Clarify the cross-commodity trading policy to specify that trading limits are to be applied...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-02-13",
+    "sk": "dpr",
+    "hl": "Clarify the cross-commodity trading policy to specify that trading limits are to be applied against Enron's consolidated commodity positions on an individual commodity group basis; Enron's consolidated Daily Position Report should provide required market risk disclosures by primary commodity group"
+  },
+  {
+    "id": "rec-0095",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "an outline of the internal balance sheet review process described in my earlier note which...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-04-04",
+    "sk": "dpr",
+    "hl": "an outline of the internal balance sheet review process described in my earlier note which must now be reprioritised and rescoped... reconciling differences between trader position analyses, AS400 on screen enquiries and the formal global position report ( these differences are at present not..."
+  },
+  {
+    "id": "rec-0384",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-05-11",
+    "sk": "dash",
+    "hl": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval"
+  },
+  {
+    "id": "rec-0386",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-05-14",
+    "sk": "dash",
+    "hl": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval"
+  },
+  {
+    "id": "rec-0275",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "The URL/Web reference in the Professional Services section has been changed to...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-06-08",
+    "sk": "people",
+    "hl": "The URL/Web reference in the Professional Services section has been changed to http://ibuyit.enron.com/tibco. This is the URL for iBuyit. We are currently creating the content (FAQ's, procedures, forms, and etc.) that will be available via iBuyit to support the initiative."
+  },
+  {
+    "id": "rec-0171",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "2 risk policy issues came up - one regarding credit trading and the other regarding the...",
+    "o": "Rick Buy",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-08-10",
+    "sk": "credit",
+    "hl": "2 risk policy issues came up - one regarding credit trading and the other regarding the freight book wanting to lay off credit risk with the credit book"
+  },
+  {
+    "id": "rec-0177",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-08-16",
+    "sk": "var",
+    "hl": "The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.",
+    "chainTo": "rec-0180",
+    "relType": "conflicts",
+    "chainLabel": "rec-0177 $150MM aggregate + $50MM discretionary VaR belirtirken, rec-0180 discretionary VaR konseptini tanımlamadığını..."
+  },
+  {
+    "id": "rec-0178",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "At Business Unit level the individual commodity limits are unchanged, and I have put limits...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-08-16",
+    "sk": "var",
+    "hl": "At Business Unit level the individual commodity limits are unchanged, and I have put limits over the Business Units themselves as follows: Enron Americas $82MM, EWS OOC (aka George Martingale) $3MM, EEL $34MM, EGM $23MM, EIM $8MM, EBS $4MM, PGE $4MM, ETS $1MM.",
+    "chainTo": "rec-0181",
+    "relType": "conflicts",
+    "chainLabel": "rec-0178 $82MM business unit seviyesi limit belirtirken, rec-0181 $100MM tek VaR limiti uygulanacağını belirtmektedir"
+  },
+  {
+    "id": "rec-0180",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Total trading was a loss of $106MM against a VaR limit of $150MM so no calls to Pug required...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-08-16",
+    "sk": "var",
+    "hl": "Total trading was a loss of $106MM against a VaR limit of $150MM so no calls to Pug required (thank goodness)."
+  },
+  {
+    "id": "rec-0181",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Replace with one limit, expressed in VaR, for the entire business unit, of $100MM. ETL at this...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-08-28",
+    "sk": "var",
+    "hl": "Replace with one limit, expressed in VaR, for the entire business unit, of $100MM. ETL at this level could be in the region of $340MM."
+  },
+  {
+    "id": "rec-0188",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Either Bill Kendrick or I will be touching base with her again, tomorrow. The EPA contact for...",
+    "o": "Larry Campbell",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2001-09-10",
+    "sk": "reg",
+    "hl": "Either Bill Kendrick or I will be touching base with her again, tomorrow. The EPA contact for the Sta. 3 and 4 air permits: permit engineer Roger Cohn"
+  },
+  {
+    "id": "rec-0186",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Effective immediately, I want to sign all Dashes for RAC. I have asked Dave to continue...",
+    "o": "Rick Buy",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2001-11-12",
+    "sk": "dash",
+    "hl": "Effective immediately, I want to sign all Dashes for RAC. I have asked Dave to continue reviewing the deals and initial the Dash but I want to sign them."
+  },
+  {
+    "id": "rec-0192",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "After November 30, Enron will no longer match your savings plan contributions. As an...",
+    "o": "",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2001-11-29",
+    "sk": "people",
+    "hl": "After November 30, Enron will no longer match your savings plan contributions. As an exception, the company will continue to match union employees' contributions to the Plan.",
+    "chainTo": "rec-0193",
+    "relType": "conflicts",
+    "chainLabel": "rec-0192 30 Kasım'dan sonra şirket katkısı durdurulacağını belirtirken, rec-0193 30 Kasım bordrosundan kesilen katkıların nakit..."
+  },
+  {
+    "id": "rec-0193",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "Savings Plan contributions that are deducted from your November 30 paycheck will be matched by...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2001-11-29",
+    "sk": "people",
+    "hl": "Savings Plan contributions that are deducted from your November 30 paycheck will be matched by Enron in cash rather than Enron stock. The cash match will be placed into the Fidelity Freedom 2000 fund, the default fund for the Plan."
+  },
+  {
+    "id": "rec-0011",
+    "kind": "karar",
+    "st": "onayli",
+    "d": "Earlier today, I stepped down as Enron's Chairman of the Board and Chief Executive Officer....",
+    "o": "Ken Lay",
+    "os": "ratifier",
+    "c": "high",
+    "date": "2002-01-24",
+    "sk": "credit",
+    "hl": "Earlier today, I stepped down as Enron's Chairman of the Board and Chief Executive Officer. This decision was reached in cooperation with Enron's Board and the Creditor Committee and is effective immediately. The Creditor Committee has begun a search for a restructuring specialist to serve as..."
+  },
+  {
+    "id": "rec-0200",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "A vote will be taken to change the version 1.5 'GISB' standards to 'NAESB' standards... It...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2002-02-20",
+    "sk": "reg",
+    "hl": "A vote will be taken to change the version 1.5 'GISB' standards to 'NAESB' standards... It will probably be a 17/2 vote... people will want to make it clear that this 17/2 vote should not be interpreted as a vote in favor of each and every standard. It is only a vote in favor of changing the...",
+    "chainTo": "rec-0201",
+    "relType": "conflicts",
+    "chainLabel": "rec-0200 17/2 oylama prosedürü belirtirken, rec-0201 'onay' için Board'a sunulacağını belirtmektedir (prosedür tutarsızlığı)"
+  },
+  {
+    "id": "rec-0201",
+    "kind": "politika",
+    "st": "onayli",
+    "d": "The plan is to bring the response document before the Board at their March meeting for...",
+    "o": "",
+    "os": "policy",
+    "c": "high",
+    "date": "2002-02-20",
+    "sk": "reg",
+    "hl": "The plan is to bring the response document before the Board at their March meeting for 'approval'. The response should also be reviewed by the Editorial Review Board... They may want the EC to approve the 'Executive Summary' and 'Conclusion' (total 3 pages). I have no problem with that vote except..."
+  }
 ];

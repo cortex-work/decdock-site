@@ -2,8 +2,8 @@ import { readFileSync } from 'node:fs'
 import vm from 'node:vm'
 
 const GRAPH_FILES = [
-  ['TR graph', 'public/enron-grafi/index.html', '/enron-kanit/', '/karar-grafi/'],
-  ['EN graph', 'public/enron-graph/index.html', '/enron-proof/', '/karar-grafi/'],
+  ['TR graph', 'public/enron-grafi/index.html', 'scripts/proof/enron-data.js', '/enron-kanit/', '/karar-grafi/'],
+  ['EN graph', 'public/enron-graph/index.html', 'scripts/proof/en-data.js', '/enron-proof/', '/karar-grafi/'],
 ]
 
 const errors = []
@@ -21,11 +21,17 @@ function loadGraph(file) {
   return { html, nodes, edges }
 }
 
-for (const [label, file, proofLink, sampleLink] of GRAPH_FILES) {
+function loadMeta(file) {
+  const source = readFileSync(file, 'utf8')
+  return vm.runInNewContext(`${source}\n;({ META })`, {}).META
+}
+
+for (const [label, file, dataFile, proofLink, sampleLink] of GRAPH_FILES) {
   const { html, nodes, edges } = loadGraph(file)
+  const meta = loadMeta(dataFile)
   const ids = new Set(nodes.map((node) => node.id))
 
-  if (nodes.length !== 20) errors.push(`${label}: expected 20 nodes, got ${nodes.length}`)
+  if (nodes.length !== meta.curatedRecords) errors.push(`${label}: expected ${meta.curatedRecords} nodes, got ${nodes.length}`)
   if (!html.includes(proofLink)) errors.push(`${label}: missing proof link ${proofLink}`)
   if (!html.includes(sampleLink)) errors.push(`${label}: missing synthetic graph link ${sampleLink}`)
   if (!html.includes('hreflang="tr"')) errors.push(`${label}: missing tr hreflang`)
@@ -42,7 +48,7 @@ for (const [label, file, proofLink, sampleLink] of GRAPH_FILES) {
 
   const driftEdges = edges.filter((edge) => edge.type === 'conflicts' || edge.type === 'supersedes')
   const sameSourceEdges = edges.filter((edge) => edge.type === 'same_source')
-  if (driftEdges.length !== 4) errors.push(`${label}: expected 4 drift edges, got ${driftEdges.length}`)
+  if (driftEdges.length !== meta.driftEdges) errors.push(`${label}: expected ${meta.driftEdges} drift edges, got ${driftEdges.length}`)
   if (sameSourceEdges.length < 3) errors.push(`${label}: expected same-source provenance edges`)
 
   const isoDates = nodes.filter((node) => /^\d{4}-\d{2}-\d{2}$/.test(node.date))
@@ -55,4 +61,5 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-console.log('enron-graph smoke passed: 20 nodes, 4 drift edges, same-source provenance links')
+const meta = loadMeta('scripts/proof/enron-data.js')
+console.log(`enron-graph smoke passed: ${meta.curatedRecords} nodes, ${meta.driftEdges} drift edges, same-source provenance links`)

@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Enron karar ağı — gerçek koşu | Decdock</title>
-<meta name="description" content="Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: 20 kaynaklı kayıt, 2 çelişki ve 2 supersede zinciri." />
+<meta name="description" content="Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: 41 kaynaklı kayıt, 5 çelişki ve 2 gerçek supersede." />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://decdock.com/enron-grafi/" />
 <link rel="alternate" hreflang="tr" href="https://decdock.com/enron-grafi/" />
 <link rel="alternate" hreflang="en" href="https://decdock.com/enron-graph/" />
 <link rel="alternate" hreflang="x-default" href="https://decdock.com/enron-graph/" />
 <meta property="og:title" content="Enron karar ağı — gerçek koşu | Decdock" />
-<meta property="og:description" content="Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: 20 kaynaklı kayıt, 2 çelişki ve 2 supersede zinciri." />
+<meta property="og:description" content="Decdock'un Enron/FERC kamuya açık arşivi üzerinde ürettiği gerçek karar ağı: 41 kaynaklı kayıt, 5 çelişki ve 2 gerçek supersede." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://decdock.com/enron-grafi/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -199,7 +199,7 @@
     <a class="proof-link" href="/enron-kanit/">Kayıt listesi: Enron kanıtı →</a>
     <a class="proof-link" href="/karar-grafi/">Temsili örnek →</a>
   </div>
-  <p class="dek">Bu <b>temsili değil</b>: Enron/FERC kamuya açık arşivinden gerçek bir Decdock koşusu. Çoğu kayıt tek başına durur; motor çelişen ya da eskiyi güncelleyen az sayıdaki ilişkiyi (<b>2 çelişki, 2 supersede</b>) yüzeye çıkarır. İnce gri bağlar yalnızca <b>aynı kaynak thread</b> bağını gösterir; semantik karar ilişkisi değildir.</p>
+  <p class="dek">Bu <b>temsili değil</b>: Enron/FERC kamuya açık arşivinden gerçek bir Decdock koşusu. 316 konsolide kayıt içinden 41 kaynaklı kayıt ve 7 sağlam drift edge gösteriliyor. 22 aday supersede'den yalnız 2'si gerçek tarih-farkı testini geçti; aynı-tarihli/sistem-işaretli çiftleri sahte edge olarak göstermiyoruz. İnce gri bağlar yalnızca <b>aynı kaynak thread</b> bağını gösterir; semantik karar ilişkisi değildir.</p>
 
   <div class="graph-tools" aria-label="Graf araması">
     <div class="search-stack">
@@ -215,7 +215,7 @@
         <button class="try-chip" type="button" data-q="$1M">$1M</button>
       </div>
     </div>
-    <div class="search-count" id="search-count">20 kayıt · 12 bağlantı</div>
+    <div class="search-count" id="search-count">41 kayıt · 36 bağlantı</div>
   </div>
 
   <div class="filters" id="filters">
@@ -320,277 +320,631 @@
   // kind: 'decision' (daire) | 'policy' (kare, duran kural)
   const NODES=[
   {
-    "id": "var-policy",
+    "id": "rec-0078",
     "kind": "policy",
-    "label": "Politika güncellemesi: discretionary VaR = $50MM",
+    "label": "Pozisyon limit ihlallerinin uzun süreli (Board onayı öncesi) devam etmesi önceden görülmemiş...",
     "status": "ratified",
-    "owner": "Rick Buy (CRO)",
-    "date": "2001-08-17",
-    "quote": "I believe the Bod approved a policy that had discretionary var in it even if the one presented did not. We need to modify the policy to include dis. var and have it be $50MM.",
+    "owner": "",
+    "date": "2000-04-10",
+    "quote": "it would be somewhat unprecedented to leave a \"proprietary\" position over the limit for that length of time, i.e., the Australian Electricity book would far exceed the number of position limit violations for any other commodities",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0080",
+    "kind": "decision",
+    "label": "Paul Quilkey (Enron Development) limit artışı talebini hazırlamaktan sorumludur. Ted Murphy...",
+    "status": "ratified",
+    "owner": "Rick Buy",
+    "date": "2000-04-10",
+    "quote": "you put together a request for approval to increase your limits to be presented at the first opportunity",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0070",
+    "kind": "policy",
+    "label": "Loss notification memos zorunlu: Günlük zarar %50-75 VaR limitinin (VaR Limit=$40MM) arasında...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-06-12",
+    "quote": "Daily Loss 50% - 75% of VAR Limit > 75% of VAR Limit (VAR Limit = $40 MM); 5-Day Cumulative Loss 75% - 100% of VAR Limit > VAR Limit",
     "sk": "var"
   },
   {
-    "id": "var-agg",
-    "kind": "policy",
-    "label": "BOD limiti $150MM — ama yeni politika discretionary VaR tanımıyor",
+    "id": "rec-0071",
+    "kind": "decision",
+    "label": "Mark Frevert ve Joe Sutton tüm violation memos ve loss notification memos'a CC alınacak.",
     "status": "ratified",
-    "owner": "BOD / Rick Buy",
+    "owner": "Mark Frevert",
+    "date": "2000-06-12",
+    "quote": "Mark Frevert and Joe Sutton have asked to be copied on all violation memos and loss notification memos.",
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0006",
+    "kind": "policy",
+    "label": "Utilities filed advice letters with CPUC. Comment deadline: June 27, 2000. Enron plans to file...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-06-15",
+    "quote": "Comments are due on June 27. Unless you tell us otherwise, we plan to file and seek expedited treatment... Both have asked for a July 17 effective date.",
+    "sk": "reg"
+  },
+  {
+    "id": "rec-0063",
+    "kind": "decision",
+    "label": "$250,000 üzerindeki ayarlamalar John Lavorato veya John Sherriff onayı gerektirir.",
+    "status": "ratified",
+    "owner": "John Lavorato",
+    "date": "2000-06-26",
+    "quote": "Adjustments > $250,000 require approval from John Lavorato or John Sherriff.",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0064",
+    "kind": "policy",
+    "label": "July 3 tarihli DPR yayınlanmaz. July 3-4 için P&L raporlayan bölümler için 'Special DPR' July...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-06-26",
+    "quote": "NO DPR will be issued dated July 3, 2000. For divisions reporting P&L for July 3rd and/or July 4th, a 'Special DPR' will be issued on July 5th... For consolidated DPR purposes, July 3rd and July 4th will be combined and reported as one day. These combined days will be reported as July 4th.",
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0310",
+    "kind": "policy",
+    "label": "Kapasite opsiyonlarının satışı Enron Yönetim Kurulu onayı gerektirir. Satış öncesi aşamalar:...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-07-01",
+    "quote": "sales of options require Board approval at Enron",
+    "sk": "reg"
+  },
+  {
+    "id": "rec-0020",
+    "kind": "decision",
+    "label": "Sr. Specialist pozisyonuna verilen $5,000 veya daha düşük sign-on bonus için Sally Beck'in...",
+    "status": "ratified",
+    "owner": "Sally Beck",
+    "date": "2000-08-22",
+    "quote": "If the sign on bonus amount is substantial then approval from David Oxley is advisable. In our current case, a $5,000.00 sign on for a Sr. Specialist would not require additional approval except your own.",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0269",
+    "kind": "policy",
+    "label": "Yönetici imza yetkisi değişiklikleri Yönetim Kurulu kararı gerektirir. Operasyonel onay...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-10-09",
+    "quote": "he can approve but can't sign as a director. You need to continue to manage. This would take a board resolution to change",
+    "sk": "ops"
+  },
+  {
+    "id": "rec-0295",
+    "kind": "policy",
+    "label": "Uygun dokümantasyon olmaksızın anlaşmaları 'assign' etmek risk alanına girebilir. Meter/well...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-10-16",
+    "quote": "we may be putting ourselves in a risk area by 'assigning' the deals without proper documentation. The documentation that was supplied did not refence any ENA agreements, nor any specific meter numbers. If the purchase was indeed a meter/well sale; there should be documentation listing the meters...",
+    "sk": "people"
+  },
+  {
+    "id": "rec-0398",
+    "kind": "policy",
+    "label": "OGC/AGC approval required for individually negotiated contracts with term greater than one...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-10-26",
+    "quote": "If a master is in place, confirmations will be used for terms of one month to greater than one year. I don't think it will be practical for us to approve these confirmations before signature unless there are material modifications done to the pre-approved confirmation template in the master, which...",
+    "sk": "credit"
+  },
+  {
+    "id": "rec-0326",
+    "kind": "policy",
+    "label": "Enron uçağı kullanımı için minimum 4-6 yolcu veya ticari uçakla ulaşılması zor destinasyonlar...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-11-08",
+    "quote": "minimum of 4 - 6, and/or the difficulty of reaching the destination(s) by commercial airlines... company plane usage requires the approval of your vice president. If employees are reserving individual available seats on a scheduled flight, vice presidential approval isn't required.",
+    "sk": "people"
+  },
+  {
+    "id": "rec-0124",
+    "kind": "policy",
+    "label": "Emtia fiyatına gömülü sermaye harcaması tutarları DASH amaçları için ayrı analiz edilmeli ve...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-11-13",
+    "quote": "Capital expenditures include any acquisitions/divestitures of assets, offerings of debt, subordinated debt, equity or partnership capital or entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a...",
+    "sk": "dash"
+  },
+  {
+    "id": "rec-0394",
+    "kind": "policy",
+    "label": "Kurul tarafından onaylanan limitler dışında bir maruz kalma ile sonuçlanan emtia veya finansal...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-11-14",
+    "quote": "entering into a commodity or financial position that results in an exposure outside of Board approved limits. Capital expenditure amounts embedded in a commodity price to a counterparty should be analyzed separately for DASH purposes and authorized by the appropriate entity",
+    "sk": "dash"
+  },
+  {
+    "id": "rec-0420",
+    "kind": "policy",
+    "label": "Pazarlama ve saha hizmetleri (marketing/field services) potansiyel alıcılarla müzakerelere...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-04",
+    "quote": "The asset divestiture procedure requires approval from all officers before marketing/field services begin negotiations with potential buyers.",
+    "sk": "ops"
+  },
+  {
+    "id": "rec-0115",
+    "kind": "decision",
+    "label": "James New (LON/ECT) sorumlu: Oliver Gaylard ve commercial team ile birlikte P/L ve DPR...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-06",
+    "quote": "James, perhaps you could work with Oliver and the commercial team to determine a reasonable methodology to support the allocation of P/L and related DPR reporting for these positions so we can continue to evaluate in compliance with the policy.",
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0116",
+    "kind": "decision",
+    "label": "Chris Abel (HOU/ECT) tarafından Ken Lay ve Jeff Skilling'e Loss Notification mektubu...",
+    "status": "ratified",
+    "owner": "Jeff Skilling",
+    "date": "2000-12-06",
+    "quote": "Chris, please include this loss in today's notification letters to Ken Lay and Jeff Skilling for the 5th. Per Oliver, the loss was due to power price curve shift and gas volatility curve shift against the Eastern spread options.",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0120",
+    "kind": "policy",
+    "label": "Daily loss reporting escalation: (1) Business Unit Office of the Chairman at 100% of VaR; (2)...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-12",
+    "quote": "Daily Loss in any Commodity group or Portfolio: Report to Business Unit Office of the Chairman 100% of VaR... Report to Enron Corp. President 125% of VaR... Report to Enron Corp. Chairman 150% of VaR... Report to Audit Committee no reporting at commodity group level",
+    "sk": "var"
+  },
+  {
+    "id": "rec-0121",
+    "kind": "policy",
+    "label": "5-day cumulative loss reporting escalation: (1) Business Unit Office of the Chairman at 125%...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-12",
+    "quote": "Cumulative 5-day Loss in any Commodity Group or Portfolio: Report to Business Unit Office of the Chairman 125% of VaR... Report to Enron Corp. President 150% of VaR... Report to Enron Corp. Chairman 175% of VaR... Report to Audit Committee no reporting at commodity group level",
+    "sk": "var"
+  },
+  {
+    "id": "rec-0035",
+    "kind": "policy",
+    "label": "UK Power VaR limiti 1/1/01 - 1/5/01 döneminde $13.95MM olarak belirlendi (12/23/00 - 12/31/00...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-19",
+    "quote": "UK Power's VaR and NOP are as follows: 1/1/01 - 1/5/01 UK Power VaR $13.95MM",
+    "sk": "var"
+  },
+  {
+    "id": "rec-0048",
+    "kind": "policy",
+    "label": "VaR limiti $18.95MM (azalış)",
+    "status": "ratified",
+    "owner": "",
+    "date": "2000-12-27",
+    "quote": "UK Power $20.3MM $20.3MM $18.95MM $13.95MM",
+    "sk": "var"
+  },
+  {
+    "id": "rec-0271",
+    "kind": "policy",
+    "label": "Jim Derrick'in 27 Ekim 1999 tarihli Interoffice Memorandum'una göre, Enron North America...",
+    "status": "ratified",
+    "owner": "Mark Haedicke",
+    "date": "2001-01-31",
+    "quote": "Pursuant to an Interoffice Memorandum from Jim Derrick to all Enron Attorneys dated October 27, 1999, I am required to seek approval from each of you prior to signing off on a non-solicitation agreement which affects Enron North America Corp.",
+    "sk": "ops"
+  },
+  {
+    "id": "rec-0084",
+    "kind": "decision",
+    "label": "Cassandra Schultz (cassandra.schultz@enron.com) tarafından Jeffrey Shankman, Greg Whalley,...",
+    "status": "ratified",
+    "owner": "Greg Whalley",
+    "date": "2001-02-13",
+    "quote": "A separate e-mail was sent to each of your head traders and business unit controllers/CAO for each of these commodity groups with limit changes.",
+    "sk": "limit"
+  },
+  {
+    "id": "rec-0091",
+    "kind": "policy",
+    "label": "Trading limits applied against Enron's consolidated commodity positions on individual...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-02-13",
+    "quote": "Clarify the cross-commodity trading policy to specify that trading limits are to be applied against Enron's consolidated commodity positions on an individual commodity group basis; Enron's consolidated Daily Position Report should provide required market risk disclosures by primary commodity group",
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0095",
+    "kind": "policy",
+    "label": "İç bilançosu inceleme süreci yeniden öncelendirilmeli ve yeniden kapsamlandırılmalıdır. Trader...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-04-04",
+    "quote": "an outline of the internal balance sheet review process described in my earlier note which must now be reprioritised and rescoped... reconciling differences between trader position analyses, AS400 on screen enquiries and the formal global position report ( these differences are at present not...",
+    "sk": "dpr"
+  },
+  {
+    "id": "rec-0384",
+    "kind": "policy",
+    "label": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-05-11",
+    "quote": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
+    "sk": "dash"
+  },
+  {
+    "id": "rec-0386",
+    "kind": "policy",
+    "label": "Form Onay Süreci: EES ve ENA tarafından çift onay (dual approvals) gerekli. Belirli...",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-05-14",
+    "quote": "Develop Form Approval Process -- dual approvals by EES and ENA. Develop Deal Approval Process -- deals above a certain size (or material variations from the form) would require concurrent EWS approval",
+    "sk": "dash"
+  },
+  {
+    "id": "rec-0275",
+    "kind": "policy",
+    "label": "Profesyonel Hizmetler için iBuyit platformu (http://ibuyit.enron.com/tibco) kullanılacak....",
+    "status": "ratified",
+    "owner": "",
+    "date": "2001-06-08",
+    "quote": "The URL/Web reference in the Professional Services section has been changed to http://ibuyit.enron.com/tibco. This is the URL for iBuyit. We are currently creating the content (FAQ's, procedures, forms, and etc.) that will be available via iBuyit to support the initiative.",
+    "sk": "people"
+  },
+  {
+    "id": "rec-0171",
+    "kind": "policy",
+    "label": "İki risk politikası konusu tanımlanmış: (1) kredi ticareti politikası, (2) kargo kitabının...",
+    "status": "ratified",
+    "owner": "Rick Buy",
+    "date": "2001-08-10",
+    "quote": "2 risk policy issues came up - one regarding credit trading and the other regarding the freight book wanting to lay off credit risk with the credit book",
+    "sk": "credit"
+  },
+  {
+    "id": "rec-0177",
+    "kind": "policy",
+    "label": "BOD onaylı toplam VaR limiti $150MM (aggregate), içinde $50MM discretionary VaR. Yeni politika...",
+    "status": "ratified",
+    "owner": "",
     "date": "2001-08-16",
     "quote": "The BOD approved an aggregate of $150MM, with $50MM of discretionary VaR, plus the new policy which doesn't recognise the concept of discretionary VaR.",
     "sk": "var"
   },
   {
-    "id": "var-buckets",
+    "id": "rec-0178",
     "kind": "policy",
-    "label": "İş kolu VaR limitleri: US Gas/Elec $100MM, Avrupa $35MM",
+    "label": "Business Unit seviyesi VaR limitleri: Enron Americas $82MM, EWS OOC $3MM, EEL $34MM, EGM...",
     "status": "ratified",
-    "owner": "Pug Winokur (RAC)",
+    "owner": "",
     "date": "2001-08-16",
-    "quote": "Pug's 'Big Buckets' are now as follows: US Gas $100MM US Elec $100MM Europe Gas & Elec $35MM",
+    "quote": "At Business Unit level the individual commodity limits are unchanged, and I have put limits over the Business Units themselves as follows: Enron Americas $82MM, EWS OOC (aka George Martingale) $3MM, EEL $34MM, EGM $23MM, EIM $8MM, EBS $4MM, PGE $4MM, ETS $1MM.",
     "sk": "var"
   },
   {
-    "id": "dpr-assign",
-    "kind": "decision",
-    "label": "DPR imza yetkisi: Lavorato (Batı) & Sherriff (Doğu)",
-    "status": "ratified",
-    "owner": "Rick Buy & Jeff Skilling",
-    "date": "2000-05-08",
-    "quote": "Rick Buy and Jeff Skillling signed a memo designating John Lavorato (Western Hemishere) and John Sherriff (Eastern Hemisphere) as the responsible parties for signing the Daily Positiion Report",
-    "sk": "dpr"
-  },
-  {
-    "id": "dpr-process",
-    "kind": "decision",
-    "label": "DPR onay yöntemi: her iki yöneticiyle koordine edilecek",
-    "status": "candidate",
-    "owner": "Risk yönetimi",
-    "date": "2000-05-08",
-    "quote": "Going forward, please coordinate with each as to their preferred method of designating approval.",
-    "sk": "dpr"
-  },
-  {
-    "id": "dpr-before",
+    "id": "rec-0180",
     "kind": "policy",
-    "label": "5 Mayıs 2000 öncesi DPR'ler: Greg Whalley onayı şart",
+    "label": "Toplam ticaret VaR limiti ($150MM) aşılması durumunda Pug'a (muhtemelen CFO/Risk Committee...",
     "status": "ratified",
-    "owner": "Greg Whalley (onay mercii)",
-    "date": "2000-05-08",
-    "quote": "Please obtain Greg Whalley's approval for all DPR's prior to that date",
-    "sk": "dpr"
+    "owner": "",
+    "date": "2001-08-16",
+    "quote": "Total trading was a loss of $106MM against a VaR limit of $150MM so no calls to Pug required (thank goodness).",
+    "sk": "var"
   },
   {
-    "id": "dash-3cat",
+    "id": "rec-0181",
     "kind": "policy",
-    "label": "DASH: 3 kategori (Proceed / Return below Capital Price / Do Not Proceed)",
+    "label": "Hacimsel limitler (net açık pozisyon, vade farkı) ve bireysel emtia limitlerini kaldırarak,...",
     "status": "ratified",
-    "owner": "RAC",
-    "date": "2001-09-13",
-    "quote": "three categories are sufficient--if the issues are substantive, they should either result in an increase in the capital price and a 'Return below Capital Price' or a 'Do Not Proceed' recommendation.",
+    "owner": "",
+    "date": "2001-08-28",
+    "quote": "Replace with one limit, expressed in VaR, for the entire business unit, of $100MM. ETL at this level could be in the region of $340MM.",
+    "sk": "var"
+  },
+  {
+    "id": "rec-0188",
+    "kind": "decision",
+    "label": "Larry Campbell and Bill Kendrick are responsible for regulatory liaison and permit approval...",
+    "status": "ratified",
+    "owner": "Larry Campbell",
+    "date": "2001-09-10",
+    "quote": "Either Bill Kendrick or I will be touching base with her again, tomorrow. The EPA contact for the Sta. 3 and 4 air permits: permit engineer Roger Cohn",
+    "sk": "reg"
+  },
+  {
+    "id": "rec-0186",
+    "kind": "decision",
+    "label": "Rick Buy, RAC için tüm Dash imzalamalarının sorumluluğunu üstlenmektedir. Dave, işlemleri...",
+    "status": "ratified",
+    "owner": "Rick Buy",
+    "date": "2001-11-12",
+    "quote": "Effective immediately, I want to sign all Dashes for RAC. I have asked Dave to continue reviewing the deals and initial the Dash but I want to sign them.",
     "sk": "dash"
   },
   {
-    "id": "dash-q",
+    "id": "rec-0192",
     "kind": "decision",
-    "label": "DASH kategorileri sorgulanıyor (isim/sıra farkı)",
-    "status": "candidate",
-    "owner": "RAC (tartışma)",
-    "date": "2001-09-13",
-    "quote": "Are you saying that you just want three DASH categories, i.e. 1) Proceed, 2) Do not Proceed and 3) Returns Below Capital Price with no category for Issues, RAC Comments, etc.",
-    "sk": "dash"
-  },
-  {
-    "id": "dash-remove",
-    "kind": "decision",
-    "label": "'See Other RAC Comments' DASH şablonundan kaldırılacak",
+    "label": "Enron Yönetim Kurulu 28 Kasım 2001'de Savings Plan değişikliğini onayladı. 30 Kasım'dan sonra...",
     "status": "ratified",
-    "owner": "RAC",
-    "date": "2001-09-13",
-    "quote": "we will remove \"See Other RAC Comments\" from the DASH template and library as an ongoing classification option",
-    "sk": "dash"
+    "owner": "",
+    "date": "2001-11-29",
+    "quote": "After November 30, Enron will no longer match your savings plan contributions. As an exception, the company will continue to match union employees' contributions to the Plan.",
+    "sk": "people"
   },
   {
-    "id": "dash-review",
-    "kind": "decision",
-    "label": "DASH: 36 onaylı işlemde öneri-performans uyumsuzluğu bulundu",
-    "status": "candidate",
-    "owner": "RAC review",
-    "date": "2001-09-13",
-    "quote": "in our review of our DASH recommendation vs. actual performance we found 36 DASHes that have been approved since late 1999",
-    "sk": "dash"
-  },
-  {
-    "id": "pay-1m",
+    "id": "rec-0193",
     "kind": "policy",
-    "label": "$1M+ ödeme + sözleşme → yalnız Muhasebe Müdürü imzası",
+    "label": "30 Kasım bordrosundan kesilen katkılar nakit olarak eşleştirilecek (hisse senedi yerine) ve...",
     "status": "ratified",
-    "owner": "Onay yetkileri (RAC)",
-    "date": "2000-12-08",
-    "quote": "If a payment is $1 million or greater and is supported by a contract, we only require an Accounting Director's signature.",
-    "sk": "payment"
+    "owner": "",
+    "date": "2001-11-29",
+    "quote": "Savings Plan contributions that are deducted from your November 30 paycheck will be matched by Enron in cash rather than Enron stock. The cash match will be placed into the Fidelity Freedom 2000 fund, the default fund for the Plan.",
+    "sk": "people"
   },
   {
-    "id": "hr-severance",
-    "kind": "policy",
-    "label": "Severance/vacation/sick pay politikaları tüm entity'lerde aynı değil",
-    "status": "ratified",
-    "owner": "HR / Rick Johnson",
-    "date": "2001-11-28",
-    "quote": "the severance plan has not been adopted by all Enron entities domestically. Similarly, some Enron-owned companies have adopted their own vacation, sick pay, etc. So, we should be careful about the audience for these communications. I suggest getting with Rick Johnson on that issue.",
-    "sk": "hr"
-  },
-  {
-    "id": "msa-netco",
-    "kind": "policy",
-    "label": "MSA'lar müşteri onayı olmadan NETCO'ya devredilemez",
-    "status": "ratified",
-    "owner": "IT & Back Office",
-    "date": "2002-01-02",
-    "quote": "we will not be able to assign the M=SA's to NETCO without the customer's approval. To date, this has not occurred.",
-    "sk": "msa"
-  },
-  {
-    "id": "eogil-board",
+    "id": "rec-0011",
     "kind": "decision",
-    "label": "EOGIL satışı board action item değil",
+    "label": "Ken Lay, Enron Yönetim Kurulu Başkanı ve CEO pozisyonundan istifa etmiştir (23 Ocak 2002...",
     "status": "ratified",
-    "owner": "Rick Buy & Pug Winokur",
+    "owner": "Ken Lay",
     "date": "2002-01-24",
-    "quote": "in October it was decided by Rick Buy and Pug Winokur that this was not a board action item",
-    "sk": "eogil"
+    "quote": "Earlier today, I stepped down as Enron's Chairman of the Board and Chief Executive Officer. This decision was reached in cooperation with Enron's Board and the Creditor Committee and is effective immediately. The Creditor Committee has begun a search for a restructuring specialist to serve as...",
+    "sk": "credit"
   },
   {
-    "id": "nyiso-icap",
-    "kind": "decision",
-    "label": "NYISO Stage 2 ICAP Manual 19 Temmuz BIC onayına gidecek",
-    "status": "ratified",
-    "owner": "BIC",
-    "date": "2001-07-17",
-    "quote": "Attached are a few changed pages of the Stage 2 ICAP Manual, to be approved at the July 19 BIC meeting.",
-    "sk": "nyiso"
-  },
-  {
-    "id": "liq-threshold",
+    "id": "rec-0200",
     "kind": "policy",
-    "label": "Liquidity Ratio eşikleri 3.0 ve 1.5; değişirse BOD ratify eder",
+    "label": "17/2 oylama prosedürü kullanılacak. Oylamanın GISB'den NAESB standartlarına geçişi onayladığı,...",
     "status": "ratified",
-    "owner": "CEO / BOD",
-    "date": "2001-08-02",
-    "quote": "CEO but leave 3.0 and 1.5 thresholds - if we need to change we'll change and then BOD can ratify as with other policy changes",
-    "sk": "liquidity"
+    "owner": "",
+    "date": "2002-02-20",
+    "quote": "A vote will be taken to change the version 1.5 'GISB' standards to 'NAESB' standards... It will probably be a 17/2 vote... people will want to make it clear that this 17/2 vote should not be interpreted as a vote in favor of each and every standard. It is only a vote in favor of changing the...",
+    "sk": "reg"
   },
   {
-    "id": "liq-numerator",
+    "id": "rec-0201",
     "kind": "policy",
-    "label": "Liquidity numerator kaynağı Global Finance, Accounting değil",
+    "label": "Yanıt belgesi Mart ayında Yönetim Kurulu'na 'onay' için sunulacak. Belgeler ayrıca Editorial...",
     "status": "ratified",
-    "owner": "Global Finance",
-    "date": "2001-08-02",
-    "quote": "Numerator from Global Finance, not Accounting. FAC and BC as previously defined",
-    "sk": "liquidity"
-  },
-  {
-    "id": "liq-pfcr",
-    "kind": "decision",
-    "label": "PFCR tanımı yeterli; 10 günlük horizon varsa haftalık revizyon gerekebilir",
-    "status": "candidate",
-    "owner": "Risk policy review",
-    "date": "2001-08-02",
-    "quote": "I think the PFCR definition is adequate If our position liquidity horizon is about 10 days it should be revised week",
-    "sk": "liquidity"
-  },
-  {
-    "id": "redrock-permit",
-    "kind": "decision",
-    "label": "Red Rock: permit alınsın, turbine kararı pazar taahhüdüne kadar beklesin",
-    "status": "ratified",
-    "owner": "Larry Campbell / Roger Kohn",
-    "date": "2001-11-21",
-    "quote": "I have spoken to Roger Kohn, EPA permit engineer, about the possibility of not doing the turbine installation at station 4 only due to what you described as not enough market commitment. My plans are to hold off on making any decisions and have the EPA issue the station 4 permit.",
-    "sk": "redrock"
-  },
-  {
-    "id": "var-europe",
-    "kind": "decision",
-    "label": "Avrupa: pozisyonları toplayıp VaR'ı Houston'a raporlayacak (10 Mayıs)",
-    "status": "ratified",
-    "owner": "Avrupa masası",
-    "date": "2001-05-09",
-    "quote": "Europe are able to aggregate their positions, calculate VaR appropriately and report to Houston... committed to do it by May 10th",
-    "sk": "var"
+    "owner": "",
+    "date": "2002-02-20",
+    "quote": "The plan is to bring the response document before the Board at their March meeting for 'approval'. The response should also be reviewed by the Editorial Review Board... They may want the EC to approve the 'Executive Summary' and 'Conclusion' (total 3 pages). I have no problem with that vote except...",
+    "sk": "reg"
   }
 ];
 
   const EDGES=[
   {
-    "from": "var-policy",
-    "to": "var-agg",
+    "from": "rec-0120",
+    "to": "rec-0070",
     "type": "supersedes",
-    "why": "$50MM discretionary VaR ekleyerek bir gün önceki tanımı günceller"
+    "why": "rec-0120 (2000-12-12) Daily loss notification thresholds'ı revize ederken, rec-0070 (2000-06-12) eski eşikleri belirtmektedir;..."
   },
   {
-    "from": "var-agg",
-    "to": "var-buckets",
-    "type": "conflicts",
-    "why": "$50MM discretionary VaR onaylı, ama politika kavramı tanımıyor — kendi içinde çelişki"
-  },
-  {
-    "from": "dpr-process",
-    "to": "dpr-before",
+    "from": "rec-0121",
+    "to": "rec-0070",
     "type": "supersedes",
-    "why": "5 Mayıs sonrası için eski Whalley-onay prosedürünün yerini alır"
+    "why": "rec-0121 (2000-12-12) 5-day cumulative loss notification thresholds'ı revize ederken, rec-0070 (2000-06-12) eski eşikleri..."
   },
   {
-    "from": "dash-q",
-    "to": "dash-3cat",
+    "from": "rec-0035",
+    "to": "rec-0048",
     "type": "conflicts",
-    "why": "kategori tanım/sıralamasında çelişiyor"
+    "why": "rec-0035 $13.95MM belirtirken, rec-0048 $18.95MM belirtmektedir (aynı dönem için çelişkili değerler)"
   },
   {
-    "from": "dash-review",
-    "to": "dash-3cat",
-    "type": "references",
-    "why": "DASH sınıflandırma politikasının neden gözden geçirildiğini gösterir"
+    "from": "rec-0177",
+    "to": "rec-0180",
+    "type": "conflicts",
+    "why": "rec-0177 $150MM aggregate + $50MM discretionary VaR belirtirken, rec-0180 discretionary VaR konseptini tanımlamadığını..."
   },
   {
-    "from": "var-agg",
-    "to": "var-europe",
+    "from": "rec-0178",
+    "to": "rec-0181",
+    "type": "conflicts",
+    "why": "rec-0178 $82MM business unit seviyesi limit belirtirken, rec-0181 $100MM tek VaR limiti uygulanacağını belirtmektedir"
+  },
+  {
+    "from": "rec-0192",
+    "to": "rec-0193",
+    "type": "conflicts",
+    "why": "rec-0192 30 Kasım'dan sonra şirket katkısı durdurulacağını belirtirken, rec-0193 30 Kasım bordrosundan kesilen katkıların nakit..."
+  },
+  {
+    "from": "rec-0200",
+    "to": "rec-0201",
+    "type": "conflicts",
+    "why": "rec-0200 17/2 oylama prosedürü belirtirken, rec-0201 'onay' için Board'a sunulacağını belirtmektedir (prosedür tutarsızlığı)"
+  },
+  {
+    "from": "rec-0080",
+    "to": "rec-0078",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "var-policy",
-    "to": "var-buckets",
+    "from": "rec-0063",
+    "to": "rec-0080",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "dpr-process",
-    "to": "dpr-assign",
+    "from": "rec-0020",
+    "to": "rec-0063",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "dash-remove",
-    "to": "dash-q",
+    "from": "rec-0116",
+    "to": "rec-0020",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "dash-review",
-    "to": "dash-remove",
+    "from": "rec-0084",
+    "to": "rec-0116",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "liq-numerator",
-    "to": "liq-threshold",
+    "from": "rec-0121",
+    "to": "rec-0120",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   },
   {
-    "from": "liq-pfcr",
-    "to": "liq-numerator",
+    "from": "rec-0035",
+    "to": "rec-0121",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0177",
+    "to": "rec-0048",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0178",
+    "to": "rec-0177",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0180",
+    "to": "rec-0178",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0181",
+    "to": "rec-0180",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0064",
+    "to": "rec-0071",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0115",
+    "to": "rec-0064",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0091",
+    "to": "rec-0115",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0095",
+    "to": "rec-0091",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0310",
+    "to": "rec-0006",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0188",
+    "to": "rec-0310",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0200",
+    "to": "rec-0188",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0420",
+    "to": "rec-0269",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0271",
+    "to": "rec-0420",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0326",
+    "to": "rec-0295",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0275",
+    "to": "rec-0326",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0192",
+    "to": "rec-0275",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0171",
+    "to": "rec-0398",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0011",
+    "to": "rec-0171",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0394",
+    "to": "rec-0124",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0384",
+    "to": "rec-0394",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0386",
+    "to": "rec-0384",
+    "type": "same_source",
+    "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
+  },
+  {
+    "from": "rec-0186",
+    "to": "rec-0386",
     "type": "same_source",
     "why": "Aynı kaynak thread içinde; semantik karar ilişkisi değil."
   }

@@ -15,13 +15,14 @@ const errors = []
 
 function loadData(file) {
   const source = readFileSync(file, 'utf8')
-  return vm.runInNewContext(`${source}\n;({ SOURCES, DATA })`, {})
+  return vm.runInNewContext(`${source}\n;({ META, SOURCES, DATA })`, {})
 }
 
 function checkData(label, file) {
-  const { SOURCES, DATA } = loadData(file)
+  const { META, SOURCES, DATA } = loadData(file)
   const ids = new Set()
   const policyIds = new Set(DATA.filter(record => record.kind === 'politika').map(record => record.id))
+  const chainTargets = new Set(DATA.map(record => record.id))
 
   for (const record of DATA) {
     if (ids.has(record.id)) errors.push(`${label}: duplicate id ${record.id}`)
@@ -40,6 +41,22 @@ function checkData(label, file) {
       errors.push(`${label}: ${record.id} chainTo target missing: ${record.chainTo}`)
     }
 
+    if (record.chainTo !== undefined && !chainTargets.has(record.chainTo)) {
+      errors.push(`${label}: ${record.id} chainTo target missing from selected records: ${record.chainTo}`)
+    }
+
+    if (/local|heuristic|drift cue|tight-entity/i.test(record.chainLabel ?? '')) {
+      errors.push(`${label}: ${record.id} chainLabel contains system heuristic text`)
+    }
+
+    if (/Effective Date|Date\s*$/i.test(record.o ?? '')) {
+      errors.push(`${label}: ${record.id} has junk owner: ${record.o}`)
+    }
+
+    if (/^[-$0-9.,%\sTwhMM]+$/.test(record.d)) {
+      errors.push(`${label}: ${record.id} has numeric-only label: ${record.d}`)
+    }
+
     if (record.violates !== undefined && !policyIds.has(record.violates)) {
       errors.push(`${label}: ${record.id} violates target is not an existing policy: ${record.violates}`)
     }
@@ -52,7 +69,14 @@ function checkData(label, file) {
     }
   }
 
-  if (DATA.length < 20) errors.push(`${label}: expected at least 20 records, got ${DATA.length}`)
+  if (!META) errors.push(`${label}: missing META`)
+  if (META && DATA.length !== META.curatedRecords) {
+    errors.push(`${label}: DATA length ${DATA.length} does not match META.curatedRecords ${META.curatedRecords}`)
+  }
+  if (META && DATA.filter(record => record.chainTo !== undefined).length !== META.driftEdges) {
+    errors.push(`${label}: drift edge count does not match META.driftEdges`)
+  }
+  if (DATA.length < 40) errors.push(`${label}: expected at least 40 records, got ${DATA.length}`)
   if (Object.keys(SOURCES).length < 8) errors.push(`${label}: expected at least 8 sources, got ${Object.keys(SOURCES).length}`)
   if (!DATA.some(record => record.relType === 'conflicts')) errors.push(`${label}: no conflict relation`)
   if (!DATA.some(record => record.relType === 'supersedes')) errors.push(`${label}: no supersedes relation`)
@@ -86,5 +110,6 @@ if (errors.length > 0) {
 console.log(
   `enron-proof smoke passed: ${tr.DATA.length} records, ${Object.keys(tr.SOURCES).length} sources, ` +
   `${tr.DATA.filter(record => record.relType === 'conflicts').length} conflicts, ` +
-  `${tr.DATA.filter(record => record.relType === 'supersedes').length} supersedes`,
+  `${tr.DATA.filter(record => record.relType === 'supersedes').length} supersedes, ` +
+  `${tr.DATA.filter(record => record.chainTo !== undefined).length} drift edges`,
 )

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import vm from 'node:vm'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const TEMPLATE = resolve(ROOT, 'public/demo-canli/index.html')
@@ -9,6 +10,17 @@ const OUT = resolve(ROOT, 'public/enron-proof/index.html')
 
 let html = readFileSync(TEMPLATE, 'utf8')
 const dataJs = readFileSync(DATAJS, 'utf8').trim()
+const bundle = vm.runInNewContext(`${dataJs}\n;({ META, DATA, SOURCES })`, {})
+const meta = bundle.META ?? {}
+const data = bundle.DATA ?? []
+const sourceCount = Object.keys(bundle.SOURCES ?? {}).length
+const recordCount = data.length
+const conflictCount = meta.keptConflicts ?? data.filter((record) => record.relType === 'conflicts').length
+const supersedeCount = meta.keptSupersedes ?? data.filter((record) => record.relType === 'supersedes').length
+const driftCount = meta.driftEdges ?? data.filter((record) => record.chainTo !== undefined).length
+const rawSupersedes = meta.rawSupersedes ?? supersedeCount
+const rawRecords = meta.rawRecords ?? recordCount
+const rawConflicts = meta.rawConflicts ?? conflictCount
 
 function replaceOrThrow(from, to) {
   if (!html.includes(from)) throw new Error(`replace anchor not found: ${from.slice(0, 90)}`)
@@ -39,7 +51,7 @@ replaceOrThrow(
 )
 replaceOrThrow(
   `<meta name="description" content="Decdock karar sicilini canlı deneyin: ara, filtrele, bir karara tıkla → onu gerçek e-postanın içinde vurgulu gör, karar zincirini izle. Temsili örnek veri." />`,
-  `<meta name="description" content="The Decdock engine run over Enron's public email archive: 2 conflicts, 2 supersede chains, and 20 source-linked records. Real-run proof." />`,
+  `<meta name="description" content="The Decdock engine run over Enron's public email archive: ${conflictCount} conflicts, ${supersedeCount} real supersedes, and ${recordCount} source-linked records. Real-run proof." />`,
 )
 replaceOrThrow(
   `<link rel="canonical" href="https://decdock.com/demo-canli/" />`,
@@ -54,7 +66,7 @@ replaceOrThrow(
 )
 replaceOrThrow(
   `<meta property="og:description" content="Çalışan bir karar sicilini gezin: kararı kaynağında vurgulu görün, zinciri izleyin. Temsili veri." />`,
-  `<meta property="og:description" content="The Decdock engine on Enron's public archive: 2 conflicts, 2 supersede chains, 20 source-linked records — every row tied to a real email." />`,
+  `<meta property="og:description" content="The Decdock engine on Enron's public archive: ${conflictCount} conflicts, ${supersedeCount} real supersedes, ${recordCount} source-linked records — every row tied to a real email." />`,
 )
 replaceOrThrow(
   `<meta property="og:url" content="https://decdock.com/demo-canli/" />`,
@@ -85,10 +97,10 @@ replaceOrThrow(
   `<p class="dek">Kanonik karar grafındaki <b>temsili</b> şirket dünyasından çıkarılmış küçük bir sicil. Bir kayda tıklayın → <b>"Kaynağı aç"</b> ile karar ya da politikayı <b>e-postanın içinde birebir vurgulu</b> görün. Bazı kararlar <b>bir politikayı ihlal eder</b>; bazıları da eski kararı zincirde geçersiz kılar.</p>`,
   `<p class="dek">This is <b>not representative</b>. The Decdock engine was run over Enron's public email archive (FERC release) — every record below is tied to <b>a real sentence in a real email</b>. Click a record → use <b>"Open source"</b> to see the real quote. Not a verdict; a <b>candidate signal</b> for a human to confirm.</p>
   <div class="proof-strip" aria-label="Enron proof summary">
-    <div class="claim"><b>What happened?</b> In public Enron/FERC emails, Decdock surfaced source-linked decision/rule records and signals where later records update or conflict with earlier ones.</div>
-    <div class="proof-metric"><b>2</b><span>Conflicts</span></div>
-    <div class="proof-metric"><b>2</b><span>Supersedes</span></div>
-    <div class="proof-metric"><b>20</b><span>Sourced records</span></div>
+    <div class="claim"><b>What happened?</b> From ${rawRecords} consolidated Enron records, this page shows ${recordCount} sourced records. Of ${rawSupersedes} candidate supersedes, only ${supersedeCount} passed the real date-gap test; same-date/system-flagged pairs are not shown as fake edges.</div>
+    <div class="proof-metric"><b>${conflictCount}</b><span>Conflicts</span></div>
+    <div class="proof-metric"><b>${supersedeCount}</b><span>Supersedes</span></div>
+    <div class="proof-metric"><b>${recordCount}</b><span>Sourced records</span></div>
   </div>`,
 )
 replaceOrThrow(
@@ -97,7 +109,7 @@ replaceOrThrow(
 )
 replaceOrThrow(
   `    Gördüğünüz her satır <b>kaynağına bağlı</b> — uydurma yok, e-postadaki cümleye iner. Politikalar duran kural olarak ayrılır; ihlaller kırmızı görünür. Kendi <b>bitmiş bir projenizden ücretsiz örnek rapor</b> için: <b>pilot@decdock.com</b> · <a href="/">decdock.com</a>`,
-  `    <b>So what?</b> This page does not claim Decdock declares truth. It shows that, on a public archive, the engine can produce <b>sourced candidate memory</b> and <b>drift signals</b> for a human to verify. The same engine, with only a <b>JSON tenant profile</b>, was pointed at a different domain: energy trading. Scale note: this run consolidated 37 raw records into 28 records; this page shows the strongest 20. For your own public/sanitized archive: <b>pilot@decdock.com</b> · <a href="/enron-graph/">open the Enron graph view</a>`,
+  `    <b>So what?</b> This page does not claim Decdock declares truth. It shows that, on a public archive, the engine can produce <b>sourced candidate memory</b> and <b>honest drift signals</b> for a human to verify. The same engine, with only a <b>JSON tenant profile</b>, was pointed at a different domain: energy trading. Scale note: 250 emails produced ${rawRecords} consolidated records; this page shows ${recordCount} records across ${sourceCount} source threads and ${driftCount} solid drift edges (${conflictCount}/${rawConflicts} conflicts, ${supersedeCount}/${rawSupersedes} supersedes). For your own public/sanitized archive: <b>pilot@decdock.com</b> · <a href="/enron-graph/">open the Enron graph view</a>`,
 )
 replaceOrThrow(
   `<p class="foot">Temsili/örnek veridir; gerçek bir şirketin verisi değildir. © 2026 Decdock</p>`,
