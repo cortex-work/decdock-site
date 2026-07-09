@@ -1,5 +1,6 @@
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import EnglishLanding from './components/EnglishLanding'
 import TransformationBand from './components/TransformationBand'
 import HowItWorks from './components/HowItWorks'
 import Scenarios from './components/Scenarios'
@@ -12,11 +13,21 @@ import FAQ from './components/FAQ'
 import PilotCTA from './components/PilotCTA'
 import Footer from './components/Footer'
 
-export default function App() {
+interface AppProps {
+  initialPath?: string
+}
+
+function getCurrentPath(initialPath?: string) {
+  if (initialPath) return initialPath
+  if (typeof window !== 'undefined') return window.location.pathname
+  return '/'
+}
+
+function TurkishLanding() {
   return (
     <div className="relative min-h-screen bg-[var(--page)] text-[var(--text-strong)]">
       <div className="relative">
-        <Nav />
+        <Nav homeHref="/tr/" />
         <main>
           <Hero />
           <TransformationBand />
@@ -34,4 +45,15 @@ export default function App() {
       </div>
     </div>
   )
+}
+
+export default function App({ initialPath }: AppProps = {}) {
+  const currentPath = getCurrentPath(initialPath)
+  const isTurkishPath = currentPath === '/tr' || currentPath.startsWith('/tr/')
+
+  if (isTurkishPath) {
+    return <TurkishLanding />
+  }
+
+  return <EnglishLanding />
 }

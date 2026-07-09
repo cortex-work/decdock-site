@@ -1,73 +1,76 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
-    <title>Decdock — Şirketinizin karar sicili</title>
+    <title>Decdock - Resolve decisions, not just store them</title>
     <meta
       name="description"
-      content="Decdock, yazışmalarınızdan şirketinizin karar sicilini çıkarır: ne kararlaştırıldı, kim onayladı, ne zaman — kaynağından birebir alıntıyla. Bitmiş bir projenizin e-postalarından 3 iş gününde karar denetimi raporu."
+      content="Decdock turns emails and meeting notes into a governed decision registry: duplicates, contradictions, supersession, authorized exceptions, and source-linked review before memory is written."
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#F4EEE6" />
     <link rel="canonical" href="https://decdock.com/" />
+    <link rel="alternate" hreflang="en" href="https://decdock.com/" />
+    <link rel="alternate" hreflang="tr" href="https://decdock.com/tr/" />
+    <link rel="alternate" hreflang="x-default" href="https://decdock.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
     <meta property="og:url" content="https://decdock.com/" />
-    <meta property="og:title" content="Decdock — Şirketinizin karar sicili" />
+    <meta property="og:title" content="Decdock - Resolve decisions, not just store them" />
     <meta
       property="og:description"
-      content="Yazışmalarınızdan karar sicili: ne kararlaştırıldı, kim onayladı, ne zaman — kaynağından birebir alıntıyla."
+      content="A source-linked decision registry for governed memory: what was decided, who had authority, what changed, and which exceptions were valid at the time."
     />
     <meta property="og:image" content="https://decdock.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Decdock — karar sicili yazılımı sosyal önizleme."
+      content="Decdock decision registry social preview."
     />
     <meta property="og:site_name" content="Decdock" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Decdock — Şirketinizin karar sicili" />
+    <meta name="twitter:title" content="Decdock - Resolve decisions, not just store them" />
     <meta
       name="twitter:description"
-      content="Yazışmalarınızdan karar sicili: ne kararlaştırıldı, kim onayladı, ne zaman — kaynağından birebir alıntıyla."
+      content="A source-linked decision registry for governed memory: duplicates, contradictions, supersession, authority, and review."
     />
     <meta name="twitter:image" content="https://decdock.com/og-image.png" />
     <meta
       name="twitter:image:alt"
-      content="Decdock — karar sicili yazılımı sosyal önizleme."
+      content="Decdock decision registry social preview."
     />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Decdock",
-        "alternateName": ["Karar sicili", "Decision registry", "Karar Denetimi"],
+        "alternateName": ["Decision registry", "Decision Audit", "Karar sicili"],
         "url": "https://decdock.com/",
         "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Decision registry / corporate memory (karar sicili)",
+        "applicationSubCategory": "Decision registry / governed corporate memory",
         "operatingSystem": "Web",
-        "inLanguage": "tr",
-        "description": "Decdock, şirket içi e-posta ve toplantı yazışmalarından kaynağa bağlı, denetlenebilir bir karar sicili çıkarır: ne kararlaştırıldı, kim onayladı, ne zaman, hangi gerekçeyle. Onaylanmış kararı 'karar sanılan' öneriden ayırır.",
+        "inLanguage": "en",
+        "description": "Decdock turns company emails and meeting notes into a source-linked decision registry: what was decided, who had authority, when it changed, and which exceptions require review.",
         "featureList": [
-          "Yazışmalardan otomatik karar çıkarımı",
-          "Ratifikasyon doğrulaması — kararı öneriden ayırır",
-          "Kaynağa bağlı, denetlenebilir karar kaydı",
-          "Karar zinciri: çelişki uyarısı ve revizyon takibi",
-          "Sahipsiz karar tespiti",
-          "Tek seferlik Karar Denetimi raporu (entegrasyonsuz)"
+          "Source-linked decision extraction",
+          "Duplicate, contradiction, and supersession resolution",
+          "Authorized exception and authority-at-time review signals",
+          "Decision graph over records, policies, and changes",
+          "Bounded Decision Audit report without broad integration"
         ],
         "audience": {
           "@type": "Audience",
-          "audienceType": "30-300 çalışanlı, karar yoğun şirketler (üretim, lojistik, finans, mühendislik, danışmanlık, holding)"
+          "audienceType": "Decision-heavy teams that need auditable memory from email and meeting archives"
         },
         "publisher": { "@id": "https://decdock.com/#organization" }
       }
@@ -81,11 +84,11 @@
         "name": "Decdock",
         "url": "https://decdock.com/",
         "logo": "https://decdock.com/favicon.svg",
-        "description": "Decdock, şirket içi yazışmalardan kaynağa bağlı ve denetlenebilir bir karar sicili çıkaran kurumsal yazılımdır.",
+        "description": "Decdock builds a source-linked decision registry for governed corporate memory.",
         "sameAs": ["https://www.linkedin.com/company/decdock"],
         "contactPoint": [
-          { "@type": "ContactPoint", "email": "pilot@decdock.com", "contactType": "sales", "availableLanguage": ["Turkish", "English"] },
-          { "@type": "ContactPoint", "email": "founder@decdock.com", "contactType": "customer support", "availableLanguage": ["Turkish", "English"] }
+          { "@type": "ContactPoint", "email": "pilot@decdock.com", "contactType": "sales", "availableLanguage": ["English", "Turkish"] },
+          { "@type": "ContactPoint", "email": "founder@decdock.com", "contactType": "customer support", "availableLanguage": ["English", "Turkish"] }
         ]
       }
     </script>
@@ -97,18 +100,18 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Bu gözetim mi? KVKK ve veri imha tarafı nasıl işliyor?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Decdock izleme sistemi değildir; yalnız seçtiğiniz, bitmiş bir dilimi rapor için işler. Sicil \"kim ne yaptı\"yı değil, \"ne kararlaştırıldı\"yı gösterir; teslim sonrası ham veri imha edilir ve yazılı teyit verilir." }
+            "name": "Is Decdock a surveillance system?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Decdock starts from a selected, bounded archive slice and produces decision memory for review. It is about what was decided, not employee monitoring." }
           },
           {
             "@type": "Question",
-            "name": "Özet veya toplantı asistanları bunu zaten yapmıyor mu?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Onlar \"bu hafta ne konuşuldu?\" sorusunu özetler. Decdock \"ne kararlaştırıldı, kim onayladı, hâlâ geçerli mi?\" sorusunun kalıcı sicilini tutar; öneriyi karardan ayırır." }
+            "name": "How is this different from a meeting summary or enterprise search assistant?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Summary tools answer what was discussed. Decdock preserves what was decided, who had authority, where the source is, and whether later records conflict with or supersede it." }
           },
           {
             "@type": "Question",
-            "name": "Ya yanlış bir şeyi karar diye yazarsa?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Emin olmadığını sicile yazmaz: aday ikinci doğrulamadan geçer, onay yoksa gerekçesiyle dışarıda kalır." }
+            "name": "Does Decdock claim the machine declares final truth?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. The output is source-linked candidate memory and honest review signals. Human review remains the write boundary before durable memory." }
           }
         ]
       }

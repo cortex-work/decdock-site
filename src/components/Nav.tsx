@@ -2,25 +2,33 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
 
-const links = [
-  { href: '/#how-it-works', label: 'Nasıl çalışır' },
-  { href: '/#faq', label: 'Sık sorulanlar' },
-  { href: '/karar-grafi/', label: 'Karar ağı' },
-  { href: '/demo-canli/', label: 'Canlı demo' },
-  { href: '/enron-kanit/', label: 'Enron kanıtı' },
-  { href: '/demo/', label: '60 sn tanıtım' },
-  { href: '/urun/', label: 'Ürün detayı' },
-  { href: '/karsilastirma/', label: 'Karşılaştırma' },
-]
+function getLinks(homeHref: string) {
+  return [
+    { href: `${homeHref}#how-it-works`, label: 'Nasıl çalışır' },
+    { href: `${homeHref}#faq`, label: 'Sık sorulanlar' },
+    { href: '/karar-grafi/', label: 'Karar ağı' },
+    { href: '/demo-canli/', label: 'Canlı demo' },
+    { href: '/enron-kanit/', label: 'Enron kanıtı' },
+    { href: '/demo/', label: '60 sn tanıtım' },
+    { href: '/urun/', label: 'Ürün detayı' },
+    { href: '/karsilastirma/', label: 'Karşılaştırma' },
+    { href: '/', label: 'English' },
+  ]
+}
 
-export default function Nav() {
+interface NavProps {
+  homeHref?: string
+}
+
+export default function Nav({ homeHref = '/' }: NavProps) {
   const [open, setOpen] = useState(false)
+  const links = getLinks(homeHref)
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line-soft)] bg-[rgba(242,236,227,0.86)] backdrop-blur-xl shadow-[0_8px_28px_rgba(40,32,24,0.07)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-[14px]">
         <a
-          href="/"
+          href={homeHref}
           className="flex items-center gap-2.5 text-[var(--text-strong)] transition-opacity hover:opacity-75"
           aria-label="Decdock ana sayfa"
         >

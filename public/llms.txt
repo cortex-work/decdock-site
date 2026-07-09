@@ -9,7 +9,7 @@ Decdock is a corporate memory engine for companies. Its first wedge is a source-
 - Source-linked by design: every accepted record is tied to the source sentence or source pointer; uncertain items remain transparent review candidates.
 - Decision graph: policies, decisions, conflicts, supersession, compliance, and violations can be explored as a connected graph.
 - Live static demos: public graph and demo pages show the interaction model with representative data only; they do not call live LLMs or APIs.
-- Sources today: email threads and meeting notes. Turkish-optimized; English content supported.
+- Sources today: email threads and meeting notes. English landing and proof pages are live; Turkish content remains available.
 - Entry offer: a limited-scope pilot or one-time Decision Audit from a small project slice, without broad integration or system access.
 - ROI stance: Decdock does not invent universal savings numbers. It shows where decision loss, stale knowledge, ownerless decisions, and repeated work create measurable risk so the customer can calculate impact from their own examples.
 - Security/deployment posture: starts with limited-scope report mode; later deployment can be managed cloud or customer-owned cloud/server depending on sensitivity and procurement.
@@ -32,12 +32,15 @@ pilot@decdock.com
 
 ## Language
 
-Product and website primarily Turkish (tr); English content supported.
+The main landing page is English by default for international visitors. The Turkish landing page remains available at https://decdock.com/tr/.
 
 ## Links
 
-- Home: https://decdock.com/
+- Home (English): https://decdock.com/
+- Turkish landing: https://decdock.com/tr/
 - Product detail (Turkish): https://decdock.com/urun/
+- Enron proof (English, public archive): https://decdock.com/enron-proof/
+- Enron decision graph (English, public archive): https://decdock.com/enron-graph/
 - Live decision graph demo (representative data): https://decdock.com/karar-grafi/
 - Live source-to-record demo (representative data): https://decdock.com/demo-canli/
 - Comparison - Decdock vs summary tools: https://decdock.com/karsilastirma/
