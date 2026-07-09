@@ -202,56 +202,75 @@ function EnglishNav() {
 
 function WriteBoundaryPanel() {
   return (
-    <div className="panel-strong relative overflow-hidden rounded-[6px] p-5 shadow-[var(--shadow-card-lg)]">
-      <div className="mb-5 flex items-center justify-between gap-3 border-b border-[var(--line-soft)] pb-4">
-        <div>
-          <div className="text-[10px] font-[800] uppercase text-[var(--text-faint)]">
-            Write boundary
+    <div
+      className="relative mx-auto w-full max-w-[430px]"
+      aria-label="Source excerpt becomes a reviewed registry write"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute -right-2 top-7 h-[78%] w-[86%] rotate-[2deg] rounded-[6px] border border-[var(--line-soft)] bg-[rgba(238,229,216,0.55)] shadow-[0_18px_46px_rgba(40,32,24,0.08)]"
+      />
+
+      <article className="relative rounded-[6px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(253,248,241,0.98),rgba(242,234,222,0.96))] shadow-[var(--shadow-card)]">
+        <div className="flex items-center justify-between gap-3 border-b border-[var(--line-soft)] px-5 py-4">
+          <div className="text-[10px] font-[800] uppercase text-[var(--accent-deep)]">
+            Source excerpt
           </div>
-          <div className="mt-1 text-[15px] font-[720] text-[var(--text-strong)]">
-            Only reviewed decisions return to memory
-          </div>
+          <span className="rounded-[3px] border border-[var(--line-medium)] bg-[rgba(244,238,230,0.88)] px-2 py-1 text-[10px] font-[800] uppercase text-[var(--text-body)]">
+            Email thread
+          </span>
         </div>
-        <span className="rounded-[3px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.95)] px-2 py-1 text-[10px] font-[800] uppercase text-[var(--success)]">
-          Verified
+        <div className="px-5 py-4">
+          <p className="font-mono text-[12px] leading-[1.72] text-[var(--text-body)]">
+            Mark: update the desk limit before the next cycle.
+          </p>
+          <p className="mt-2 border-l-2 border-[var(--accent-soft)] pl-3 font-mono text-[12px] font-[700] leading-[1.72] text-[var(--text-strong)]">
+            Approved: the later threshold replaces the June value.
+          </p>
+        </div>
+      </article>
+
+      <div className="relative mx-6 flex items-center gap-3 py-4">
+        <div className="h-px flex-1 bg-[var(--accent-soft)]" />
+        <span className="rounded-[999px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.95)] px-3 py-1 text-[10px] font-[800] uppercase text-[var(--success)]">
+          Review gate
         </span>
+        <div className="h-px flex-1 bg-[var(--accent-soft)]" />
       </div>
 
-      <div className="grid gap-3">
-        {[
-          ['Sources', 'emails, notes, threads'],
-          ['Resolver', 'dedupe, conflict, supersede'],
-          ['Registry', 'source-linked decisions'],
-        ].map(([title, body], index) => (
-          <div key={title} className="grid grid-cols-[92px_1fr] items-center gap-3">
-            <div className="rounded-[4px] border border-[var(--line-soft)] bg-[rgba(251,246,239,0.74)] px-3 py-2">
-              <div className="text-[10px] font-[800] uppercase text-[var(--accent)]">{title}</div>
-              <div className="mt-1 text-[11px] leading-[1.35] text-[var(--text-muted)]">{body}</div>
-            </div>
-            <div className="relative h-12 rounded-[4px] border border-[var(--line-soft)] bg-[rgba(244,238,230,0.62)]">
-              <div className="absolute left-3 top-1/2 h-px w-[calc(100%-24px)] -translate-y-1/2 bg-[var(--accent-soft)]" />
-              <span
-                className="absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-[var(--success)] bg-[var(--page)]"
-                style={{ left: `${24 + index * 26}%` }}
-              />
-              <span
-                className="absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-[var(--accent)] bg-[var(--page)]"
-                style={{ left: `${49 + index * 12}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-5 rounded-[4px] border border-[rgba(161,118,78,0.22)] bg-[rgba(247,239,228,0.82)] p-4">
-        <div className="mb-2 text-[10px] font-[800] uppercase text-[var(--accent)]">
-          Example review
+      <article className="relative ml-6 rounded-[6px] border border-[var(--line-soft)] border-t-[3px] border-t-[var(--success)] bg-[linear-gradient(180deg,rgba(251,246,239,0.98),rgba(238,231,220,0.95))] p-5 shadow-[var(--shadow-card-lg)] sm:ml-10">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="text-[10px] font-[800] uppercase text-[var(--text-faint)]">
+            Registry write
+          </span>
+          <span className="rounded-[3px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.96)] px-2 py-0.5 text-[10px] font-[800] uppercase text-[var(--success)]">
+            Source-linked
+          </span>
         </div>
-        <p className="text-[13px] font-[560] leading-[1.72] text-[var(--text-strong)]">
-          Later policy update supersedes an older threshold. Same-date disagreement stays a conflict,
-          not a false replacement.
-        </p>
-      </div>
+        <h3 className="mb-3 text-[17px] font-[720] leading-[1.28] text-[var(--text-strong)]">
+          Later threshold supersedes the older policy.
+        </h3>
+        <div className="grid gap-2 border-t border-[var(--line-soft)] pt-3 text-[12px]">
+          <div className="flex items-start gap-3">
+            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+              Source
+            </span>
+            <span className="text-[var(--text-strong)]">real email quote</span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+              Drift
+            </span>
+            <span className="text-[var(--text-strong)]">strict newer-than-older edge</span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+              Status
+            </span>
+            <span className="text-[var(--text-strong)]">reviewable, not a verdict</span>
+          </div>
+        </div>
+      </article>
     </div>
   )
 }
