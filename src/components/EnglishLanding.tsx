@@ -217,10 +217,10 @@ function WriteBoundaryPanel() {
         </div>
         <div className="px-5 py-4">
           <p className="font-mono text-[12px] leading-[1.72] text-[var(--text-body)]">
-            Mark: update the desk limit before the next cycle.
+            Jan — enterprise discounts are capped at 15%.
           </p>
           <p className="mt-2 border-l-2 border-[var(--accent-soft)] pl-3 font-mono text-[12px] font-[700] leading-[1.72] text-[var(--text-strong)]">
-            Approved: the later threshold replaces the June value.
+            Mar — approved: raise the cap to 20%.
           </p>
         </div>
       </article>
@@ -243,26 +243,26 @@ function WriteBoundaryPanel() {
           </span>
         </div>
         <h3 className="mb-3 text-[17px] font-[720] leading-[1.28] text-[var(--text-strong)]">
-          Later threshold supersedes the older policy.
+          The March cap supersedes the January one.
         </h3>
         <div className="grid gap-2 border-t border-[var(--line-soft)] pt-3 text-[12px]">
           <div className="flex items-start gap-3">
-            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
               Source
             </span>
-            <span className="text-[var(--text-strong)]">real email quote</span>
+            <span className="text-[var(--text-strong)]">March 4 email thread</span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
-              Drift
+            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+              Supersedes
             </span>
-            <span className="text-[var(--text-strong)]">strict newer-than-older edge</span>
+            <span className="text-[var(--text-strong)]">the 15% cap set in January</span>
           </div>
           <div className="flex items-start gap-3">
-            <span className="w-[74px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
+            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
               Status
             </span>
-            <span className="text-[var(--text-strong)]">reviewable, not a verdict</span>
+            <span className="text-[var(--text-strong)]">review candidate, not a verdict</span>
           </div>
         </div>
       </article>
