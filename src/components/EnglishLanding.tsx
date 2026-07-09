@@ -1,3 +1,6 @@
+import * as Dialog from '@radix-ui/react-dialog'
+import { useState } from 'react'
+
 const auditMailto =
   'mailto:pilot@decdock.com?subject=Request%20Decision%20Audit'
 
@@ -95,9 +98,11 @@ function LogoMark() {
 }
 
 function EnglishNav() {
+  const [open, setOpen] = useState(false)
+
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line-soft)] bg-[rgba(242,236,227,0.9)] backdrop-blur-xl shadow-[0_8px_28px_rgba(40,32,24,0.07)]">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-[14px]">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-[14px]">
         <a
           href="/"
           className="flex items-center gap-2.5 text-[var(--text-strong)] transition-opacity hover:opacity-75"
@@ -107,16 +112,89 @@ function EnglishNav() {
           <span className="text-[14px] font-[780]">Decdock</span>
         </a>
 
-        <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2" aria-label="Main navigation">
+        <nav className="hidden items-center justify-end gap-x-5 gap-y-2 md:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} className="nav-link">
               {link.label}
             </a>
           ))}
-          <a href={auditMailto} className="btn-primary ml-0 px-4 py-2 text-[0.75rem] sm:ml-2">
-            Request Decision Audit
+          <a href="/enron-proof/" className="btn-primary ml-0 px-4 py-2 text-[0.75rem] sm:ml-2">
+            See real proof
           </a>
         </nav>
+
+        <Dialog.Root open={open} onOpenChange={setOpen}>
+          <Dialog.Trigger asChild>
+            <button
+              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
+              aria-label="Open menu"
+            >
+              <span
+                className="block h-[1.5px] w-5 bg-[var(--text-strong)] transition-all duration-200"
+                style={open ? { transform: 'rotate(45deg) translate(4px, 4px)' } : {}}
+              />
+              <span
+                className="block h-[1.5px] w-5 bg-[var(--text-strong)] transition-all duration-200"
+                style={open ? { opacity: 0 } : {}}
+              />
+              <span
+                className="block h-[1.5px] w-5 bg-[var(--text-strong)] transition-all duration-200"
+                style={open ? { transform: 'rotate(-45deg) translate(4px, -4px)' } : {}}
+              />
+            </button>
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay data-radix-dialog-overlay className="fixed inset-0 z-[100]" />
+            <Dialog.Content
+              className="fixed bottom-0 right-0 top-0 z-[101] flex w-[82vw] max-w-[320px] flex-col bg-[var(--page)] p-8 shadow-[-2px_0_40px_rgba(40,32,24,0.18)]"
+              aria-describedby={undefined}
+            >
+              <Dialog.Title className="sr-only">Navigation menu</Dialog.Title>
+              <div className="mb-8 flex items-center justify-between">
+                <span className="text-[14px] font-[780] text-[var(--text-strong)]">Decdock</span>
+                <Dialog.Close asChild>
+                  <button
+                    className="flex h-8 w-8 items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-strong)]"
+                    aria-label="Close menu"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeLinecap="round" strokeWidth="1.6" />
+                    </svg>
+                  </button>
+                </Dialog.Close>
+              </div>
+              <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-[3px] px-3 py-3 text-[15px] font-medium text-[var(--text-body)] transition-colors hover:bg-[rgba(161,118,78,0.08)] hover:text-[var(--text-strong)]"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className="mt-auto grid gap-3 pt-8">
+                <a
+                  href="/enron-proof/"
+                  className="btn-primary w-full py-3 text-[0.8rem]"
+                  onClick={() => setOpen(false)}
+                >
+                  See it on real data
+                </a>
+                <a
+                  href={auditMailto}
+                  className="btn-ghost w-full py-3 text-[0.8rem]"
+                  onClick={() => setOpen(false)}
+                >
+                  Request Decision Audit
+                </a>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
     </header>
   )
@@ -184,7 +262,7 @@ function HeroSection() {
       <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-24 pt-20 lg:grid-cols-[1fr_420px] lg:items-center lg:pb-32 lg:pt-28 xl:gap-20">
         <div>
           <div className="mb-7 flex items-center gap-3">
-            <span className="eyebrow">Decdock - Decision registry</span>
+            <span className="eyebrow text-[var(--accent-deep)]">Decdock - The write boundary</span>
             <span className="hidden h-px w-12 bg-[var(--accent-soft)] sm:block" />
           </div>
           <h1
@@ -198,25 +276,32 @@ function HeroSection() {
             what was decided, who had authority, what changed, and which exceptions were valid
             at the time.
           </p>
-          <p className="mb-8 max-w-[62ch] text-[13px] font-[700] uppercase text-[var(--text-faint)]">
+          <p className="mb-8 max-w-[62ch] text-[13px] font-[700] uppercase text-[var(--text-body)]">
             Duplicate - contradiction - supersession - authorized exception - exception drift - authority at time
           </p>
           <div className="mb-5 flex flex-wrap gap-3">
-            <a href={auditMailto} className="btn-primary">
+            <a href="/enron-proof/" className="btn-primary">
+              See it on real data
+              <ArrowIcon />
+            </a>
+            <a href={auditMailto} className="btn-ghost">
               Request Decision Audit
+              <ArrowIcon />
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="/enron-graph/"
+              className="group inline-flex max-w-[350px] items-center justify-between gap-4 rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 text-[13px] font-[680] text-[var(--accent-deep)] shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
+            >
+              See the decision graph live
+              <ArrowIcon />
             </a>
             <a href="/demo/" className="btn-ghost">
               Watch in 60s
               <ArrowIcon />
             </a>
           </div>
-          <a
-            href="/enron-graph/"
-            className="group inline-flex max-w-[350px] items-center justify-between gap-4 rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 text-[13px] font-[680] text-[var(--accent)] shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
-          >
-            See the decision graph on real public data
-            <ArrowIcon />
-          </a>
         </div>
 
         <WriteBoundaryPanel />
@@ -232,7 +317,7 @@ function ProofSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <div className="eyebrow-plain">Public proof</div>
+            <div className="eyebrow-plain text-[var(--accent-deep)]">Public proof</div>
             <h2
               className="mb-5 max-w-[16ch] font-display text-[32px] font-[640] leading-[1.06] text-[var(--text-strong)] lg:text-[44px]"
             >
@@ -281,7 +366,7 @@ function SignalSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <div className="eyebrow-plain">Resolution signals</div>
+            <div className="eyebrow-plain text-[var(--accent-deep)]">Resolution signals</div>
             <h2
               className="max-w-[15ch] font-display text-[32px] font-[640] leading-[1.06] text-[var(--text-strong)] lg:text-[44px]"
             >
@@ -316,7 +401,7 @@ function HowItWorksSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-14 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <div className="eyebrow-plain">How it works</div>
+            <div className="eyebrow-plain text-[var(--accent-deep)]">How it works</div>
             <h2
               className="max-w-[14ch] font-display text-[32px] font-[640] leading-[1.06] text-[var(--text-strong)] lg:text-[44px]"
             >

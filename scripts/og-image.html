@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,89 +11,105 @@
   body {
     font-family: 'Manrope', sans-serif;
     background:
-      radial-gradient(circle at 12% 15%, rgba(216,203,190,0.45), transparent 30%),
-      radial-gradient(circle at 92% 8%, rgba(154,132,111,0.18), transparent 26%),
-      linear-gradient(165deg, #f6f0e8 0%, #efe5d8 60%, #e9ddcd 100%);
+      radial-gradient(circle at 12% 15%, rgba(216,203,190,0.44), transparent 30%),
+      radial-gradient(circle at 88% 10%, rgba(92,117,96,0.14), transparent 25%),
+      linear-gradient(165deg, #f6f0e8 0%, #efe5d8 58%, #e9ddcd 100%);
     color: #2f2925;
     display: flex;
     align-items: center;
     padding: 0 72px;
     position: relative;
   }
-  .left { width: 640px; }
+  .left { width: 660px; }
   .eyebrow {
     display: inline-block;
-    font-size: 17px; font-weight: 700; letter-spacing: 0.14em;
+    font-size: 17px; font-weight: 800;
     color: #a1764e; text-transform: uppercase;
     border: 1px solid rgba(94,86,80,0.2); border-radius: 999px;
-    padding: 10px 22px; background: rgba(249,243,236,0.7);
-    margin-bottom: 36px;
+    padding: 10px 22px; background: rgba(249,243,236,0.72);
+    margin-bottom: 34px;
   }
   h1 {
     font-family: 'Newsreader', serif;
-    font-size: 88px; font-weight: 600; line-height: 1.04;
-    letter-spacing: -0.03em; margin-bottom: 30px;
+    font-size: 78px; font-weight: 600; line-height: 1.03;
+    margin-bottom: 28px;
   }
-  .sub { font-size: 26px; line-height: 1.55; color: #5e5650; max-width: 580px; }
+  .sub { font-size: 25px; line-height: 1.55; color: #5e5650; max-width: 630px; }
   .domain {
     position: absolute; bottom: 44px; left: 72px;
     font-size: 22px; font-weight: 700; color: #2f2925;
   }
-  .card {
-    position: absolute; right: 64px; top: 50%;
-    transform: translateY(-50%) rotate(1.2deg);
-    width: 390px; border-radius: 26px;
+  .panel {
+    position: absolute; right: 62px; top: 50%;
+    transform: translateY(-50%) rotate(1deg);
+    width: 400px; border-radius: 24px;
     border: 1px solid rgba(94,86,80,0.18);
     background: linear-gradient(180deg, rgba(250,245,239,0.99), rgba(241,234,224,0.98));
-    box-shadow: 0 36px 90px rgba(36,29,24,0.2);
-    overflow: visible;
+    box-shadow: 0 36px 90px rgba(36,29,24,0.18);
+    overflow: hidden;
   }
-  .card-head {
+  .panel-head {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 24px; border-bottom: 1px solid rgba(94,86,80,0.14);
+    padding: 22px 24px; border-bottom: 1px solid rgba(94,86,80,0.14);
   }
-  .card-label { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #93867b; text-transform: uppercase; }
+  .label { font-size: 13px; font-weight: 800; color: #93867b; text-transform: uppercase; }
   .badge {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: #657d68; border: 1px solid rgba(101,125,104,0.3);
+    font-size: 12px; font-weight: 800; text-transform: uppercase;
+    color: #5c7560; border: 1px solid rgba(92,117,96,0.28);
     background: rgba(238,242,237,0.95); border-radius: 999px; padding: 6px 14px;
   }
-  .card-body { padding: 22px 24px; font-size: 19px; font-weight: 600; line-height: 1.45; }
-  .card-meta { border-top: 1px solid rgba(94,86,80,0.14); padding: 18px 24px; }
-  .meta-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 14.5px; }
-  .meta-row:last-child { margin-bottom: 0; }
-  .meta-label { width: 96px; color: #93867b; flex-shrink: 0; }
-  .meta-value { color: #2f2925; font-weight: 600; }
-  .stamp {
-    position: absolute; top: -18px; right: -14px;
-    transform: rotate(-8deg);
-    border: 3px solid rgba(101,125,104,0.6); border-radius: 8px;
-    padding: 8px 16px;
-    font-size: 15px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(101,125,104,0.85); background: rgba(244,238,230,0.92);
+  .rows { padding: 22px 24px 24px; }
+  .row { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: center; margin-bottom: 16px; }
+  .row:last-child { margin-bottom: 0; }
+  .row-label { font-size: 13px; font-weight: 800; color: #a1764e; text-transform: uppercase; }
+  .rail {
+    position: relative; height: 34px; border-radius: 8px;
+    border: 1px solid rgba(94,86,80,0.14); background: rgba(244,238,230,0.72);
+  }
+  .rail::before {
+    content: ''; position: absolute; left: 14px; right: 14px; top: 50%; height: 2px;
+    transform: translateY(-50%); background: #d8c4ae;
+  }
+  .dot {
+    position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%;
+    transform: translateY(-50%); border: 2px solid #5c7560; background: #f6f0e8;
+  }
+  .dot.two { border-color: #a1764e; }
+  .foot {
+    border-top: 1px solid rgba(94,86,80,0.14);
+    padding: 18px 24px;
+    font-size: 18px; font-weight: 700; line-height: 1.35;
   }
 </style>
 </head>
 <body>
   <div class="left">
-    <div class="eyebrow">Decdock · Karar Sicili</div>
-    <h1>"Bu kararı kim almıştı?"</h1>
-    <p class="sub">Yazışmalarınızdan şirketinizin karar sicili: karar, onaylayan, tarih — kaynağından birebir alıntıyla.</p>
+    <div class="eyebrow">Decdock - The write boundary</div>
+    <h1>Resolve decisions, not just store them.</h1>
+    <p class="sub">Source-linked decision governance for duplicates, contradictions, supersession, authority, and exceptions.</p>
   </div>
   <div class="domain">decdock.com</div>
 
-  <div class="card">
-    <div class="stamp">Sicile işlendi</div>
-    <div class="card-head">
-      <span class="card-label">Karar kaydı</span>
-      <span class="badge">Onaylı</span>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="label">Review gate</span>
+      <span class="badge">Verified</span>
     </div>
-    <div class="card-body">2026 lojistik sözleşmesi KargoPlus ile yapılacak.</div>
-    <div class="card-meta">
-      <div class="meta-row"><span class="meta-label">Onaylayan</span><span class="meta-value">Murat Aksoy — Op. Direktörü</span></div>
-      <div class="meta-row"><span class="meta-label">Tarih</span><span class="meta-value">12 Mart 2026</span></div>
-      <div class="meta-row"><span class="meta-label">Kaynak</span><span class="meta-value">E-posta zinciri</span></div>
+    <div class="rows">
+      <div class="row">
+        <span class="row-label">Dedupe</span>
+        <span class="rail"><span class="dot" style="left: 42%"></span></span>
+      </div>
+      <div class="row">
+        <span class="row-label">Conflict</span>
+        <span class="rail"><span class="dot two" style="left: 34%"></span><span class="dot" style="left: 69%"></span></span>
+      </div>
+      <div class="row">
+        <span class="row-label">Supersede</span>
+        <span class="rail"><span class="dot" style="left: 76%"></span></span>
+      </div>
     </div>
+    <div class="foot">Only reviewed writes return to the graph.</div>
   </div>
 </body>
 </html>
