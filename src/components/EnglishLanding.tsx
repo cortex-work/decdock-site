@@ -206,12 +206,7 @@ function WriteBoundaryPanel() {
       className="relative mx-auto w-full max-w-[430px]"
       aria-label="Source excerpt becomes a reviewed registry write"
     >
-      <div
-        aria-hidden="true"
-        className="absolute -right-2 top-7 h-[78%] w-[86%] rotate-[2deg] rounded-[6px] border border-[var(--line-soft)] bg-[rgba(238,229,216,0.55)] shadow-[0_18px_46px_rgba(40,32,24,0.08)]"
-      />
-
-      <article className="relative rounded-[6px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(253,248,241,0.98),rgba(242,234,222,0.96))] shadow-[var(--shadow-card)]">
+      <article className="rounded-[6px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(253,248,241,0.98),rgba(242,234,222,0.96))] shadow-[var(--shadow-card)]">
         <div className="flex items-center justify-between gap-3 border-b border-[var(--line-soft)] px-5 py-4">
           <div className="text-[10px] font-[800] uppercase text-[var(--accent-deep)]">
             Source excerpt
@@ -230,7 +225,7 @@ function WriteBoundaryPanel() {
         </div>
       </article>
 
-      <div className="relative mx-6 flex items-center gap-3 py-4">
+      <div className="flex items-center gap-3 py-4">
         <div className="h-px flex-1 bg-[var(--accent-soft)]" />
         <span className="rounded-[999px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.95)] px-3 py-1 text-[10px] font-[800] uppercase text-[var(--success)]">
           Review gate
@@ -238,7 +233,7 @@ function WriteBoundaryPanel() {
         <div className="h-px flex-1 bg-[var(--accent-soft)]" />
       </div>
 
-      <article className="relative ml-6 rounded-[6px] border border-[var(--line-soft)] border-t-[3px] border-t-[var(--success)] bg-[linear-gradient(180deg,rgba(251,246,239,0.98),rgba(238,231,220,0.95))] p-5 shadow-[var(--shadow-card-lg)] sm:ml-10">
+      <article className="rounded-[6px] border border-[var(--line-soft)] border-t-[3px] border-t-[var(--success)] bg-[linear-gradient(180deg,rgba(251,246,239,0.98),rgba(238,231,220,0.95))] p-5 shadow-[var(--shadow-card-lg)]">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className="text-[10px] font-[800] uppercase text-[var(--text-faint)]">
             Registry write
