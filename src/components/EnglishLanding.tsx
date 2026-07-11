@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
+import WorkspaceShowcase from './WorkspaceShowcase'
 
 const auditMailto =
   'mailto:pilot@decdock.com?subject=Request%20Decision%20Audit'
@@ -118,8 +119,8 @@ function EnglishNav() {
               {link.label}
             </a>
           ))}
-          <a href="/enron-proof/" className="btn-primary ml-0 px-4 py-2 text-[0.75rem] sm:ml-2">
-            See real proof
+          <a href={auditMailto} className="btn-primary ml-0 px-4 py-2 text-[0.75rem] sm:ml-2">
+            Request Decision Audit
           </a>
         </nav>
 
@@ -200,100 +201,26 @@ function EnglishNav() {
   )
 }
 
-function WriteBoundaryPanel() {
-  return (
-    <div
-      className="relative mx-auto w-full max-w-[430px]"
-      aria-label="Source excerpt becomes a reviewed registry write"
-    >
-      <article className="rounded-[6px] border border-[var(--line-soft)] bg-[linear-gradient(180deg,rgba(253,248,241,0.98),rgba(242,234,222,0.96))] shadow-[var(--shadow-card)]">
-        <div className="flex items-center justify-between gap-3 border-b border-[var(--line-soft)] px-5 py-4">
-          <div className="text-[10px] font-[800] uppercase text-[var(--accent-deep)]">
-            Source excerpt
-          </div>
-          <span className="rounded-[3px] border border-[var(--line-medium)] bg-[rgba(244,238,230,0.88)] px-2 py-1 text-[10px] font-[800] uppercase text-[var(--text-body)]">
-            Email thread
-          </span>
-        </div>
-        <div className="px-5 py-4">
-          <p className="font-mono text-[12px] leading-[1.72] text-[var(--text-body)]">
-            Jan — enterprise discounts are capped at 15%.
-          </p>
-          <p className="mt-2 border-l-2 border-[var(--accent-soft)] pl-3 font-mono text-[12px] font-[700] leading-[1.72] text-[var(--text-strong)]">
-            Mar — approved: raise the cap to 20%.
-          </p>
-        </div>
-      </article>
-
-      <div className="flex items-center gap-3 py-4">
-        <div className="h-px flex-1 bg-[var(--accent-soft)]" />
-        <span className="rounded-[999px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.95)] px-3 py-1 text-[10px] font-[800] uppercase text-[var(--success)]">
-          Review gate
-        </span>
-        <div className="h-px flex-1 bg-[var(--accent-soft)]" />
-      </div>
-
-      <article className="rounded-[6px] border border-[var(--line-soft)] border-t-[3px] border-t-[var(--success)] bg-[linear-gradient(180deg,rgba(251,246,239,0.98),rgba(238,231,220,0.95))] p-5 shadow-[var(--shadow-card-lg)]">
-        <div className="mb-3 flex flex-wrap items-center gap-2">
-          <span className="text-[10px] font-[800] uppercase text-[var(--text-faint)]">
-            Registry write
-          </span>
-          <span className="rounded-[3px] border border-[rgba(92,117,96,0.24)] bg-[rgba(236,241,236,0.96)] px-2 py-0.5 text-[10px] font-[800] uppercase text-[var(--success)]">
-            Source-linked
-          </span>
-        </div>
-        <h3 className="mb-3 text-[17px] font-[720] leading-[1.28] text-[var(--text-strong)]">
-          The March cap supersedes the January one.
-        </h3>
-        <div className="grid gap-2 border-t border-[var(--line-soft)] pt-3 text-[12px]">
-          <div className="flex items-start gap-3">
-            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
-              Source
-            </span>
-            <span className="text-[var(--text-strong)]">March 4 email thread</span>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
-              Supersedes
-            </span>
-            <span className="text-[var(--text-strong)]">the 15% cap set in January</span>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="w-[96px] shrink-0 font-[700] uppercase text-[var(--text-faint)]">
-              Status
-            </span>
-            <span className="text-[var(--text-strong)]">review candidate, not a verdict</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  )
-}
-
 function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-24 pt-20 lg:grid-cols-[1fr_420px] lg:items-center lg:pb-32 lg:pt-28 xl:gap-20">
-        <div>
-          <div className="mb-7 flex items-center gap-3">
+      <div className="mx-auto max-w-6xl px-6 pb-24 pt-16 lg:pb-28 lg:pt-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-6 flex items-center justify-center gap-3">
             <span className="eyebrow text-[var(--accent-deep)]">Decdock - The write boundary</span>
-            <span className="hidden h-px w-12 bg-[var(--accent-soft)] sm:block" />
           </div>
-          <h1
-            className="mb-7 max-w-[11ch] font-display text-[48px] font-[640] leading-[1.02] text-[var(--text-strong)] sm:text-[60px] lg:text-[76px] xl:text-[82px]"
-          >
+          <h1 className="mb-6 font-display text-[44px] font-[640] leading-[1.03] text-[var(--text-strong)] sm:text-[58px] lg:text-[72px]">
             Resolve decisions, not just store them.
           </h1>
-          <span className="ledger-rule" />
-          <p className="mb-4 max-w-[58ch] text-[16px] leading-[1.82] text-[var(--text-body)]">
+          <p className="mx-auto mb-6 max-w-[60ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
             Decdock turns messy emails and meeting notes into a governed decision registry:
             what was decided, who had authority, what changed, and which exceptions were valid
             at the time.
           </p>
-          <p className="mb-8 max-w-[62ch] text-[13px] font-[700] uppercase text-[var(--text-body)]">
-            Duplicate - contradiction - supersession - authorized exception - exception drift - authority at time
+          <p className="mx-auto mb-8 max-w-[62ch] text-[12.5px] font-[700] uppercase tracking-[0.04em] text-[var(--text-body)]">
+            What was decided - who approved it - what it changed - whether it still holds
           </p>
-          <div className="mb-5 flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <a href="/enron-proof/" className="btn-primary">
               See it on real data
               <ArrowIcon />
@@ -303,24 +230,92 @@ function HeroSection() {
               <ArrowIcon />
             </a>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="/enron-graph/"
-              className="group inline-flex max-w-[350px] items-center justify-between gap-4 rounded-[6px] border border-[var(--line-soft)] bg-[rgba(253,248,241,0.72)] px-4 py-3.5 text-[13px] font-[680] text-[var(--accent-deep)] shadow-[0_10px_28px_rgba(40,32,24,0.05)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent-soft)] hover:bg-[rgba(253,248,241,0.95)]"
-            >
-              See the decision graph live
-              <ArrowIcon />
-            </a>
-            <a href="/demo/" className="btn-ghost">
-              Watch in 60s
-              <ArrowIcon />
-            </a>
-          </div>
         </div>
 
-        <WriteBoundaryPanel />
+        <div className="mt-14 lg:mt-16">
+          <WorkspaceShowcase />
+        </div>
       </div>
       <div className="section-rule" />
+    </section>
+  )
+}
+
+const comparisonRows = [
+  {
+    ask: '"What did we decide about pricing?"',
+    generic: 'Summarizes what the thread says.',
+    decdock: 'Surfaces the decision that is still in force.',
+  },
+  {
+    ask: 'Two messages disagree.',
+    generic: 'Returns both, equally confident.',
+    decdock: 'Flags the conflict as a review item.',
+  },
+  {
+    ask: 'A March call reversed a January one.',
+    generic: 'May quote the stale January version.',
+    decdock: 'Records March as superseding January.',
+  },
+  {
+    ask: '"Who approved this?"',
+    generic: 'Names whoever spoke in the thread.',
+    decdock: 'Checks who held authority at that time.',
+  },
+  {
+    ask: 'A new decision lands months later.',
+    generic: 'Starts fresh on every query.',
+    decdock: 'Resolves it against the standing registry.',
+  },
+]
+
+function ComparisonSection() {
+  return (
+    <section className="band-cream relative overflow-hidden py-24 lg:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <div className="eyebrow-plain text-[var(--accent-deep)]">Why not just ChatGPT</div>
+            <h2 className="max-w-[18ch] font-display text-[32px] font-[640] leading-[1.06] text-[var(--text-strong)] lg:text-[44px]">
+              Retrieval repeats what was said. Resolution tells you what still holds.
+            </h2>
+          </div>
+          <p className="max-w-[56ch] text-[14.5px] leading-[1.82] text-[var(--text-body)]">
+            Running a language model over your data is retrieval: it reads the thread back to you.
+            Decdock resolves the thread instead - reconciling what changed, what was overridden, and
+            what is still in force - and hands each result back as a source-linked review candidate,
+            not an automated verdict.
+          </p>
+        </div>
+
+        <div className="grid gap-3">
+          {comparisonRows.map((row) => (
+            <article
+              key={row.ask}
+              className="panel grid gap-4 rounded-[4px] p-6 md:grid-cols-[0.9fr_1fr_1fr] md:items-center md:gap-6"
+            >
+              <div className="text-[14.5px] font-[700] leading-[1.4] text-[var(--text-strong)]">
+                {row.ask}
+              </div>
+              <div className="md:border-l md:border-[var(--line-soft)] md:pl-6">
+                <div className="mb-1.5 text-[10px] font-[800] uppercase tracking-[0.1em] text-[var(--text-faint)]">
+                  Generic AI over your data
+                </div>
+                <div className="text-[13.5px] leading-[1.7] text-[var(--text-body)]">{row.generic}</div>
+              </div>
+              <div className="md:border-l md:border-[var(--line-soft)] md:pl-6">
+                <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-[800] uppercase tracking-[0.1em] text-[var(--success)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--success)]" />
+                  Decdock
+                </div>
+                <div className="text-[13.5px] font-[600] leading-[1.7] text-[var(--text-strong)]">
+                  {row.decdock}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
@@ -542,6 +537,7 @@ export default function EnglishLanding() {
       <EnglishNav />
       <main>
         <HeroSection />
+        <ComparisonSection />
         <ProofSection />
         <SignalSection />
         <HowItWorksSection />
