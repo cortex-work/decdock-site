@@ -207,18 +207,19 @@ function HeroSection() {
       <div className="mx-auto max-w-6xl px-6 pb-24 pt-16 lg:pb-28 lg:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-6 flex items-center justify-center gap-3">
-            <span className="eyebrow text-[var(--accent-deep)]">Decdock - The write boundary</span>
+            <span className="eyebrow text-[var(--accent-deep)]">Decdock - Your company's nervous system</span>
           </div>
           <h1 className="mb-6 font-display text-[44px] font-[640] leading-[1.03] text-[var(--text-strong)] sm:text-[58px] lg:text-[72px]">
-            Resolve decisions, not just store them.
+            See what your company owes, and to whom.
           </h1>
           <p className="mx-auto mb-6 max-w-[60ch] text-[16px] leading-[1.8] text-[var(--text-body)]">
-            Decdock turns messy emails and meeting notes into a governed decision registry:
-            what was decided, who had authority, what changed, and which exceptions were valid
-            at the time.
+            Decdock reads your business email, with your consent, and keeps a live, source-cited
+            list of open work for every customer and supplier: promises, requests, deadlines,
+            decisions and whose move it is. Each morning you get a short brief of what needs
+            attention.
           </p>
           <p className="mx-auto mb-8 max-w-[62ch] text-[12.5px] font-[700] uppercase tracking-[0.04em] text-[var(--text-body)]">
-            What was decided - who approved it - what it changed - whether it still holds
+            What was promised - whose move it is - what is overdue - what was decided
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a href="/enron-proof/" className="btn-primary">
