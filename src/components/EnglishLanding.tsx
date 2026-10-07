@@ -527,6 +527,10 @@ function EnglishFooter() {
           for extraction, identity reconciliation, and strict supersession; broader governance
           signals remain review-first and are expanded through pilots.
         </p>
+        <p className="text-[12px] text-[var(--text-faint)]">
+          &copy; 2026 Decdock, a product of Nakes Tarım Ürünleri Hayvancılık Yem ve Gıda Sanayi Ticaret Ltd. Şti., İzmir,
+          Türkiye. Contact: founder@decdock.com
+        </p>
       </div>
     </footer>
   )

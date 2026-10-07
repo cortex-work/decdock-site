@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
 
           <span className="text-[12px] text-[var(--text-faint)]">
-            &copy; 2026 Decdock. Tüm hakları saklıdır.
+            &copy; 2026 Decdock, Nakes Tarım Ürünleri Hayvancılık Yem ve Gıda Sanayi Ticaret Ltd. Şti. ürünüdür. İzmir, Türkiye.
           </span>
 
           <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-5" aria-label="Alt navigasyon">
